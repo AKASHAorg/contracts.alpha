@@ -9,9 +9,10 @@ contract Profile is BaseStore {
     event UpdateInfo();
     event Tipped(address from, uint value);
 
-    function Profile(RegistryController registrar, bytes32[2] chunks){
+    function Profile(RegistryController registrar, bytes32[2] chunks, address forwardAddr){
         _hash = chunks;
         _registrar = registrar;
+        owner = forwardAddr;
     }
 
     function sendTip() public payable returns(bool) {
@@ -22,8 +23,16 @@ contract Profile is BaseStore {
         throw;
     }
 
-    function setHash(bytes32[2] chunks) auth{
+    function setHash(bytes32[2] chunks) auth {
         _hash = chunks;
         UpdateInfo();
+    }
+
+
+    function destroy() {
+        if(msg.sender != address(_registrar)) {
+            throw;
+        }
+        selfdestruct(owner);
     }
 }

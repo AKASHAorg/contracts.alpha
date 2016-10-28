@@ -17,19 +17,20 @@ contract RegistryControllerTest is Test {
        assertEq( address(this), controller.owner() );
     }
 
-    function testIdAlpha() {
-        var x = controller.check_format(bytes32("abcd"));
-        assertTrue(x, 'illegal characters');
-    }
-
     function testIdAlphaNum(){
-        var x = controller.check_format(bytes32("abcd123"));
-        assertTrue(x, 'illegal characters');
+        var x = controller.check_format(bytes32("abcd"));
+        assertTrue(x, 'illegal x characters');
+        var xx = controller.check_format(bytes32("abcd123"));
+        assertTrue(xx, 'illegal xx characters');
     }
 
     function testIdSpecialChar1(){
         var x = controller.check_format(bytes32("abc_123"));
         assertTrue(x, 'illegal characters');
+        var xx = controller.check_format(bytes32("abc.123"));
+        assertTrue(xx, 'illegal xx characters');
+        var y = controller.check_format(bytes32("abcefghijkl_nopqrstuvxyz12345.78"));
+        assertTrue(y, 'illegal y characters');
     }
 
     function testIdLength(){
@@ -42,11 +43,8 @@ contract RegistryControllerTest is Test {
         assertFalse(x, 'bypassed lower case');
     }
 
-    function testIdSpecialChar2(){
-        var x = controller.check_format(bytes32("abc.123"));
-        assertTrue(x, 'illegal x characters');
-        var y = controller.check_format(bytes32("abcefghijkl_nopqrstuvxyz12345.78"));
-        assertTrue(y, 'illegal y characters');
+    function testCreation(){
+        controller
     }
 }
 
