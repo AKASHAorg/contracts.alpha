@@ -4,6 +4,3 @@
 [submodule ".dapple/packages/ds-rate-accumulator"]
 	path = .dapple/packages/ds-rate-accumulator
 	url = https://github.com/nexusdev/ds-rate-accumulator.git
-[submodule ".dapple/packages/solidity-stringutils"]
-	path = .dapple/packages/solidity-stringutils
-	url = https://github.com/Arachnid/solidity-stringutils.git

@@ -5,11 +5,17 @@ import "registrycontroller.sol";
 contract Profile is BaseStore {
     bytes32[2] public _hash;
 
-    RegistryController _registrar;
+    address _registrar;
     event UpdateInfo();
-    event Tipped(address from, uint value);
+    event Tip(address from, uint value);
 
-    function Profile(RegistryController registrar, bytes32[2] chunks, address forwardAddr){
+    modifier fromRegistrar {
+        if(msg.sender != _registrar) {
+            throw;
+        }
+        _;
+    }
+    function Profile(address registrar, bytes32[2] chunks, address forwardAddr){
         _hash = chunks;
         _registrar = registrar;
         owner = forwardAddr;
@@ -17,7 +23,7 @@ contract Profile is BaseStore {
 
     function sendTip() public payable returns(bool) {
         if(owner.send(msg.value)) {
-            Tipped(msg.sender, msg.value);
+            Tip(msg.sender, msg.value);
             return true;
         }
         throw;
@@ -29,10 +35,7 @@ contract Profile is BaseStore {
     }
 
 
-    function destroy() {
-        if(msg.sender != address(_registrar)) {
-            throw;
-        }
+    function destroy() fromRegistrar {
         selfdestruct(owner);
     }
 }

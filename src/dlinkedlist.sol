@@ -1,6 +1,6 @@
 pragma solidity ^0.4.3;
 
-library DLinkedList {
+library DLinked {
 
     struct List {
         uint256 size;

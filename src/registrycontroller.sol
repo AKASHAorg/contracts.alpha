@@ -12,31 +12,49 @@ contract RegistryController is BaseStore {
         _store = store;
     }
 
-    function register(bytes32 id, bytes32[2] ipfs) {
+    function register(bytes32 id, bytes32[2] ipfs)
+    returns(address)
+    {
         if(!check_format(id)){
             throw;
         }
-        var newProfile = new Profile(this, ipfs, msg.sender);
+
+        var newProfile = new Profile(address(this), ipfs, msg.sender);
         var stored = _store.add(id, msg.sender, newProfile);
-        if(stored) {
-            Register(id, newProfile);
+
+        if(!stored) {
+            throw;
         }
+
+        Register(id, newProfile);
+        return newProfile;
     }
 
-    function unregister(bytes32 id) {
+    function unregister(bytes32 id) returns(bool){
         var profile = Profile(addressOfKey(msg.sender));
         var removed = _store.remove(id, msg.sender);
         if (removed) {
             profile.destroy();
+            return true;
         }
+        return false;
     }
 
-    function addressOfId(bytes32 id) constant returns(address profileAddress){
+    function migrate(address newController) auth {
+        _store.setOwner(newController);
+        selfdestruct(owner);
+    }
+
+    function addressOf(bytes32 id) constant returns(address profileAddress){
         profileAddress = _store.get_by_id(id);
     }
 
     function addressOfKey(address key) constant returns(address profileAddress){
         profileAddress = _store.get_by_address(key);
+    }
+
+    function isRegistered(address key) constant returns(bool) {
+        return (_store.get_by_address(key) != address(0x0));
     }
 
     function check_format(bytes32 id)
