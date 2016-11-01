@@ -1,4 +1,4 @@
-pragma solidity ^0.4.3;
+pragma solidity ^0.4.4;
 import "basestore.sol";
 import "profile.sol";
 import "registrystore.sol";
@@ -19,7 +19,7 @@ contract RegistryController is BaseStore {
             throw;
         }
 
-        var newProfile = new Profile(address(this), ipfs, msg.sender);
+        var newProfile = new Profile(address(this), ipfs, id, msg.sender);
         var stored = _store.add(id, msg.sender, newProfile);
 
         if(!stored) {

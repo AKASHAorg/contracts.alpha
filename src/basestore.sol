@@ -1,4 +1,4 @@
-pragma solidity ^0.4.3;
+pragma solidity ^0.4.4;
 import "ds-auth/auth.sol";
 
 // this contract will be used by all storage lvl contracts

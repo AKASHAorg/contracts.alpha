@@ -1,10 +1,10 @@
-pragma solidity ^0.4.3;
+pragma solidity ^0.4.4;
 import "basestore.sol";
 import "registrycontroller.sol";
 
 contract Profile is BaseStore {
     bytes32[2] public _hash;
-
+    bytes32 public _id;
     address _registrar;
     event UpdateInfo();
     event Tip(address from, uint value);
@@ -15,10 +15,11 @@ contract Profile is BaseStore {
         }
         _;
     }
-    function Profile(address registrar, bytes32[2] chunks, address forwardAddr){
+    function Profile(address registrar, bytes32[2] chunks, bytes32 id, address forwardAddr){
         _hash = chunks;
         _registrar = registrar;
         owner = forwardAddr;
+        _id = id;
     }
 
     function sendTip() public payable returns(bool) {

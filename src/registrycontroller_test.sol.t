@@ -1,4 +1,4 @@
-pragma solidity ^0.4.3;
+pragma solidity ^0.4.4;
 
 import 'dapple/test.sol';
 import 'registrycontroller.sol';
@@ -16,10 +16,6 @@ contract RegistryControllerTest is Test {
         proxy_tester._target(controller);
     }
 
-    function testOwner() {
-       assertEq( address(this), controller.owner() );
-    }
-
     function testIdAlphaNum(){
         var x = controller.check_format(bytes32("abcd"));
         assertTrue(x, 'illegal x characters');
@@ -34,6 +30,8 @@ contract RegistryControllerTest is Test {
         assertTrue(xx, 'illegal xx characters');
         var y = controller.check_format(bytes32("abcefghijkl_nopqrstuvxyz12345.78"));
         assertTrue(y, 'illegal y characters');
+        var yy = controller.check_format(bytes32("aZcc"));
+        assertFalse(yy, 'bypassed lower case');
     }
 
     function testIdLength(){
@@ -41,10 +39,6 @@ contract RegistryControllerTest is Test {
         assertFalse(x, 'bypassed min length');
     }
 
-    function testIdCase(){
-        var x = controller.check_format(bytes32("aZcc"));
-        assertFalse(x, 'bypassed lower case');
-    }
     function testRegisterEvent() logs_gas{
         controller.setStore(store);
         var profile = controller.register(bytes32('bobo'), [bytes32('0x1'), bytes32('0x2')]);

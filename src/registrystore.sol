@@ -1,4 +1,4 @@
-pragma solidity ^0.4.3;
+pragma solidity ^0.4.4;
 import "basestore.sol";
 
 contract RegistryStore is BaseStore {
