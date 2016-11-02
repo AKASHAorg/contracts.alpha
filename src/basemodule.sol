@@ -1,6 +1,6 @@
 pragma solidity ^0.4.4;
-import "basestore.sol";
-import "registrycontroller.sol";
+import "./basestore.sol";
+import "./registrycontroller.sol";
 
 contract BaseModule is BaseStore {
 

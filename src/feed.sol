@@ -1,7 +1,7 @@
 pragma solidity ^0.4.4;
-import 'basemodule.sol';
-import 'dlinkedlist.sol';
-import 'tags.sol';
+import './basemodule.sol';
+import './dlinkedlist.sol';
+import './tags.sol';
 
 contract Feed is BaseModule {
     struct Following {

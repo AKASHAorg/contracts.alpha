@@ -1,7 +1,7 @@
 pragma solidity ^0.4.4;
-import "basestore.sol";
-import "profile.sol";
-import "registrystore.sol";
+import "./basestore.sol";
+import "./profile.sol";
+import "./registrystore.sol";
 
 contract RegistryController is BaseStore {
 

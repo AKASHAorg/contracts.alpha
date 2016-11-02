@@ -1,7 +1,7 @@
 pragma solidity ^0.4.4;
-import 'basemodule.sol';
-import 'dlinkedlist.sol';
-import 'entry.sol';
+import './basemodule.sol';
+import './dlinkedlist.sol';
+import './entry.sol';
 
 contract Comments is BaseModule {
     struct Comment {
@@ -30,10 +30,7 @@ contract Comments is BaseModule {
     onlyRegistered
     {
         if(!_entries.entryExists(entryId)){ throw;}
-
-        if(entryComment[entryId]._id == 0){
-            entryComment[entryId]._id = 1;
-        }
+        entryComment[entryId]._id++;
         var myProfile = _controller.addressOfKey(msg.sender);
         entryComment[entryId]._data[entryComment[entryId]._id]._owner = myProfile;
         entryComment[entryId]._data[entryComment[entryId]._id]._hash = hash;
@@ -44,7 +41,6 @@ contract Comments is BaseModule {
 
         DLinked.insert(entryComment[entryId]._index, entryComment[entryId]._id);
         Commented(entryId, myProfile, entryComment[entryId]._id);
-        entryComment[entryId]._id++;
     }
 
     function removeComment(uint entryId, uint commentId)

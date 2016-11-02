@@ -1,5 +1,5 @@
 pragma solidity ^0.4.4;
-import "basestore.sol";
+import "./basestore.sol";
 
 contract EntryDeposit is BaseStore {
 
