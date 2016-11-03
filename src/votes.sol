@@ -5,6 +5,7 @@ import './funds.sol';
 import './faucet.sol';
 
 contract Votes is BaseModule {
+    using DLinked for DLinked.List;
 
     uint _voteFee = 100 szabo;
     uint _baseCost = 1 finney;
@@ -59,7 +60,7 @@ contract Votes is BaseModule {
          }
           _votes[entryId]._vote[myProfile] = int8(weight);
           _votes[entryId]._score += int(weight);
-          DLinked.insert(_votes[entryId]._index, _votes[entryId]._id);
+          _votes[entryId]._index.insert(_votes[entryId]._id);
           _votes[entryId]._indexVote[_votes[entryId]._id] = myProfile;
 
          if(!deposit.send(fundAmount)) { throw;}
@@ -68,7 +69,7 @@ contract Votes is BaseModule {
          if(totalSpent < msg.value) {
             if(!msg.sender.send(msg.value - totalSpent)){ throw;}
          }
-         Vote(myProfile, entryId, DLinked.size(_votes[entryId]._index), _votes[entryId]._vote[myProfile]);
+         Vote(myProfile, entryId, _votes[entryId]._index.getSize(), _votes[entryId]._vote[myProfile]);
     }
 
     function downvote(uint8 weight, uint entryId)
@@ -85,7 +86,7 @@ contract Votes is BaseModule {
          }
           _votes[entryId]._vote[myProfile] = int8(-weight);
           _votes[entryId]._score -= int(weight);
-          DLinked.insert(_votes[entryId]._index, _votes[entryId]._id);
+          _votes[entryId]._index.insert(_votes[entryId]._id);
           _votes[entryId]._indexVote[_votes[entryId]._id] = myProfile;
 
          if(!_faucet.send(fundAmount)) { throw;}
@@ -94,7 +95,7 @@ contract Votes is BaseModule {
          if(totalSpent < msg.value) {
             if(!msg.sender.send(msg.value - totalSpent)){ throw;}
          }
-         Vote(myProfile, entryId, DLinked.size(_votes[entryId]._index), _votes[entryId]._vote[myProfile]);
+         Vote(myProfile, entryId, _votes[entryId]._index.getSize(), _votes[entryId]._vote[myProfile]);
 
     }
 
@@ -108,31 +109,31 @@ contract Votes is BaseModule {
     function getVotesCount(uint entryId)
     constant returns(uint)
     {
-        return DLinked.size(_votes[entryId]._index);
+        return _votes[entryId]._index.getSize();
     }
 
     function getFirstVoteId(uint entryId)
     constant returns(uint)
     {
-        return DLinked.first(_votes[entryId]._index);
+        return _votes[entryId]._index.getFirst();
     }
 
     function getLastVoteId(uint entryId)
     constant returns(uint)
     {
-        return DLinked.last(_votes[entryId]._index);
+        return _votes[entryId]._index.getLast();
     }
 
     function getNextVoteId(uint entryId, uint voteId)
     constant returns(uint)
     {
-        return DLinked.next(_votes[entryId]._index, voteId);
+        return _votes[entryId]._index.getNext(voteId);
     }
 
     function getPrevVoteId(uint entryId, uint voteId)
     constant returns(uint)
     {
-        return DLinked.prev(_votes[entryId]._index, voteId);
+        return _votes[entryId]._index.getPrev(voteId);
     }
 
 }

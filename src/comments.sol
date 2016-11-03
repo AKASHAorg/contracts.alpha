@@ -4,6 +4,7 @@ import './dlinkedlist.sol';
 import './entry.sol';
 
 contract Comments is BaseModule {
+    using DLinked for DLinked.List;
     struct Comment {
         uint _parent;
         uint _id;
@@ -39,7 +40,7 @@ contract Comments is BaseModule {
             entryComment[entryId]._data[entryComment[entryId]._id]._parent = parent;
         }
 
-        DLinked.insert(entryComment[entryId]._index, entryComment[entryId]._id);
+        entryComment[entryId]._index.insert(entryComment[entryId]._id);
         Commented(entryId, myProfile, entryComment[entryId]._id);
     }
 
@@ -66,34 +67,34 @@ contract Comments is BaseModule {
     constant
     returns(uint)
     {
-        return DLinked.size(entryComment[entryId]._index);
+        return entryComment[entryId]._index.getSize();
     }
 
     function getFirstComment(uint entryId)
     constant
     returns(uint)
     {
-        return DLinked.first(entryComment[entryId]._index);
+        return entryComment[entryId]._index.getFirst();
     }
 
     function getLastComment(uint entryId)
     constant
     returns(uint)
     {
-        return DLinked.last(entryComment[entryId]._index);
+        return entryComment[entryId]._index.getLast();
     }
 
     function getNextComment(uint entryId, uint commentId)
     constant
     returns(uint)
     {
-        return DLinked.next(entryComment[entryId]._index, commentId);
+        return entryComment[entryId]._index.getNext(commentId);
     }
 
     function getPrevComment(uint entryId, uint commentId)
     constant
     returns(uint)
     {
-        return DLinked.prev(entryComment[entryId]._index, commentId);
+        return entryComment[entryId]._index.getPrev(commentId);
     }
 }

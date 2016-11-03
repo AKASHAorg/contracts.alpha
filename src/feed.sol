@@ -4,6 +4,7 @@ import './dlinkedlist.sol';
 import './tags.sol';
 
 contract Feed is BaseModule {
+    using DLinked for DLinked.List;
     struct Following {
         mapping(address => uint) _followingMap;
         mapping(uint => address) _indexedFollowing;
@@ -44,19 +45,19 @@ contract Feed is BaseModule {
         }
 
         var following = _following[myProfile];
-        var fSize = DLinked.size(following._index);
+        var fSize = following._index.getSize();
         fSize++;
         following._followingMap[profile] = fSize;
         following._indexedFollowing[fSize] = profile;
-        DLinked.insert(following._index, fSize);
+        following._index.insert(fSize);
         Follow(profile, myProfile);
 
         var followers = _followers[profile];
-        var foSize = DLinked.size(followers._index);
+        var foSize = followers._index.getSize();
         foSize++;
         followers._followersMap[myProfile] = foSize;
         followers._indexedFollowers[foSize] = myProfile;
-        DLinked.insert(followers._index, foSize);
+        followers._index.insert(foSize);
     }
 
     function unFollow(bytes32 id)
@@ -66,13 +67,13 @@ contract Feed is BaseModule {
         var myProfile = _controller.addressOfKey(msg.sender);
         var following = _following[myProfile];
         var followingId = following._followingMap[profile];
-        DLinked.remove(following._index, followingId);
+        following._index.remove(followingId);
         delete following._followingMap[profile];
         delete following._indexedFollowing[followingId];
 
         var followers = _followers[profile];
         var followerId = followers._followersMap[myProfile];
-        DLinked.remove(followers._index, followerId);
+        followers._index.remove(followerId);
         delete followers._followersMap[myProfile];
         delete followers._indexedFollowers[followerId];
     }
@@ -100,7 +101,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var following = _following[profile];
-        return DLinked.size(following._index);
+        return following._index.getSize();
     }
 
     function getFollowingFirst(bytes32 id)
@@ -108,7 +109,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var following = _following[profile];
-        return DLinked.first(following._index);
+        return following._index.getFirst();
     }
 
     function getFollowingLast(bytes32 id)
@@ -116,7 +117,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var following = _following[profile];
-        return DLinked.last(following._index);
+        return following._index.getLast();
     }
 
     function getFollowingNext(bytes32 id, uint next)
@@ -124,7 +125,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var following = _following[profile];
-        return DLinked.next(following._index, next);
+        return following._index.getNext(next);
     }
 
     function getFollowingPrev(bytes32 id, uint prev)
@@ -132,7 +133,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var following = _following[profile];
-        return DLinked.prev(following._index, prev);
+        return following._index.getPrev(prev);
     }
 
     function getFollowingById(bytes32 id, uint idIndex)
@@ -148,7 +149,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var followers = _followers[profile];
-        return DLinked.size(followers._index);
+        return followers._index.getSize();
     }
 
     function getFollowersFirst(bytes32 id)
@@ -156,7 +157,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var followers = _followers[profile];
-        return DLinked.first(followers._index);
+        return followers._index.getFirst();
     }
 
     function getFollowersLast(bytes32 id)
@@ -164,7 +165,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var followers = _followers[profile];
-        return DLinked.last(followers._index);
+        return followers._index.getLast();
     }
 
     function getFollowersNext(bytes32 id, uint next)
@@ -172,7 +173,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var followers = _followers[profile];
-        return DLinked.next(followers._index, next);
+        return followers._index.getNext(next);
     }
 
     function getFollowersPrev(bytes32 id, uint prev)
@@ -180,7 +181,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var followers = _followers[profile];
-        return DLinked.prev(followers._index, prev);
+        return followers._index.getPrev(prev);
     }
 
     function getFollowersById(bytes32 id, uint idIndex)
@@ -197,7 +198,7 @@ contract Feed is BaseModule {
     {
         var myProfile = _controller.addressOfKey(msg.sender);
         var tagId = _tags.getTagId(tag);
-        subscribed = DLinked.insert(_subscriptions[myProfile]._index, tagId);
+        subscribed = _subscriptions[myProfile]._index.insert(tagId);
         if(subscribed){
             Subscribe(tagId, myProfile);
         }
@@ -209,37 +210,37 @@ contract Feed is BaseModule {
     {
         var myProfile = _controller.addressOfKey(msg.sender);
         var tagId = _tags.getTagId(tag);
-        return DLinked.remove(_subscriptions[myProfile]._index, tagId);
+        return _subscriptions[myProfile]._index.remove(tagId);
     }
 
     function subsCount(address profile)
     constant returns(uint)
     {
-        return DLinked.size(_subscriptions[profile]._index);
+        return _subscriptions[profile]._index.getSize();
     }
 
     function subsFirst(address profile)
     constant returns(uint)
     {
-        return DLinked.first(_subscriptions[profile]._index);
+        return _subscriptions[profile]._index.getFirst();
     }
 
 
     function subsLast(address profile)
     constant returns(uint)
     {
-        return DLinked.last(_subscriptions[profile]._index);
+        return _subscriptions[profile]._index.getLast();
     }
 
     function subsNext(address profile, uint tag)
     constant returns(uint)
     {
-        return DLinked.next(_subscriptions[profile]._index, tag);
+        return _subscriptions[profile]._index.getNext(tag);
     }
 
     function subsPrev(address profile, uint tag)
     constant returns(uint)
     {
-        return DLinked.prev(_subscriptions[profile]._index, tag);
+        return _subscriptions[profile]._index.getPrev(tag);
     }
 }

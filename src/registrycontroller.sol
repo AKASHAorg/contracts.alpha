@@ -8,8 +8,8 @@ contract RegistryController is BaseStore {
     RegistryStore _store;
     event Register(bytes32 indexed id, address profile);
 
-    function setStore(RegistryStore store) auth {
-        _store = store;
+    function setStore(address store) auth {
+        _store = RegistryStore(store);
     }
 
     function register(bytes32 id, bytes32[2] ipfs)

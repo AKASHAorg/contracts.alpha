@@ -1,27 +1,25 @@
 pragma solidity ^0.4.4;
-import './basemodule.sol';
 import './dlinkedlist.sol';
+import './basemodule.sol';
 
 contract Tags is BaseModule {
+    using DLinked for DLinked.List;
     DLinked.List _index;
+    uint idTag = 1;
     mapping(bytes32 => uint) _tag;
     mapping(uint => bytes32) _indexedTag;
+
     event Create(bytes32 indexed tag, uint id);
     event Remove(bytes32 indexed tag);
 
-    uint idTag = 1;
-
-    function exists(bytes32 tag) constant returns(bool){
-        return _tag[tag]!=0;
-    }
-
-    function add(bytes32 tag) onlyRegistered
+    function add(bytes32 tag)
+    onlyRegistered
     {
         if(!check_format(tag) || exists(tag)){
             throw;
         }
         _tag[tag] = idTag;
-        DLinked.insert(_index, idTag);
+        _index.insert(idTag);
         _indexedTag[idTag] = tag;
         Create(tag, idTag);
         idTag++;
@@ -33,8 +31,14 @@ contract Tags is BaseModule {
         var tag = _indexedTag[tagId];
         delete _tag[tag];
         delete _indexedTag[tagId];
-        DLinked.remove(_index, tagId);
+        _index.remove(tagId);
         Remove(tag);
+    }
+
+    function exists(bytes32 tag)
+    constant returns(bool)
+    {
+        return _tag[tag]!=0;
     }
 
     function getTagName(uint tagId)
@@ -52,31 +56,31 @@ contract Tags is BaseModule {
     function getTagCount()
     constant returns(uint)
     {
-        return DLinked.size(_index);
+        return _index.getSize();
     }
 
     function getFirstTag()
     constant returns(uint)
     {
-        return DLinked.first(_index);
+        return _index.getFirst();
     }
 
     function getLastTag()
     constant returns(uint)
     {
-        return DLinked.last(_index);
+        return _index.getLast();
     }
 
     function nextTag(uint tagId)
     constant returns(uint)
     {
-        return DLinked.next(_index, tagId);
+        return _index.getNext(tagId);
     }
 
     function prevTag(uint tagId)
     constant returns(uint)
     {
-        return DLinked.prev(_index, tagId);
+        return _index.getPrev(tagId);
     }
 
     function check_format(bytes32 tag)

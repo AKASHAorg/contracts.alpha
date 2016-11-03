@@ -5,6 +5,7 @@ import './entry_deposit.sol';
 import './tags.sol';
 
 contract Entry is BaseModule {
+    using DLinked for DLinked.List;
 
     struct Source {
        bytes32[2] _hash;
@@ -45,11 +46,11 @@ contract Entry is BaseModule {
         _entryFunds[_entryId] = deposit;
         for(uint8 i=0; i<tags.length; i++)  {
             if(!_tags.exists(tags[i])){ throw;}
-            DLinked.insert(_indexEntryTag[_tags.getTagId(tags[i])]._index, _entryId);
+            _indexEntryTag[_tags.getTagId(tags[i])]._index.insert(_entryId);
             Publish(myProfile, tags[i], _entryId);
         }
 
-        DLinked.insert(_indexEntryAuthor[myProfile]._index, _entryId);
+        _indexEntryAuthor[myProfile]._index.insert(_entryId);
         _entryId++;
     }
 
@@ -66,7 +67,7 @@ contract Entry is BaseModule {
     onlyRegistered
     {
         var myProfile = _controller.addressOfKey(msg.sender);
-        if(!DLinked.exists(_indexEntryAuthor[myProfile]._index, entryId)){ throw;}
+        if(!_indexEntryAuthor[myProfile]._index.exists(entryId)){ throw;}
         if(isEditable(entryId)){ throw;}
         if(_entryFunds[entryId] == address(0x0)){ throw;}
 
@@ -77,66 +78,66 @@ contract Entry is BaseModule {
     function getProfileEntriesCount(address profile)
     constant returns(uint)
     {
-        return DLinked.size(_indexEntryAuthor[profile]._index);
+        return _indexEntryAuthor[profile]._index.getSize();
     }
 
     function getProfileEntryFirst(address profile)
     constant returns(uint)
     {
-        return DLinked.first(_indexEntryAuthor[profile]._index);
+        return _indexEntryAuthor[profile]._index.getFirst();
     }
 
     function getProfileEntryLast(address profile)
     constant returns(uint)
     {
-        return DLinked.last(_indexEntryAuthor[profile]._index);
+        return _indexEntryAuthor[profile]._index.getLast();
     }
 
     function getProfileEntryNext(address profile, uint profileId)
     constant returns(uint)
     {
-        return DLinked.next(_indexEntryAuthor[profile]._index, profileId);
+        return _indexEntryAuthor[profile]._index.getNext(profileId);
     }
 
     function getProfileEntryPrev(address profile, uint profileId)
     constant returns(uint)
     {
-        return DLinked.prev(_indexEntryAuthor[profile]._index, profileId);
+        return _indexEntryAuthor[profile]._index.getPrev(profileId);
     }
 
     function getTagEntriesCount(bytes32 tag)
     constant returns(uint)
     {
         var tagId = _tags.getTagId(tag);
-        return DLinked.size(_indexEntryTag[tagId]._index);
+        return _indexEntryTag[tagId]._index.getSize();
     }
 
     function getTagEntryFirst(bytes32 tag)
     constant returns(uint)
     {
         var tagId = _tags.getTagId(tag);
-        return DLinked.first(_indexEntryTag[tagId]._index);
+        return _indexEntryTag[tagId]._index.getFirst();
     }
 
     function getTagEntryLast(bytes32 tag)
     constant returns(uint)
     {
         var tagId = _tags.getTagId(tag);
-        return DLinked.last(_indexEntryTag[tagId]._index);
+        return _indexEntryTag[tagId]._index.getLast();
     }
 
     function getTagEntryNext(bytes32 tag, uint entryId)
     constant returns(uint)
     {
         var tagId = _tags.getTagId(tag);
-        return DLinked.next(_indexEntryTag[tagId]._index, entryId);
+        return _indexEntryTag[tagId]._index.getNext(entryId);
     }
 
     function getTagEntryPrev(bytes32 tag, uint entryId)
     constant returns(uint)
     {
         var tagId = _tags.getTagId(tag);
-        return DLinked.prev(_indexEntryTag[tagId]._index, entryId);
+        return _indexEntryTag[tagId]._index.getPrev(entryId);
     }
 
     function isEditable(uint entryId)

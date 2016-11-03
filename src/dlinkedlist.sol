@@ -8,54 +8,54 @@ library DLinked {
         mapping(uint256 => uint256) prev;
     }
 
-    function insert(List storage list, uint256 value) returns (bool inserted) {
-        if (!exists(list, value)) {
+    function insert(List storage self, uint256 value) returns (bool inserted) {
+        if (!exists(self, value)) {
             inserted = true;
-            list.prev[list.next[0]] = value;
-            list.next[value] = list.next[0];
-            list.prev[value] = 0;
-            list.next[0] = value;
-            list.size++;
+            self.prev[self.next[0]] = value;
+            self.next[value] = self.next[0];
+            self.prev[value] = 0;
+            self.next[0] = value;
+            self.size++;
         }
         return inserted;
     }
 
-    function remove(List storage list, uint256 value) returns (bool removed) {
-        if (exists(list, value)) {
+    function remove(List storage self, uint256 value) returns (bool removed) {
+        if (exists(self, value)) {
             removed = true;
-            list.next[list.prev[value]] = list.next[value];
-            list.prev[list.next[value]] = list.prev[value];
-            delete list.prev[value];
-            delete list.next[value];
-            list.size--;
+            self.next[self.prev[value]] = self.next[value];
+            self.prev[self.next[value]] = self.prev[value];
+            delete self.prev[value];
+            delete self.next[value];
+            self.size--;
         }
         return removed;
     }
 
-    function exists(List storage list, uint256 value) constant returns (bool) {
+    function exists(List storage self, uint256 value) constant returns (bool) {
         if(value == 0){
             throw;
         }
-        return list.prev[value] != 0 || list.next[value] != 0 || list.next[0] == value;
+        return self.prev[value] != 0 || self.next[value] != 0 || self.next[0] == value;
     }
 
-    function prev(List storage list, uint256 value) constant returns (uint256) {
-        return list.prev[value];
+    function getPrev(List storage self, uint256 value) constant returns (uint256) {
+        return self.prev[value];
     }
 
-    function next(List storage list, uint256 value) constant returns (uint256) {
-        return list.next[value];
+    function getNext(List storage self, uint256 value) constant returns (uint256) {
+        return self.next[value];
     }
 
-    function size(List storage list) constant returns (uint256) {
-        return list.size;
+    function getSize(List storage self) constant returns (uint256) {
+        return self.size;
     }
 
-    function first(List storage list) constant returns (uint256) {
-        return list.next[0];
+    function getFirst(List storage self) constant returns (uint256) {
+        return self.next[0];
     }
 
-    function last(List storage list) constant returns (uint256) {
-        return list.prev[0];
+    function getLast(List storage self) constant returns (uint256) {
+        return self.prev[0];
     }
 }
