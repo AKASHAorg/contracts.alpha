@@ -31,7 +31,7 @@ function run(contract, address){
 const objects = {
     RegistryStore: "0x077c5983bfebec8fe75d7ef86311c2e9ff38609b",
     Comments: "0x54b855461d4611362e8ef7a78e8560077e380a44",
-    Votes: "0x1d83b31f2cb4cea5b900649824365dda1b81795b",
+    Votes: "0xba527a570a7023b8b91bd6292389254d591cfa9c",
     Funds: "0x211ae2d39c4724dc3cc7df216d39bcbf83016895",
     Faucet: "0xa27c237bd671e37b54e72b3264855059d07d5e1a",
     Feed: "0x818949e3f21eb2dfab99267581402351b7c5c527",
@@ -41,18 +41,18 @@ const objects = {
 };
 
 // first be sure to deploy all libraries and link them to contracts: replace __LIB____ with actual address( no 0x)
-// ["RegistryStore", "RegistryController", "Tags", "Feed", "Faucet", "Funds", "Entry", "Comments", "Votes"].forEach(
-//     (instance) => {
-//         console.log('deploying '+ instance);
-//         deploy(instance);
-//     }
-// );
+//  ["Votes"].forEach(
+//      (instance) => {
+//          console.log('deploying '+ instance);
+//          deploy(instance);
+//      }
+//  );
 
 
 /////////////// after deployment
 function runMigrations() {
 
-    run('RegistryStore', objects.RegistryStore).setOwner(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
+/*    run('RegistryStore', objects.RegistryStore).setOwner(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('RegistryStore setOwner');
         console.log(err, resp);
     });
@@ -101,7 +101,7 @@ function runMigrations() {
     run('Comments', objects.Comments).setEntryAddress(objects.Entry, { gas: 4000000 }, (err, resp) => {
         console.log('Comments setEntryAddress');
         console.log(err, resp);
-    });
+    });*/
 
     run('Votes', objects.Votes).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setRegistry');
@@ -120,4 +120,4 @@ function runMigrations() {
         console.log(err, resp);
     });
 }
-//runMigrations()
+runMigrations();

@@ -72,7 +72,7 @@ dapple['AKASHA'] = (function builder () {
                     },
                     'votes': {
                         'class': 'Votes',
-                        'address': '0x1d83b31f2cb4cea5b900649824365dda1b81795b'
+                        'address': '0xba527a570a7023b8b91bd6292389254d591cfa9c'
                     }
                 },
                 'type': 'aeth'
@@ -3222,6 +3222,24 @@ dapple['AKASHA'] = (function builder () {
                         'type': 'function'
                     },
                     {
+                        'constant': true,
+                        'inputs': [
+                            {
+                                'name': 'entryId',
+                                'type': 'uint256'
+                            }
+                        ],
+                        'name': 'getScore',
+                        'outputs': [
+                            {
+                                'name': '',
+                                'type': 'int256'
+                            }
+                        ],
+                        'payable': false,
+                        'type': 'function'
+                    },
+                    {
                         'constant': false,
                         'inputs': [
                             {
@@ -3424,6 +3442,32 @@ dapple['AKASHA'] = (function builder () {
                         ],
                         'name': 'setRegistry',
                         'outputs': [],
+                        'payable': false,
+                        'type': 'function'
+                    },
+                    {
+                        'constant': true,
+                        'inputs': [
+                            {
+                                'name': 'entryId',
+                                'type': 'uint256'
+                            },
+                            {
+                                'name': 'voteId',
+                                'type': 'uint256'
+                            }
+                        ],
+                        'name': 'getVoteOf',
+                        'outputs': [
+                            {
+                                'name': 'profile',
+                                'type': 'address'
+                            },
+                            {
+                                'name': 'score',
+                                'type': 'int8'
+                            }
+                        ],
                         'payable': false,
                         'type': 'function'
                     },
