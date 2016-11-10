@@ -213,34 +213,39 @@ contract Feed is BaseModule {
         return _subscriptions[myProfile]._index.remove(tagId);
     }
 
-    function subsCount(address profile)
+    function subsCount(bytes32 id)
     constant returns(uint)
     {
+        var profile = _controller.addressOf(id);
         return _subscriptions[profile]._index.getSize();
     }
 
-    function subsFirst(address profile)
+    function subsFirst(bytes32 id)
     constant returns(uint)
     {
+        var profile = _controller.addressOf(id);
         return _subscriptions[profile]._index.getFirst();
     }
 
 
-    function subsLast(address profile)
+    function subsLast(bytes32 id)
     constant returns(uint)
     {
+        var profile = _controller.addressOf(id);
         return _subscriptions[profile]._index.getLast();
     }
 
-    function subsNext(address profile, uint tag)
+    function subsNext(bytes32 id, uint tag)
     constant returns(uint)
     {
+        var profile = _controller.addressOf(id);
         return _subscriptions[profile]._index.getNext(tag);
     }
 
-    function subsPrev(address profile, uint tag)
+    function subsPrev(bytes32 id, uint tag)
     constant returns(uint)
     {
+        var profile = _controller.addressOf(id);
         return _subscriptions[profile]._index.getPrev(tag);
     }
 }

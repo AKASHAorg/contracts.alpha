@@ -143,6 +143,12 @@ contract Votes is BaseModule {
         score = _votes[entryId]._vote[profile];
     }
 
+    function getVoteOfProfile(uint entryId, address profileAddress)
+    constant returns(int8 weight)
+    {
+        return _votes[entryId]._vote[profileAddress];
+    }
+
     function getScore(uint entryId)
     constant returns(int)
     {
