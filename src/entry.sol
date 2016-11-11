@@ -75,33 +75,38 @@ contract Entry is BaseModule {
         delete _entryFunds[entryId];
     }
 
-    function getProfileEntriesCount(address profile)
+    function getProfileEntriesCount(bytes32 id)
     constant returns(uint)
     {
+        var profile = _controller.addressOf(id);
         return _indexEntryAuthor[profile]._index.getSize();
     }
 
-    function getProfileEntryFirst(address profile)
+    function getProfileEntryFirst(bytes32 id)
     constant returns(uint)
     {
+        var profile = _controller.addressOf(id);
         return _indexEntryAuthor[profile]._index.getFirst();
     }
 
-    function getProfileEntryLast(address profile)
+    function getProfileEntryLast(bytes32 id)
     constant returns(uint)
     {
+        var profile = _controller.addressOf(id);
         return _indexEntryAuthor[profile]._index.getLast();
     }
 
-    function getProfileEntryNext(address profile, uint profileId)
+    function getProfileEntryNext(bytes32 id, uint profileId)
     constant returns(uint)
     {
+        var profile = _controller.addressOf(id);
         return _indexEntryAuthor[profile]._index.getNext(profileId);
     }
 
-    function getProfileEntryPrev(address profile, uint profileId)
+    function getProfileEntryPrev(bytes32 id, uint profileId)
     constant returns(uint)
     {
+        var profile = _controller.addressOf(id);
         return _indexEntryAuthor[profile]._index.getPrev(profileId);
     }
 
