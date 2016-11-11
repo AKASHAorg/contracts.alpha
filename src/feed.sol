@@ -78,20 +78,20 @@ contract Feed is BaseModule {
         delete followers._indexedFollowers[followerId];
     }
 
-    function isFollowing(bytes32 id)
+    function isFollowing(bytes32 follower, bytes32 id)
     constant returns(bool)
     {
         var profile = _controller.addressOf(id);
-        var myProfile = _controller.addressOfKey(msg.sender);
+        var myProfile = _controller.addressOf(follower);
         var following = _following[myProfile];
         return (following._followingMap[profile] != 0);
     }
 
-    function isFollower(bytes32 id)
+    function isFollower(bytes32 id, bytes32 following)
     constant returns(bool)
     {
         var profile = _controller.addressOf(id);
-        var myProfile = _controller.addressOfKey(msg.sender);
+        var myProfile = _controller.addressOf(following);
         var followers = _followers[myProfile];
         return (followers._followersMap[profile] != 0);
     }
@@ -211,6 +211,14 @@ contract Feed is BaseModule {
         var myProfile = _controller.addressOfKey(msg.sender);
         var tagId = _tags.getTagId(tag);
         return _subscriptions[myProfile]._index.remove(tagId);
+    }
+
+    function isSubscribed(bytes32 id, bytes32 tag)
+    constant returns(bool)
+    {
+        var profile = _controller.addressOf(id);
+        var tagId = _tags.getTagId(tag);
+        return _subscriptions[profile]._index.exists(tagId);
     }
 
     function subsCount(bytes32 id)

@@ -34,20 +34,20 @@ const objects = {
     Votes: "0xdf3ba3598c9c5309b26588e6330fbe7a02317557",
     Funds: "0x211ae2d39c4724dc3cc7df216d39bcbf83016895",
     Faucet: "0xa27c237bd671e37b54e72b3264855059d07d5e1a",
-    Feed: "0x0b29c1dffdf717e89c1e873ca3aa15e7dcc1d391",
+    Feed: "0x0811a3b9709d2a944cd69ce608681b0496733494",
     Tags: "0x1170bed968f0e487932d84bfab38f51408404703",
     RegistryController: "0xd092e6baf52269121abf625f0a1a5693f65e46c7",
     Entry: "0xdad7305a309e67ffb1dd61f0ba46fb99c0ea88be"
 };
 
 // first be sure to deploy all libraries and link them to contracts: replace __LIB____ with actual address( no 0x) 9bd7ec8a9e8774b703e3636a1d2396afa58ed81d
- /* ["Votes", "Feed"].forEach(
+ /** ["Feed"].forEach(
       (instance) => {
           console.log('deploying '+ instance);
           deploy(instance);
       }
   );
-*/
+**/
 
 /////////////// after deployment
 function runMigrations() {
@@ -103,7 +103,7 @@ function runMigrations() {
         console.log('Feed setTagSource');
         console.log(err, resp);
     });
-
+/**
     run('Votes', objects.Votes).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setRegistry');
         console.log(err, resp);
@@ -120,5 +120,6 @@ function runMigrations() {
         console.log('Votes setFaucetAddress');
         console.log(err, resp);
     });
+ **/
 }
-//runMigrations();
+runMigrations();
