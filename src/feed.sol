@@ -40,24 +40,17 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var myProfile = _controller.addressOfKey(msg.sender);
-        if(profile == address(0x0)){
-            throw;
-        }
-
-        var following = _following[myProfile];
-        var fSize = following._index.getSize();
-        fSize++;
-        following._followingMap[profile] = fSize;
-        following._indexedFollowing[fSize] = profile;
-        following._index.insert(fSize);
-        Follow(profile, myProfile);
-
-        var followers = _followers[profile];
-        var foSize = followers._index.getSize();
+        var fSize = _following[myProfile]._index.getSize();
+        var foSize = _followers[profile]._index.getSize();
         foSize++;
-        followers._followersMap[myProfile] = foSize;
-        followers._indexedFollowers[foSize] = myProfile;
-        followers._index.insert(foSize);
+        fSize++;
+        _following[myProfile]._followingMap[profile] = fSize;
+        _following[myProfile]._indexedFollowing[fSize] = profile;
+        _following[myProfile]._index.insert(fSize);
+        _followers[profile]._followersMap[myProfile] = foSize;
+        _followers[profile]._indexedFollowers[foSize] = myProfile;
+        _followers[profile]._index.insert(foSize);
+        Follow(profile, myProfile);
     }
 
     function unFollow(bytes32 id)
@@ -65,17 +58,15 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var myProfile = _controller.addressOfKey(msg.sender);
-        var following = _following[myProfile];
-        var followingId = following._followingMap[profile];
-        following._index.remove(followingId);
-        delete following._followingMap[profile];
-        delete following._indexedFollowing[followingId];
+        var followingId = _following[myProfile]._followingMap[profile];
+        var followerId = _followers[profile]._followersMap[myProfile];
 
-        var followers = _followers[profile];
-        var followerId = followers._followersMap[myProfile];
-        followers._index.remove(followerId);
-        delete followers._followersMap[myProfile];
-        delete followers._indexedFollowers[followerId];
+        _following[myProfile]._index.remove(followingId);
+        delete _following[myProfile]._followingMap[profile];
+        delete _following[myProfile]._indexedFollowing[followingId];
+        _followers[profile]._index.remove(followerId);
+        delete _followers[profile]._followersMap[myProfile];
+        delete _followers[profile]._indexedFollowers[followerId];
     }
 
     function isFollowing(bytes32 follower, bytes32 id)
@@ -83,8 +74,7 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var myProfile = _controller.addressOf(follower);
-        var following = _following[myProfile];
-        return (following._followingMap[profile] != 0);
+        return (_following[myProfile]._followingMap[profile] != 0);
     }
 
     function isFollower(bytes32 id, bytes32 following)
@@ -92,104 +82,91 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         var myProfile = _controller.addressOf(following);
-        var followers = _followers[myProfile];
-        return (followers._followersMap[profile] != 0);
+        return (_followers[myProfile]._followersMap[profile] != 0);
     }
 
     function getFollowingCount(bytes32 id)
     constant returns(uint)
     {
         var profile = _controller.addressOf(id);
-        var following = _following[profile];
-        return following._index.getSize();
+        return _following[profile]._index.getSize();
     }
 
     function getFollowingFirst(bytes32 id)
     constant returns(uint)
     {
         var profile = _controller.addressOf(id);
-        var following = _following[profile];
-        return following._index.getFirst();
+        return _following[profile]._index.getFirst();
     }
 
     function getFollowingLast(bytes32 id)
     constant returns(uint)
     {
         var profile = _controller.addressOf(id);
-        var following = _following[profile];
-        return following._index.getLast();
+        return _following[profile]._index.getLast();
     }
 
     function getFollowingNext(bytes32 id, uint next)
     constant returns(uint)
     {
         var profile = _controller.addressOf(id);
-        var following = _following[profile];
-        return following._index.getNext(next);
+        return _following[profile]._index.getNext(next);
     }
 
     function getFollowingPrev(bytes32 id, uint prev)
     constant returns(uint)
     {
         var profile = _controller.addressOf(id);
-        var following = _following[profile];
-        return following._index.getPrev(prev);
+        return _following[profile]._index.getPrev(prev);
     }
 
     function getFollowingById(bytes32 id, uint idIndex)
     constant returns(address)
     {
         var profile = _controller.addressOf(id);
-        var following = _following[profile];
-        return following._indexedFollowing[idIndex];
+        return _following[profile]._indexedFollowing[idIndex];
     }
 
     function getFollowersCount(bytes32 id)
     constant returns(uint)
     {
         var profile = _controller.addressOf(id);
-        var followers = _followers[profile];
-        return followers._index.getSize();
+        return _followers[profile]._index.getSize();
     }
 
     function getFollowersFirst(bytes32 id)
     constant returns(uint)
     {
         var profile = _controller.addressOf(id);
-        var followers = _followers[profile];
-        return followers._index.getFirst();
+        return _followers[profile]._index.getFirst();
     }
 
     function getFollowersLast(bytes32 id)
     constant returns(uint)
     {
         var profile = _controller.addressOf(id);
-        var followers = _followers[profile];
-        return followers._index.getLast();
+        return _followers[profile]._index.getLast();
     }
 
     function getFollowersNext(bytes32 id, uint next)
     constant returns(uint)
     {
         var profile = _controller.addressOf(id);
-        var followers = _followers[profile];
-        return followers._index.getNext(next);
+        return _followers[profile]._index.getNext(next);
     }
 
     function getFollowersPrev(bytes32 id, uint prev)
     constant returns(uint)
     {
         var profile = _controller.addressOf(id);
-        var followers = _followers[profile];
-        return followers._index.getPrev(prev);
+        return _followers[profile]._index.getPrev(prev);
     }
 
     function getFollowersById(bytes32 id, uint idIndex)
     constant returns(address)
     {
         var profile = _controller.addressOf(id);
-        var followers = _followers[profile];
-        return followers._indexedFollowers[idIndex];
+        return _followers[profile]._indexedFollowers[idIndex];
     }
 
     function subscribe(bytes32 tag)

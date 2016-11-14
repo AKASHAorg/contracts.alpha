@@ -34,20 +34,20 @@ const objects = {
     Votes: "0xdf3ba3598c9c5309b26588e6330fbe7a02317557",
     Funds: "0x211ae2d39c4724dc3cc7df216d39bcbf83016895",
     Faucet: "0xa27c237bd671e37b54e72b3264855059d07d5e1a",
-    Feed: "0x0811a3b9709d2a944cd69ce608681b0496733494",
+    Feed: "0x31db7c662f6c5361a31c0876844ac1c6af542a8d",
     Tags: "0x1170bed968f0e487932d84bfab38f51408404703",
     RegistryController: "0xd092e6baf52269121abf625f0a1a5693f65e46c7",
     Entry: "0x5d2b19074afa7299349d0ab353389881436a430a"
 };
 
 // first be sure to deploy all libraries and link them to contracts: replace __LIB____ with actual address( no 0x) 9bd7ec8a9e8774b703e3636a1d2396afa58ed81d
- /** ["Entry"].forEach(
+/**  ["Feed"].forEach(
       (instance) => {
           console.log('deploying '+ instance);
           deploy(instance);
       }
   );
-**/
+ **/
 /////////////// after deployment
 function runMigrations() {
 /*
@@ -75,7 +75,6 @@ function runMigrations() {
         console.log('Funds setRegistry');
         console.log(err, resp);
     });
-**/
     run('Entry', objects.Entry).setTagsSource(objects.Tags, { gas: 4000000 }, (err, resp) => {
         console.log('Entry setTagsSource');
         console.log(err, resp);
@@ -84,18 +83,16 @@ function runMigrations() {
         console.log('Entry setRegistry');
         console.log(err, resp);
     });
-/**
     run('Comments', objects.Comments).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Comments setRegistry');
         console.log(err, resp);
     });
- **/
     run('Comments', objects.Comments).setEntryAddress(objects.Entry, { gas: 4000000 }, (err, resp) => {
         console.log('Comments setEntryAddress');
         console.log(err, resp);
     });
 
-/**
+**/
     run('Feed', objects.Feed).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Feed setRegistry');
         console.log(err, resp);
@@ -104,7 +101,7 @@ function runMigrations() {
         console.log('Feed setTagSource');
         console.log(err, resp);
     });
- **/
+
 /**
     run('Votes', objects.Votes).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setRegistry');
@@ -115,7 +112,7 @@ function runMigrations() {
         console.log(err, resp);
     });
  **/
-    run('Votes', objects.Votes).setEntriesAddress(objects.Entry, { gas: 4000000 }, (err, resp) => {
+    /**run('Votes', objects.Votes).setEntriesAddress(objects.Entry, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setEntriesAddress');
         console.log(err, resp);
     });
