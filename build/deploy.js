@@ -34,20 +34,19 @@ const objects = {
     Votes: "0xdf3ba3598c9c5309b26588e6330fbe7a02317557",
     Funds: "0x211ae2d39c4724dc3cc7df216d39bcbf83016895",
     Faucet: "0xa27c237bd671e37b54e72b3264855059d07d5e1a",
-    Feed: "0x87feef988cca80aba188be0581b763fdb7748bb8",
+    Feed: "0x4d524c300b65da2d810454fbe28d769a651dbbd8",
     Tags: "0x1170bed968f0e487932d84bfab38f51408404703",
     RegistryController: "0xd092e6baf52269121abf625f0a1a5693f65e46c7",
     Entry: "0x5d2b19074afa7299349d0ab353389881436a430a"
 };
 
 // first be sure to deploy all libraries and link them to contracts: replace __LIB____ with actual address( no 0x) 9bd7ec8a9e8774b703e3636a1d2396afa58ed81d
-/**  ["Feed"].forEach(
+/**["Feed"].forEach(
       (instance) => {
           console.log('deploying '+ instance);
           deploy(instance);
       }
-  );
-**/
+);**/
 /////////////// after deployment
 function runMigrations() {
 /*

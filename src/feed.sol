@@ -40,7 +40,10 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         if(profile == address(0x0)){ throw;}
+
         var myProfile = _controller.addressOfKey(msg.sender);
+        if(_following[myProfile]._followingMap[profile] != 0){ throw;}
+
         var fSize = _following[myProfile]._index.getSize();
         var foSize = _followers[profile]._index.getSize();
         foSize++;
@@ -61,6 +64,7 @@ contract Feed is BaseModule {
         var myProfile = _controller.addressOfKey(msg.sender);
         var followingId = _following[myProfile]._followingMap[profile];
         var followerId = _followers[profile]._followersMap[myProfile];
+        if(_following[myProfile]._followingMap[profile] == 0){ throw;}
 
         _following[myProfile]._index.remove(followingId);
         delete _following[myProfile]._followingMap[profile];
