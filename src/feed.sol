@@ -39,6 +39,7 @@ contract Feed is BaseModule {
     onlyRegistered
     {
         var profile = _controller.addressOf(id);
+        if(profile == address(0x0)){ throw;}
         var myProfile = _controller.addressOfKey(msg.sender);
         var fSize = _following[myProfile]._index.getSize();
         var foSize = _followers[profile]._index.getSize();
