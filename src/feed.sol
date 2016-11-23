@@ -8,12 +8,14 @@ contract Feed is BaseModule {
     struct Following {
         mapping(address => uint) _followingMap;
         mapping(uint => address) _indexedFollowing;
+        uint _fId;
         DLinked.List _index;
     }
 
     struct Followers {
         mapping(address => uint) _followersMap;
         mapping(uint => address) _indexedFollowers;
+        uint _foId;
         DLinked.List _index;
     }
 
@@ -38,22 +40,21 @@ contract Feed is BaseModule {
     function follow(bytes32 id)
     onlyRegistered
     {
+
         var profile = _controller.addressOf(id);
         if(profile == address(0x0)){ throw;}
-
         var myProfile = _controller.addressOfKey(msg.sender);
         if(_following[myProfile]._followingMap[profile] != 0){ throw;}
+        _following[myProfile]._fId++;
+        _followers[profile]._foId++;
 
-        var fSize = _following[myProfile]._index.getSize();
-        var foSize = _followers[profile]._index.getSize();
-        foSize++;
-        fSize++;
-        _following[myProfile]._followingMap[profile] = fSize;
-        _following[myProfile]._indexedFollowing[fSize] = profile;
-        _following[myProfile]._index.insert(fSize);
-        _followers[profile]._followersMap[myProfile] = foSize;
-        _followers[profile]._indexedFollowers[foSize] = myProfile;
-        _followers[profile]._index.insert(foSize);
+        _following[myProfile]._followingMap[profile] = _following[myProfile]._fId;
+        _following[myProfile]._indexedFollowing[_following[myProfile]._fId] = profile;
+        _following[myProfile]._index.insert(_following[myProfile]._fId);
+
+        _followers[profile]._followersMap[myProfile] = _followers[profile]._foId;
+        _followers[profile]._indexedFollowers[_followers[profile]._foId] = myProfile;
+        _followers[profile]._index.insert(_followers[profile]._foId);
         Follow(profile, myProfile);
     }
 
