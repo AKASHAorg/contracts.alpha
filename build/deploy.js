@@ -34,7 +34,7 @@ const objects = {
     Votes: "0xdf3ba3598c9c5309b26588e6330fbe7a02317557",
     Funds: "0x211ae2d39c4724dc3cc7df216d39bcbf83016895",
     Faucet: "0xa27c237bd671e37b54e72b3264855059d07d5e1a",
-    Feed: "0x4d524c300b65da2d810454fbe28d769a651dbbd8",
+    Feed: "0x940bb75effd935ecdd45537e81c95cdbc72c444c",
     Tags: "0x1170bed968f0e487932d84bfab38f51408404703",
     RegistryController: "0xd092e6baf52269121abf625f0a1a5693f65e46c7",
     Entry: "0x5d2b19074afa7299349d0ab353389881436a430a"
@@ -46,7 +46,7 @@ const objects = {
           console.log('deploying '+ instance);
           deploy(instance);
       }
-);**/
+);*/
 /////////////// after deployment
 function runMigrations() {
 /*

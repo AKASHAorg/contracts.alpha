@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a71fb84-5b5b-4619-a5d8-f6379af6a8b9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/feed.sol" afterPath="$PROJECT_DIR$/src/feed.sol" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes.json" afterPath="$PROJECT_DIR$/build/classes.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/deploy.js" afterPath="$PROJECT_DIR$/build/deploy.js" />
     </list>
     <ignored path="contracts-1.0.sol.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,28 +29,48 @@
       <file leaf-file-name="entry.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/entry.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1914">
-              <caret line="66" column="18" lean-forward="false" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="18" />
+            <state relative-caret-position="227">
+              <caret line="53" column="18" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dumb.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dumb.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="22" column="30" lean-forward="false" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="feed.sol" pinned="false" current-in-tab="true">
+      <file leaf-file-name="feed.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/feed.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="57" column="35" lean-forward="true" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+            <state relative-caret-position="-93">
+              <caret line="41" column="5" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="js_module.sol.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/js_module.sol.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2042">
+              <caret line="90" column="43" lean-forward="false" selection-start-line="90" selection-start-column="43" selection-end-line="90" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="classes.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/classes.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7366">
+              <caret line="0" column="2022361" lean-forward="false" selection-start-line="0" selection-start-column="2022361" selection-end-line="0" selection-end-column="2022361" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deploy.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build/deploy.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -71,16 +91,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
               <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/profile.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="24" column="53" lean-forward="false" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -116,16 +126,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="entry_deposit.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/entry_deposit.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -138,7 +138,12 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>_baseCost</find>
+      <find>++</find>
+      <find>__DLinked_______________________________</find>
     </findStrings>
+    <replaceStrings>
+      <replace>9bd7ec8a9e8774b703e3636a1d2396afa58ed81d</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -184,9 +189,9 @@
         <option value="$PROJECT_DIR$/build/js_module.sol.js" />
         <option value="$PROJECT_DIR$/src/votes.sol" />
         <option value="$PROJECT_DIR$/src/entry.sol" />
+        <option value="$PROJECT_DIR$/src/feed.sol" />
         <option value="$PROJECT_DIR$/build/classes.json" />
         <option value="$PROJECT_DIR$/build/deploy.js" />
-        <option value="$PROJECT_DIR$/src/feed.sol" />
       </list>
     </option>
   </component>
@@ -237,7 +242,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contracts-1.0.sol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="contracts-1.0.sol" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".dapple" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -345,16 +364,16 @@
       <workItem from="1479134648155" duration="1653000" />
       <workItem from="1479142455284" duration="1151000" />
       <workItem from="1479474294024" duration="3230000" />
-      <workItem from="1479929348803" duration="452000" />
+      <workItem from="1479929348803" duration="1337000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169297000" />
+    <option name="totallyTimeSpent" value="170182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1055" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3120985" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -362,7 +381,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.301826" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.301826" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -540,31 +559,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/js_module.sol.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="90" column="43" lean-forward="false" selection-start-line="90" selection-start-column="43" selection-end-line="90" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/js_module.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
           <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/classes.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="2020443" lean-forward="false" selection-start-line="0" selection-start-column="2020443" selection-end-line="0" selection-end-column="2020443" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/deploy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3538">
-          <caret line="122" column="4" lean-forward="false" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="4" />
+          <folding>
+            <element signature="e#49431#60450#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -607,14 +608,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="696">
           <caret line="24" column="53" lean-forward="false" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/entry.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1914">
-          <caret line="66" column="18" lean-forward="false" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -689,10 +682,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/entry.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="53" column="18" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/feed.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="57" column="35" lean-forward="true" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+        <state relative-caret-position="-93">
+          <caret line="41" column="5" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/js_module.sol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2042">
+          <caret line="90" column="43" lean-forward="false" selection-start-line="90" selection-start-column="43" selection-end-line="90" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/classes.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7366">
+          <caret line="0" column="2022361" lean-forward="false" selection-start-line="0" selection-start-column="2022361" selection-end-line="0" selection-end-column="2022361" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/deploy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
           <folding />
         </state>
       </provider>
