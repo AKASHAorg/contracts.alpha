@@ -148,7 +148,7 @@ contract Entry is BaseModule {
     function isEditable(uint entryId)
     constant returns(bool)
     {
-        return ((_entry[entryId]._blockNr + _entryTTL) < block.number);
+        return ((_entry[entryId]._blockNr + _entryTTL) > block.number);
     }
 
     function getEntry(uint entryId)
