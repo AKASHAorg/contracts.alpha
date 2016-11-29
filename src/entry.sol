@@ -71,7 +71,7 @@ contract Entry is BaseModule {
         if(isEditable(entryId)){ throw;}
         if(_entryFunds[entryId] == address(0x0)){ throw;}
 
-        EntryDeposit(_entryFunds[entryId]).destroy();
+        EntryDeposit(_entryFunds[entryId]).destroy(msg.sender);
         delete _entryFunds[entryId];
     }
 

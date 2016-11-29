@@ -76,24 +76,25 @@ function runMigrations() {
         console.log(err, resp);
     });
     **/
-    run('Entry', objects.Entry).setTagsSource(objects.Tags, { gas: 4000000 }, (err, resp) => {
+    /**run('Entry', objects.Entry).setTagsSource(objects.Tags, { gas: 4000000 }, (err, resp) => {
         console.log('Entry setTagsSource');
         console.log(err, resp);
     });
     run('Entry', objects.Entry).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Entry setRegistry');
         console.log(err, resp);
-    });
+    });**/
     /**
     run('Comments', objects.Comments).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Comments setRegistry');
         console.log(err, resp);
     });
      **/
+    /**
     run('Comments', objects.Comments).setEntryAddress(objects.Entry, { gas: 4000000 }, (err, resp) => {
         console.log('Comments setEntryAddress');
         console.log(err, resp);
-    });
+    });**/
 
 /**
     run('Feed', objects.Feed).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
@@ -105,14 +106,17 @@ function runMigrations() {
         console.log(err, resp);
     });
 **/
+/**
     run('Votes', objects.Votes).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setRegistry');
         console.log(err, resp);
     });
+
     run('Votes', objects.Votes).setFundsAddress(objects.Funds, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setFundsAddress');
         console.log(err, resp);
     });
+    **/
     run('Votes', objects.Votes).setEntriesAddress(objects.Entry, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setEntriesAddress');
         console.log(err, resp);
