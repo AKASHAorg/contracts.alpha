@@ -31,23 +31,23 @@ function run(contract, address){
 const objects = {
     RegistryStore: "0x077c5983bfebec8fe75d7ef86311c2e9ff38609b",
     Comments: "0x54b855461d4611362e8ef7a78e8560077e380a44",
-    Votes: "0xdf3ba3598c9c5309b26588e6330fbe7a02317557",
+    Votes: "0x5ee9bce8bb1fa25debface924903d00946e57471",
     Funds: "0x211ae2d39c4724dc3cc7df216d39bcbf83016895",
     Faucet: "0xa27c237bd671e37b54e72b3264855059d07d5e1a",
     Feed: "0x940bb75effd935ecdd45537e81c95cdbc72c444c",
     Tags: "0x1170bed968f0e487932d84bfab38f51408404703",
     RegistryController: "0xd092e6baf52269121abf625f0a1a5693f65e46c7",
-    Entry: "0x66805a5f762975a33cf8d1880642b64c825646dd"
+    Entry: "0x7b6db2bfadc6c981c091fbccfb960b39efc023c0"
 };
 
 // first be sure to deploy all libraries and link them to contracts: replace __LIB____ with actual address( no 0x) 9bd7ec8a9e8774b703e3636a1d2396afa58ed81d
-/**["Entry"].forEach(
+/**["Entry", "Votes"].forEach(
       (instance) => {
           console.log('deploying '+ instance);
           deploy(instance);
       }
 );
- **/
+**/
 /////////////// after deployment
 function runMigrations() {
 /*
@@ -105,7 +105,6 @@ function runMigrations() {
         console.log(err, resp);
     });
 **/
-/**
     run('Votes', objects.Votes).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setRegistry');
         console.log(err, resp);
@@ -114,16 +113,13 @@ function runMigrations() {
         console.log('Votes setFundsAddress');
         console.log(err, resp);
     });
- **/
     run('Votes', objects.Votes).setEntriesAddress(objects.Entry, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setEntriesAddress');
         console.log(err, resp);
     });
-    /**
     run('Votes', objects.Votes).setFaucetAddress(objects.Faucet, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setFaucetAddress');
         console.log(err, resp);
     });
- **/
 }
 runMigrations();

@@ -31,7 +31,7 @@ contract Entry is BaseModule {
     // profile addr => index entry id
     mapping(address => Index) _indexEntryAuthor;
     uint _entryId = 1;
-    uint _entryTTL = 2000; // number of blocks to wait until funds can be retrieved
+    uint _entryTTL = 100; // number of blocks to wait until funds can be retrieved
     function setTagsSource(address tags) auth
     {
         _tags = Tags(tags);
@@ -148,7 +148,14 @@ contract Entry is BaseModule {
     function isEditable(uint entryId)
     constant returns(bool)
     {
-        return ((_entry[entryId]._blockNr + _entryTTL) > block.number);
+        var entrySpan = _entry[entryId]._blockNr + _entryTTL;
+        return entrySpan > block.number;
+    }
+
+    function getLastVoteBlock(uint entryId)
+    external returns(uint)
+    {
+        return _entry[entryId]._blockNr + _entryTTL;
     }
 
     function getEntry(uint entryId)

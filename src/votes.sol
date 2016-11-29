@@ -54,7 +54,7 @@ contract Votes is BaseModule {
          var deposit = _entry.getEntryFund(entryId);
          var fundAmount = _baseCost * uint(weight**2);
          _votes[entryId]._id++;
-         if(_votes[entryId]._vote[myProfile] != 0 || deposit == address(0x0) || !_entry.isEditable(entryId))
+         if(_votes[entryId]._vote[myProfile] != 0 || _entry.getLastVoteBlock(entryId) < block.number)
          {
             throw;
          }
@@ -80,7 +80,7 @@ contract Votes is BaseModule {
          var myProfile = _controller.addressOfKey(msg.sender);
          var fundAmount = _baseCost * uint(weight**2);
          _votes[entryId]._id++;
-         if(_votes[entryId]._vote[myProfile] != 0 ||  !_entry.isEditable(entryId))
+         if(_votes[entryId]._vote[myProfile] != 0 || _entry.getLastVoteBlock(entryId) < block.number)
          {
             throw;
          }
