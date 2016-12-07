@@ -1,4 +1,4 @@
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.6;
 import './basemodule.sol';
 import './dlinkedlist.sol';
 import './entry.sol';

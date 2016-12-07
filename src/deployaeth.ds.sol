@@ -1,4 +1,4 @@
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.6;
 import "dapple/script.sol";
 //import "./registrystore.sol";
 //import './registrycontroller.sol';
