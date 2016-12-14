@@ -23,6 +23,10 @@ contract Feed is BaseModule {
         DLinked.List _index;
     }
 
+    bytes32 app_version;
+    string release_notes;
+    string app_repository;
+
     mapping(address => Following) _following;
     mapping(address => Followers) _followers;
     mapping(address => Subscriptions) _subscriptions;
@@ -30,6 +34,10 @@ contract Feed is BaseModule {
 
     event Follow(address indexed following, address follower);
     event Subscribe(uint indexed tag, address indexed subscriber);
+
+
+    event UpdateVersion(bytes32 newVersion, string releaseNotes, uint blockNumber);
+    event UpdateRepository(string repository, uint blockNumber);
 
     function setTagSource(address tags)
     auth
@@ -238,5 +246,21 @@ contract Feed is BaseModule {
     {
         var profile = _controller.addressOf(id);
         return _subscriptions[profile]._index.getPrev(tag);
+    }
+
+
+    function setVersion(bytes32 newVersion, string releaseNotes) auth {
+        app_version = newVersion;
+        release_notes = releaseNotes;
+        UpdateVersion(app_version, release_notes, block.number);
+    }
+
+    function setRepository(string repository) auth {
+        app_repository = repository;
+        UpdateRepository(app_repository, block.number);
+    }
+
+    function getAppState() constant returns(bytes32, string, string) {
+        return (app_version, app_repository, release_notes);
     }
 }

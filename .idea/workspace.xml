@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a71fb84-5b5b-4619-a5d8-f6379af6a8b9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.dapple/chain_db/CURRENT" afterPath="$PROJECT_DIR$/.dapple/chain_db/CURRENT" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.dapple/chain_db/LOG" afterPath="$PROJECT_DIR$/.dapple/chain_db/LOG" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.dapple/chain_db/LOG.old" afterPath="$PROJECT_DIR$/.dapple/chain_db/LOG.old" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes.json" afterPath="$PROJECT_DIR$/build/classes.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/js_module.js" afterPath="$PROJECT_DIR$/build/js_module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/comments.sol" afterPath="$PROJECT_DIR$/src/comments.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/funds.sol" afterPath="$PROJECT_DIR$/src/funds.sol" />
-    </list>
+    <list default="true" id="8a71fb84-5b5b-4619-a5d8-f6379af6a8b9" name="Default" comment="" />
     <ignored path="contracts-1.0.sol.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -65,8 +56,8 @@
       <file leaf-file-name="funds.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/funds.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="27" column="52" lean-forward="true" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+            <state relative-caret-position="493">
+              <caret line="32" column="24" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -357,16 +348,16 @@
       <workItem from="1480350738374" duration="1143000" />
       <workItem from="1480440039760" duration="6719000" />
       <workItem from="1481126300949" duration="1270000" />
-      <workItem from="1481730518746" duration="4203000" />
+      <workItem from="1481730518746" duration="4387000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183796000" />
+    <option name="totallyTimeSpent" value="183980000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="0" width="1926" height="1057" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31109926" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -710,8 +701,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/funds.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="27" column="52" lean-forward="true" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+        <state relative-caret-position="493">
+          <caret line="32" column="24" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="24" />
           <folding />
         </state>
       </provider>
