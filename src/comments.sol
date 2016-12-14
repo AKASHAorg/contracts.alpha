@@ -11,6 +11,7 @@ contract Comments is BaseModule {
         bytes32[2] _hash;
         address _owner;
         bool _deleted;
+        uint _date;
     }
 
     struct Index {
@@ -36,6 +37,7 @@ contract Comments is BaseModule {
         entryComment[entryId]._data[entryComment[entryId]._id]._owner = myProfile;
         entryComment[entryId]._data[entryComment[entryId]._id]._hash = hash;
         entryComment[entryId]._data[entryComment[entryId]._id]._id = entryComment[entryId]._id;
+        entryComment[entryId]._data[entryComment[entryId]._id]._date = block.timestamp;
         if(parent!=0 && parent< entryComment[entryId]._id) {
             entryComment[entryId]._data[entryComment[entryId]._id]._parent = parent;
         }
@@ -54,13 +56,14 @@ contract Comments is BaseModule {
 
     function getComment(uint entryId, uint commentId)
     constant
-    returns(address profile, uint id, uint parent, bytes32[2] ipfsHash, bool removed)
+    returns(address profile, uint id, uint parent, bytes32[2] ipfsHash, bool removed, uint date)
     {
         profile = entryComment[entryId]._data[commentId]._owner;
         id = entryComment[entryId]._data[commentId]._id;
         parent = entryComment[entryId]._data[commentId]._parent;
         ipfsHash = entryComment[entryId]._data[commentId]._hash;
         removed = entryComment[entryId]._data[commentId]._deleted;
+        date = entryComment[entryId]._data[commentId]._date;
     }
 
     function getCommentsCount(uint entryId)
