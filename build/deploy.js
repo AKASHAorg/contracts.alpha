@@ -2,7 +2,7 @@ const Web3 = require('web3');
 const classes = require('./classes.json');
 const web3 = new Web3();
 web3.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
-web3.eth.defaultAccount = "0x29d69e88871f2b91251605600edce8f966fca2b2";
+web3.eth.defaultAccount = "0x523317d8d59990df1724953e647898bd81effe98";
 
 ///////////////// POOR MAN'S DEPLOYER >_> \\\\\\\\\\\\\\\\\\\\
 function deploy(contract) {
@@ -29,24 +29,25 @@ function run(contract, address){
 }
 
 const objects = {
-    RegistryStore: "0x077c5983bfebec8fe75d7ef86311c2e9ff38609b",
-    Comments: "0x514251eb26298337199a71ad28d2c1bdfb281723",
-    Votes: "0x48e6b1e1891851288cc3711f6b231a912b4ab468",
-    Funds: "0x211ae2d39c4724dc3cc7df216d39bcbf83016895",
-    Faucet: "0xa27c237bd671e37b54e72b3264855059d07d5e1a",
-    Feed: "0x940bb75effd935ecdd45537e81c95cdbc72c444c",
-    Tags: "0x1170bed968f0e487932d84bfab38f51408404703",
-    RegistryController: "0xd092e6baf52269121abf625f0a1a5693f65e46c7",
-    Entry: "0x3746fa6bea40b4fe18a3479d18ce6fa352e4c455"
+    RegistryStore: "0xcc62d9d7b6080428b97178034cdbfc219cebd565",
+    Comments: "0xe2adb9839395892725508d554409906be1e407c8",
+    Votes: "0xea05dbe12b6a5ef549d3e4a6b8fa2826bd0157a5",
+    Funds: "0xfb8f8921ab57c6cd19f637a772cb0ae6374fdf1a",
+    Faucet: "0x762c63cc5102f448e541ad5c9859dce398a0b2c6",
+    Feed: "0x36e590f0e5ea86e69ad69e6f189927c7808fe4e2",
+    Tags: "0x3f991679094bcc0c5e382aea2646bf7729e98bfb",
+    RegistryController: "0x9234104000d07e9f979d0658ab4c3af24d28c809",
+    Entry: "0x8851b3dc6676f92532180cc0da14f86db248243a"
 };
 
-// first be sure to deploy all libraries and link them to contracts: replace __LIB____ with actual address( no 0x) 9bd7ec8a9e8774b703e3636a1d2396afa58ed81d
-/*["Entry", "Votes", "Comments"].forEach(
+// first be sure to deploy all libraries and link them to contracts: replace __LIB____ with actual address( no 0x) 486aac69d2fd446bf1379aea3b43a52f044fef6c
+/*["Votes", "Feed", "Entry"].forEach(
       (instance) => {
           console.log('deploying '+ instance);
           deploy(instance);
       }
 );*/
+
 /////////////// after deployment
 function runMigrations() {
 /*
@@ -54,11 +55,12 @@ function runMigrations() {
         console.log('RegistryStore setOwner');
         console.log(err, resp);
     });
+
     run('RegistryController', objects.RegistryController).setStore(objects.RegistryStore, { gas: 4000000 }, (err, resp) => {
         console.log('RegistryController setStore');
         console.log(err, resp);
     });
-
+*//*
     run('Tags', objects.Tags).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Tags setRegistry');
         console.log(err, resp);
@@ -74,7 +76,7 @@ function runMigrations() {
         console.log('Funds setRegistry');
         console.log(err, resp);
     });
-    **/
+*/
 /*
     run('Entry', objects.Entry).setTagsSource(objects.Tags, { gas: 4000000 }, (err, resp) => {
         console.log('Entry setTagsSource');
@@ -84,8 +86,8 @@ function runMigrations() {
         console.log('Entry setRegistry');
         console.log(err, resp);
     });
-    */
-/**
+*/
+/*
     run('Comments', objects.Comments).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Comments setRegistry');
         console.log(err, resp);
@@ -96,8 +98,8 @@ function runMigrations() {
         console.log('Comments setEntryAddress');
         console.log(err, resp);
     });
-**/
-/**
+*/
+/*
     run('Feed', objects.Feed).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Feed setRegistry');
         console.log(err, resp);
@@ -116,7 +118,8 @@ function runMigrations() {
         console.log('Votes setFundsAddress');
         console.log(err, resp);
     });
-    */
+*/
+
     run('Votes', objects.Votes).setEntriesAddress(objects.Entry, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setEntriesAddress');
         console.log(err, resp);
