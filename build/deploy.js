@@ -130,4 +130,16 @@ function runMigrations() {
     });
 
 }
-runMigrations();
+// runMigrations();
+
+function release(version, hash) {
+    run('Feed', objects.Feed).setRepository('https://github.com/AkashaProject/Alpha/releases/tag/'+version, { gas: 4000000 }, (err, resp) => {
+        console.log('Feed setRepository');
+        console.log(err, resp);
+    });
+    run('Feed', objects.Feed).setVersion(version, hash, { gas: 4000000 }, (err, resp) => {
+        console.log('Feed setVersion');
+        console.log(err, resp);
+    });
+}
+//release('0.1.0', 'QmfPdTH4Qse2WnDHXq6PfeVvfzt7FvaidmxDHW2wDdz775');

@@ -31,10 +31,15 @@ contract Entry is BaseModule {
     // profile addr => index entry id
     mapping(address => Index) _indexEntryAuthor;
     uint _entryId = 1;
-    uint _entryTTL = 100; // number of blocks to wait until funds can be retrieved
+    uint _entryTTL = 30000; // number of blocks to wait until funds can be retrieved, default 1 epoch
     function setTagsSource(address tags) auth
     {
         _tags = Tags(tags);
+    }
+
+    function setEntryTTL(uint blockNr) auth
+    {
+        _entryTTL = blockNr;
     }
 
     function publish(bytes32[2] hash, bytes32[] tags) onlyRegistered
