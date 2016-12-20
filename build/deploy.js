@@ -9,7 +9,7 @@ function deploy(contract) {
     const ContractClass = web3.eth.contract(JSON.parse(classes[contract].interface));
     const deploy = ContractClass.new({
         data: classes[contract].bytecode,
-        gas: 4700000
+        gas: 4712300
     }, (err, myContract) => {
         if (!err) {
             if (!myContract.address) {
@@ -29,25 +29,29 @@ function run(contract, address){
 }
 
 const objects = {
-    RegistryStore: "0xcc62d9d7b6080428b97178034cdbfc219cebd565",
-    Comments: "0xe2adb9839395892725508d554409906be1e407c8",
-    Votes: "0xea05dbe12b6a5ef549d3e4a6b8fa2826bd0157a5",
-    Funds: "0xfb8f8921ab57c6cd19f637a772cb0ae6374fdf1a",
-    Faucet: "0x762c63cc5102f448e541ad5c9859dce398a0b2c6",
-    Feed: "0x36e590f0e5ea86e69ad69e6f189927c7808fe4e2",
-    Tags: "0x3f991679094bcc0c5e382aea2646bf7729e98bfb",
-    RegistryController: "0x9234104000d07e9f979d0658ab4c3af24d28c809",
-    Entry: "0x8851b3dc6676f92532180cc0da14f86db248243a"
+    RegistryStore: "0x155c6d4831e0af9e3dee5159fb4e2a79fc0ac2c1",
+    Comments: "0x8361da6abaa79589e768c8014a15dd569a3710e0",
+    Votes: "0x23b0c296a9da5c1cbbd27edfe7e1282bb3f511ce",
+    Funds: "0xa3e8254a83ac17f5999f0b2a33cf5671d61158f2",
+    Faucet: "0x73dbff001616c8be349ee2fcbf1eeabe4836a22c",
+    Feed: "0xd3a161dbc0acc415b3c73af1ac8ccaa2a2c79f3d",
+    Tags: "0xd1ad662baa60cfc0a566ae50e93b0cd2c61a98a2",
+    RegistryController: "0xc20a377b23e71138fa6c52c5b1e14be5ba79fdba",
+    Entry: "0xbcb5b0974a29d24a3ce0badf18e1350cb8c00361",
+    Subs: "0x0fd0eed8c14b040f0e8bd18334de1d8153b8a8bd"
 };
 
-// first be sure to deploy all libraries and link them to contracts: replace __LIB____ with actual address( no 0x) 486aac69d2fd446bf1379aea3b43a52f044fef6c
-/*["Votes", "Feed", "Entry"].forEach(
+//"Feed", "Tags", "RegistryController", "Entry" first be
+// sure to deploy all libraries
+// and link them to contracts: replace __LIB____ with actual address( no 0x)
+// 8d303a3aec90ef378693440c16b263c612b82e58
+/*["Subs"].forEach(
       (instance) => {
           console.log('deploying '+ instance);
           deploy(instance);
       }
-);*/
-
+);
+*/
 /////////////// after deployment
 function runMigrations() {
 /*
@@ -60,7 +64,7 @@ function runMigrations() {
         console.log('RegistryController setStore');
         console.log(err, resp);
     });
-*//*
+/*
     run('Tags', objects.Tags).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Tags setRegistry');
         console.log(err, resp);
@@ -71,7 +75,8 @@ function runMigrations() {
         console.log('Faucet setRegistry');
         console.log(err, resp);
     });
-
+    */
+/*
     run('Funds', objects.Funds).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Funds setRegistry');
         console.log(err, resp);
@@ -104,11 +109,19 @@ function runMigrations() {
         console.log('Feed setRegistry');
         console.log(err, resp);
     });
-    run('Feed', objects.Feed).setTagSource(objects.Tags, { gas: 4000000 }, (err, resp) => {
-        console.log('Feed setTagSource');
+    */
+/*
+    run('Subs', objects.Subs).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
+        console.log('Subs setRegistry');
         console.log(err, resp);
     });
 
+    run('Subs', objects.Subs).setTagSource(objects.Tags, { gas: 4000000 }, (err, resp) => {
+        console.log('Subs setTagSource');
+        console.log(err, resp);
+    });
+    */
+/*
     run('Votes', objects.Votes).setRegistry(objects.RegistryController, { gas: 4000000 }, (err, resp) => {
         console.log('Votes setRegistry');
         console.log(err, resp);
@@ -133,13 +146,9 @@ function runMigrations() {
 // runMigrations();
 
 function release(version, hash) {
-    run('Feed', objects.Feed).setRepository('https://github.com/AkashaProject/Alpha/releases/tag/'+version, { gas: 4000000 }, (err, resp) => {
-        console.log('Feed setRepository');
-        console.log(err, resp);
-    });
-    run('Feed', objects.Feed).setVersion(version, hash, { gas: 4000000 }, (err, resp) => {
+    run('Feed', objects.Feed).setVersion('https://github.com/AkashaProject/Alpha/releases/tag/'+version, version, hash, { gas: 4000000 }, (err, resp) => {
         console.log('Feed setVersion');
         console.log(err, resp);
     });
 }
-//release('0.1.0', 'QmfPdTH4Qse2WnDHXq6PfeVvfzt7FvaidmxDHW2wDdz775');
+// release('0.1.0', 'QmfPdTH4Qse2WnDHXq6PfeVvfzt7FvaidmxDHW2wDdz775');

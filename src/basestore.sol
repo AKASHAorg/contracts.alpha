@@ -1,8 +1,8 @@
-pragma solidity ^0.4.6;
-import "ds-auth/auth.sol";
+pragma solidity ^0.4.7;
+import "ds-whitelist/whitelist.sol";
 
 // this contract will be used by all storage lvl contracts
-contract BaseStore is DSAuth {
+contract BaseStore is DSWhitelist {
     function destroy() auth {
         selfdestruct(owner);
     }

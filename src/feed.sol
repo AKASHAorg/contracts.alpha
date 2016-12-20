@@ -1,7 +1,6 @@
-pragma solidity ^0.4.6;
+pragma solidity ^0.4.7;
 import './basemodule.sol';
 import './dlinkedlist.sol';
-import './tags.sol';
 
 contract Feed is BaseModule {
     using DLinked for DLinked.List;
@@ -19,31 +18,16 @@ contract Feed is BaseModule {
         DLinked.List _index;
     }
 
-    struct Subscriptions {
-        DLinked.List _index;
-    }
-
     bytes32 app_version;
     string release_notes;
     string app_repository;
 
     mapping(address => Following) _following;
     mapping(address => Followers) _followers;
-    mapping(address => Subscriptions) _subscriptions;
-    Tags _tags;
 
     event Follow(address indexed following, address follower);
-    event Subscribe(uint indexed tag, address indexed subscriber);
 
-
-    event UpdateVersion(bytes32 newVersion, string releaseNotes, uint blockNumber);
-    event UpdateRepository(string repository, uint blockNumber);
-
-    function setTagSource(address tags)
-    auth
-    {
-        _tags = Tags(tags);
-    }
+    event UpdateVersion(bytes32 newVersion);
 
     function follow(bytes32 id)
     onlyRegistered
@@ -94,170 +78,86 @@ contract Feed is BaseModule {
     function isFollower(bytes32 id, bytes32 following)
     constant returns(bool)
     {
-        var profile = _controller.addressOf(id);
-        var myProfile = _controller.addressOf(following);
-        return (_followers[myProfile]._followersMap[profile] != 0);
+        return (_followers[_controller.addressOf(following)]._followersMap[_controller.addressOf(id)] != 0);
     }
 
     function getFollowingCount(bytes32 id)
     constant returns(uint)
     {
-        var profile = _controller.addressOf(id);
-        return _following[profile]._index.getSize();
+        return _following[_controller.addressOf(id)]._index.getSize();
     }
 
     function getFollowingFirst(bytes32 id)
     constant returns(uint)
     {
-        var profile = _controller.addressOf(id);
-        return _following[profile]._index.getFirst();
+        return _following[_controller.addressOf(id)]._index.getFirst();
     }
 
     function getFollowingLast(bytes32 id)
     constant returns(uint)
     {
-        var profile = _controller.addressOf(id);
-        return _following[profile]._index.getLast();
+        return _following[_controller.addressOf(id)]._index.getLast();
     }
 
     function getFollowingNext(bytes32 id, uint next)
     constant returns(uint)
     {
-        var profile = _controller.addressOf(id);
-        return _following[profile]._index.getNext(next);
+        return _following[_controller.addressOf(id)]._index.getNext(next);
     }
 
     function getFollowingPrev(bytes32 id, uint prev)
     constant returns(uint)
     {
-        var profile = _controller.addressOf(id);
-        return _following[profile]._index.getPrev(prev);
+        return _following[_controller.addressOf(id)]._index.getPrev(prev);
     }
 
     function getFollowingById(bytes32 id, uint idIndex)
     constant returns(address)
     {
-        var profile = _controller.addressOf(id);
-        return _following[profile]._indexedFollowing[idIndex];
+        return _following[_controller.addressOf(id)]._indexedFollowing[idIndex];
     }
 
     function getFollowersCount(bytes32 id)
     constant returns(uint)
     {
-        var profile = _controller.addressOf(id);
-        return _followers[profile]._index.getSize();
+        return _followers[_controller.addressOf(id)]._index.getSize();
     }
 
     function getFollowersFirst(bytes32 id)
     constant returns(uint)
     {
-        var profile = _controller.addressOf(id);
-        return _followers[profile]._index.getFirst();
+        return _followers[_controller.addressOf(id)]._index.getFirst();
     }
 
     function getFollowersLast(bytes32 id)
     constant returns(uint)
     {
-        var profile = _controller.addressOf(id);
-        return _followers[profile]._index.getLast();
+        return _followers[_controller.addressOf(id)]._index.getLast();
     }
 
     function getFollowersNext(bytes32 id, uint next)
     constant returns(uint)
     {
-        var profile = _controller.addressOf(id);
-        return _followers[profile]._index.getNext(next);
+        return _followers[_controller.addressOf(id)]._index.getNext(next);
     }
 
     function getFollowersPrev(bytes32 id, uint prev)
     constant returns(uint)
     {
-        var profile = _controller.addressOf(id);
-        return _followers[profile]._index.getPrev(prev);
+        return _followers[_controller.addressOf(id)]._index.getPrev(prev);
     }
 
     function getFollowersById(bytes32 id, uint idIndex)
     constant returns(address)
     {
-        var profile = _controller.addressOf(id);
-        return _followers[profile]._indexedFollowers[idIndex];
+        return _followers[_controller.addressOf(id)]._indexedFollowers[idIndex];
     }
 
-    function subscribe(bytes32 tag)
-    onlyRegistered
-    returns(bool subscribed)
-    {
-        var myProfile = _controller.addressOfKey(msg.sender);
-        var tagId = _tags.getTagId(tag);
-        subscribed = _subscriptions[myProfile]._index.insert(tagId);
-        if(subscribed){
-            Subscribe(tagId, myProfile);
-        }
-    }
-
-    function unSubscribe(bytes32 tag)
-    onlyRegistered
-    returns(bool)
-    {
-        var myProfile = _controller.addressOfKey(msg.sender);
-        var tagId = _tags.getTagId(tag);
-        return _subscriptions[myProfile]._index.remove(tagId);
-    }
-
-    function isSubscribed(bytes32 id, bytes32 tag)
-    constant returns(bool)
-    {
-        var profile = _controller.addressOf(id);
-        var tagId = _tags.getTagId(tag);
-        return _subscriptions[profile]._index.exists(tagId);
-    }
-
-    function subsCount(bytes32 id)
-    constant returns(uint)
-    {
-        var profile = _controller.addressOf(id);
-        return _subscriptions[profile]._index.getSize();
-    }
-
-    function subsFirst(bytes32 id)
-    constant returns(uint)
-    {
-        var profile = _controller.addressOf(id);
-        return _subscriptions[profile]._index.getFirst();
-    }
-
-
-    function subsLast(bytes32 id)
-    constant returns(uint)
-    {
-        var profile = _controller.addressOf(id);
-        return _subscriptions[profile]._index.getLast();
-    }
-
-    function subsNext(bytes32 id, uint tag)
-    constant returns(uint)
-    {
-        var profile = _controller.addressOf(id);
-        return _subscriptions[profile]._index.getNext(tag);
-    }
-
-    function subsPrev(bytes32 id, uint tag)
-    constant returns(uint)
-    {
-        var profile = _controller.addressOf(id);
-        return _subscriptions[profile]._index.getPrev(tag);
-    }
-
-
-    function setVersion(bytes32 newVersion, string releaseNotes) auth {
+    function setVersion(string repository, bytes32 newVersion, string releaseNotes) auth {
         app_version = newVersion;
         release_notes = releaseNotes;
-        UpdateVersion(app_version, release_notes, block.number);
-    }
-
-    function setRepository(string repository) auth {
         app_repository = repository;
-        UpdateRepository(app_repository, block.number);
+        UpdateVersion(app_version);
     }
 
     function getAppState() constant returns(bytes32, string, string) {

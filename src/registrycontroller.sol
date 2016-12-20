@@ -1,4 +1,4 @@
-pragma solidity ^0.4.6;
+pragma solidity ^0.4.7;
 import "./basestore.sol";
 import "./profile.sol";
 import "./registrystore.sol";

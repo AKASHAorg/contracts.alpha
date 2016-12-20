@@ -1,4 +1,4 @@
-pragma solidity ^0.4.6;
+pragma solidity ^0.4.7;
 import './basemodule.sol';
 import './dlinkedlist.sol';
 import './entry_deposit.sol';
@@ -10,6 +10,7 @@ contract Entry is BaseModule {
     struct Source {
        bytes32[2] _hash;
        uint _blockNr;
+       uint _timeStamp;
        address _owner;
     }
 
@@ -19,6 +20,9 @@ contract Entry is BaseModule {
 
     Tags _tags;
     event Publish(address indexed author, bytes32 indexed tag, uint entryId);
+    event Update(address author, uint entryId);
+
+    event Claim(address indexed author, uint entryId, uint amount);
     // entry id => ipfs
     mapping(uint => Source) _entry;
 
@@ -47,7 +51,14 @@ contract Entry is BaseModule {
         if(tags.length == 0 || tags.length>10){ throw; }
         var myProfile = _controller.addressOfKey(msg.sender);
         var deposit = new EntryDeposit();
-        _entry[_entryId] = Source({_hash: hash, _blockNr: block.number, _owner: myProfile});
+        _entry[_entryId] = Source(
+            {
+                _hash: hash,
+                _blockNr: block.number,
+                _timeStamp: block.timestamp,
+                _owner: myProfile
+            }
+         );
         _entryFunds[_entryId] = deposit;
         for(uint8 i=0; i<tags.length; i++)  {
             if(!_tags.exists(tags[i])){ throw;}
@@ -66,6 +77,7 @@ contract Entry is BaseModule {
         if(_entry[entryId]._owner!=myProfile){ throw;}
         if(!isEditable(entryId)){ throw;} //freeze updates after ttl
         _entry[entryId]._hash = hash;
+        Update(myProfile, entryId);
     }
 
     function claimDeposit(uint entryId)
@@ -76,6 +88,7 @@ contract Entry is BaseModule {
         if(isEditable(entryId)){ throw;}
         if(_entryFunds[entryId] == address(0x0)){ throw;}
 
+        Claim(myProfile, entryId, _entryFunds[entryId].balance);
         EntryDeposit(_entryFunds[entryId]).destroy(msg.sender);
         delete _entryFunds[entryId];
     }
@@ -164,11 +177,12 @@ contract Entry is BaseModule {
     }
 
     function getEntry(uint entryId)
-    constant returns(uint blockNr, address publisher, bytes32[2] ipfsHash)
+    constant returns(uint blockNr, address publisher, bytes32[2] ipfsHash, uint timeStamp)
     {
         blockNr = _entry[entryId]._blockNr;
         publisher = _entry[entryId]._owner;
         ipfsHash = _entry[entryId]._hash;
+        timeStamp = _entry[entryId]._timeStamp;
     }
 
     function getEntryFund(uint entryId)
