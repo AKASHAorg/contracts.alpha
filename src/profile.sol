@@ -6,7 +6,6 @@ contract Profile is BaseStore {
     bytes32[2] public _hash;
     bytes32 public _id;
     address _registrar;
-    event UpdateInfo();
     event Tip(address from, uint value);
 
     modifier fromRegistrar {
@@ -32,9 +31,8 @@ contract Profile is BaseStore {
 
     function setHash(bytes32[2] chunks) auth {
         _hash = chunks;
-        UpdateInfo();
+        RegistryController(_registrar).emitUpdate(_id);
     }
-
 
     function destroy() fromRegistrar {
         selfdestruct(owner);

@@ -7,6 +7,7 @@ contract RegistryController is BaseStore {
 
     RegistryStore _store;
     event Register(bytes32 indexed id, address profile);
+    event UpdateProfile(bytes32 indexed id, address profile);
 
     function setStore(address store) auth {
         _store = RegistryStore(store);
@@ -43,6 +44,13 @@ contract RegistryController is BaseStore {
     function migrate(address newController) auth {
         _store.setOwner(newController);
         selfdestruct(owner);
+    }
+
+    function emitUpdate(bytes32 id) external {
+        if(_store.get_by_id(id) != msg.sender){
+            throw;
+        }
+        UpdateProfile(id, msg.sender);
     }
 
     function addressOf(bytes32 id) constant returns(address profileAddress){
