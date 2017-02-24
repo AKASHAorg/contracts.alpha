@@ -151,4 +151,4 @@ function release(version, hash) {
         console.log(err, resp);
     });
 }
-// release('0.1.0', 'QmfPdTH4Qse2WnDHXq6PfeVvfzt7FvaidmxDHW2wDdz775');
+release('0.5.0', 'QmfTZeLdkurde5hoJp7mkmFoxKU22E5JEMyan7ExamNk6B');
