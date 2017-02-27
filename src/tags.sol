@@ -1,4 +1,4 @@
-pragma solidity ^0.4.7;
+pragma solidity ^0.4.9;
 import './dlinkedlist.sol';
 import './basemodule.sol';
 
@@ -95,6 +95,6 @@ contract Tags is BaseModule {
                 return false;
             }
         }
-        return i > 3;
+        return i > 1;
     }
 }
