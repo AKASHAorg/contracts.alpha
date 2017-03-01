@@ -1,9 +1,0 @@
-[submodule ".dapple/packages/ds-auth"]
-	path = .dapple/packages/ds-auth
-	url = https://github.com/nexusdev/ds-auth.git
-[submodule ".dapple/packages/ds-rate-accumulator"]
-	path = .dapple/packages/ds-rate-accumulator
-	url = https://github.com/nexusdev/ds-rate-accumulator.git
-[submodule ".dapple/packages/ds-whitelist"]
-	path = .dapple/packages/ds-whitelist
-	url = https://github.com/nexusdev/ds-whitelist

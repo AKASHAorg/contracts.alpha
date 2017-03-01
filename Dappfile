@@ -6,7 +6,7 @@ layout:
   packages_directory: ./.dapple/packages/
 dependencies: {}
 ignore: []
-dapple_version: 0.8.39
+dapple_version: 0.8.47
 environments:
   develop:
     objects: {}

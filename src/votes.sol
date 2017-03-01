@@ -1,4 +1,4 @@
-pragma solidity ^0.4.9;
+pragma solidity ^0.4.8;
 import './basemodule.sol';
 import './entry.sol';
 import './funds.sol';

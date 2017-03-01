@@ -1,9 +1,37 @@
-pragma solidity ^0.4.9;
-import "ds-whitelist/whitelist.sol";
+pragma solidity ^0.4.8;
 
-// this contract will be used by all storage lvl contracts
-contract BaseStore is DSWhitelist {
-    function destroy() auth {
+contract BaseStore {
+    address owner;
+
+    modifier auth() {
+        if(!isAuthorized()){ throw;}
+        _;
+    }
+
+    function setOwner(address newOwner)
+    auth
+    {
+        owner = newOwner;
+    }
+
+    function BaseStore()
+    {
+        owner = msg.sender;
+    }
+
+    function destroy()
+    auth
+    {
         selfdestruct(owner);
+    }
+
+    function isAuthorized()
+    internal
+    returns (bool)
+    {
+        if (owner == msg.sender) {
+            return true;
+        }
+        return false;
     }
 }

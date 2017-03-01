@@ -1,4 +1,4 @@
-pragma solidity ^0.4.9;
+pragma solidity ^0.4.8;
 import 'dapple/test.sol';
 import 'feed.sol';
 import 'registrycontroller.sol';

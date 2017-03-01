@@ -1,0 +1,103 @@
+'use strict';
+
+<% if (!globalVar) { %>// For geth
+if (typeof dapple === 'undefined') {
+  var dapple = {};
+}
+
+<% } %>if (typeof web3 === 'undefined' && typeof Web3 === 'undefined') {
+  const Web3 = require('web3');
+}
+
+<%= globalVar ? 'var ' + globalVar : "dapple['" + name + "']" %> = (function builder () {
+  const environments = <%= envs %>;
+
+  function ContractWrapper (headers, _web3) {
+    if (!_web3) {
+      throw new Error('Must supply a Web3 connection!');
+    }
+
+    this.headers = headers;
+    this._class = _web3.eth.contract(headers.interface);
+  }
+
+  ContractWrapper.prototype.deploy = function () {
+    <% if (!deployData) {
+    %>throw new Error('Module was built without any deploy data.');<%
+      } else {
+    %>const args = Array.from(arguments);
+    args[0].data = this.headers.bytecode;
+    return this._class.new.apply(this._class, args);<%
+    }%>
+  };
+
+  <% if (!deployData) {
+  %>ContractWrapper.prototype.new = function () {
+    throw new Error('Module was built without any deploy data.');
+  };
+
+  const passthroughs = ['at'];
+  <% } else {
+  %>const passthroughs = ['at', 'new'];
+  <% }
+  %>for (let i = 0; i < passthroughs.length; i += 1) {
+    ContractWrapper.prototype[passthroughs[i]] = (function (passthrough) {
+      return function () {
+        return this._class[passthrough].apply(this._class, arguments);
+      };
+    })(passthroughs[i]);
+  }
+
+  function constructor (_web3, env) {
+    if (!env) {
+      env = <%= env %>;
+    }
+    if(typeof env === "object" && !("objects" in env)) {
+      env = {objects: env};
+    }
+    while (typeof env !== 'object') {
+      if (!environments.hasOwnProperty(env)) {
+        throw new Error('Cannot resolve environment name: ' + env);
+      }
+      env = {objects: environments[env]};
+    }
+
+    if (typeof _web3 === 'undefined') {
+      if (!env.rpcURL) {
+        throw new Error('Need either a Web3 instance or an RPC URL!');
+      }
+      _web3 = new Web3(new Web3.providers.HttpProvider(env.rpcURL));
+    }
+
+    this.headers = <%= headers %>;
+
+    this.classes = {};
+    for (let key of Object.keys(this.headers)) {
+      Object.defineProperty(this.classes, key, {
+        value: new ContractWrapper(this.headers[key], _web3),
+        writable: true,
+        configurable: true,
+        enumerable: true
+      });
+    }
+
+    this.objects = {};
+    for (let i of Object.keys(env.objects)) {
+      if(!this.classes.hasOwnProperty(env.objects[i]['type'].split('[')[0])) continue;
+      Object.defineProperty(this.objects, i, {
+        value: this.classes[env.objects[i]['type'].split('[')[0]].at(env.objects[i].value),
+        writable: true,
+        configurable: true,
+        enumerable: true
+      });
+    }
+  }
+
+  return {
+    Class: constructor,
+    environments: environments
+  };
+})();
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = <%= globalVar || "dapple['" + name + "']" %>;
