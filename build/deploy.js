@@ -1,14 +1,18 @@
 const Web3 = require('web3');
-const TestRPC = require("ethereumjs-testrpc");
-const classes = require('./js_module').default;
+const classes = require('./classes.json');
 const web3 = new Web3();
-web3.setProvider(TestRPC.provider());
+web3.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
 web3.eth.defaultAccount = "0x523317d8d59990df1724953e647898bd81effe98";
-
-const xx = new classes.Class(web3);
-xx.classes["DLinked"].deploy({gas: 2000000}, function(err, tx) {
+/**
+ *
+ * const TestRPC = require("ethereumjs-testrpc");
+ * const classes = require('./js_module').default;
+ web3.setProvider(TestRPC.provider());
+ const xx = new classes.Class(web3);
+ xx.classes["DLinked"].deploy({gas: 2000000}, function(err, tx) {
     console.log(err, tx);
 });
+ **/
 ///////////////// POOR MAN'S DEPLOYER >_> \\\\\\\\\\\\\\\\\\\\
 function deploy(contract) {
     const ContractClass = web3.eth.contract(JSON.parse(classes[contract].interface));
@@ -156,4 +160,4 @@ function release(version, hash) {
         console.log(err, resp);
     });
 }
-//release('0.5.0', 'QmfTZeLdkurde5hoJp7mkmFoxKU22E5JEMyan7ExamNk6B');
+release('0.5.1', 'QmYinHkDTHrK3NBFKjxvNtgufg36Ee1vdebYn3gjywMoJJ');
