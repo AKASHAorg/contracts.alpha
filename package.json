@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/AkashaProject/contracts.alpha#readme",
   "dependencies": {
-    "web3": "0.18.2"
+    "ethereumjs-util": "5.1.1",
+    "web3": "0.18.2",
+    "yargs": "7.0.2"
+  },
+  "devDependencies": {
+    "ethereumjs-testrpc": "3.0.3"
   }
 }
