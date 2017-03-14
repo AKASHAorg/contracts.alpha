@@ -160,4 +160,4 @@ function release(version, hash) {
         console.log(err, resp);
     });
 }
-release('0.5.1', 'QmYinHkDTHrK3NBFKjxvNtgufg36Ee1vdebYn3gjywMoJJ');
+release('0.5.2', 'QmW3h3d98cM5Wq6gQX5YCuc3jJEFmzNtD3bKx5t1Y3SDxa');
