@@ -1,15 +1,13 @@
-#!/usr/bin/env node
-
 const fs = require('fs');
 const Web3 = require('web3');
 const argv = require('yargs').argv;
-const web3 = new Web3();
 const DLinked = 'DLinked';
 const helpers = require('../helpers/deploy');
 const objects = require('../helpers/objects.json');
 const TestRPC = require("ethereumjs-testrpc");
-let accounts;
+let accounts = [];
 let objectsModified = {};
+const web3 = new Web3();
 web3.setProvider(TestRPC.provider({total_accounts: 3}));
 
 
@@ -18,7 +16,7 @@ web3.setProvider(TestRPC.provider({total_accounts: 3}));
 
 web3.eth.getAccounts(function (err, accs) {
     if (err) throw new Error(err);
-    accounts = accs;
+    accs.forEach((v) => accounts.push(v));
     web3.eth.defaultAccount = accounts[0];
 });
 
@@ -39,7 +37,7 @@ const deploy = (c, cb) => {
     })
 };
 
-if (argv.deployAll) {
+const deployAll = (start, waitTime, cb) =>
     setTimeout(() => {
         deploy(DLinked, (err, libAddr) => {
             let deployed = 1;
@@ -47,8 +45,8 @@ if (argv.deployAll) {
                 helpers.bindLib(contract, libAddr, DLinked);
                 deploy(contract, (er, fin) => {
                     if(deployed === Object.keys(objects).length){
-                        console.log(objectsModified);
-                        helpers.runMigrations(web3, 1, 1000);
+                        (cb) ? cb('', objectsModified): '';
+                        helpers.runMigrations(web3, start, waitTime);
                         return;
                     }
 
@@ -59,4 +57,10 @@ if (argv.deployAll) {
             }
         });
     }, 3000);
+
+
+if (argv.deployAll) {
+    deployAll(1, 1000);
 }
+
+module.exports = { web3, deploy, deployAll, accounts };
