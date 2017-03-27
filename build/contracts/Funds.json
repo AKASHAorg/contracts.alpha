@@ -1,0 +1,81 @@
+{
+  "contract_name": "Funds",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "setOwner",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "destroy",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newRegistry",
+          "type": "address"
+        }
+      ],
+      "name": "setRegistry",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "consumer",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "payable": true,
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Spend",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x60606040525b60008054600160a060020a03191633600160a060020a03161790555b5b61025a806100316000396000f300606060405236156100465763ffffffff60e060020a60003504166313af4035811461004f57806383197ef01461006a578063a91ee0dc14610079578063f3fef3a314610094575b61004d5b5b565b005b346100005761004d600160a060020a03600435166100b2565b005b346100005761004d6100f2565b005b346100005761004d600160a060020a0360043516610116565b005b346100005761004d600160a060020a0360043516602435610156565b005b6100ba610207565b15156100c557610000565b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b50565b6100fa610207565b151561010557610000565b600054600160a060020a0316ff5b5b565b61011e610207565b151561012957610000565b6001805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b50565b6000610160610207565b151561016b57610000565b30600160a060020a031631821061018c5730600160a060020a03163161018e565b815b604051909150600160a060020a0384169082156108fc029083906000818181858888f1935050505015156101c157610000565b604080518381529051600160a060020a038516917faeba90871f7da8a443096c396877004da901c92fcab3ec900a99cecddb19ec4d919081900360200190a25b5b505050565b6000805433600160a060020a03908116911614156102275750600161022b565b5060005b905600a165627a7a72305820fad2de773a67cafcda258ee892ee9f1d45b3e50a0f2264459b8e76acdf0187700029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1490632430758
+}
