@@ -1,6 +1,6 @@
 pragma solidity ^0.4.8;
-import './basemodule.sol';
-import './dlinkedlist.sol';
+import './BaseModule.sol';
+import './DLinked.sol';
 
 contract Feed is BaseModule {
     using DLinked for DLinked.List;

@@ -1,7 +1,7 @@
 pragma solidity ^0.4.8;
-import './basemodule.sol';
-import './dlinkedlist.sol';
-import './entry.sol';
+import './BaseModule.sol';
+import './DLinked.sol';
+import './Entry.sol';
 
 contract Comments is BaseModule {
     using DLinked for DLinked.List;

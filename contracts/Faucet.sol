@@ -1,6 +1,6 @@
 pragma solidity ^0.4.8;
-import './basemodule.sol';
-import './profile.sol';
+import './BaseModule.sol';
+import './Profile.sol';
 
 contract Faucet is BaseModule {
 

@@ -1,6 +1,6 @@
 pragma solidity ^0.4.8;
-import "./basestore.sol";
-import "./registrycontroller.sol";
+import "./BaseStore.sol";
+import "./RegistryController.sol";
 
 contract Profile is BaseStore {
     bytes32[2] public _hash;

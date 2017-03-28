@@ -1,5 +1,5 @@
 pragma solidity ^0.4.8;
-import './basemodule.sol';
+import './BaseModule.sol';
 
 contract Funds is BaseModule {
 

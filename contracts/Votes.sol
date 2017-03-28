@@ -1,8 +1,8 @@
 pragma solidity ^0.4.8;
-import './basemodule.sol';
-import './entry.sol';
-import './funds.sol';
-import './faucet.sol';
+import './BaseModule.sol';
+import './Entry.sol';
+import './Funds.sol';
+import './Faucet.sol';
 
 contract Votes is BaseModule {
     using DLinked for DLinked.List;

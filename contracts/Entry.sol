@@ -1,8 +1,8 @@
 pragma solidity ^0.4.8;
-import './basemodule.sol';
-import './dlinkedlist.sol';
-import './entry_deposit.sol';
-import './tags.sol';
+import './BaseModule.sol';
+import './DLinked.sol';
+import './EntryDeposit.sol';
+import './Tags.sol';
 
 contract Entry is BaseModule {
     using DLinked for DLinked.List;

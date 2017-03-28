@@ -1,6 +1,6 @@
 pragma solidity ^0.4.8;
-import './dlinkedlist.sol';
-import './basemodule.sol';
+import './DLinked.sol';
+import './BaseModule.sol';
 
 contract Tags is BaseModule {
     using DLinked for DLinked.List;
