@@ -16,13 +16,33 @@ module.exports = function (deployer) {
     // Bind Dlinked lib to contracts
     deployer.link(Dlinked, [Comments, Entry, Feed, Subs, Tags, Votes]);
 
+    deployer.deploy(RegistryStore);
+
+    deployer.deploy(RegistryController);
+
+    deployer.deploy(Tags);
+
+    deployer.deploy(Faucet);
+
+    deployer.deploy(Funds);
+
+    deployer.deploy(Entry);
+
+    deployer.deploy(Comments);
+
+    deployer.deploy(Feed);
+
+    deployer.deploy(Subs);
+
+    deployer.deploy(Votes);
+
     deployer
         .then(function() {
-        return RegistryStore.new();
+        return RegistryStore.deployed();
         })
         .then(function(instance) {
             registryStore = instance;
-            return RegistryController.new();
+            return RegistryController.deployed();
         })
         .then(function(instance) {
             registryController = instance;
@@ -32,28 +52,28 @@ module.exports = function (deployer) {
             return registryController.setStore(registryStore.address)
         })
         .then(function(){
-            return Tags.new();
+            return Tags.deployed();
         })
         .then(function(instance) {
             tags = instance;
             return tags.setRegistry(registryController.address);
         })
         .then(function() {
-            return Faucet.new();
+            return Faucet.deployed();
         })
         .then(function(instance) {
            faucet = instance;
            return faucet.setRegistry(registryController.address);
         })
         .then(function() {
-            return Funds.new();
+            return Funds.deployed();
         })
         .then(function(instance) {
             funds = instance;
             return funds.setRegistry(registryController.address);
         })
         .then(function() {
-            return Entry.new();
+            return Entry.deployed();
         })
         .then(function(instance) {
             entry = instance;
@@ -63,7 +83,7 @@ module.exports = function (deployer) {
             return entry.setTagsSource(tags.address);
         })
         .then(function(){
-            return Comments.new();
+            return Comments.deployed();
         })
         .then(function(instance){
             comments = instance;
@@ -73,14 +93,14 @@ module.exports = function (deployer) {
             return comments.setEntryAddress(entry.address);
         })
         .then(function() {
-            return Feed.new();
+            return Feed.deployed();
         })
         .then(function(instance){
             feed = instance;
             return feed.setRegistry(registryController.address);
         })
         .then(function(){
-            return Subs.new();
+            return Subs.deployed();
         })
         .then(function(instance) {
             subs = instance;
@@ -90,7 +110,7 @@ module.exports = function (deployer) {
             return subs.setTagSource(tags.address);
         })
         .then(function(){
-            return Votes.new();
+            return Votes.deployed();
         })
         .then(function(instance){
             votes = instance;
