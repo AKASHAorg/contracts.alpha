@@ -53,6 +53,6 @@ contract RegistryStore is BaseStore {
     function has_store(bytes32 id, address owner)
     constant returns (bool owned)
     {
-        return (_NS[id] == _profile[owner]);
+        return (_NS[id] == _profile[owner] && _NS[id] != address(0x0));
     }
 }
