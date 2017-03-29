@@ -14,10 +14,17 @@ contract TestRegistryStore {
     }
 
     function testRemove() {
-        // this is weird, must inspect O_o
-        // Assert.isTrue(registryStore.remove(bytes32("new.user"), address(0x2)), 'It should not remove record(owner).');
+
+        Assert.isFalse(registryStore.remove(bytes32("new.user"), address(0x2)), 'It should not remove record(owner).');
+
         Assert.isTrue(registryStore.remove(bytes32("new.user"), address(0x1)), 'It should remove record.');
+
         Assert.isFalse(registryStore.remove(bytes32("new.user1"), address(0x1)), 'It should not remove record().');
+
         Assert.isFalse(registryStore.remove(bytes32("new.user"), address(0x1)), 'It should not remove record(ID).');
+    }
+
+    function testCanStore() {
+        Assert.isTrue(registryStore.can_store(bytes32("new.user3"), address(0x4)), 'It should allow to store.');
     }
 }

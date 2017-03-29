@@ -14,21 +14,22 @@ contract RegistryController is BaseStore {
     }
 
     function register(bytes32 id, bytes32[2] ipfs)
-    returns(address)
+    returns(bool)
     {
         if(!check_format(id)){
-            throw;
+            return false;
         }
 
         var newProfile = new Profile(address(this), ipfs, id, msg.sender);
         var stored = _store.add(id, msg.sender, newProfile);
 
         if(!stored) {
-            throw;
+            // until revert() is available
+            return false;
         }
 
         Register(id, newProfile);
-        return newProfile;
+        return true;
     }
 
     function unregister(bytes32 id) returns(bool){
@@ -68,6 +69,11 @@ contract RegistryController is BaseStore {
     function check_format(bytes32 id)
     constant returns(bool)
     {
+
+        if(id[0] == 46 || id[0] == 95){
+            return false;
+        }
+
         for(uint8 i=0; i<id.length; i++)
         {
             if(id[i] == 0) break;
@@ -77,7 +83,12 @@ contract RegistryController is BaseStore {
                 return false;
             }
         }
-        return i > 3;
+
+        if(id[i - 1] == 46 || id[i - 1] == 95){
+            return false;
+        }
+
+        return i > 1;
     }
 
 }
