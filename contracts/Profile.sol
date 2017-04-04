@@ -1,24 +1,15 @@
 pragma solidity ^0.4.8;
 import "./BaseStore.sol";
-import "./RegistryController.sol";
+import "./RegistryStore.sol";
 
 contract Profile is BaseStore {
-    bytes32[2] public _hash;
-    bytes32 public _id;
-    address _registrar;
+    RegistryStore _registryStore;
+
     event Tip(address from, uint value);
 
-    modifier fromRegistrar {
-        if(msg.sender != _registrar) {
-            throw;
-        }
-        _;
-    }
-    function Profile(address registrar, bytes32[2] chunks, bytes32 id, address forwardAddr){
-        _hash = chunks;
-        _registrar = registrar;
-        owner = forwardAddr;
-        _id = id;
+    function Profile(address store, address forwardOwner){
+        _registryStore = RegistryStore(store);
+        owner = forwardOwner;
     }
 
     function sendTip() public payable returns(bool) {
@@ -29,12 +20,9 @@ contract Profile is BaseStore {
         throw;
     }
 
-    function setHash(bytes32[2] chunks) auth {
-        _hash = chunks;
-        RegistryController(_registrar).emitUpdate(_id);
-    }
-
-    function destroy() fromRegistrar {
-        selfdestruct(owner);
+    function destroy(bytes32 id) auth {
+        if(_registryStore.remove(id, owner)){
+            selfdestruct(owner);
+        }
     }
 }

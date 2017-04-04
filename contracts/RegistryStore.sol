@@ -2,29 +2,47 @@ pragma solidity ^0.4.8;
 import "./BaseStore.sol";
 
 contract RegistryStore is BaseStore {
+
+    struct Record {
+        address _owner;
+        bytes32 _hash;
+    }
+
     // msg.sender => profile
     mapping(address=>address) _profile;
     // id => profile
-    mapping(bytes32=>address) _NS;
+    mapping(bytes32=>Record) _NS;
 
-    function add(bytes32 id, address owner, address profile)
+    // add a new record
+    function add(bytes32 id, address owner, address profile, bytes32 hash)
     auth
     returns(bool)
     {
-        //@info adding id `bytes32 id` for key `address owner` at `address profile`
         if(can_store(id, owner)) {
             _profile[owner] = profile;
-            _NS[id] = profile;
+            _NS[id] = Record(profile, hash);
+            return true;
+        }
+        return false;
+    }
+
+    function update(bytes32 id, address owner, bytes32 hash)
+    auth
+    external
+    returns(bool)
+    {
+        if(has_store(id, owner)) {
+            _NS[id]._hash = hash;
             return true;
         }
         return false;
     }
 
     function remove(bytes32 id, address owner)
-    auth
+    external
     returns(bool)
     {
-        if(has_store(id, owner)){
+        if(has_store(id, owner) && _profile[owner] == msg.sender){
             delete _NS[id];
             delete _profile[owner];
             return true;
@@ -39,20 +57,20 @@ contract RegistryStore is BaseStore {
     }
 
     function get_by_id(bytes32 id)
-    constant returns (address profile)
+    constant returns (address profile, bytes32 hash)
     {
-        return _NS[id];
+        return (_NS[id]._owner, _NS[id]._hash);
     }
 
     function can_store(bytes32 id, address owner)
     constant returns (bool eligible)
     {
-        return(get_by_id(id)==address(0x0) && get_by_address(owner)==address(0x0));
+        return(_NS[id]._owner==address(0x0) && _profile[owner]==address(0x0));
     }
 
     function has_store(bytes32 id, address owner)
     constant returns (bool owned)
     {
-        return (_NS[id] == _profile[owner] && _NS[id] != address(0x0));
+        return (_NS[id]._owner == _profile[owner] && _NS[id]._owner != address(0x0));
     }
 }

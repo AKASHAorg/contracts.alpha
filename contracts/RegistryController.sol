@@ -6,40 +6,30 @@ import "./RegistryStore.sol";
 contract RegistryController is BaseStore {
 
     RegistryStore _store;
-    event Register(bytes32 indexed id, address profile);
-    event UpdateProfile(bytes32 indexed id, address profile);
+    event Register(bytes32 indexed id) anonymous;
+    event UpdateProfile(bytes32 id) anonymous;
 
     function setStore(address store) auth {
         _store = RegistryStore(store);
     }
 
-    function register(bytes32 id, bytes32[2] ipfs)
+    function register(bytes32 id, bytes32 hash)
     returns(bool)
     {
         if(!check_format(id)){
             return false;
         }
 
-        var newProfile = new Profile(address(this), ipfs, id, msg.sender);
-        var stored = _store.add(id, msg.sender, newProfile);
+        var newProfile = new Profile(address(_store), msg.sender);
+        var stored = _store.add(id, msg.sender, newProfile, hash);
 
         if(!stored) {
             // until revert() is available
-            return false;
+            throw;
         }
 
-        Register(id, newProfile);
+        Register(id);
         return true;
-    }
-
-    function unregister(bytes32 id) returns(bool){
-        var profile = Profile(addressOfKey(msg.sender));
-        var removed = _store.remove(id, msg.sender);
-        if (removed) {
-            profile.destroy();
-            return true;
-        }
-        return false;
     }
 
     function migrate(address newController) auth {
@@ -47,23 +37,16 @@ contract RegistryController is BaseStore {
         selfdestruct(owner);
     }
 
-    function emitUpdate(bytes32 id) external {
-        if(_store.get_by_id(id) != msg.sender){
-            throw;
+    function update(bytes32 id, bytes32 hash) {
+        if(_store.update(id, msg.sender, hash)){
+            UpdateProfile(id);
         }
-        UpdateProfile(id, msg.sender);
     }
 
-    function addressOf(bytes32 id) constant returns(address profileAddress){
-        profileAddress = _store.get_by_id(id);
-    }
-
-    function addressOfKey(address key) constant returns(address profileAddress){
-        profileAddress = _store.get_by_address(key);
-    }
-
-    function isRegistered(address key) constant returns(bool) {
-        return (_store.get_by_address(key) != address(0x0));
+    function is_registered(address ethkey)
+    constant returns(bool isRegistered)
+    {
+        return _store.get_by_address(ethkey) != address(0x0);
     }
 
     function check_format(bytes32 id)

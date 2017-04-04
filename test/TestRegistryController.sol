@@ -32,21 +32,16 @@ contract TestRegistryController {
     }
 
     function testRegister(){
-        bytes32[2] memory ipfsHash = [bytes32("QmVrGUNU7QphE3op8M6EnZ"), bytes32("BdA41CziV37wVwgYcVHu3ukm")];
+        bytes32 ipfsHash = bytes32("hash");
         Assert.isTrue(registryController.register(testUser, ipfsHash), "It should register new user.");
     }
 
     function testIsRegistered(){
-        Assert.isFalse(registryController.isRegistered(address(0x0)), "It should return false for unregistered.");
+        Assert.isFalse(registryController.is_registered(address(0x0)), "It should return false for unregistered.");
     }
 
-    function testAddressOf() {
-        Assert.isZero(registryController.addressOf(bytes32("not.registered")), "It should return 0x0.");
-        Assert.isNotZero(registryController.addressOf(testUser), "It should return an address.");
-    }
-
-    function testUnregister() {
-        Assert.isFalse(registryController.unregister(bytes32("not.registered")), "It should remove ID from registry");
-        Assert.isTrue(registryController.unregister(testUser), "It should remove ID from registry");
-    }
+//    function testUnregister() {
+//        Assert.isFalse(registryController.unregister(bytes32("not.registered")), "It should remove ID from registry");
+//        Assert.isTrue(registryController.unregister(testUser), "It should remove ID from registry");
+//    }
 }
