@@ -7,7 +7,7 @@ contract RegistryStore is BaseStore {
         address _owner;
         bytes32 _hash;
     }
-
+    uint public _total = 0;
     // msg.sender => profile
     mapping(address=>address) _profile;
     // id => profile
@@ -21,6 +21,7 @@ contract RegistryStore is BaseStore {
         if(can_store(id, owner)) {
             _profile[owner] = profile;
             _NS[id] = Record(profile, hash);
+            _total += 1;
             return true;
         }
         return false;
@@ -45,6 +46,7 @@ contract RegistryStore is BaseStore {
         if(has_store(id, owner) && _profile[owner] == msg.sender){
             delete _NS[id];
             delete _profile[owner];
+            _total -= 1;
             return true;
         }
         return false;

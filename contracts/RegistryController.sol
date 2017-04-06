@@ -49,6 +49,20 @@ contract RegistryController is BaseStore {
         return _store.get_by_address(ethkey) != address(0x0);
     }
 
+    function addressOf(bytes32 id)
+    constant
+    returns(address profileAddress)
+    {
+        bytes32 x;
+        (profileAddress,  x) = _store.get_by_id(id);
+    }
+
+    function addressOfKey(address key)
+    constant
+    returns(address profileAddress){
+        profileAddress = _store.get_by_address(key);
+    }
+
     function check_format(bytes32 id)
     constant returns(bool)
     {

@@ -7,7 +7,7 @@ contract BaseModule is BaseStore {
     RegistryController _controller;
 
     modifier onlyRegistered() {
-        if(!_controller.isRegistered(msg.sender)){ throw;}
+        if(!_controller.is_registered(msg.sender)){ throw;}
         _;
     }
 
