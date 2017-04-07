@@ -3,154 +3,76 @@ import './BaseModule.sol';
 import './DLinked.sol';
 
 contract Feed is BaseModule {
-    using DLinked for DLinked.List;
-    struct Following {
-        mapping(address => uint) _followingMap;
-        mapping(uint => address) _indexedFollowing;
-        uint _fId;
-        DLinked.List _index;
+    struct Follow {
+        uint followersNr;
+        uint followingNr;
+        mapping(bytes32=>bool) store;
     }
 
-    struct Followers {
-        mapping(address => uint) _followersMap;
-        mapping(uint => address) _indexedFollowers;
-        uint _foId;
-        DLinked.List _index;
-    }
+    event Following(bytes32 indexed followed, bytes32 indexed follower, bool action, uint date);
+
+    mapping (bytes32 => Follow) _record;
 
     bytes32 app_version;
     string release_notes;
     string app_repository;
-
-    mapping(address => Following) _following;
-    mapping(address => Followers) _followers;
-
-    event Follow(address indexed following, address follower);
-
     event UpdateVersion(bytes32 newVersion);
 
-    function follow(bytes32 id)
+    function follow(bytes32 followed, bytes32 follower)
     onlyRegistered
+    returns(bool)
     {
 
-        var profile = _controller.addressOf(id);
-        if(profile == address(0x0)){ throw;}
-        var myProfile = _controller.addressOfKey(msg.sender);
-        if(_following[myProfile]._followingMap[profile] != 0){ throw;}
-        _following[myProfile]._fId++;
-        _followers[profile]._foId++;
-
-        _following[myProfile]._followingMap[profile] = _following[myProfile]._fId;
-        _following[myProfile]._indexedFollowing[_following[myProfile]._fId] = profile;
-        _following[myProfile]._index.insert(_following[myProfile]._fId);
-
-        _followers[profile]._followersMap[myProfile] = _followers[profile]._foId;
-        _followers[profile]._indexedFollowers[_followers[profile]._foId] = myProfile;
-        _followers[profile]._index.insert(_followers[profile]._foId);
-        Follow(profile, myProfile);
+        var profile = _controller.addressOf(followed);
+        var myProfileAddress = _controller.addressOfKey(msg.sender);
+        var myProfile = _controller.addressOf(follower);
+        if(
+            profile == address(0x0)
+            || myProfileAddress == address(0x0)
+            || myProfileAddress != myProfile
+        ){
+            return false;
+        }
+        Following(followed, follower, true, now);
+        _record[follower].store[followed] = true;
+        _record[follower].followingNr += 1;
+        _record[followed].followersNr += 1;
+        return true;
     }
 
-    function unFollow(bytes32 id)
+    function unFollow(bytes32 followed, bytes32 follower)
     onlyRegistered
+    returns(bool)
     {
-        var profile = _controller.addressOf(id);
-        var myProfile = _controller.addressOfKey(msg.sender);
-        var followingId = _following[myProfile]._followingMap[profile];
-        var followerId = _followers[profile]._followersMap[myProfile];
-        if(_following[myProfile]._followingMap[profile] == 0){ throw;}
-
-        _following[myProfile]._index.remove(followingId);
-        delete _following[myProfile]._followingMap[profile];
-        delete _following[myProfile]._indexedFollowing[followingId];
-        _followers[profile]._index.remove(followerId);
-        delete _followers[profile]._followersMap[myProfile];
-        delete _followers[profile]._indexedFollowers[followerId];
+        var profile = _controller.addressOf(followed);
+        var myProfileAddress = _controller.addressOfKey(msg.sender);
+        var myProfile = _controller.addressOf(follower);
+        if(
+        profile == address(0x0)
+        || myProfileAddress == address(0x0)
+        || myProfileAddress != myProfile
+        || !_record[follower].store[followed]
+        ){
+            return false;
+        }
+        Following(followed, follower, false, now);
+        delete _record[follower].store[followed];
+        _record[follower].followingNr -= 1;
+        _record[followed].followersNr -= 1;
+        return true;
     }
 
     function isFollowing(bytes32 follower, bytes32 id)
     constant returns(bool)
     {
-        var profile = _controller.addressOf(id);
-        var myProfile = _controller.addressOf(follower);
-        return (_following[myProfile]._followingMap[profile] != 0);
+        return _record[follower].store[id];
     }
 
-    function isFollower(bytes32 id, bytes32 following)
-    constant returns(bool)
+    function getFollowCount(bytes32 id)
+    constant returns(uint followersCount, uint followingCount)
     {
-        return (_followers[_controller.addressOf(following)]._followersMap[_controller.addressOf(id)] != 0);
-    }
-
-    function getFollowingCount(bytes32 id)
-    constant returns(uint)
-    {
-        return _following[_controller.addressOf(id)]._index.getSize();
-    }
-
-    function getFollowingFirst(bytes32 id)
-    constant returns(uint)
-    {
-        return _following[_controller.addressOf(id)]._index.getFirst();
-    }
-
-    function getFollowingLast(bytes32 id)
-    constant returns(uint)
-    {
-        return _following[_controller.addressOf(id)]._index.getLast();
-    }
-
-    function getFollowingNext(bytes32 id, uint next)
-    constant returns(uint)
-    {
-        return _following[_controller.addressOf(id)]._index.getNext(next);
-    }
-
-    function getFollowingPrev(bytes32 id, uint prev)
-    constant returns(uint)
-    {
-        return _following[_controller.addressOf(id)]._index.getPrev(prev);
-    }
-
-    function getFollowingById(bytes32 id, uint idIndex)
-    constant returns(address)
-    {
-        return _following[_controller.addressOf(id)]._indexedFollowing[idIndex];
-    }
-
-    function getFollowersCount(bytes32 id)
-    constant returns(uint)
-    {
-        return _followers[_controller.addressOf(id)]._index.getSize();
-    }
-
-    function getFollowersFirst(bytes32 id)
-    constant returns(uint)
-    {
-        return _followers[_controller.addressOf(id)]._index.getFirst();
-    }
-
-    function getFollowersLast(bytes32 id)
-    constant returns(uint)
-    {
-        return _followers[_controller.addressOf(id)]._index.getLast();
-    }
-
-    function getFollowersNext(bytes32 id, uint next)
-    constant returns(uint)
-    {
-        return _followers[_controller.addressOf(id)]._index.getNext(next);
-    }
-
-    function getFollowersPrev(bytes32 id, uint prev)
-    constant returns(uint)
-    {
-        return _followers[_controller.addressOf(id)]._index.getPrev(prev);
-    }
-
-    function getFollowersById(bytes32 id, uint idIndex)
-    constant returns(address)
-    {
-        return _followers[_controller.addressOf(id)]._indexedFollowers[idIndex];
+        followersCount = _record[id].followersNr;
+        followingCount = _record[id].followingNr;
     }
 
     function setVersion(string repository, bytes32 newVersion, string releaseNotes) auth {
