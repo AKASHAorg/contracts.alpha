@@ -1,3 +1,4 @@
+const App = artifacts.require('./App');
 const Dlinked = artifacts.require('./DLinked');
 const Comments = artifacts.require('./Comments');
 const Entry = artifacts.require('./Entry');
@@ -35,6 +36,8 @@ module.exports = function (deployer) {
     deployer.deploy(Subs);
 
     deployer.deploy(Votes);
+
+    deployer.deploy(App);
 
     deployer
         .then(function() {

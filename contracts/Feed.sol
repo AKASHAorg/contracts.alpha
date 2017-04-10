@@ -13,11 +13,6 @@ contract Feed is BaseModule {
 
     mapping (bytes32 => Follow) _record;
 
-    bytes32 app_version;
-    string release_notes;
-    string app_repository;
-    event UpdateVersion(bytes32 newVersion);
-
     function follow(bytes32 followed, bytes32 follower)
     onlyRegistered
     returns(bool)
@@ -75,14 +70,4 @@ contract Feed is BaseModule {
         followingCount = _record[id].followingNr;
     }
 
-    function setVersion(string repository, bytes32 newVersion, string releaseNotes) auth {
-        app_version = newVersion;
-        release_notes = releaseNotes;
-        app_repository = repository;
-        UpdateVersion(app_version);
-    }
-
-    function getAppState() constant returns(bytes32, string, string) {
-        return (app_version, app_repository, release_notes);
-    }
 }
