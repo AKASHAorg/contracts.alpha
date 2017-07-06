@@ -20,7 +20,7 @@ contract IpfsHash {
     }
 
     function getHash(Multihash _multiHash)
-    constant
+    internal
     returns(uint8, uint8, bytes32)
     {
         // on dapp just concat all these in one string, transform to Buffer and encode it
