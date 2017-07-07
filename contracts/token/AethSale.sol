@@ -37,12 +37,15 @@ contract AethSale is OngoingSale {
     // We're overriding the fund forwarding from Crowdsale.
     // In addition to sending the funds, we want to call
     // the RefundVault deposit function
-    function forwardFunds() internal {
+    function forwardFunds()
+    internal
+    {
         vault.deposit.value(msg.value)(msg.sender);
     }
 
     // if crowdsale is unsuccessful, investors can claim refunds here
-    function claimRefund() {
+    function claimRefund()
+    {
         require(isFinalized);
         require(!goalReached());
 
@@ -50,7 +53,9 @@ contract AethSale is OngoingSale {
     }
 
     // vault finalization task, called when owner calls finalize()
-    function finalization() internal {
+    function finalization()
+    internal
+    {
         if (goalReached()) {
             vault.close();
         } else {
@@ -60,7 +65,36 @@ contract AethSale is OngoingSale {
         super.finalization();
     }
 
-    function goalReached() public constant returns (bool) {
+    // check if an address has contract code
+    function isContract(address _addr)
+    constant
+    internal
+    returns(bool)
+    {
+        uint codeSize;
+        if (_addr == 0) return false;
+        assembly {
+        codeSize := extcodesize(_addr)
+        }
+        return codeSize > 0;
+    }
+
+    // @return true if the transaction can buy tokens
+    function validPurchase()
+    internal
+    constant
+    returns (bool)
+    {
+        // reject transactions from contracts
+        bool isNormalAccount = !isContract(msg.sender);
+        return super.validPurchase() && isNormalAccount;
+    }
+
+    function goalReached()
+    public
+    constant
+    returns (bool)
+    {
         return weiRaised >= goal;
     }
 }
