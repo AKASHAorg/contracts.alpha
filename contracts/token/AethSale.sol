@@ -16,6 +16,10 @@ contract AethSale is OngoingSale {
     // minimum amount of funds to be raised in weis
     uint256 public goal;
 
+    // force sale endblock after goal is reached
+    // this is the last block for cap to be reached
+    uint256 public endBlockAfterGoal;
+
     // refund vault used to hold funds while crowdsale is running
     RefundVault public vault;
 
@@ -25,13 +29,15 @@ contract AethSale is OngoingSale {
         uint256 _rate,
         address _wallet,
         uint256 _cap,
-        uint256 _goal
+        uint256 _goal,
+        uint256 _endBlockAfterGoal
     )
     Crowdsale(_startBlock, _endBlock, _rate, _wallet)
     CappedCrowdsale(_cap)
     {
         vault = new RefundVault(wallet);
         goal = _goal;
+        endBlockAfterGoal = _endBlockAfterGoal;
     }
 
     // We're overriding the fund forwarding from Crowdsale.
@@ -87,9 +93,30 @@ contract AethSale is OngoingSale {
     {
         // reject transactions from contracts
         bool isNormalAccount = !isContract(msg.sender);
-        return super.validPurchase() && isNormalAccount;
+        return super.validPurchase() && isNormalAccount && !afterGoalReached();
     }
 
+    // @return true if tx is after reaching goal
+    function afterGoalReached()
+    internal
+    constant
+    returns (bool)
+    {
+        bool afterGoalCap = goalReached() && block.number > endBlockAfterGoal;
+        return afterGoalCap;
+    }
+
+    // @return true if buying period has ended
+    function hasEnded()
+    public
+    constant
+    returns (bool)
+    {
+        // check if goal reached and within allowed block period
+        return super.hasEnded() || afterGoalReached();
+    }
+
+    // @return true
     function goalReached()
     public
     constant

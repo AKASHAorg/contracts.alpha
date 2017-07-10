@@ -19,7 +19,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/SafeMath.json" afterPath="$PROJECT_DIR$/build/contracts/SafeMath.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/StandardToken.json" afterPath="$PROJECT_DIR$/build/contracts/StandardToken.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/token/AethSale.sol" afterPath="$PROJECT_DIR$/contracts/token/AethSale.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/AethSale.js" afterPath="$PROJECT_DIR$/test/AethSale.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/truffle.js" afterPath="$PROJECT_DIR$/truffle.js" />
@@ -43,21 +42,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="IpfsHash.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contracts/IpfsHash.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AethSale.sol" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/contracts/token/AethSale.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1138">
-              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+            <state relative-caret-position="266">
+              <caret line="118" column="19" lean-forward="false" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -76,8 +65,8 @@
       <file leaf-file-name="CappedCrowdsale.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/crowdsale/CappedCrowdsale.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            <state relative-caret-position="-94">
+              <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -86,8 +75,18 @@
       <file leaf-file-name="AETH.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/token/AETH.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+            <state relative-caret-position="156">
+              <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MintableToken.sol" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/MintableToken.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -96,8 +95,8 @@
       <file leaf-file-name="helpers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/helpers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-228">
-              <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+            <state relative-caret-position="318">
+              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -106,8 +105,8 @@
       <file leaf-file-name="AethSale.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/AethSale.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+            <state relative-caret-position="286">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -116,8 +115,8 @@
       <file leaf-file-name="truffle.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/truffle.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
+            <state relative-caret-position="286">
+              <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -136,6 +135,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>validPurchase</find>
+      <find>_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -151,11 +151,11 @@
         <option value="$PROJECT_DIR$/contracts/token/OngoingSale.sol" />
         <option value="$PROJECT_DIR$/scripts/test.sh" />
         <option value="$PROJECT_DIR$/contracts/token/AETH.sol" />
+        <option value="$PROJECT_DIR$/test/helpers.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/truffle.js" />
-        <option value="$PROJECT_DIR$/test/helpers.js" />
-        <option value="$PROJECT_DIR$/contracts/token/AethSale.sol" />
         <option value="$PROJECT_DIR$/test/AethSale.js" />
+        <option value="$PROJECT_DIR$/contracts/token/AethSale.sol" />
       </list>
     </option>
   </component>
@@ -194,6 +194,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -268,8 +270,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -421,31 +421,33 @@
       <workItem from="1499336670198" duration="601000" />
       <workItem from="1499337643791" duration="11230000" />
       <workItem from="1499356202551" duration="5961000" />
-      <workItem from="1499421621953" duration="15613000" />
+      <workItem from="1499421621953" duration="16493000" />
+      <workItem from="1499683533113" duration="7473000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54331000" />
+    <option name="totallyTimeSpent" value="62684000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1917" y="0" width="1926" height="1082" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24986821" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24986821" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27111575" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -460,7 +462,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ds-token/src/base.sol" />
     <entry file="file://$PROJECT_DIR$/.gitmodules" />
     <entry file="file://$PROJECT_DIR$/ds-token/src/base.sol" />
     <entry file="file://$PROJECT_DIR$/.gitmodules" />
@@ -515,13 +516,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/TestRegistryController.sol" />
     <entry file="file://$PROJECT_DIR$/test/testRegistry.js" />
-    <entry file="file://$PROJECT_DIR$/build/contracts/ERC20Basic.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/contracts/Pausable.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -570,7 +564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -587,15 +580,6 @@
             <element signature="e#1186#1412#0" expanded="false" />
             <element signature="e#1418#1566#0" expanded="false" />
             <element signature="e#1572#1794#0" expanded="false" />
-            <element signature="e#1800#2024#0" expanded="false" />
-            <element signature="e#2030#2254#0" expanded="false" />
-            <element signature="e#2260#2481#0" expanded="false" />
-            <element signature="e#2487#2638#0" expanded="false" />
-            <element signature="e#2644#2880#0" expanded="false" />
-            <element signature="e#2886#3107#0" expanded="false" />
-            <element signature="e#3113#3355#0" expanded="false" />
-            <element signature="e#3361#3582#0" expanded="false" />
-            <element signature="e#3588#3809#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -618,7 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -626,129 +609,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/StandardToken.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/PausableToken.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/test.sh" />
     <entry file="file://$PROJECT_DIR$/migrations/1_initial_migration.js" />
     <entry file="file://$PROJECT_DIR$/migrations/2_deploy_contracts.js" />
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1499426135402" expanded="true" signature="138395:139377" ph="{&quot;version&quot;: &quot;3.4.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="139363:139371" ph="{&quot;mocha&quot;: &quot;3.4.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="139401:140118" ph="{&quot;version&quot;: &quot;1.0.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="139612:139784" ph="{&quot;find-up&quot;: &quot;2.1.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="139808:140112" ph="{...}" />
-            <marker date="1499426135402" expanded="true" signature="139829:140104" ph="{&quot;version&quot;: &quot;2.1.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="140046:140094" ph="{&quot;locate-path&quot;: &quot;2.0.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="140141:140336" ph="{&quot;version&quot;: &quot;0.0.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="140592:140951" ph="{&quot;version&quot;: &quot;0.0.3&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="140806:140945" ph="{&quot;bip39&quot;: &quot;2.3.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="140977:141232" ph="{&quot;version&quot;: &quot;0.0.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="141192:141226" ph="{&quot;web3&quot;: &quot;0.18.4&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="141256:141453" ph="{&quot;version&quot;: &quot;0.0.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="141475:141649" ph="{&quot;version&quot;: &quot;0.4.3&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="141668:141862" ph="{&quot;version&quot;: &quot;0.14.5&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="141883:142074" ph="{&quot;version&quot;: &quot;4.0.3&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="142093:143658" ph="{&quot;version&quot;: &quot;2.8.29&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="142296:142403" ph="{&quot;source-map&quot;: &quot;0.5.6&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="142427:143652" ph="{...}" />
-            <marker date="1499426135402" expanded="true" signature="142450:142657" ph="{&quot;version&quot;: &quot;1.2.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="142676:143017" ph="{&quot;version&quot;: &quot;2.1.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="142889:143007" ph="{&quot;center-align&quot;: &quot;0.1.3&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="143042:143253" ph="{&quot;version&quot;: &quot;0.1.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="143272:143644" ph="{&quot;version&quot;: &quot;3.10.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="143487:143634" ph="{&quot;camelcase&quot;: &quot;1.2.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="143688:143921" ph="{&quot;version&quot;: &quot;1.0.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="143954:144295" ph="{&quot;version&quot;: &quot;0.4.6&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="144183:144289" ph="{&quot;source-map&quot;: &quot;0.5.6&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="144310:144470" ph="{&quot;version&quot;: &quot;1.4.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="144494:144672" ph="{&quot;version&quot;: &quot;1.0.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="144685:145210" ph="{&quot;version&quot;: &quot;0.11.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="144876:144945" ph="{&quot;punycode&quot;: &quot;1.3.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="144969:145204" ph="{...}" />
-            <marker date="1499426135402" expanded="true" signature="144991:145196" ph="{&quot;version&quot;: &quot;1.3.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="145224:145382" ph="{&quot;version&quot;: &quot;2.1.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="145396:145891" ph="{&quot;version&quot;: &quot;0.10.3&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="145589:145626" ph="{&quot;inherits&quot;: &quot;2.0.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="145650:145885" ph="{...}" />
-            <marker date="1499426135402" expanded="true" signature="145672:145877" ph="{&quot;version&quot;: &quot;2.0.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="145915:146093" ph="{&quot;version&quot;: &quot;1.0.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="146107:146265" ph="{&quot;version&quot;: &quot;2.0.3&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="146303:146612" ph="{&quot;version&quot;: &quot;3.0.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="146523:146606" ph="{&quot;spdx-correct&quot;: &quot;1.0.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="146628:146849" ph="{&quot;version&quot;: &quot;1.3.6&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="146804:146843" ph="{&quot;extsprintf&quot;: &quot;1.0.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="146872:147123" ph="{&quot;version&quot;: &quot;0.0.4&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="147081:147117" ph="{&quot;indexof&quot;: &quot;0.0.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="147142:147445" ph="{&quot;version&quot;: &quot;1.3.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="147343:147439" ph="{&quot;async&quot;: &quot;2.5.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="147459:147877" ph="{&quot;version&quot;: &quot;0.18.4&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="147633:147871" ph="{&quot;bignumber.js&quot;: &quot;git+https://github.com/debris/bignumber.js.git##94d7146671b9719e00a09c29b01a691bc85048c2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="147907:149706" ph="{&quot;version&quot;: &quot;8.6.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="148111:148535" ph="{&quot;async&quot;: &quot;2.5.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="148559:149700" ph="{...}" />
-            <marker date="1499426135402" expanded="true" signature="148585:148707" ph="{&quot;version&quot;: &quot;git+https://github.com/debris/bignumber.js.git##c7a38de919ed75e6fb6ba38051986e294b328df9&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="148736:149241" ph="{&quot;version&quot;: &quot;5.1.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="148946:149231" ph="{&quot;babel-preset-es2015&quot;: &quot;6.24.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="149259:149692" ph="{&quot;version&quot;: &quot;0.16.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="149449:149682" ph="{&quot;bignumber.js&quot;: &quot;git+https://github.com/debris/bignumber.js.git##c7a38de919ed75e6fb6ba38051986e294b328df9&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="149723:152417" ph="{&quot;version&quot;: &quot;3.0.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="149920:150622" ph="{&quot;acorn&quot;: &quot;5.1.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="150646:152411" ph="{...}" />
-            <marker date="1499426135402" expanded="true" signature="150663:151052" ph="{&quot;version&quot;: &quot;5.2.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="150872:151042" ph="{&quot;co&quot;: &quot;4.6.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="151080:151366" ph="{&quot;version&quot;: &quot;3.2.3&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="151311:151356" ph="{&quot;has-flag&quot;: &quot;1.0.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="151385:152094" ph="{&quot;version&quot;: &quot;6.6.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="151598:152084" ph="{&quot;camelcase&quot;: &quot;3.0.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="152120:152403" ph="{&quot;version&quot;: &quot;4.2.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="152347:152393" ph="{&quot;camelcase&quot;: &quot;3.0.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="152442:152798" ph="{&quot;version&quot;: &quot;1.0.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="152717:152792" ph="{&quot;source-list-map&quot;: &quot;2.0.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="152820:152994" ph="{&quot;version&quot;: &quot;2.0.3&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="153016:153190" ph="{&quot;version&quot;: &quot;1.0.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="153210:153503" ph="{&quot;version&quot;: &quot;1.1.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="153456:153497" ph="{&quot;string-width&quot;: &quot;1.0.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="153524:153696" ph="{&quot;version&quot;: &quot;0.2.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="153714:153899" ph="{&quot;version&quot;: &quot;0.0.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="153918:154178" ph="{&quot;version&quot;: &quot;2.1.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="154100:154172" ph="{&quot;string-width&quot;: &quot;1.0.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="154194:154356" ph="{&quot;version&quot;: &quot;1.0.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="154369:154672" ph="{&quot;version&quot;: &quot;2.4.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="154539:154666" ph="{&quot;global&quot;: &quot;4.3.2&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="154686:154844" ph="{&quot;version&quot;: &quot;0.1.4&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="154868:155046" ph="{&quot;version&quot;: &quot;1.8.0&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="155061:155221" ph="{&quot;version&quot;: &quot;4.0.1&quot;...}" />
-            <marker date="1499426135402" expanded="true" signature="155235:155393" ph="{&quot;version&quot;: &quot;3.2.1&quot;...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/old/App.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="11" column="77" lean-forward="false" selection-start-line="11" selection-start-column="77" selection-end-line="11" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -756,15 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -776,10 +637,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1499426135402" expanded="true" signature="139363:139371" ph="{&quot;mocha&quot;: &quot;3.4.2&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/truffle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/crowdsale/Crowdsale.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1966">
+          <caret line="13" column="9" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/helpers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/contracts/ERC20Basic.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-853">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/lifecycle/Pausable.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/PausableToken.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="13" column="53" lean-forward="false" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/crowdsale/CappedCrowdsale.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-94">
+          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/AethSale.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/MintableToken.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="34" column="15" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="15" />
+        <state relative-caret-position="390">
+          <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/StandardToken.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -792,58 +743,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/crowdsale/Crowdsale.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1976">
-          <caret line="76" column="30" lean-forward="false" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/crowdsale/CappedCrowdsale.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/truffle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/helpers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228">
-          <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/AethSale.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/contracts/token/AETH.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+        <state relative-caret-position="156">
+          <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contracts/token/AethSale.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1138">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+        <state relative-caret-position="266">
+          <caret line="118" column="19" lean-forward="false" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
           <folding />
         </state>
       </provider>

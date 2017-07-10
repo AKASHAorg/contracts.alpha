@@ -8,17 +8,18 @@ const should = require('chai')
 const AethSale = artifacts.require('AethSale');
 const AETH = artifacts.require('AETH');
 
-contract('AethSale', function ([_, wallet]) {
+contract('AethSale', function ([owner, wallet]) {
 
   const rate = new BigNumber(1000);
   const cap = helpers.ether(1000);
   const minimum = helpers.ether(99);
-
+  let endBlockCap;
   beforeEach(async function () {
     const currentBlock = await helpers.getCurrentBlockNumber();
     this.startBlock = currentBlock + 10;
     this.endBlock = currentBlock + 20;
-    this.crowdsale = await AethSale.new(this.startBlock, this.endBlock, rate, wallet, cap, minimum);
+    endBlockCap = currentBlock + 15;
+    this.crowdsale = await AethSale.new(this.startBlock, this.endBlock, rate, wallet, cap, minimum, endBlockCap);
     this.token = AETH.at(await this.crowdsale.token());
   });
 
@@ -31,6 +32,18 @@ contract('AethSale', function ([_, wallet]) {
     it('should accept payments within cap', async function () {
       await this.crowdsale.send(minimum).should.be.fulfilled;
       await this.crowdsale.send(cap.sub(minimum)).should.be.fulfilled;
+    });
+
+    it('should accept payments after reaching goal', async function () {
+      await this.crowdsale.send(minimum).should.be.fulfilled;
+      await helpers.advanceToBlock(endBlockCap - 1);
+      await this.crowdsale.send(cap.sub(minimum)).should.be.fulfilled;
+    });
+
+    it('should reject payments after reaching goal', async function () {
+      await this.crowdsale.send(minimum).should.be.fulfilled;
+      await helpers.advanceToBlock(endBlockCap);
+      await this.crowdsale.send(cap.sub(minimum)).should.be.rejectedWith(helpers.EVMThrow);
     });
 
     it('should reject payments outside cap', async function () {
@@ -49,7 +62,6 @@ contract('AethSale', function ([_, wallet]) {
       should.exist(event);
 
       const totalSupply = await this.token.totalSupply();
-      console.log(totalSupply);
       totalSupply.should.be.bignumber.equal(rate.mul(minimum));
     });
   });
@@ -85,6 +97,14 @@ contract('AethSale', function ([_, wallet]) {
       let hasEnded = await this.crowdsale.hasEnded();
       hasEnded.should.equal(true);
     });
+
+    it('should be ended if goal reached and after cap block', async function () {
+      await this.crowdsale.send(minimum).should.be.fulfilled;
+      await helpers.advanceToBlock(endBlockCap + 1);
+      let hasEnded = await this.crowdsale.hasEnded();
+      hasEnded.should.equal(true);
+    });
+
   })
 
 });
