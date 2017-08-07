@@ -1,7 +1,7 @@
 pragma solidity ^0.4.0;
 
 //
-contract IpfsHash {
+library IpfsHash {
 
     // decode ipfs hash to hex, strip prefix
     // ex: 1220aa7ef8aced767773e8a47753ed0ef452a35845db3f02cd85b92c75ff593ee991
@@ -12,15 +12,22 @@ contract IpfsHash {
         uint8 size;
     }
 
-    modifier validateMultiHash(Multihash _multiHash)
+    function create(Multihash storage self, bytes32 _hash, uint8 _codec, uint8 _size)
+    public
+    returns (bool)
     {
-        // will add more validators over time
-        require(_multiHash.size < 32);
-        _;
+        if (_size > 32) {
+            return false;
+        }
+        self.hash = _hash;
+        self.codec = _codec;
+        self.size = _size;
+        return true;
     }
 
-    function getHash(Multihash _multiHash)
+    function getHash(Multihash storage _multiHash)
     internal
+    constant
     returns(uint8, uint8, bytes32)
     {
         // on dapp just concat all these in one string, transform to Buffer and encode it
