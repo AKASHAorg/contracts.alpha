@@ -20,6 +20,7 @@ contract Bundled is HasNoEther, HasNoTokens {
     {
         require(_moduleAddress != address(0x0));
         moduleAddress = _moduleAddress;
+        return true;
     }
 
     modifier onlyModule()
