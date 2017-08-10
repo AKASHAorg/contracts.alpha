@@ -5,12 +5,20 @@ import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
 contract Bundled is HasNoEther, HasNoTokens {
     address public moduleAddress;
 
-    function Bundled(address _owner)
+    function Bundled()
     HasNoEther()
     HasNoTokens()
     {
-        owner = _owner;
-        moduleAddress = msg.sender;
+
+    }
+
+    function setModule(address _moduleAddress)
+    onlyOwner
+    returns(bool)
+    {
+        require(_moduleAddress != address(0x0));
+        moduleAddress = _moduleAddress;
+        return true;
     }
 
     function updateModule(address _moduleAddress)

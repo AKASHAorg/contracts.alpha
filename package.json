@@ -7,7 +7,8 @@
     "test": "test"
   },
   "dependencies": {
-    "zeppelin-solidity": "^1.2.0"
+    "zeppelin-solidity": "1.2.0",
+    "ens": "git+https://github.com/ethereum/ens"
   },
   "devDependencies": {
     "chai": "4.1.1",

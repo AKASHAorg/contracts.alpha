@@ -15,8 +15,8 @@ contract ProfileController is Bundled {
 
     mapping(uint => ProfileExtra) profileList;
 
-    function ProfileController(address _owner, uint _startIndex, uint _totalProfiles)
-    Bundled(_owner)
+    function ProfileController(uint _startIndex, uint _totalProfiles)
+    Bundled()
     {
         currentIndex = _startIndex;
         totalProfiles = _totalProfiles;

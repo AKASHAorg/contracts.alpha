@@ -1,0 +1,161 @@
+{
+  "contract_name": "ProfileResolver",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "tokenAddr",
+          "type": "address"
+        }
+      ],
+      "name": "reclaimToken",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "moduleAddress",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "node",
+          "type": "bytes32"
+        }
+      ],
+      "name": "addr",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_moduleAddress",
+          "type": "address"
+        }
+      ],
+      "name": "setModule",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "destroy",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_moduleAddress",
+          "type": "address"
+        }
+      ],
+      "name": "updateModule",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "reclaimEther",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "from_",
+          "type": "address"
+        },
+        {
+          "name": "value_",
+          "type": "uint256"
+        },
+        {
+          "name": "data_",
+          "type": "bytes"
+        }
+      ],
+      "name": "tokenFallback",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "payable": false,
+      "type": "fallback"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b5b5b5b5b60008054600160a060020a03191633600160a060020a03161790555b341561003a57600080fd5b5b5b5b5b6105448061004d6000396000f300606060405236156100885763ffffffff60e060020a60003504166317ffc320811461009c57806335b2bd2d146100bd5780633b3b57de146100ec57806347f543bc1461011e57806383197ef0146101515780638c5f89dc146101665780638da5cb5b146101995780639f727c27146101c8578063c0ee0b8a146101dd578063f2fde38b1461020e575b341561009357600080fd5b61009a5b5b565b005b34156100a757600080fd5b61009a600160a060020a036004351661022f565b005b34156100c857600080fd5b6100d061034a565b604051600160a060020a03909116815260200160405180910390f35b34156100f757600080fd5b6100d0600435610359565b604051600160a060020a03909116815260200160405180910390f35b341561012957600080fd5b61013d600160a060020a0360043516610361565b604051901515815260200160405180910390f35b341561015c57600080fd5b61009a6103c2565b005b341561017157600080fd5b61013d600160a060020a03600435166103ee565b604051901515815260200160405180910390f35b34156101a457600080fd5b6100d0610451565b604051600160a060020a03909116815260200160405180910390f35b34156101d357600080fd5b61009a610460565b005b34156101e857600080fd5b61009a60048035600160a060020a03169060248035916044359182019101356104b5565b005b341561021957600080fd5b61009a600160a060020a03600435166104c0565b005b60008054819033600160a060020a0390811691161461024d57600080fd5b82915081600160a060020a03166370a082313060006040516020015260405160e060020a63ffffffff8416028152600160a060020a039091166004820152602401602060405180830381600087803b15156102a757600080fd5b6102c65a03f115156102b857600080fd5b505050604051805160008054919350600160a060020a03808616935063a9059cbb92169084906040516020015260405160e060020a63ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b151561032857600080fd5b6102c65a03f1151561033957600080fd5b505050604051805150505b5b505050565b600154600160a060020a031681565b60005b919050565b6000805433600160a060020a0390811691161461037d57600080fd5b600160a060020a038216151561039257600080fd5b506001805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161781555b5b919050565b60005433600160a060020a039081169116146103dd57600080fd5b600054600160a060020a0316ff5b5b565b60015460009033600160a060020a0390811691161461037d57600080fd5b600160a060020a038216151561039257600080fd5b506001805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161781555b5b919050565b600054600160a060020a031681565b60005433600160a060020a0390811691161461047b57600080fd5b600054600160a060020a039081169030163180156108fc0290604051600060405180830381858888f19350505050151561009757fe5b5b5b565b600080fd5b50505050565b60005433600160a060020a039081169116146104db57600080fd5b600160a060020a03811615610513576000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b5b505600a165627a7a723058201bcf531c5a6e8f95ebf559b5727314231b42df35f2d56c0589e5cae386b07e0d0029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1502383803923
+}

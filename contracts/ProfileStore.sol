@@ -5,8 +5,8 @@ contract ProfileStore is Bundled {
 
     mapping(address => uint) records;
 
-    function ProfileStore(address _owner)
-    Bundled(_owner)
+    function ProfileStore()
+    Bundled()
     {
 
     }
