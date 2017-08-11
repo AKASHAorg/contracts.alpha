@@ -12,7 +12,7 @@ contract AkashaStore is Bundled {
 
     mapping(bytes32 => Store) state;
 
-    function AkashaStore(address _owner) Bundled(_owner) {
+    function AkashaStore(address _owner) Bundled() {
 
     }
 

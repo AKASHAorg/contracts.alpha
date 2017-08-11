@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26fb74d8-5c67-4def-9965-5850d104fcee" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/contracts/ProfileStore.sol" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/contracts/ProfileController.sol" afterPath="$PROJECT_DIR$/contracts/ProfileResolver.sol" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/contracts/ProfileModule.sol" afterPath="$PROJECT_DIR$/contracts/ProfileRegistrar.sol" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/AbstractENS.json" afterPath="$PROJECT_DIR$/build/contracts/AbstractENS.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/AkashaModule.json" afterPath="$PROJECT_DIR$/build/contracts/AkashaModule.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/Bundled.json" afterPath="$PROJECT_DIR$/build/contracts/Bundled.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ENS.json" afterPath="$PROJECT_DIR$/build/contracts/ENS.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ERC20Basic.json" afterPath="$PROJECT_DIR$/build/contracts/ERC20Basic.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/HasNoEther.json" afterPath="$PROJECT_DIR$/build/contracts/HasNoEther.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/HasNoTokens.json" afterPath="$PROJECT_DIR$/build/contracts/HasNoTokens.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/IpfsHash.json" afterPath="$PROJECT_DIR$/build/contracts/IpfsHash.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/Ownable.json" afterPath="$PROJECT_DIR$/build/contracts/Ownable.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ProfileController.json" afterPath="$PROJECT_DIR$/build/contracts/ProfileController.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ProfileResolver.json" afterPath="$PROJECT_DIR$/build/contracts/ProfileResolver.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/contracts/ProfileStore.json" afterPath="$PROJECT_DIR$/build/contracts/ProfileStore.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/Bundled.sol" afterPath="$PROJECT_DIR$/contracts/Bundled.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/ProfileController.sol" afterPath="$PROJECT_DIR$/contracts/ProfileController.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/ProfileModule.sol" afterPath="$PROJECT_DIR$/contracts/ProfileModule.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contracts/ProfileStore.sol" afterPath="$PROJECT_DIR$/contracts/ProfileStore.sol" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,28 +40,28 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfileModule.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contracts/ProfileModule.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1011">
-              <caret line="41" column="22" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ENS.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build/contracts/ENS.json">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfileRegistrar.sol" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contracts/ProfileRegistrar.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResolverInterface.sol" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contracts/ResolverInterface.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -70,18 +70,8 @@
       <file leaf-file-name="RegistryController.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/old/RegistryController.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="69" column="39" lean-forward="true" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfileResolver.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contracts/ProfileResolver.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="1794">
+              <caret line="69" column="39" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -90,8 +80,8 @@
       <file leaf-file-name="AkashaStore.sol" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/contracts/AkashaStore.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+            <state relative-caret-position="364">
+              <caret line="14" column="58" lean-forward="true" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -107,31 +97,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AkashaModule.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contracts/AkashaModule.sol">
+      <file leaf-file-name="ProfileResolver.sol" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/contracts/ProfileResolver.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="4" column="9" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+            <state relative-caret-position="2392">
+              <caret line="101" column="38" lean-forward="false" selection-start-line="101" selection-start-column="38" selection-end-line="101" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfileStore.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contracts/ProfileStore.sol">
+      <file leaf-file-name="AkashaController.sol" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contracts/AkashaController.sol">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-777">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfileController.sol" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contracts/ProfileController.sol">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+            <state relative-caret-position="208">
+              <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -182,9 +162,11 @@
         <option value="$PROJECT_DIR$/contracts/profile/ProfileController.sol" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/contracts/Bundled.sol" />
-        <option value="$PROJECT_DIR$/contracts/ProfileController.sol" />
         <option value="$PROJECT_DIR$/contracts/ProfileStore.sol" />
         <option value="$PROJECT_DIR$/contracts/ProfileModule.sol" />
+        <option value="$PROJECT_DIR$/contracts/ProfileRegistrar.sol" />
+        <option value="$PROJECT_DIR$/contracts/ProfileController.sol" />
+        <option value="$PROJECT_DIR$/contracts/ResolverInterface.sol" />
         <option value="$PROJECT_DIR$/contracts/ProfileResolver.sol" />
       </list>
     </option>
@@ -228,7 +210,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -246,16 +227,12 @@
               <item name="contracts.alpha" type="462c0819:PsiDirectoryNode" />
               <item name="contracts" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="contracts.alpha" type="b2602c69:ProjectViewProjectNode" />
-              <item name="contracts.alpha" type="462c0819:PsiDirectoryNode" />
-              <item name="old" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -424,17 +401,20 @@
       <workItem from="1502116255658" duration="6933000" />
       <workItem from="1502187805731" duration="13628000" />
       <workItem from="1502276472824" duration="1923000" />
-      <workItem from="1502359260607" duration="10998000" />
+      <workItem from="1502359260607" duration="11495000" />
+      <workItem from="1502434297173" duration="599000" />
+      <workItem from="1502438373850" duration="10534000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127271000" />
+    <option name="totallyTimeSpent" value="138901000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24960339" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24960339" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -464,27 +444,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/StandardToken.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="14" column="9" lean-forward="false" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/token/MintableToken.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/helpers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="988">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/zeppelin-solidity/contracts/ownership/DelayedClaimable.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -661,18 +620,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/AkashaController.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/contracts/Profiles.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="1" column="25" lean-forward="false" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -680,7 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8086">
           <caret line="311" column="2644" lean-forward="false" selection-start-line="311" selection-start-column="2644" selection-end-line="311" selection-end-column="2644" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -688,7 +638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4810">
           <caret line="185" column="32" lean-forward="false" selection-start-line="185" selection-start-column="32" selection-end-line="185" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -696,7 +645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -704,7 +652,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="27" column="20" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -719,7 +666,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -727,15 +673,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/AkashaStore.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -749,16 +686,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ens/contracts/ENS.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="56" column="13" lean-forward="false" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+        <state relative-caret-position="0">
+          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -767,7 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="24" column="20" lean-forward="false" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -775,7 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="12" column="30" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -789,40 +716,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/old/RegistryController.sol">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="69" column="39" lean-forward="true" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/ProfileController.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/ProfileStore.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-777">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/ProfileResolver.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contracts/ProfileModule.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1011">
-          <caret line="41" column="22" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="22" />
+        <state relative-caret-position="1794">
+          <caret line="69" column="39" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -831,6 +726,85 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/contracts/ProfileResolver.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5507">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/contracts/ResolverInterface.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-312">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/AkashaController.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/ProfileResolver.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/AkashaStore.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="14" column="58" lean-forward="true" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/ens/contracts/ENS.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/ProfileStore.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/ProfileRegistrar.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/ResolverInterface.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contracts/ProfileResolver.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2392">
+          <caret line="101" column="38" lean-forward="false" selection-start-line="101" selection-start-column="38" selection-end-line="101" selection-end-column="38" />
           <folding />
         </state>
       </provider>

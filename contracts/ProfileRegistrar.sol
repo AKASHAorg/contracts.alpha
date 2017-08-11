@@ -1,19 +1,17 @@
 pragma solidity ^0.4.0;
 
-import './ProfileController.sol';
-import './ProfileStore.sol';
+import './ProfileResolver.sol';
 import './AkashaModule.sol';
 import 'ens/contracts/ENS.sol';
 
 // also has Registrar functionality
-contract ProfileModule is AkashaModule {
+contract ProfileRegistrar is AkashaModule {
 
     ENS ens;
-    ProfileController controller;
-    ProfileStore store;
+    ProfileResolver controller;
     bytes32 rootNode;
 
-    function ProfileModule(ENS _ens, bytes32 _rootNode) AkashaModule('profiles', 1)
+    function ProfileRegistrar(ENS _ens, bytes32 _rootNode) AkashaModule('profiles', 1)
     {
         ens = _ens;
         rootNode = _rootNode;
@@ -95,5 +93,4 @@ contract ProfileModule is AkashaModule {
 
         return i > 1;
     }
-
 }

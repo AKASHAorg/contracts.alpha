@@ -3,7 +3,7 @@ import './Bundled.sol';
 
 contract AkashaController is Bundled {
 
-    function AkashaController(address _owner) Bundled(_owner){
+    function AkashaController(address _owner) Bundled(){
 
     }
 }
