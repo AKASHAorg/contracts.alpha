@@ -1,0 +1,36 @@
+{
+  "name": "contracts.alpha",
+  "version": "1.0.0",
+  "description": "AKASHA betta contracts",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "zeppelin-solidity": "1.2.0",
+    "ens": "git+https://github.com/ethereum/ens"
+  },
+  "devDependencies": {
+    "chai": "4.1.1",
+    "chai-as-promised": "7.1.1",
+    "chai-bignumber": "2.0.1",
+    "ethereumjs-testrpc": "4.0.1",
+    "truffle": "3.4.8",
+    "truffle-config": "1.0.2",
+    "truffle-expect": "0.0.3"
+  },
+  "scripts": {
+    "test": "truffle test",
+    "compile": "truffle compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkashaProject/contracts.alpha.git"
+  },
+  "author": "Marius Darila",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/AkashaProject/contracts.alpha/issues"
+  },
+  "homepage": "https://github.com/AkashaProject/contracts.alpha#readme"
+}
