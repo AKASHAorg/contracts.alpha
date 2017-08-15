@@ -6,9 +6,6 @@ contract AkashaModule is HasNoEther, HasNoTokens {
     uint256 public version;
     string public moduleName;
 
-    address public controller;
-    address public store;
-
     function AkashaModule(string _moduleName, uint256 _version)
     HasNoEther()
     HasNoTokens()
@@ -18,33 +15,10 @@ contract AkashaModule is HasNoEther, HasNoTokens {
         version = _version;
     }
 
-    function upgradeController()
-    onlyOwner
-    {
-        incrementVersion();
-    }
-
-    function upgradeStore()
-    onlyOwner
-    {
-        incrementVersion();
-    }
-
     function incrementVersion()
     internal
     {
         version += 1;
-    }
-
-    function upgradeModule()
-    onlyOwner
-    returns(uint256 _version)
-    {
-        incrementVersion();
-        // controller.setModule();
-        // store.setModule();
-
-        return version;
     }
 
     function destroy()

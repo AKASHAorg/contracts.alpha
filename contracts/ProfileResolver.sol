@@ -12,7 +12,6 @@ contract ProfileResolver is Bundled {
     struct Profile {
         IpfsHash.Multihash contentHash;
         address addr;
-        bytes32 name;
     }
 
     mapping(bytes32 => Profile) profileList;
@@ -27,7 +26,8 @@ contract ProfileResolver is Bundled {
         totalProfiles = _totalProfiles;
     }
 
-    modifier only_owner(bytes32 node) {
+    modifier only_owner(bytes32 node)
+    {
         require(ens.owner(node) == msg.sender);
         _;
     }
@@ -49,14 +49,29 @@ contract ProfileResolver is Bundled {
     }
 
     // register an ipfs hash
-    function register(bytes32 _node, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    function registerHash(bytes32 _node, address _owner, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     onlyModule
-    only_owner(_node)
     returns(uint)
     {
-        require(IpfsHash.create(profileList[_node].contentHash, _hash, _fn, _digestSize));
-        reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(msg.sender))] = _node;
+        assert(profileList[_node].addr == 0);
+        require(createHash(_node, _owner, _hash, _fn, _digestSize));
         return totalProfiles++;
+    }
+
+    function setHash(bytes32 _node, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    only_owner(_node)
+    returns(bool)
+    {
+        require(createHash(_node, msg.sender, _hash, _fn, _digestSize));
+        return true;
+    }
+
+    function createHash(bytes32 _node, address _owner, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    internal
+    returns(bool)
+    {
+        require(IpfsHash.create(profileList[_node].contentHash, _hash, _fn, _digestSize));
+        reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(owner))] = _node;
     }
 
     // remove extra data from profile at index
@@ -70,15 +85,6 @@ contract ProfileResolver is Bundled {
         return true;
     }
 
-    // update profile ipfs hash
-    function setHash(bytes32 _node, bytes32 _hash, uint8 _fn, uint8 _digestSize)
-    onlyModule
-    notDisabled
-    returns(bool)
-    {
-        require(IpfsHash.create(profileList[_node].contentHash, _hash, _fn, _digestSize));
-        return true;
-    }
 
     function hash(bytes32 _node)
     constant
@@ -101,6 +107,7 @@ contract ProfileResolver is Bundled {
     }
 
     // reverse eth address to ens node
+    // this works only for subdomains
     function reverse(address owner)
     constant
     returns(bytes32)

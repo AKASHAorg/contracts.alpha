@@ -8,8 +8,10 @@ import 'ens/contracts/ENS.sol';
 contract ProfileRegistrar is AkashaModule {
 
     ENS ens;
-    ProfileResolver controller;
-    bytes32 rootNode;
+    ProfileResolver resolver;
+    bytes32 public rootNode;
+
+    event Register(bytes32 indexed label, uint indexed version);
 
     function ProfileRegistrar(ENS _ens, bytes32 _rootNode) AkashaModule('profiles', 1)
     {
@@ -32,6 +34,7 @@ contract ProfileRegistrar is AkashaModule {
     returns(bool)
     {
         ens = ENS(_ens);
+        incrementVersion();
         return true;
     }
 
@@ -42,6 +45,18 @@ contract ProfileRegistrar is AkashaModule {
     {
         require(check_format(_subNode));
         ens.setSubnodeOwner(rootNode, _subNode, owner);
+        return true;
+    }
+
+
+    function register(bytes32 _subNode, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    only_subNode_owner(_subNode)
+    returns(bool)
+    {
+        require(check_format(_subNode));
+        ens.setSubnodeOwner(rootNode, _subNode, msg.sender);
+        resolver.registerHash(hash(_subNode), msg.sender, _hash, _fn, _digestSize);
+        Register(_subNode, version);
         return true;
     }
 
@@ -61,6 +76,7 @@ contract ProfileRegistrar is AkashaModule {
     returns(bool)
     {
         ens.setOwner(rootNode, _newOwner);
+        incrementVersion();
         return true;
     }
 
@@ -70,6 +86,8 @@ contract ProfileRegistrar is AkashaModule {
     returns(bool)
     {
         rootNode = _newRoot;
+        incrementVersion();
+        return true;
     }
 
     function check_format(bytes32 _subNode)
@@ -92,5 +110,12 @@ contract ProfileRegistrar is AkashaModule {
         }
 
         return i > 1;
+    }
+
+    function hash(bytes32 _subNode)
+    constant
+    returns(bytes32 nameHash)
+    {
+        nameHash = sha3(rootNode, _subNode);
     }
 }
