@@ -7,7 +7,7 @@ const should = require('chai')
 
 const AethSale = artifacts.require('AethSale');
 const AETH = artifacts.require('AETH');
-
+/*
 contract('AethSale', function ([owner, wallet]) {
 
   const rate = new BigNumber(1000);
@@ -108,3 +108,4 @@ contract('AethSale', function ([owner, wallet]) {
   })
 
 });
+*/

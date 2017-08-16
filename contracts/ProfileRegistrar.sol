@@ -3,6 +3,7 @@ pragma solidity ^0.4.0;
 import './ProfileResolver.sol';
 import './AkashaModule.sol';
 import 'ens/contracts/ENS.sol';
+import 'ens/contracts/FIFSRegistrar.sol';
 
 // also has Registrar functionality
 contract ProfileRegistrar is AkashaModule {
@@ -13,7 +14,7 @@ contract ProfileRegistrar is AkashaModule {
 
     event Register(bytes32 indexed label, uint indexed version);
 
-    function ProfileRegistrar(ENS _ens, bytes32 _rootNode) AkashaModule('profiles', 1)
+    function ProfileRegistrar(ENS _ens, bytes32 _rootNode) AkashaModule("profiles", 1)
     {
         ens = _ens;
         rootNode = _rootNode;
@@ -38,16 +39,19 @@ contract ProfileRegistrar is AkashaModule {
         return true;
     }
 
+    function setResolver(address _resolver)
+    onlyOwner
+    {
+        resolver = ProfileResolver(_resolver);
+    }
+
     // AKASHA users can claim a subdomain *.${rootNode}.eth
     function register(bytes32 _subNode, address owner)
     only_subNode_owner(_subNode)
-    returns(bool)
     {
         require(check_format(_subNode));
         ens.setSubnodeOwner(rootNode, _subNode, owner);
-        return true;
     }
-
 
     function register(bytes32 _subNode, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     only_subNode_owner(_subNode)

@@ -10,7 +10,7 @@ contract AkashaModule is HasNoEther, HasNoTokens {
     HasNoEther()
     HasNoTokens()
     {
-        require(version > 0);
+        require(_version > 0);
         moduleName = _moduleName;
         version = _version;
     }

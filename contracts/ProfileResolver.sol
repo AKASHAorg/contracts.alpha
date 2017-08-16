@@ -4,7 +4,6 @@ import "./IpfsHash.sol";
 import './ResolverInterface.sol';
 import 'ens/contracts/ENS.sol';
 
-//@TODO: hash to name
 contract ProfileResolver is Bundled {
     uint public totalProfiles;
     bool public disabled;
@@ -72,6 +71,7 @@ contract ProfileResolver is Bundled {
     {
         require(IpfsHash.create(profileList[_node].contentHash, _hash, _fn, _digestSize));
         reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(owner))] = _node;
+        return true;
     }
 
     // remove extra data from profile at index

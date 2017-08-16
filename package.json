@@ -21,7 +21,8 @@
   },
   "scripts": {
     "test": "truffle test",
-    "compile": "truffle compile"
+    "compile": "truffle compile",
+    "migrate": "truffle migrate --reset"
   },
   "repository": {
     "type": "git",
