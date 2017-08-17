@@ -70,7 +70,8 @@ contract ProfileResolver is Bundled {
     returns(bool)
     {
         require(IpfsHash.create(profileList[_node].contentHash, _hash, _fn, _digestSize));
-        reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(owner))] = _node;
+        profileList[_node].addr = _owner;
+        reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(_owner))] = _node;
         return true;
     }
 
@@ -100,10 +101,21 @@ contract ProfileResolver is Bundled {
         return profileList[node].addr;
     }
 
+    function resolve(bytes32 _node)
+    constant
+    returns(address _addr, uint8 _fn, uint8 _digestSize, bytes32 _hash)
+    {
+        _addr = addr(_node);
+        (_fn, _digestSize, _hash) = hash(_node);
+    }
+
     function setAddr(bytes32 node, address addr)
     only_owner(node)
     {
+        delete reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(profileList[node].addr))];
         profileList[node].addr = addr;
+        assert(reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(addr))] == bytes32(0x0));
+        reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(addr))] = node;
     }
 
     // reverse eth address to ens node

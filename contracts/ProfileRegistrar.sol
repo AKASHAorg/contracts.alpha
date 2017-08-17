@@ -58,6 +58,10 @@ contract ProfileRegistrar is AkashaModule {
     returns(bool)
     {
         require(check_format(_subNode));
+
+        ens.setSubnodeOwner(rootNode, _subNode, this);
+        ens.setResolver(hash(_subNode), resolver);
+
         ens.setSubnodeOwner(rootNode, _subNode, msg.sender);
         resolver.registerHash(hash(_subNode), msg.sender, _hash, _fn, _digestSize);
         Register(_subNode, version);
@@ -98,9 +102,9 @@ contract ProfileRegistrar is AkashaModule {
     constant returns(bool)
     {
         // enforce alpha first
-        if (_subNode[0] < 58) {
-            return false;
-        }
+        //if (_subNode[0] < 58) {
+         //   return false;
+        //}
 
         for(uint8 i=0; i<_subNode.length; i++)
         {
