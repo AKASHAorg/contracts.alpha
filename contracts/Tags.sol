@@ -33,10 +33,8 @@ contract Tags is HasNoEther, HasNoTokens {
 
     function add(bytes32 _tag)
     {
-        if (!check_format(_tag) || exists(_tag))
-        {
-            throw;
-        }
+        require(check_format(_tag));
+        require(!exists(_tag));
         TagCreate(_tag);
         tag[_tag] = true;
         total++;
@@ -67,13 +65,21 @@ contract Tags is HasNoEther, HasNoTokens {
         (_fn, _digestSize, _hash) = IpfsHash.getHash(lists[_id].hash);
     }
 
+    function get_list_publisher(bytes32 _name, address _publisher)
+    constant
+    returns(address _creator, uint8 _fn, uint8 _digestSize, bytes32 _hash)
+    {
+        var listHash = sha3(_publisher, _name);
+        return get_list(listHash);
+    }
+
     function exists(bytes32 _tag)
     constant returns(bool)
     {
         return tag[_tag];
     }
 
-    //[a-z0-9-_-.]
+    //[a-z0-9---.]
     function check_format(bytes32 id)
     constant returns(bool)
     {
@@ -86,7 +92,7 @@ contract Tags is HasNoEther, HasNoTokens {
         {
             if(id[i] == 0) break;
 
-            if(id[i] > 122 || (id[i]<97 && id[i] > 57 && id[i] !=95) || (id[i]<48 && id[i]!=46))
+            if(id[i] > 122 || (id[i]<97 && id[i] > 57) || (id[i]<48 && id[i]!=46 && id[i]!=45))
             {
                 return false;
             }
