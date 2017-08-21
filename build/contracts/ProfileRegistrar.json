@@ -349,8 +349,32 @@
       "links": {},
       "address": "0x985a6987643814be71aee93328ba8c7a75e6a798",
       "updated_at": 1503055002633
+    },
+    "1503315517423": {
+      "events": {
+        "0xd5fa0e9a716b3ec4895a48223ad309e2d3fa5e27f04d8dc9b3c33cc738a50eb0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "label",
+              "type": "bytes32"
+            },
+            {
+              "indexed": true,
+              "name": "version",
+              "type": "uint256"
+            }
+          ],
+          "name": "Register",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xc335989ad2aa09e4c080875f6b0f4d788e9ad59f",
+      "updated_at": 1503324989313
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1503055002633
+  "updated_at": 1503324989313
 }

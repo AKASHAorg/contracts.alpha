@@ -13,10 +13,11 @@ contract Tags is HasNoEther, HasNoTokens {
 
     mapping(bytes32 => bool) tag;
     mapping(bytes32 => TagList) lists;
+    mapping(address => uint) listsCount;
 
     event TagCreate(bytes32 indexed tag);
     event ListCreate(bytes32 indexed name, address indexed publisher, bytes32 id);
-    event ListUpdate(bytes32 indexed name);
+    event ListUpdate(bytes32 indexed name, address indexed publisher);
 
     function Tags()
     HasNoEther()
@@ -46,7 +47,15 @@ contract Tags is HasNoEther, HasNoTokens {
         require(lists[listHash].creator == address(0x0));
         require(IpfsHash.create(lists[listHash].hash, _hash, _fn, _digestSize));
         lists[listHash].creator = msg.sender;
+        listsCount[msg.sender]++;
         ListCreate(_name, msg.sender, listHash);
+    }
+
+    function total_lists(address _publisher)
+    constant
+    returns(uint _total)
+    {
+        _total = listsCount[_publisher];
     }
 
     function update_list(bytes32 _name, bytes32 _hash, uint8 _fn, uint8 _digestSize)
@@ -54,7 +63,7 @@ contract Tags is HasNoEther, HasNoTokens {
     {
         var listHash = sha3(msg.sender, _name);
         require(IpfsHash.create(lists[listHash].hash, _hash, _fn, _digestSize));
-        ListUpdate(_name);
+        ListUpdate(_name, msg.sender);
     }
 
     function get_list(bytes32 _id)

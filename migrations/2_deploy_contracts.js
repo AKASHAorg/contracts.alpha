@@ -4,6 +4,7 @@ const IpfsHash = artifacts.require('IpfsHash.sol');
 const ProfileRegistrar = artifacts.require('ProfileRegistrar.sol');
 const ProfileResolver = artifacts.require('ProfileResolver.sol');
 const Tags = artifacts.require('Tags.sol');
+const Feed = artifacts.require('Feed.sol');
 
 const namehash = require('eth-ens-namehash');
 
@@ -40,6 +41,7 @@ const deployAkasha = async function (deployer) {
   await deployer.deploy(IpfsHash);
   await deployer.link(IpfsHash, [ProfileResolver, Tags]);
   await deployer.deploy(Tags);
+  await deployer.deploy(Feed);
   await deployer.deploy(ProfileResolver, ENS.address, web3.fromDecimal(0));
   await deployer.deploy(ProfileRegistrar, ENS.address, namehash('akashaproject.eth'));
   await FIFSRegistrar.at(FIFSRegistrar.address).register(akasha, ProfileRegistrar.address);
