@@ -1,19 +1,28 @@
 pragma solidity ^0.4.0;
 import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
+import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import "./IpfsHash.sol";
 
 contract Tags is HasNoEther, HasNoTokens {
-    uint public total = 0;
+    using SafeMath for uint256;
+
+    address public entry;
+    uint256 public total = 0;
 
     struct TagList {
         IpfsHash.Multihash hash;
         address creator;
     }
 
-    mapping(bytes32 => bool) tag;
+    struct Tag {
+        uint256 totalEntries;
+        bool created;
+    }
+
+    mapping(bytes32 => Tag) tag;
     mapping(bytes32 => TagList) lists;
-    mapping(address => uint) listsCount;
+    mapping(address => uint256) listsCount;
 
     event TagCreate(bytes32 indexed tag);
     event ListCreate(bytes32 indexed name, address indexed publisher, bytes32 id);
@@ -32,13 +41,32 @@ contract Tags is HasNoEther, HasNoTokens {
         _;
     }
 
+    modifier only_entry()
+    {
+        require(msg.sender == entry);
+        _;
+    }
+
+    function setEntryAddress(address _entry)
+    onlyOwner
+    {
+        entry = _entry;
+    }
+
+    function incrementTotalEntries(bytes32 _tag)
+    only_entry
+    {
+        require(exists(_tag));
+        tag[_tag].totalEntries = tag[_tag].totalEntries.add(1);
+    }
+
     function add(bytes32 _tag)
     {
         require(check_format(_tag));
         require(!exists(_tag));
         TagCreate(_tag);
-        tag[_tag] = true;
-        total++;
+        tag[_tag].created = true;
+        total = total.add(1);
     }
 
     function create_list(bytes32 _name, bytes32 _hash, uint8 _fn, uint8 _digestSize)
@@ -47,13 +75,13 @@ contract Tags is HasNoEther, HasNoTokens {
         require(lists[listHash].creator == address(0x0));
         require(IpfsHash.create(lists[listHash].hash, _hash, _fn, _digestSize));
         lists[listHash].creator = msg.sender;
-        listsCount[msg.sender]++;
+        listsCount[msg.sender] = listsCount[msg.sender].add(1);
         ListCreate(_name, msg.sender, listHash);
     }
 
     function total_lists(address _publisher)
     constant
-    returns(uint _total)
+    returns(uint256 _total)
     {
         _total = listsCount[_publisher];
     }
@@ -85,7 +113,7 @@ contract Tags is HasNoEther, HasNoTokens {
     function exists(bytes32 _tag)
     constant returns(bool)
     {
-        return tag[_tag];
+        return tag[_tag].created;
     }
 
     //[a-z0-9---.]
