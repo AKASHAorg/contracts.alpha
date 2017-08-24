@@ -12,7 +12,7 @@ contract Entries is HasNoEther, HasNoTokens {
     Tags tags;
     StandardToken aeth;
 
-    event Publish(address indexed author, bytes32[] indexed tags, uint entryId);
+    event Publish(address indexed author, bytes32[] indexed tagsPublished, uint entryId);
     event Update(address indexed author, uint indexed entryId);
 
     struct Entry {

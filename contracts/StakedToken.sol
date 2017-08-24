@@ -17,9 +17,6 @@ contract StakedToken is HasNoEther {
 
     uint256 public totalTokens;
     //@TODO: find optimal structure
-    struct Stake {
-
-    }
 
     function StakedToken()
     HasNoEther()

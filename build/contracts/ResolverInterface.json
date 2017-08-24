@@ -17,7 +17,7 @@
           "type": "uint8"
         },
         {
-          "name": "hash",
+          "name": "ipfsHash",
           "type": "bytes32"
         }
       ],
@@ -52,7 +52,7 @@
           "type": "bytes32"
         },
         {
-          "name": "addr",
+          "name": "newAddress",
           "type": "address"
         }
       ],
@@ -80,7 +80,7 @@
           "type": "uint8"
         },
         {
-          "name": "hash",
+          "name": "ipfsHash",
           "type": "bytes32"
         }
       ],
@@ -91,5 +91,5 @@
   "unlinked_binary": "0x",
   "networks": {},
   "schema_version": "0.0.5",
-  "updated_at": 1503054677996
+  "updated_at": 1503586985843
 }

@@ -20,7 +20,7 @@ contract Tags is HasNoEther, HasNoTokens {
         bool created;
     }
 
-    mapping(bytes32 => Tag) tag;
+    mapping(bytes32 => Tag) tags;
     mapping(bytes32 => TagList) lists;
     mapping(address => uint256) listsCount;
 
@@ -57,7 +57,7 @@ contract Tags is HasNoEther, HasNoTokens {
     only_entry
     {
         require(exists(_tag));
-        tag[_tag].totalEntries = tag[_tag].totalEntries.add(1);
+        tags[_tag].totalEntries = tags[_tag].totalEntries.add(1);
     }
 
     function add(bytes32 _tag)
@@ -65,7 +65,7 @@ contract Tags is HasNoEther, HasNoTokens {
         require(check_format(_tag));
         require(!exists(_tag));
         TagCreate(_tag);
-        tag[_tag].created = true;
+        tags[_tag].created = true;
         total = total.add(1);
     }
 
@@ -113,7 +113,7 @@ contract Tags is HasNoEther, HasNoTokens {
     function exists(bytes32 _tag)
     constant returns(bool)
     {
-        return tag[_tag].created;
+        return tags[_tag].created;
     }
 
     //[a-z0-9---.]

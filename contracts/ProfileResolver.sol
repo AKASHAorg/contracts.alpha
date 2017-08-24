@@ -109,13 +109,13 @@ contract ProfileResolver is Bundled {
         (_fn, _digestSize, _hash) = hash(_node);
     }
 
-    function setAddr(bytes32 node, address addr)
+    function setAddr(bytes32 node, address newAddress)
     only_owner(node)
     {
         delete reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(profileList[node].addr))];
-        profileList[node].addr = addr;
-        assert(reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(addr))] == bytes32(0x0));
-        reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(addr))] = node;
+        profileList[node].addr = newAddress;
+        assert(reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(newAddress))] == bytes32(0x0));
+        reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(newAddress))] = node;
     }
 
     // reverse eth address to ens node
