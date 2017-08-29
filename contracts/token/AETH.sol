@@ -6,11 +6,24 @@ contract AETH is MintableToken, PausableToken {
     string public name = "AKASHA Token";
     string public symbol = "AETH";
     uint8 public decimals = 18;
+    uint256 public lockTime = 7 days;
+
     enum AethState { Bonded, Cycling, Free }
 
     event Transition(address owner, AethState state, uint256 value);
 
+    struct CyclingState {
+        uint256 amount;
+        uint256 unlockDate;
+    }
+
+    struct CyclingStates {
+        CyclingState[32] states;
+        uint8 lastFreed;
+    }
+
     mapping(address => mapping(uint8 => uint256)) tokenRecords;
+    mapping(address => CyclingStates) cycles;
 
     function bondAeth(uint256 _amount)
     returns(bool)
@@ -24,8 +37,14 @@ contract AETH is MintableToken, PausableToken {
     function cycleAeth(uint256 _amount)
     returns(bool)
     {
+        assert(cycles[msg.sender].lastFreed < 32);
         tokenRecords[msg.sender][uint8(AethState.Bonded)] = tokenRecords[msg.sender][uint8(AethState.Bonded)].sub(_amount);
         tokenRecords[msg.sender][uint8(AethState.Cycling)] = tokenRecords[msg.sender][uint8(AethState.Cycling)].add(_amount);
+        var state = CyclingState({amount: _amount, unlockDate: now + lockTime});
+        cycles[msg.sender].states[cycles[msg.sender].lastFreed] = state;
+
+        cycles[msg.sender].lastFreed ++;
+
         Transition(msg.sender, AethState.Cycling, _amount);
         return true;
     }
