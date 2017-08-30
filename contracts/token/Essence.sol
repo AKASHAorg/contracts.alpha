@@ -23,7 +23,7 @@ contract Essence is HasNoEther, HasNoTokens {
     returns (bool)
     {
         currentHash = _hash;
-        return bool;
+        return true;
     }
 
 }
