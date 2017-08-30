@@ -1,20 +1,27 @@
 pragma solidity ^0.4.0;
+
+
 import './Bundled.sol';
 import "./IpfsHash.sol";
 import './ResolverInterface.sol';
 import 'ens/contracts/ENS.sol';
 
+
 contract ProfileResolver is Bundled {
     uint public totalProfiles;
+
     bool public disabled;
+
     ENS ens;
+
     struct Profile {
-        IpfsHash.Multihash contentHash;
-        address addr;
+    IpfsHash.Multihash contentHash;
+    address addr;
     }
 
-    mapping(bytes32 => Profile) profileList;
-    mapping(bytes32 => bytes32) reverseRecords;
+    mapping (bytes32 => Profile) profileList;
+
+    mapping (bytes32 => bytes32) reverseRecords;
 
     bytes32 constant ADDR_REVERSE_NODE = 0x91d1777781884d03a6757a803996e38de2a42967fb37eeaca72729271025a9e2;
 
@@ -41,7 +48,7 @@ contract ProfileResolver is Bundled {
     // mark as disabled when migrating to a new controller
     function upgradeController()
     onlyModule
-    returns(bool)
+    returns (bool)
     {
         disabled = true;
         return true;
@@ -50,7 +57,7 @@ contract ProfileResolver is Bundled {
     // register an ipfs hash
     function registerHash(bytes32 _node, address _owner, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     onlyModule
-    returns(uint)
+    returns (uint)
     {
         assert(profileList[_node].addr == 0);
         require(createHash(_node, _owner, _hash, _fn, _digestSize));
@@ -59,7 +66,7 @@ contract ProfileResolver is Bundled {
 
     function setHash(bytes32 _node, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     only_owner(_node)
-    returns(bool)
+    returns (bool)
     {
         require(createHash(_node, msg.sender, _hash, _fn, _digestSize));
         return true;
@@ -67,7 +74,7 @@ contract ProfileResolver is Bundled {
 
     function createHash(bytes32 _node, address _owner, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     internal
-    returns(bool)
+    returns (bool)
     {
         require(IpfsHash.create(profileList[_node].contentHash, _hash, _fn, _digestSize));
         profileList[_node].addr = _owner;
@@ -79,7 +86,7 @@ contract ProfileResolver is Bundled {
     function removeProfile(bytes32 _node)
     onlyModule
     notDisabled
-    returns(bool)
+    returns (bool)
     {
         totalProfiles--;
         delete profileList[_node];
@@ -89,7 +96,7 @@ contract ProfileResolver is Bundled {
 
     function hash(bytes32 _node)
     constant
-    returns(uint8 _fn, uint8 _digestSize, bytes32 _hash)
+    returns (uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         (_fn, _digestSize, _hash) = IpfsHash.getHash(profileList[_node].contentHash);
     }
@@ -103,7 +110,7 @@ contract ProfileResolver is Bundled {
 
     function resolve(bytes32 _node)
     constant
-    returns(address _addr, uint8 _fn, uint8 _digestSize, bytes32 _hash)
+    returns (address _addr, uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         _addr = addr(_node);
         (_fn, _digestSize, _hash) = hash(_node);
@@ -122,7 +129,7 @@ contract ProfileResolver is Bundled {
     // this works only for subdomains
     function reverse(address owner)
     constant
-    returns(bytes32)
+    returns (bytes32)
     {
         return reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(owner))];
     }
@@ -139,19 +146,22 @@ contract ProfileResolver is Bundled {
     private
     returns (bytes32 ret)
     {
-        addr; ret; // Stop warning us about unused variables
+        addr;
+        ret;
+        // Stop warning us about unused variables
         assembly {
-            let lookup := 0x3031323334353637383961626364656600000000000000000000000000000000
-            let i := 40
-        loop:
-            i := sub(i, 1)
-            mstore8(i, byte(and(addr, 0xf), lookup))
-            addr := div(addr, 0x10)
-            i := sub(i, 1)
-            mstore8(i, byte(and(addr, 0xf), lookup))
-            addr := div(addr, 0x10)
-            jumpi(loop, i)
-            ret := sha3(0, 40)
-        }
+        let lookup := 0x3031323334353637383961626364656600000000000000000000000000000000
+        let i := 40
+        loop
+        :
+        i := sub(i, 1)
+        mstore8(i, byte(and(addr, 0xf), lookup))
+        addr := div(addr, 0x10)
+        i := sub(i, 1)
+        mstore8(i, byte(and(addr, 0xf), lookup))
+        addr := div(addr, 0x10)
+        jumpi(loop, i)
+    ret := sha3(0, 40)
     }
+}
 }

@@ -1,18 +1,23 @@
 pragma solidity ^0.4.0;
+
+
 import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
+
 
 contract Feed is HasNoEther, HasNoTokens {
 
     struct FollowRecord {
-        mapping(address => bool) following;
-        uint total;
+    mapping (address => bool) following;
+    uint total;
     }
 
-    mapping(address => uint) followersCount;
-    mapping(address => FollowRecord) followingRecords;
+    mapping (address => uint) followersCount;
+
+    mapping (address => FollowRecord) followingRecords;
 
     event Follow(address indexed followed, address indexed follower);
+
     event UnFollow(address indexed followed, address indexed follower);
 
     function Feed()
@@ -23,7 +28,7 @@ contract Feed is HasNoEther, HasNoTokens {
     }
 
     function follow(address _profile)
-    returns(bool)
+    returns (bool)
     {
         require(!followingRecords[msg.sender].following[_profile]);
         followingRecords[msg.sender].following[_profile] = true;
@@ -36,7 +41,7 @@ contract Feed is HasNoEther, HasNoTokens {
     }
 
     function unFollow(address _profile)
-    returns(bool)
+    returns (bool)
     {
         require(followingRecords[msg.sender].following[_profile]);
         followingRecords[msg.sender].following[_profile] = false;
@@ -50,21 +55,21 @@ contract Feed is HasNoEther, HasNoTokens {
 
     function totalFollowers(address _profile)
     constant
-    returns(uint _total)
+    returns (uint _total)
     {
         _total = followersCount[_profile];
     }
 
     function totalFollowing(address _profile)
     constant
-    returns(uint _total)
+    returns (uint _total)
     {
         _total = followingRecords[_profile].total;
     }
 
     function followsCount(address _profile)
     constant
-    returns(uint _followersCount, uint _followingCount)
+    returns (uint _followersCount, uint _followingCount)
     {
         _followersCount = totalFollowers(_profile);
         _followingCount = totalFollowing(_profile);

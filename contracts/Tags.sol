@@ -1,31 +1,39 @@
 pragma solidity ^0.4.0;
+
+
 import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import "./IpfsHash.sol";
 
+
 contract Tags is HasNoEther, HasNoTokens {
     using SafeMath for uint256;
 
     address public entry;
+
     uint256 public total = 0;
 
     struct TagList {
-        IpfsHash.Multihash hash;
-        address creator;
+    IpfsHash.Multihash hash;
+    address creator;
     }
 
     struct Tag {
-        uint256 totalEntries;
-        bool created;
+    uint256 totalEntries;
+    bool created;
     }
 
-    mapping(bytes32 => Tag) tags;
-    mapping(bytes32 => TagList) lists;
-    mapping(address => uint256) listsCount;
+    mapping (bytes32 => Tag) tags;
+
+    mapping (bytes32 => TagList) lists;
+
+    mapping (address => uint256) listsCount;
 
     event TagCreate(bytes32 indexed tag);
+
     event ListCreate(bytes32 indexed name, address indexed publisher, bytes32 id);
+
     event ListUpdate(bytes32 indexed name, address indexed publisher);
 
     function Tags()
@@ -81,7 +89,7 @@ contract Tags is HasNoEther, HasNoTokens {
 
     function total_lists(address _publisher)
     constant
-    returns(uint256 _total)
+    returns (uint256 _total)
     {
         _total = listsCount[_publisher];
     }
@@ -96,7 +104,7 @@ contract Tags is HasNoEther, HasNoTokens {
 
     function get_list(bytes32 _id)
     constant
-    returns(address _creator, uint8 _fn, uint8 _digestSize, bytes32 _hash)
+    returns (address _creator, uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         _creator = lists[_id].creator;
         (_fn, _digestSize, _hash) = IpfsHash.getHash(lists[_id].hash);
@@ -104,38 +112,38 @@ contract Tags is HasNoEther, HasNoTokens {
 
     function get_list_publisher(bytes32 _name, address _publisher)
     constant
-    returns(address _creator, uint8 _fn, uint8 _digestSize, bytes32 _hash)
+    returns (address _creator, uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         var listHash = sha3(_publisher, _name);
         return get_list(listHash);
     }
 
     function exists(bytes32 _tag)
-    constant returns(bool)
+    constant returns (bool)
     {
         return tags[_tag].created;
     }
 
     //[a-z0-9---.]
     function check_format(bytes32 id)
-    constant returns(bool)
+    constant returns (bool)
     {
 
-        if(id[0] == 46 || id[0] == 95){
+        if (id[0] == 46 || id[0] == 95) {
             return false;
         }
 
-        for(uint8 i=0; i<id.length; i++)
+        for (uint8 i = 0; i < id.length; i++)
         {
-            if(id[i] == 0) break;
+            if (id[i] == 0) break;
 
-            if(id[i] > 122 || (id[i]<97 && id[i] > 57) || (id[i]<48 && id[i]!=46 && id[i]!=45))
+            if (id[i] > 122 || (id[i] < 97 && id[i] > 57) || (id[i] < 48 && id[i] != 46 && id[i] != 45))
             {
                 return false;
             }
         }
 
-        if(id[i - 1] == 46 || id[i - 1] == 95){
+        if (id[i - 1] == 46 || id[i - 1] == 95) {
             return false;
         }
 

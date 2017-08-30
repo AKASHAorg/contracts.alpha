@@ -1,15 +1,19 @@
 pragma solidity ^0.4.0;
 
+
 import './ProfileResolver.sol';
 import './AkashaModule.sol';
 import 'ens/contracts/ENS.sol';
 import 'ens/contracts/FIFSRegistrar.sol';
 
+
 // also has Registrar functionality
 contract ProfileRegistrar is AkashaModule {
 
     ENS ens;
+
     ProfileResolver resolver;
+
     bytes32 public rootNode;
 
     event Register(bytes32 indexed label, uint indexed version);
@@ -32,7 +36,7 @@ contract ProfileRegistrar is AkashaModule {
     // change ENS address
     function setEns(address _ens)
     onlyOwner
-    returns(bool)
+    returns (bool)
     {
         ens = ENS(_ens);
         incrementVersion();
@@ -55,7 +59,7 @@ contract ProfileRegistrar is AkashaModule {
 
     function register(bytes32 _subNode, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     only_subNode_owner(_subNode)
-    returns(bool)
+    returns (bool)
     {
         require(check_format(_subNode));
 
@@ -71,7 +75,7 @@ contract ProfileRegistrar is AkashaModule {
     // fk squatters
     function adminSetSubNode(bytes32 _subNode, address _newOwner)
     onlyOwner
-    returns(bool)
+    returns (bool)
     {
         require(check_format(_subNode));
         ens.setSubnodeOwner(rootNode, _subNode, _newOwner);
@@ -81,7 +85,7 @@ contract ProfileRegistrar is AkashaModule {
     // in case something goes wrong :D
     function changeRootOwner(address _newOwner)
     onlyOwner
-    returns(bool)
+    returns (bool)
     {
         ens.setOwner(rootNode, _newOwner);
         incrementVersion();
@@ -91,7 +95,7 @@ contract ProfileRegistrar is AkashaModule {
     // change domain
     function setRootNode(bytes32 _newRoot)
     onlyOwner
-    returns(bool)
+    returns (bool)
     {
         rootNode = _newRoot;
         incrementVersion();
@@ -99,19 +103,19 @@ contract ProfileRegistrar is AkashaModule {
     }
 
     function check_format(bytes32 _subNode)
-    constant returns(bool)
+    constant returns (bool)
     {
         // enforce alpha first
         //if (_subNode[0] < 58) {
-         //   return false;
+        //   return false;
         //}
 
-        for(uint8 i=0; i<_subNode.length; i++)
+        for (uint8 i = 0; i < _subNode.length; i++)
         {
-            if(_subNode[i] == 0) break;
+            if (_subNode[i] == 0) break;
 
             // ^[a-z0-9]
-            if(_subNode[i] > 122 || (_subNode[i]<97 && _subNode[i] > 57) || _subNode[i]<48)
+            if (_subNode[i] > 122 || (_subNode[i] < 97 && _subNode[i] > 57) || _subNode[i] < 48)
             {
                 return false;
             }
@@ -122,7 +126,7 @@ contract ProfileRegistrar is AkashaModule {
 
     function hash(bytes32 _subNode)
     constant
-    returns(bytes32 nameHash)
+    returns (bytes32 nameHash)
     {
         nameHash = sha3(rootNode, _subNode);
     }

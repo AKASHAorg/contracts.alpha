@@ -1,6 +1,9 @@
 pragma solidity ^0.4.0;
+
+
 import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
+
 
 contract Bundled is HasNoEther, HasNoTokens {
     address public moduleAddress;
@@ -14,7 +17,7 @@ contract Bundled is HasNoEther, HasNoTokens {
 
     function setModule(address _moduleAddress)
     onlyOwner
-    returns(bool)
+    returns (bool)
     {
         require(_moduleAddress != address(0x0));
         moduleAddress = _moduleAddress;
@@ -24,7 +27,7 @@ contract Bundled is HasNoEther, HasNoTokens {
     function updateModule(address _moduleAddress)
     external
     onlyModule
-    returns(bool)
+    returns (bool)
     {
         require(_moduleAddress != address(0x0));
         moduleAddress = _moduleAddress;

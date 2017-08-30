@@ -1,19 +1,23 @@
 pragma solidity ^0.4.0;
+
+
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
 import 'zeppelin-solidity/contracts/token/StandardToken.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 
+
 contract StakedToken is HasNoEther {
     using SafeMath for uint256;
 
-    mapping(uint256 => StandardToken) tokens;
+    mapping (uint256 => StandardToken) tokens;
+
     struct Stake {
-        uint256 tokenId;
-        uint256 amount;
+    uint256 tokenId;
+    uint256 amount;
     }
     // resource => (staker => (token => amount
     // this will go in AETH token
-    mapping(bytes32 => mapping(address => Stake[])) stakes;
+    mapping (bytes32 => mapping (address => Stake[])) stakes;
 
     uint256 public totalTokens;
     //@TODO: find optimal structure
@@ -38,7 +42,7 @@ contract StakedToken is HasNoEther {
 
     function getToken(uint _idToken)
     constant
-    returns(address)
+    returns (address)
     {
         return tokens[_idToken];
     }

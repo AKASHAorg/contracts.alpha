@@ -1,7 +1,10 @@
 pragma solidity ^0.4.0;
+
+
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import 'zeppelin-solidity/contracts/crowdsale/RefundVault.sol';
 import './OngoingSale.sol';
+
 
 /**
  * @title AethSale
@@ -24,13 +27,13 @@ contract AethSale is OngoingSale {
     RefundVault public vault;
 
     function AethSale(
-        uint256 _startBlock,
-        uint256 _endBlock,
-        uint256 _rate,
-        address _wallet,
-        uint256 _cap,
-        uint256 _goal,
-        uint256 _endBlockAfterGoal
+    uint256 _startBlock,
+    uint256 _endBlock,
+    uint256 _rate,
+    address _wallet,
+    uint256 _cap,
+    uint256 _goal,
+    uint256 _endBlockAfterGoal
     )
     Crowdsale(_startBlock, _endBlock, _rate, _wallet)
     CappedCrowdsale(_cap)
@@ -64,7 +67,8 @@ contract AethSale is OngoingSale {
     {
         if (goalReached()) {
             vault.close();
-        } else {
+        }
+        else {
             vault.enableRefunds();
         }
 
@@ -75,7 +79,7 @@ contract AethSale is OngoingSale {
     function isContract(address _addr)
     constant
     internal
-    returns(bool)
+    returns (bool)
     {
         uint codeSize;
         if (_addr == 0) return false;

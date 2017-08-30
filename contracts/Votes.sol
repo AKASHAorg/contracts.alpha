@@ -1,22 +1,25 @@
 pragma solidity ^0.4.0;
+
+
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
+
 
 contract Votes is HasNoEther {
     using SafeMath for uint256;
 
     int8 public MAX_WEIGHT = 11; // (MIN_WEIGHT, MAX_WEIGHT) interval
-    int8 public MIN_WEIGHT = -11;
+    int8 public MIN_WEIGHT = - 11;
 
-    enum Target { Entry, Comment, List }
+    enum Target {Entry, Comment, List}
 
     struct Vote {
-        Target target;
-        int score;
-        uint endPeriod;
+    Target target;
+    int score;
+    uint endPeriod;
     }
 
-    mapping(bytes32 => Vote) records;
+    mapping (bytes32 => Vote) records;
 
     function Votes()
     HasNoEther()
@@ -31,7 +34,7 @@ contract Votes is HasNoEther {
 
     function registerVote(int8 _weight, bytes32 _source, Target _target)
     internal
-    returns(bool)
+    returns (bool)
     {
         require(records[_source].endPeriod <= now);
         require(_weight > MIN_WEIGHT);

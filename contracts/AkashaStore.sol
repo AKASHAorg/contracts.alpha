@@ -1,16 +1,19 @@
 pragma solidity ^0.4.0;
+
+
 import './Bundled.sol';
+
 
 contract AkashaStore is Bundled {
 
     address public previousStore;
 
     struct Store {
-        mapping(uint => bytes32) uintBytes;
-        mapping(bytes32 => uint) bytesUint;
+    mapping (uint => bytes32) uintBytes;
+    mapping (bytes32 => uint) bytesUint;
     }
 
-    mapping(bytes32 => Store) state;
+    mapping (bytes32 => Store) state;
 
     function AkashaStore(address _owner) Bundled() {
 

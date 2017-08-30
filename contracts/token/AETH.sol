@@ -1,32 +1,39 @@
 pragma solidity ^0.4.0;
+
+
 import 'zeppelin-solidity/contracts/token/MintableToken.sol';
 import 'zeppelin-solidity/contracts/token/PausableToken.sol';
 
+
 contract AETH is MintableToken, PausableToken {
     string public name = "AKASHA Token";
+
     string public symbol = "AETH";
+
     uint8 public decimals = 18;
+
     uint256 public lockTime = 7 days;
 
-    enum AethState { Bonded, Cycling, Free }
+    enum AethState {Bonded, Cycling, Free}
 
     event Transition(address owner, AethState state, uint256 value);
 
     struct CyclingState {
-        uint256 amount;
-        uint256 unlockDate;
+    uint256 amount;
+    uint256 unlockDate;
     }
 
     struct CyclingStates {
-        CyclingState[32] states;
-        uint8 lastFreed;
+    CyclingState[32] states;
+    uint8 lastFreed;
     }
 
-    mapping(address => mapping(uint8 => uint256)) tokenRecords;
-    mapping(address => CyclingStates) cycles;
+    mapping (address => mapping (uint8 => uint256)) tokenRecords;
+
+    mapping (address => CyclingStates) cycles;
 
     function bondAeth(uint256 _amount)
-    returns(bool)
+    returns (bool)
     {
         balances[msg.sender] = balances[msg.sender].sub(_amount);
         tokenRecords[msg.sender][uint8(AethState.Bonded)] = tokenRecords[msg.sender][uint8(AethState.Bonded)].add(_amount);
@@ -35,33 +42,90 @@ contract AETH is MintableToken, PausableToken {
     }
 
     function cycleAeth(uint256 _amount)
-    returns(bool)
+    returns (bool)
     {
+        require(_amount > 0);
         assert(cycles[msg.sender].lastFreed < 32);
         tokenRecords[msg.sender][uint8(AethState.Bonded)] = tokenRecords[msg.sender][uint8(AethState.Bonded)].sub(_amount);
         tokenRecords[msg.sender][uint8(AethState.Cycling)] = tokenRecords[msg.sender][uint8(AethState.Cycling)].add(_amount);
-        var state = CyclingState({amount: _amount, unlockDate: now + lockTime});
+        var state = CyclingState({amount : _amount, unlockDate : now + lockTime});
         cycles[msg.sender].states[cycles[msg.sender].lastFreed] = state;
 
-        cycles[msg.sender].lastFreed ++;
+        if (cycles[msg.sender].lastFreed == 31) {
+            cycles[msg.sender].lastFreed = 0;
+        }
+        else {
+            cycles[msg.sender].lastFreed++;
+        }
+        var found = false;
+        while (cycles[msg.sender].lastFreed < 32)
+        {
+            if (cycles[msg.sender].states[cycles[msg.sender].lastFreed].unlockDate == 0) {
+                found = true;
+                break;
+            }
+            cycles[msg.sender].lastFreed++;
+        }
 
         Transition(msg.sender, AethState.Cycling, _amount);
         return true;
     }
 
-    function freeAeth(uint256 _amount)
-    returns(bool)
+    function freeAeth()
+    returns (bool)
     {
-        tokenRecords[msg.sender][uint8(AethState.Cycling)] = tokenRecords[msg.sender][uint8(AethState.Cycling)].sub(_amount);
-        balances[msg.sender] = balances[msg.sender].add(_amount);
-        Transition(msg.sender, AethState.Free, _amount);
+        for (uint8 i = 0; i < 32; i++) {
+            if (cycles[msg.sender].states[i].unlockDate < now && cycles[msg.sender].states[i].amount > 0) {
+                tokenRecords[msg.sender][uint8(AethState.Cycling)] = tokenRecords[msg.sender][uint8(AethState.Cycling)].sub(cycles[msg.sender].states[i].amount);
+                balances[msg.sender] = balances[msg.sender].add(cycles[msg.sender].states[i].amount);
+                delete cycles[msg.sender].states[i];
+                // must refactor this
+                cycles[msg.sender].lastFreed = i;
+                Transition(msg.sender, AethState.Free, cycles[msg.sender].states[i].amount);
+            }
+        }
         return true;
+    }
+
+    function getCyclingStatesNr(address _holder)
+    public
+    constant
+    returns (uint8 _total, uint8 _available)
+    {
+        uint8 total = 0;
+        uint8 available = 0;
+
+        for (uint8 i = 0; i < 32; i++) {
+            if (cycles[_holder].states[i].amount > 0) {
+                total++;
+                if (cycles[_holder].states[i].unlockDate < now) {
+                    available++;
+                }
+            }
+        }
+
+        _total = total;
+        _available = available;
+    }
+
+    function getCyclingState(address _holder, uint8 _fromIndex)
+    public
+    constant
+    returns (uint256 _amount, uint256 _unlockDate)
+    {
+        for (uint8 i = _fromIndex; i < 32; i++) {
+            if (cycles[_holder].states[i].amount > 0) {
+                _amount = cycles[_holder].states[i].amount;
+                _unlockDate = cycles[_holder].states[i].unlockDate;
+                break;
+            }
+        }
     }
 
     function bonded(address _holder)
     public
     constant
-    returns(uint256 _bonded)
+    returns (uint256 _bonded)
     {
         _bonded = tokenRecords[_holder][uint8(AethState.Bonded)];
     }
@@ -69,7 +133,7 @@ contract AETH is MintableToken, PausableToken {
     function cycling(address _holder)
     public
     constant
-    returns(uint256 _cycling)
+    returns (uint256 _cycling)
     {
         _cycling = tokenRecords[_holder][uint8(AethState.Cycling)];
     }
@@ -77,7 +141,7 @@ contract AETH is MintableToken, PausableToken {
     function getTokenRecords(address _holder)
     public
     constant
-    returns(uint256 _free, uint256 _bonded, uint256 _cycling)
+    returns (uint256 _free, uint256 _bonded, uint256 _cycling)
     {
         _free = balances[_holder];
         _bonded = tokenRecords[_holder][uint8(AethState.Bonded)];
