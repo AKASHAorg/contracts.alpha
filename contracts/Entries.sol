@@ -7,14 +7,16 @@ import 'zeppelin-solidity/contracts/token/StandardToken.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import './Tags.sol';
 import "./IpfsHash.sol";
-
+import './token/Essence.sol';
 
 contract Entries is HasNoEther, HasNoTokens {
     using SafeMath for uint256;
 
     Tags tags;
+    Essence essence;
 
     StandardToken aeth;
+    uint256 public required_essence;
 
     event Publish(address indexed author, bytes32[] indexed tagsPublished, uint entryId);
 
@@ -27,11 +29,19 @@ contract Entries is HasNoEther, HasNoTokens {
 
     mapping (address => Entry) entryIndex;
 
-    function Entries()
+    function Entries(Essence _essence)
     HasNoEther()
     HasNoTokens()
     {
+        essence = _essence;
+    }
 
+    function setRequiredEssence(uint256 _amount)
+    onlyOwner
+    returns (bool)
+    {
+        required_essence  = _amount;
+        return true;
     }
 
     function setTagsAddress(address _tags)
@@ -53,6 +63,7 @@ contract Entries is HasNoEther, HasNoTokens {
     function publish(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
     {
         require(_tags.length < 11 && _tags.length > 0);
+        require(essence.spendEssence(msg.sender, required_essence, 0x656e7472793a7075626c697368));
 
         for (uint8 i = 0; i < _tags.length; i++)
         {

@@ -4,18 +4,39 @@ pragma solidity ^0.4.0;
 import './AETH.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
+import 'zeppelin-solidity/contracts/math/SafeMath.sol';
+
 
 contract Essence is HasNoEther, HasNoTokens {
+    using SafeMath for uint256;
     // this is updated frequently by owner
     bytes32 currentHash;
 
-    mapping(address => mapping(bytes32 => uint256[])) balance;
+    AETH aeth;
 
-    function Essence()
+    mapping (address => mapping (bytes32 => uint256)) balance;
+
+    mapping (address => uint256) collectedEssence; // some kind of reputation
+
+    mapping (address => bool) whitelist;
+
+    event RefreshEssence(bytes32 newHash);
+
+    event SpendEssence(address indexed spender, bytes32 indexed hash, uint256 amount, uint256 total, bytes32 scope);
+
+    event CollectEssence(address indexed receiver, uint256 amount, bool isNegative);
+
+    modifier onlyWhitelisted()
+    {
+        require(whitelist[msg.sender]);
+        _;
+    }
+
+    function Essence(AETH _aeth)
     HasNoEther()
     HasNoTokens()
     {
-
+        aeth = _aeth;
     }
 
     function newHash(bytes32 _hash)
@@ -23,7 +44,60 @@ contract Essence is HasNoEther, HasNoTokens {
     returns (bool)
     {
         currentHash = _hash;
+        RefreshEssence(currentHash);
         return true;
     }
+
+    function addToWhiteList(address _contract)
+    onlyOwner
+    returns (bool)
+    {
+        whitelist[_contract] = true;
+        return true;
+    }
+
+    function removeWhitelisted(address _contract)
+    onlyOwner
+    returns (bool)
+    {
+        require(whitelist[_contract]);
+        delete whitelist[_contract];
+        return true;
+    }
+
+    function spendEssence(address _initiator, uint256 _amount, bytes32 _scope)
+    onlyWhitelisted
+    returns (bool)
+    {
+        uint256 totalBonded = aeth.bonded(_initiator);
+        balance[_initiator][currentHash] = balance[_initiator][currentHash].add(_amount);
+
+        assert(balance[_initiator][currentHash] <= totalBonded);
+
+        SpendEssence(_initiator, currentHash, _amount, balance[_initiator][currentHash], _scope);
+        return true;
+    }
+
+    function essence(address _spender)
+    returns (uint256 _total, uint256 _spent, uint256 _remaining)
+    {
+        _total = aeth.bonded(_spender);
+        _spent = balance[_spender][currentHash];
+        _remaining = _total.sub(_spent);
+    }
+
+    function collectFor(address _receiver, uint256 _amount, bool _negative)
+    onlyWhitelisted
+    returns (bool)
+    {
+        // must figure out how to enforce collection of negative
+        if (_negative && collectedEssence[_receiver] < _amount) {
+            return false;
+        }
+        collectedEssence[_receiver] = _negative ? collectedEssence[_receiver].sub(_amount) : collectedEssence[_receiver].add(_amount);
+        CollectEssence(_receiver, _amount, _negative);
+        return true;
+    }
+
 
 }

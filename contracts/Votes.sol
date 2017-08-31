@@ -8,8 +8,7 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 contract Votes is HasNoEther {
     using SafeMath for uint256;
 
-    int8 public MAX_WEIGHT = 11; // (MIN_WEIGHT, MAX_WEIGHT) interval
-    int8 public MIN_WEIGHT = - 11;
+    uint8 public MAX_WEIGHT = 10; // (MIN_WEIGHT, MAX_WEIGHT) interval
 
     enum Target {Entry, Comment, List}
 
@@ -27,35 +26,34 @@ contract Votes is HasNoEther {
 
     }
 
-    function voteEntry(int8 _weight, bytes32 _source)
+    function voteEntry(uint8 _weight, bytes32 _source, bool _negative)
     {
-        require(registerVote(_weight, _source, Target.Entry));
+        require(registerVote(_weight, _source, _negative, Target.Entry));
     }
 
-    function registerVote(int8 _weight, bytes32 _source, Target _target)
+    function registerVote(uint8 _weight, bytes32 _source, bool _negative, Target _target)
     internal
     returns (bool)
     {
         require(records[_source].endPeriod <= now);
-        require(_weight > MIN_WEIGHT);
-        require(_weight < MIN_WEIGHT);
+        require(_weight > 0);
+        require(_weight <= MAX_WEIGHT);
 
         records[_source].target = _target;
-        records[_source].score += int(_weight);
+        if(_negative){
+            records[_source].score -= int(_weight);
+        } else {
+            records[_source].score += int(_weight);
+        }
+
         return true;
     }
 
-    function setMax(int8 _max)
+    function setMax(uint8 _max)
     onlyOwner
     {
-        assert(_max > MIN_WEIGHT);
+        assert(_max > 0);
         MAX_WEIGHT = _max;
     }
 
-    function setMin(int8 _min)
-    onlyOwner
-    {
-        assert(MAX_WEIGHT > _min);
-        MIN_WEIGHT = _min;
-    }
 }
