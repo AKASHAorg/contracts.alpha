@@ -8,23 +8,25 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import './Tags.sol';
 import "./IpfsHash.sol";
 import './token/Essence.sol';
+import './Votes.sol';
 
 contract Entries is HasNoEther, HasNoTokens {
     using SafeMath for uint256;
 
     Tags tags;
     Essence essence;
+    Votes votes;
 
     StandardToken aeth;
     uint256 public required_essence;
 
-    event Publish(address indexed author, bytes32[] indexed tagsPublished, uint entryId);
+    event Publish(address indexed author, bytes32[] indexed tagsPublished, bytes32 indexed entryId);
 
-    event Update(address indexed author, uint indexed entryId);
+    event Update(address indexed author, bytes32 indexed entryId);
 
     struct Entry {
     uint total;
-    mapping (uint256 => IpfsHash.Multihash) records;
+    mapping (bytes32 => IpfsHash.Multihash) records;
     }
 
     mapping (address => Entry) entryIndex;
@@ -52,6 +54,22 @@ contract Entries is HasNoEther, HasNoTokens {
         return true;
     }
 
+    function setEssenceAddress(address _essence)
+    onlyOwner
+    returns (bool)
+    {
+        essence = Essence(_essence);
+        return true;
+    }
+
+    function setVotesAddress(address _votes)
+    onlyOwner
+    returns (bool)
+    {
+        votes = Votes(_votes);
+        return true;
+    }
+
     function setTokenAddress(address _aeth)
     onlyOwner
     returns (bool)
@@ -72,14 +90,14 @@ contract Entries is HasNoEther, HasNoTokens {
             }
             tags.incrementTotalEntries(_tags[i]);
         }
-        var entryId = entryIndex[msg.sender].total;
+        var entryId = sha3(msg.sender, entryIndex[msg.sender].total);
 
         require(IpfsHash.create(entryIndex[msg.sender].records[entryId], _hash, _fn, _digestSize));
         entryIndex[msg.sender].total = entryIndex[msg.sender].total.add(1);
         Publish(msg.sender, _tags, entryId);
     }
 
-    function edit(uint256 _entryId, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    function edit(bytes32 _entryId, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     {
         require(entryIndex[msg.sender].records[_entryId].fn != 0);
         require(IpfsHash.create(entryIndex[msg.sender].records[_entryId], _hash, _fn, _digestSize));
@@ -93,12 +111,20 @@ contract Entries is HasNoEther, HasNoTokens {
         return entryIndex[_publisher].total;
     }
 
-    function getEntry(address _publisher, uint _entryId)
+    function getEntry(address _publisher, bytes32 _entryId)
     constant
     returns (uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         (_fn, _digestSize, _hash) = IpfsHash.getHash(entryIndex[_publisher].records[_entryId]);
     }
+
+    function exists(address _publisher, bytes32 _entryId)
+    constant
+    returns(bool)
+    {
+        return entryIndex[_publisher].records[_entryId].fn != 0;
+    }
+
 
 
 }

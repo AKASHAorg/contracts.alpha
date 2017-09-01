@@ -66,6 +66,7 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function spendEssence(address _initiator, uint256 _amount, bytes32 _scope)
+    external
     onlyWhitelisted
     returns (bool)
     {
@@ -87,6 +88,7 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function collectFor(address _receiver, uint256 _amount, bool _negative)
+    external
     onlyWhitelisted
     returns (bool)
     {
