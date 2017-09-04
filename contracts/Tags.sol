@@ -5,6 +5,7 @@ import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import "./IpfsHash.sol";
+import './token/Essence.sol';
 
 
 contract Tags is HasNoEther, HasNoTokens {
@@ -12,7 +13,11 @@ contract Tags is HasNoEther, HasNoTokens {
 
     address public entry;
 
+    Essence essence;
+
     uint256 public total = 0;
+
+    uint256 public minCollected = 1000;
 
     struct TagList {
     IpfsHash.Multihash hash;
@@ -61,6 +66,12 @@ contract Tags is HasNoEther, HasNoTokens {
         entry = _entry;
     }
 
+    function setEssence(Essence _essence)
+    onlyOwner
+    {
+        essence = _essence;
+    }
+
     function incrementTotalEntries(bytes32 _tag)
     only_entry
     {
@@ -68,13 +79,44 @@ contract Tags is HasNoEther, HasNoTokens {
         tags[_tag].totalEntries = tags[_tag].totalEntries.add(1);
     }
 
+
+    function adminAdd(bytes32 _tag)
+    onlyOwner
+    {
+        require(createTag(_tag));
+    }
+
     function add(bytes32 _tag)
+    {
+        require(essence.getCollectedEssence(msg.sender) >= minCollected);
+        require(createTag(_tag));
+    }
+
+    function addFromEntry(bytes32 _tag, address _creator)
+    only_entry
+    returns (bool)
+    {
+        require(essence.getCollectedEssence(_creator) >= minCollected);
+        require(createTag(_tag));
+        return true;
+    }
+
+    function setMinCollected(uint256 _amount)
+    onlyOwner
+    {
+        minCollected = _amount;
+    }
+
+    function createTag(bytes32 _tag)
+    internal
+    returns(bool)
     {
         require(check_format(_tag));
         require(!exists(_tag));
         TagCreate(_tag);
         tags[_tag].created = true;
         total = total.add(1);
+        return true;
     }
 
     function create_list(bytes32 _name, bytes32 _hash, uint8 _fn, uint8 _digestSize)
@@ -100,6 +142,13 @@ contract Tags is HasNoEther, HasNoTokens {
         var listHash = sha3(msg.sender, _name);
         require(IpfsHash.create(lists[listHash].hash, _hash, _fn, _digestSize));
         ListUpdate(_name, msg.sender);
+    }
+
+    function list_exists(bytes32 _id)
+    constant
+    returns (bool)
+    {
+        return lists[_id].creator != address(0x0);
     }
 
     function get_list(bytes32 _id)

@@ -3,6 +3,7 @@ pragma solidity ^0.4.0;
 
 import 'zeppelin-solidity/contracts/token/MintableToken.sol';
 import 'zeppelin-solidity/contracts/token/PausableToken.sol';
+import './Essence.sol';
 
 
 contract AETH is MintableToken, PausableToken {
@@ -13,6 +14,8 @@ contract AETH is MintableToken, PausableToken {
     uint8 public decimals = 18;
 
     uint256 public lockTime = 7 days;
+
+    Essence essence;
 
     enum AethState {Bonded, Cycling, Free}
 
@@ -31,6 +34,18 @@ contract AETH is MintableToken, PausableToken {
     mapping (address => mapping (uint8 => uint256)) tokenRecords;
 
     mapping (address => CyclingStates) cycles;
+
+    modifier fromEssence()
+    {
+        require(msg.sender == address(essence));
+        _;
+    }
+
+    function setEssence(Essence _essence)
+    onlyOwner
+    {
+        essence = _essence;
+    }
 
     function bondAeth(uint256 _amount)
     returns (bool)
@@ -84,6 +99,17 @@ contract AETH is MintableToken, PausableToken {
                 Transition(msg.sender, AethState.Free, cycles[msg.sender].states[i].amount);
             }
         }
+        return true;
+    }
+
+    function transformEssence(address _to, uint256 _amount)
+    fromEssence
+    external
+    returns (bool)
+    {
+        totalSupply = totalSupply.add(_amount);
+        balances[_to] = balances[_to].add(_amount);
+        Mint(_to, _amount);
         return true;
     }
 

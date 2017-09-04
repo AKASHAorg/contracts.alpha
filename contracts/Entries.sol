@@ -86,7 +86,7 @@ contract Entries is HasNoEther, HasNoTokens {
         for (uint8 i = 0; i < _tags.length; i++)
         {
             if (!tags.exists(_tags[i])) {
-                tags.add(_tags[i]);
+                require(tags.addFromEntry(_tags[i], msg.sender));
             }
             tags.incrementTotalEntries(_tags[i]);
         }

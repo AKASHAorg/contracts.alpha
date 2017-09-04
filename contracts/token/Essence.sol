@@ -11,8 +11,14 @@ contract Essence is HasNoEther, HasNoTokens {
     using SafeMath for uint256;
     // this is updated frequently by owner
     bytes32 currentHash;
+    uint256 public transformFactor = 1000;
 
     AETH aeth;
+
+    struct Pot {
+    uint256 total;
+    uint256 transformed;
+    }
 
     mapping (address => mapping (bytes32 => uint256)) balance;
 
@@ -20,7 +26,9 @@ contract Essence is HasNoEther, HasNoTokens {
 
     mapping (address => bool) whitelist;
 
-    event RefreshEssence(bytes32 newHash);
+    mapping (bytes32 => Pot) hashBalance;
+
+    event RefreshEssence(bytes32 newHash, uint256 totalToMint);
 
     event SpendEssence(address indexed spender, bytes32 indexed hash, uint256 amount, uint256 total, bytes32 scope);
 
@@ -39,13 +47,21 @@ contract Essence is HasNoEther, HasNoTokens {
         aeth = _aeth;
     }
 
-    function newHash(bytes32 _hash)
+    function newHash(bytes32 _hash, uint256 _total)
     onlyOwner
     returns (bool)
     {
         currentHash = _hash;
-        RefreshEssence(currentHash);
+        hashBalance[currentHash].total = _total;
+        RefreshEssence(currentHash, _total);
         return true;
+    }
+
+    function setFactor(uint256 _newFactor)
+    onlyOwner
+    returns (bool)
+    {
+        transformFactor = _newFactor;
     }
 
     function addToWhiteList(address _contract)
@@ -99,6 +115,31 @@ contract Essence is HasNoEther, HasNoTokens {
         collectedEssence[_receiver] = _negative ? collectedEssence[_receiver].sub(_amount) : collectedEssence[_receiver].add(_amount);
         CollectEssence(_receiver, _amount, _negative);
         return true;
+    }
+
+    function transformKarma(uint256 _amount)
+    returns (bool)
+    {
+        require(_amount > 0);
+        require(collectedEssence[msg.sender] >= _amount);
+        hashBalance[currentHash].transformed = hashBalance[currentHash].transformed.add(_amount);
+        assert(hashBalance[currentHash].total >= hashBalance[currentHash].transformed);
+        collectedEssence[msg.sender] = collectedEssence[msg.sender].sub(_amount);
+        assert(aeth.transformEssence(msg.sender, _amount.div(transformFactor)));
+    }
+
+    function aethValue(uint256 _collected)
+    constant
+    returns(uint256)
+    {
+        return _collected.div(transformFactor);
+    }
+
+    function getCollectedEssence(address _collector)
+    constant
+    returns(uint256)
+    {
+        return collectedEssence[_collector];
     }
 
 
