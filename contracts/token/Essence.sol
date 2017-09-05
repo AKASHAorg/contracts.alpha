@@ -11,6 +11,7 @@ contract Essence is HasNoEther, HasNoTokens {
     using SafeMath for uint256;
     // this is updated frequently by owner
     bytes32 currentHash;
+
     uint256 public transformFactor = 1000;
 
     AETH aeth;
@@ -32,7 +33,7 @@ contract Essence is HasNoEther, HasNoTokens {
 
     event SpendEssence(address indexed spender, bytes32 indexed hash, uint256 amount, uint256 total, bytes32 scope);
 
-    event CollectEssence(address indexed receiver, uint256 amount, bool isNegative);
+    event CollectEssence(address indexed receiver, uint256 amount);
 
     modifier onlyWhitelisted()
     {
@@ -103,17 +104,13 @@ contract Essence is HasNoEther, HasNoTokens {
         _remaining = _total.sub(_spent);
     }
 
-    function collectFor(address _receiver, uint256 _amount, bool _negative)
+    function collectFor(address _receiver, uint256 _amount)
     external
     onlyWhitelisted
     returns (bool)
     {
-        // must figure out how to enforce collection of negative
-        if (_negative && collectedEssence[_receiver] < _amount) {
-            return false;
-        }
-        collectedEssence[_receiver] = _negative ? collectedEssence[_receiver].sub(_amount) : collectedEssence[_receiver].add(_amount);
-        CollectEssence(_receiver, _amount, _negative);
+        collectedEssence[_receiver] = collectedEssence[_receiver].add(_amount);
+        CollectEssence(_receiver, _amount);
         return true;
     }
 
@@ -128,16 +125,16 @@ contract Essence is HasNoEther, HasNoTokens {
         assert(aeth.transformEssence(msg.sender, _amount.div(transformFactor)));
     }
 
-    function aethValue(uint256 _collected)
+    function aethValueFrom(uint256 _collected)
     constant
-    returns(uint256)
+    returns (uint256)
     {
         return _collected.div(transformFactor);
     }
 
     function getCollectedEssence(address _collector)
     constant
-    returns(uint256)
+    returns (uint256)
     {
         return collectedEssence[_collector];
     }

@@ -109,7 +109,7 @@ contract Tags is HasNoEther, HasNoTokens {
 
     function createTag(bytes32 _tag)
     internal
-    returns(bool)
+    returns (bool)
     {
         require(check_format(_tag));
         require(!exists(_tag));
@@ -149,6 +149,13 @@ contract Tags is HasNoEther, HasNoTokens {
     returns (bool)
     {
         return lists[_id].creator != address(0x0);
+    }
+
+    function list_creator(bytes32 _id)
+    constant
+    returns (address)
+    {
+        return lists[_id].creator;
     }
 
     function get_list(bytes32 _id)

@@ -10,14 +10,18 @@ import "./IpfsHash.sol";
 import './token/Essence.sol';
 import './Votes.sol';
 
+
 contract Entries is HasNoEther, HasNoTokens {
     using SafeMath for uint256;
 
     Tags tags;
+
     Essence essence;
+
     Votes votes;
 
     StandardToken aeth;
+
     uint256 public required_essence;
 
     event Publish(address indexed author, bytes32[] indexed tagsPublished, bytes32 indexed entryId);
@@ -42,7 +46,7 @@ contract Entries is HasNoEther, HasNoTokens {
     onlyOwner
     returns (bool)
     {
-        required_essence  = _amount;
+        required_essence = _amount;
         return true;
     }
 
@@ -120,11 +124,18 @@ contract Entries is HasNoEther, HasNoTokens {
 
     function exists(address _publisher, bytes32 _entryId)
     constant
-    returns(bool)
+    returns (bool)
     {
         return entryIndex[_publisher].records[_entryId].fn != 0;
     }
 
+    function claim(bytes32 _entryId)
+    returns (bool)
+    {
+        require(entryIndex[msg.sender].records[_entryId].fn != 0);
+        require(votes.claimEntry(_entryId, msg.sender));
+        return true;
+    }
 
 
 }

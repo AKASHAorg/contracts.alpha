@@ -50,12 +50,12 @@ contract ProfileRegistrar is AkashaModule {
     }
 
     // AKASHA users can claim a subdomain *.${rootNode}.eth
-//    function register(bytes32 _subNode, address owner)
-//    only_subNode_owner(_subNode)
-//    {
-//        require(check_format(_subNode));
-//        ens.setSubnodeOwner(rootNode, _subNode, owner);
-//    }
+    //    function register(bytes32 _subNode, address owner)
+    //    only_subNode_owner(_subNode)
+    //    {
+    //        require(check_format(_subNode));
+    //        ens.setSubnodeOwner(rootNode, _subNode, owner);
+    //    }
 
     function register(bytes32 _subNode, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     only_subNode_owner(_subNode)
