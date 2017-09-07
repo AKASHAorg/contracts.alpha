@@ -26,6 +26,11 @@ contract Votes is HasNoEther, HasNoTokens {
     enum Target {Entry, Comment, List}
     event Vote(uint8 indexed voteType, bytes32 indexed target, address indexed voter, uint8 weight, bool negative);
 
+    struct VoteKarma {
+    uint256 amount;
+    bool claimed;
+    }
+
     struct Record {
     bool claimed;
     Target target;
@@ -34,7 +39,7 @@ contract Votes is HasNoEther, HasNoTokens {
     uint256 totalKarma;
     int score;
     mapping (address => int8) votes;
-    mapping (address => uint256) karma;
+    mapping (address => VoteKarma) karma;
     }
 
     mapping (bytes32 => Record) records;
@@ -92,7 +97,7 @@ contract Votes is HasNoEther, HasNoTokens {
         if (!_negative && records[_source].endPeriod >= now) {
             uint256 karmaGenerated = calcKarmaFrom(_weight);
             records[_source].totalKarma = records[_source].totalKarma.add(karmaGenerated);
-            records[_source].karma[msg.sender] = karmaGenerated;
+            records[_source].karma[msg.sender].amount = karmaGenerated;
         }
         Vote(uint8(Target.Entry), _source, msg.sender, _weight, _negative);
         return true;
@@ -104,7 +109,8 @@ contract Votes is HasNoEther, HasNoTokens {
     {
         uint256 base = uint256(VOTE_KARMA);
         uint256 factor = uint256(_weight);
-        return base.mul(factor); // divided by MAX_WEIGHT client side
+        return base.mul(factor);
+        // divided by MAX_WEIGHT client side
     }
 
     function voteComment(uint8 _weight, bytes32 _source, bool _negative)
@@ -116,7 +122,7 @@ contract Votes is HasNoEther, HasNoTokens {
         require(registerVote(_weight, _source, _negative, msg.sender, Target.Comment));
 
         if (!_negative) {
-            essence.collectFor(tags.list_creator(_source), calcKarmaFrom(_weight));
+            require(essence.collectFor(tags.list_creator(_source), calcKarmaFrom(_weight)));
         }
 
         Vote(uint8(Target.Comment), _source, msg.sender, _weight, _negative);
@@ -134,7 +140,7 @@ contract Votes is HasNoEther, HasNoTokens {
         require(registerVote(_weight, _source, _negative, msg.sender, Target.List));
 
         if (!_negative) {
-            essence.collectFor(tags.list_creator(_source), calcKarmaFrom(_weight));
+            require(essence.collectFor(tags.list_creator(_source), calcKarmaFrom(_weight)));
         }
 
         Vote(uint8(Target.List), _source, msg.sender, _weight, _negative);
@@ -184,15 +190,44 @@ contract Votes is HasNoEther, HasNoTokens {
         require(!records[_id].claimed);
 
         records[_id].claimed = true;
-        essence.collectFor(_publisher, records[_id].totalKarma);
+        require(essence.collectFor(_publisher, records[_id].totalKarma));
         return true;
     }
 
-    function canClaim(bytes32 _id)
+    function canClaimEntry(bytes32 _id)
     constant
     returns (bool)
     {
-        return (records[_id].endPeriod >= now && records[_id].score >= 0 && !records[_id].claimed);
+        return (records[_id].endPeriod < now && records[_id].score >= 0 && !records[_id].claimed);
+    }
+
+    function canClaimEntryVote(bytes32 _id, address _voter)
+    constant
+    returns (bool)
+    {
+        if (records[_id].endPeriod < now || records[_id].karma[_voter].claimed) {
+            return false;
+        }
+
+        if (records[_id].score < 0 && records[_id].votes[_voter] < 0) {
+            return true;
+        }
+
+        if (records[_id].score > 0 && records[_id].votes[_voter] > 0) {
+            return true;
+        }
+        // voters cant claim if entry score = 0;
+        return false;
+    }
+
+    function claimKarmaVote(bytes32 _id)
+    constant
+    returns (bool)
+    {
+        require(canClaimEntryVote(_id, msg.sender));
+        records[_id].karma[msg.sender].claimed = true;
+        require(essence.collectFor(msg.sender, records[_id].karma[msg.sender].amount));
+        return true;
     }
 
     function getRecord(bytes32 _id)
@@ -206,12 +241,12 @@ contract Votes is HasNoEther, HasNoTokens {
         _claimed = records[_id].claimed;
     }
 
-
     function karmaOf(address _voter, bytes32 _id)
     constant
-    returns(uint _karma)
+    returns (uint _karma, bool _claimed)
     {
-        _karma = records[_id].karma[_voter];
+        _karma = records[_id].karma[_voter].amount;
+        _claimed = records[_id].karma[_voter].claimed;
     }
 
 }

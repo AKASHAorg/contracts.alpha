@@ -3,7 +3,6 @@ pragma solidity ^0.4.0;
 
 import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
-import 'zeppelin-solidity/contracts/token/StandardToken.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import './Tags.sol';
 import "./IpfsHash.sol";
@@ -20,9 +19,10 @@ contract Entries is HasNoEther, HasNoTokens {
 
     Votes votes;
 
-    StandardToken aeth;
 
-    uint256 public required_essence;
+    uint256 public required_essence = 100;
+
+    uint256 public discount_every = 10000;
 
     event Publish(address indexed author, bytes32[] indexed tagsPublished, bytes32 indexed entryId);
 
@@ -50,6 +50,13 @@ contract Entries is HasNoEther, HasNoTokens {
         return true;
     }
 
+    function setDiscountEvery(uint256 _amount)
+    onlyOwner
+    returns (bool)
+    {
+        discount_every = _amount;
+    }
+
     function setTagsAddress(address _tags)
     onlyOwner
     returns (bool)
@@ -74,18 +81,23 @@ contract Entries is HasNoEther, HasNoTokens {
         return true;
     }
 
-    function setTokenAddress(address _aeth)
-    onlyOwner
-    returns (bool)
+    function calcPublishCost(address _author)
+    internal
+    returns (uint _amount)
     {
-        aeth = StandardToken(_aeth);
-        return true;
+
+        uint256 karma = essence.getCollectedEssence(_author);
+        uint256 discount = karma.div(discount_every);
+        if (discount >= required_essence) {
+            return 1;
+        }
+        return required_essence.sub(discount);
     }
 
     function publish(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
     {
         require(_tags.length < 11 && _tags.length > 0);
-        require(essence.spendEssence(msg.sender, required_essence, 0x656e7472793a7075626c697368));
+        require(essence.spendEssence(msg.sender, calcPublishCost(msg.sender), 0x656e7472793a7075626c697368));
 
         for (uint8 i = 0; i < _tags.length; i++)
         {

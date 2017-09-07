@@ -107,6 +107,13 @@ contract Tags is HasNoEther, HasNoTokens {
         minCollected = _amount;
     }
 
+    function canCreate(address _creator)
+    constant
+    returns (bool)
+    {
+        return (essence.getCollectedEssence(_creator) >= minCollected);
+    }
+
     function createTag(bytes32 _tag)
     internal
     returns (bool)
@@ -121,6 +128,7 @@ contract Tags is HasNoEther, HasNoTokens {
 
     function create_list(bytes32 _name, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     {
+        require(essence.getCollectedEssence(msg.sender) >= minCollected);
         var listHash = sha3(msg.sender, _name);
         require(lists[listHash].creator == address(0x0));
         require(IpfsHash.create(lists[listHash].hash, _hash, _fn, _digestSize));
