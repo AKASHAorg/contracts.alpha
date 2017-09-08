@@ -21,6 +21,8 @@ contract AETH is MintableToken, PausableToken {
 
     event Transition(address owner, AethState state, uint256 value);
 
+    event Donate(address indexed from, address indexed to, uint256 aeth, uint256 eth, string extraData);
+
     struct CyclingState {
     uint256 amount;
     uint256 unlockDate;
@@ -172,5 +174,22 @@ contract AETH is MintableToken, PausableToken {
         _free = balances[_holder];
         _bonded = tokenRecords[_holder][uint8(AethState.Bonded)];
         _cycling = tokenRecords[_holder][uint8(AethState.Cycling)];
+    }
+
+    function donate(address _to, uint256 _aethAmount, string _extraData)
+    payable
+    returns (bool)
+    {
+        require(_aethAmount > 0 || msg.value > 0);
+        // must validate through resolver if donations are permited
+        if (_aethAmount > 0) {
+            balances[msg.sender] = balances[msg.sender].sub(_aethAmount);
+            balances[_to] = balances[_to].add(_aethAmount);
+        }
+
+        if (msg.value > 0) {
+            require(_to.send(msg.value));
+        }
+        Donate(msg.sender, _to, _aethAmount, msg.value, _extraData);
     }
 }

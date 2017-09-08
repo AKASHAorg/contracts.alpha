@@ -17,6 +17,7 @@ contract ProfileResolver is Bundled {
     struct Profile {
     IpfsHash.Multihash contentHash;
     address addr;
+    bool donations;
     }
 
     mapping (bytes32 => Profile) profileList;
@@ -55,12 +56,13 @@ contract ProfileResolver is Bundled {
     }
 
     // register an ipfs hash
-    function registerHash(bytes32 _node, address _owner, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    function registerHash(bytes32 _node, address _owner, bool _status, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     onlyModule
     returns (uint)
     {
         assert(profileList[_node].addr == 0);
         require(createHash(_node, _owner, _hash, _fn, _digestSize));
+        require(enableDonations(_node, _status));
         return totalProfiles++;
     }
 
@@ -69,6 +71,22 @@ contract ProfileResolver is Bundled {
     returns (bool)
     {
         require(createHash(_node, msg.sender, _hash, _fn, _digestSize));
+        return true;
+    }
+
+    function toggleDonations(bytes32 _node, bool _status)
+    only_owner(_node)
+    returns (bool)
+    {
+        require(enableDonations(_node, _status));
+        return true;
+    }
+
+    function enableDonations(bytes32 _node, bool _status)
+    internal
+    returns (bool)
+    {
+        profileList[_node].donations = _status;
         return true;
     }
 
@@ -110,10 +128,11 @@ contract ProfileResolver is Bundled {
 
     function resolve(bytes32 _node)
     constant
-    returns (address _addr, uint8 _fn, uint8 _digestSize, bytes32 _hash)
+    returns (address _addr, bool _donationsEnabled, uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         _addr = addr(_node);
         (_fn, _digestSize, _hash) = hash(_node);
+        _donationsEnabled = profileList[_node].donations;
     }
 
     function setAddr(bytes32 node, address newAddress)
@@ -124,6 +143,7 @@ contract ProfileResolver is Bundled {
         assert(reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(newAddress))] == bytes32(0x0));
         reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(newAddress))] = node;
     }
+
 
     // reverse eth address to ens node
     // this works only for subdomains

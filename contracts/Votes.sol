@@ -7,6 +7,7 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import './Entries.sol';
 import './Tags.sol';
 import './token/Essence.sol';
+import './Comments.sol';
 
 
 contract Votes is HasNoEther, HasNoTokens {
@@ -17,6 +18,8 @@ contract Votes is HasNoEther, HasNoTokens {
     Tags tags;
 
     Essence essence;
+
+    Comments comments;
 
     uint256 public required_essence = 10;
 
@@ -55,6 +58,12 @@ contract Votes is HasNoEther, HasNoTokens {
     onlyOwner
     {
         entries = _entries;
+    }
+
+    function setComments(Comments _comments)
+    onlyOwner
+    {
+        comments = _comments;
     }
 
     modifier onlyFromEntries () {
@@ -113,19 +122,23 @@ contract Votes is HasNoEther, HasNoTokens {
         // divided by MAX_WEIGHT client side
     }
 
-    function voteComment(uint8 _weight, bytes32 _source, bool _negative)
+    function voteComment(uint8 _weight, bytes32 _source, bytes32 _commentId, bool _negative)
     returns (bool)
     {
         uint256 weight = uint256(_weight);
+        require(comments.exists(_source, _commentId));
+        require(msg.sender != comments.commentAuthor(_source, _commentId));
+        require(comments.isDeleted(_source, _commentId));
+
         essence.spendEssence(msg.sender, required_essence.mul(weight), 0x636f6d6d656e743a766f7465);
 
-        require(registerVote(_weight, _source, _negative, msg.sender, Target.Comment));
+        require(registerVote(_weight, _commentId, _negative, msg.sender, Target.Comment));
 
         if (!_negative) {
-            require(essence.collectFor(tags.list_creator(_source), calcKarmaFrom(_weight)));
+            require(essence.collectFor(comments.commentAuthor(_source, _commentId), calcKarmaFrom(_weight), 0x636f6d6d656e743a766f7465, _commentId));
         }
 
-        Vote(uint8(Target.Comment), _source, msg.sender, _weight, _negative);
+        Vote(uint8(Target.Comment), _commentId, msg.sender, _weight, _negative);
         return true;
     }
 
@@ -140,7 +153,7 @@ contract Votes is HasNoEther, HasNoTokens {
         require(registerVote(_weight, _source, _negative, msg.sender, Target.List));
 
         if (!_negative) {
-            require(essence.collectFor(tags.list_creator(_source), calcKarmaFrom(_weight)));
+            require(essence.collectFor(tags.list_creator(_source), calcKarmaFrom(_weight), 0x6c6973743a766f7465, _source));
         }
 
         Vote(uint8(Target.List), _source, msg.sender, _weight, _negative);
@@ -190,7 +203,7 @@ contract Votes is HasNoEther, HasNoTokens {
         require(!records[_id].claimed);
 
         records[_id].claimed = true;
-        require(essence.collectFor(_publisher, records[_id].totalKarma));
+        require(essence.collectFor(_publisher, records[_id].totalKarma, 0x656e7472793a636c61696d, _id));
         return true;
     }
 
@@ -226,7 +239,7 @@ contract Votes is HasNoEther, HasNoTokens {
     {
         require(canClaimEntryVote(_id, msg.sender));
         records[_id].karma[msg.sender].claimed = true;
-        require(essence.collectFor(msg.sender, records[_id].karma[msg.sender].amount));
+        require(essence.collectFor(msg.sender, records[_id].karma[msg.sender].amount, 0x656e7472793a766f74653a636c61696d, _id));
         return true;
     }
 

@@ -1,5 +1,6 @@
 pragma solidity ^0.4.0;
 
+
 import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
@@ -8,7 +9,8 @@ import './token/Essence.sol';
 import './Votes.sol';
 import './Entries.sol';
 
-contract Comments  is HasNoEther, HasNoTokens {
+
+contract Comments is HasNoEther, HasNoTokens {
     using SafeMath for uint256;
 
     Entries entries;
@@ -21,12 +23,12 @@ contract Comments  is HasNoEther, HasNoTokens {
 
     uint256 public discount_every = 20000;
 
-    event Publish(address indexed author, bytes32 indexed entryId, uint256 indexed parent, uint256 id);
+    event Publish(address indexed author, bytes32 indexed entryId, bytes32 indexed parent, bytes32 id);
 
-    event Update(address indexed author, bytes32 indexed entryId, uint256 indexed id);
+    event Update(address indexed author, bytes32 indexed entryId, bytes32 indexed id);
 
     struct Comment {
-    uint parent;
+    bytes32 parent;
     IpfsHash.Multihash hash;
     address author;
     bool deleted;
@@ -34,11 +36,11 @@ contract Comments  is HasNoEther, HasNoTokens {
     }
 
     struct Record {
-        uint256 nextId;
-        mapping(uint256 => Comment) comment;
+    uint256 nextId;
+    mapping (bytes32 => Comment) comment;
     }
 
-    mapping(bytes32 => Record) commentList;
+    mapping (bytes32 => Record) commentList;
 
     function Comments()
     HasNoEther()
@@ -64,14 +66,86 @@ contract Comments  is HasNoEther, HasNoTokens {
         entries = _entries;
     }
 
-    function publish(bytes32 entryId, uint parent, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    function calcPublishCost(address _author)
+    internal
+    returns (uint _amount)
+    {
+
+        uint256 karma = essence.getCollectedEssence(_author);
+        uint256 discount = karma.div(discount_every);
+        if (discount >= required_essence) {
+            return 1;
+        }
+        return required_essence.sub(discount);
+    }
+
+    function publish(bytes32 _entryId, address _entryAuthor, bytes32 _parent, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     returns (bool)
     {
-        require(IpfsHash.create(commentList[entryId].comment[commentList[entryId].nextId].hash, _hash, _fn, _digestSize));
-        commentList[entryId].comment[commentList[entryId].nextId].author = msg.sender;
-        commentList[entryId].comment[commentList[entryId].nextId].parent = parent;
-        commentList[entryId].comment[commentList[entryId].nextId].date = now;
-        commentList[entryId].nextId++;
+        require(entries.exists(_entryAuthor, _entryId));
+        require(essence.spendEssence(msg.sender, calcPublishCost(msg.sender), 0x636f6d6d656e743a7075626c697368));
+
+        bytes32 commentId = sha3(_entryId, commentList[_entryId].nextId);
+        require(IpfsHash.create(commentList[_entryId].comment[commentId].hash, _hash, _fn, _digestSize));
+        commentList[_entryId].comment[commentId].author = msg.sender;
+        commentList[_entryId].comment[commentId].parent = _parent;
+        commentList[_entryId].comment[commentId].date = now;
+        Publish(msg.sender, _entryId, _parent, commentId);
+        commentList[_entryId].nextId++;
         return true;
     }
+
+    function edit(bytes32 _entryId, address _entryAuthor, bytes32 _commentId, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    returns (bool)
+    {
+        require(entries.exists(_entryAuthor, _entryId));
+        require(commentList[_entryId].comment[_commentId].author == msg.sender);
+        require(IpfsHash.create(commentList[_entryId].comment[_commentId].hash, _hash, _fn, _digestSize));
+        Update(msg.sender, _entryId, _commentId);
+        return true;
+    }
+
+    function deleteComment(bytes32 _entryId, address _entryAuthor, bytes32 _commentId)
+    returns (bool)
+    {
+        require(entries.exists(_entryAuthor, _entryId));
+        require(commentList[_entryId].comment[_commentId].author == msg.sender);
+        delete commentList[_entryId].comment[_commentId].hash;
+        commentList[_entryId].comment[_commentId].deleted = true;
+        Update(msg.sender, _entryId, _commentId);
+        return true;
+    }
+
+    function getComment(bytes32 _entryId, bytes32 _commentId)
+    constant
+    returns (bytes32 parent, address author, bool deleted, uint256 publishDate, uint8 _fn, uint8 _digestSize, bytes32 _hash)
+    {
+        parent = commentList[_entryId].comment[_commentId].parent;
+        author = commentList[_entryId].comment[_commentId].author;
+        deleted = commentList[_entryId].comment[_commentId].deleted;
+        publishDate = commentList[_entryId].comment[_commentId].date;
+        (_fn, _digestSize, _hash) = IpfsHash.getHash(commentList[_entryId].comment[_commentId].hash);
+    }
+
+    function exists(bytes32 _entryId, bytes32 _commentId)
+    constant
+    returns (bool)
+    {
+        return (commentList[_entryId].comment[_commentId].author != address(0x0) && !commentList[_entryId].comment[_commentId].deleted);
+    }
+
+    function commentAuthor(bytes32 _entryId, bytes32 _commentId)
+    constant
+    returns (address _author)
+    {
+        _author = commentList[_entryId].comment[_commentId].author;
+    }
+
+    function isDeleted(bytes32 _entryId, bytes32 _commentId)
+    constant
+    returns (bool _deleted)
+    {
+        _deleted = commentList[_entryId].comment[_commentId].deleted;
+    }
+
 }

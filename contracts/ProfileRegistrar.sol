@@ -57,7 +57,7 @@ contract ProfileRegistrar is AkashaModule {
     //        ens.setSubnodeOwner(rootNode, _subNode, owner);
     //    }
 
-    function register(bytes32 _subNode, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    function register(bytes32 _subNode, bool _enableDonations, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     only_subNode_owner(_subNode)
     returns (bool)
     {
@@ -67,7 +67,7 @@ contract ProfileRegistrar is AkashaModule {
         ens.setResolver(hash(_subNode), resolver);
 
         ens.setSubnodeOwner(rootNode, _subNode, msg.sender);
-        resolver.registerHash(hash(_subNode), msg.sender, _hash, _fn, _digestSize);
+        resolver.registerHash(hash(_subNode), msg.sender, _enableDonations, _hash, _fn, _digestSize);
         Register(_subNode, version);
         return true;
     }

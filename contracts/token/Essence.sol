@@ -33,7 +33,7 @@ contract Essence is HasNoEther, HasNoTokens {
 
     event SpendEssence(address indexed spender, bytes32 indexed hash, uint256 amount, uint256 total, bytes32 scope);
 
-    event CollectEssence(address indexed receiver, uint256 amount);
+    event CollectEssence(address indexed receiver, uint256 amount, bytes32 action, bytes32 source);
 
     modifier onlyWhitelisted()
     {
@@ -104,13 +104,13 @@ contract Essence is HasNoEther, HasNoTokens {
         _remaining = _total.sub(_spent);
     }
 
-    function collectFor(address _receiver, uint256 _amount)
+    function collectFor(address _receiver, uint256 _amount, bytes32 _action, bytes32 _source)
     external
     onlyWhitelisted
     returns (bool)
     {
         collectedEssence[_receiver] = collectedEssence[_receiver].add(_amount);
-        CollectEssence(_receiver, _amount);
+        CollectEssence(_receiver, _amount, _action, _source);
         return true;
     }
 
