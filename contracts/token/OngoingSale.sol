@@ -22,7 +22,9 @@ contract OngoingSale is CappedCrowdsale, Ownable {
     internal
     returns (MintableToken)
     {
-        return new AETH();
+        var token = new AETH();
+        token.transferOwnership(msg.sender);
+        return token;
     }
 
     // mark crowdsale as finished

@@ -5,13 +5,14 @@ import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import "./IpfsHash.sol";
+import './Entries.sol';
 import './token/Essence.sol';
 
 
 contract Tags is HasNoEther, HasNoTokens {
     using SafeMath for uint256;
 
-    address public entry;
+    Entries entry;
 
     Essence essence;
 
@@ -56,11 +57,11 @@ contract Tags is HasNoEther, HasNoTokens {
 
     modifier only_entry()
     {
-        require(msg.sender == entry);
+        require(msg.sender == address(entry));
         _;
     }
 
-    function setEntryAddress(address _entry)
+    function setEntry(Entries _entry)
     onlyOwner
     {
         entry = _entry;

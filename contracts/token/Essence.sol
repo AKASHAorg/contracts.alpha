@@ -41,11 +41,19 @@ contract Essence is HasNoEther, HasNoTokens {
         _;
     }
 
-    function Essence(AETH _aeth)
+    function Essence()
     HasNoEther()
     HasNoTokens()
     {
+
+    }
+
+    function setAeth(AETH _aeth)
+    onlyOwner
+    returns (bool)
+    {
         aeth = _aeth;
+        return true;
     }
 
     function newHash(bytes32 _hash, uint256 _total)
