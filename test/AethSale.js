@@ -7,19 +7,20 @@ const should = require('chai')
 
 const AethSale = artifacts.require('AethSale');
 const AETH = artifacts.require('AETH');
-/*
+
 contract('AethSale', function ([owner, wallet]) {
 
   const rate = new BigNumber(1000);
-  const cap = helpers.ether(1000);
-  const minimum = helpers.ether(99);
+  const cap = helpers.ether(10);
+  const minimum = helpers.ether(1);
   let endBlockCap;
   beforeEach(async function () {
     const currentBlock = await helpers.getCurrentBlockNumber();
     this.startBlock = currentBlock + 10;
     this.endBlock = currentBlock + 20;
     endBlockCap = currentBlock + 15;
-    this.crowdsale = await AethSale.new(this.startBlock, this.endBlock, rate, wallet, cap, minimum, endBlockCap);
+    this.crowdsale = await AethSale.new(this.startBlock, this.endBlock, rate, wallet, cap, minimum, endBlockCap, {gas: 6200000});
+    const token = await this.crowdsale.token();
     this.token = AETH.at(await this.crowdsale.token());
   });
 
@@ -30,6 +31,8 @@ contract('AethSale', function ([owner, wallet]) {
     });
 
     it('should accept payments within cap', async function () {
+      const x = await web3.eth.getBalance(owner);
+      console.log(web3.fromWei(x.toString(), 'ether'));
       await this.crowdsale.send(minimum).should.be.fulfilled;
       await this.crowdsale.send(cap.sub(minimum)).should.be.fulfilled;
     });
@@ -105,7 +108,17 @@ contract('AethSale', function ([owner, wallet]) {
       hasEnded.should.equal(true);
     });
 
+    it('should mark sale as finished and set admin', async function () {
+      await this.crowdsale.send(minimum).should.be.fulfilled;
+      await helpers.advanceToBlock(endBlockCap + 1);
+      await this.crowdsale.finalize();
+      let hasEnded = await this.crowdsale.hasEnded();
+      hasEnded.should.equal(true);
+
+      const admin = await this.token.owner();
+      admin.should.equal(owner);
+    });
+
   })
 
 });
-*/

@@ -35,8 +35,7 @@ contract AethSale is OngoingSale {
     uint256 _goal,
     uint256 _endBlockAfterGoal
     )
-    Crowdsale(_startBlock, _endBlock, _rate, _wallet)
-    CappedCrowdsale(_cap)
+    OngoingSale(_startBlock, _endBlock, _rate, _wallet, _cap)
     {
         vault = new RefundVault(wallet);
         goal = _goal;

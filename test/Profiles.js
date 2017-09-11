@@ -25,7 +25,7 @@ contract('ProfileRegistrar', function ([owner, wallet]) {
   describe('register an username', function () {
 
     it('should reserve a valid username', async function () {
-      const {logs} = await registrar.register('testuser', hash, web3.fromDecimal(11), web3.fromDecimal(20), { from: wallet });
+      const {logs} = await registrar.register('testuser', hash, true, web3.fromDecimal(11), web3.fromDecimal(20), { from: wallet });
       const userName = await registrar.hash('testuser');
       const owner = await ens.owner(userName);
       const resolved = await resolver.addr(userName);
