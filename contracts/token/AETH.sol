@@ -4,6 +4,7 @@ pragma solidity ^0.4.0;
 import 'zeppelin-solidity/contracts/token/MintableToken.sol';
 import 'zeppelin-solidity/contracts/token/PausableToken.sol';
 import './Essence.sol';
+import '../ProfileResolver.sol';
 
 
 contract AETH is MintableToken, PausableToken {
@@ -16,6 +17,8 @@ contract AETH is MintableToken, PausableToken {
     uint256 public lockTime = 7 days;
 
     Essence essence;
+
+    ProfileResolver resolver;
 
     enum AethState {Bonded, Cycling, Free}
 
@@ -47,6 +50,12 @@ contract AETH is MintableToken, PausableToken {
     onlyOwner
     {
         essence = _essence;
+    }
+
+    function setResolver(ProfileResolver _resolver)
+    onlyOwner
+    {
+        resolver = _resolver;
     }
 
     function bondAeth(uint256 _amount)
@@ -181,7 +190,11 @@ contract AETH is MintableToken, PausableToken {
     returns (bool)
     {
         require(_aethAmount > 0 || msg.value > 0);
-        // must validate through resolver if donations are permited
+        bytes32 resolved = resolver.reverse(_to);
+        if (resolved != bytes32(0x0)) {
+            // explicit opt for receiving donations
+            require(resolver.donationsEnabled(resolved));
+        }
         if (_aethAmount > 0) {
             balances[msg.sender] = balances[msg.sender].sub(_aethAmount);
             balances[_to] = balances[_to].add(_aethAmount);

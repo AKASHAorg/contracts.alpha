@@ -135,6 +135,13 @@ contract ProfileResolver is Bundled {
         _donationsEnabled = profileList[_node].donations;
     }
 
+    function donationsEnabled(bytes32 _node)
+    constant
+    returns(bool)
+    {
+        return profileList[_node].donations;
+    }
+
     function setAddr(bytes32 node, address newAddress)
     only_owner(node)
     {
