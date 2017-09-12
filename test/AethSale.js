@@ -20,7 +20,6 @@ contract('AethSale', function ([owner, wallet]) {
     this.endBlock = currentBlock + 20;
     endBlockCap = currentBlock + 15;
     this.crowdsale = await AethSale.new(this.startBlock, this.endBlock, rate, wallet, cap, minimum, endBlockCap, {gas: 6200000});
-    const token = await this.crowdsale.token();
     this.token = AETH.at(await this.crowdsale.token());
   });
 

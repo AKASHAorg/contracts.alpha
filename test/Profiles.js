@@ -5,7 +5,6 @@ const should = require('chai')
   .use(require('chai-bignumber')(BigNumber))
   .should();
 
-const namehash = require('eth-ens-namehash');
 const ENS = artifacts.require("ENS.sol");
 const FIFSRegistrar = artifacts.require('FIFSRegistrar.sol');
 const IpfsHash = artifacts.require('IpfsHash.sol');

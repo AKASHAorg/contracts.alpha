@@ -5,7 +5,7 @@ import 'zeppelin-solidity/contracts/token/MintableToken.sol';
 import 'zeppelin-solidity/contracts/token/PausableToken.sol';
 import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
 import './Essence.sol';
-
+import '../ProfileResolver.sol';
 
 contract AETH is MintableToken, PausableToken {
     string public name = "AKASHA Token";
@@ -18,12 +18,13 @@ contract AETH is MintableToken, PausableToken {
 
     Essence essence;
 
+    ProfileResolver resolver;
 
     enum AethState {Bonded, Cycling, Free}
 
     event Transition(address owner, AethState state, uint256 value);
 
-    event Donate(address indexed from, address indexed to, uint256 aeth, uint256 eth, string extraData);
+//    event Donate(address indexed from, address indexed to, uint256 aeth, uint256 eth, string extraData);
 
     struct CyclingState {
     uint256 amount;
@@ -49,6 +50,18 @@ contract AETH is MintableToken, PausableToken {
     onlyOwner
     {
         essence = _essence;
+    }
+
+//    function setResolver(ProfileResolver _resolver)
+//    onlyOwner
+//    {
+//        resolver = _resolver;
+//    }
+
+    function setLockTime(uint256 _time)
+    onlyOwner
+    {
+        lockTime = _time;
     }
 
 
@@ -94,20 +107,22 @@ contract AETH is MintableToken, PausableToken {
     function freeAeth()
     returns (bool)
     {
+        uint256 currentAmount;
         for (uint8 i = 0; i < 32; i++) {
             if (cycles[msg.sender].states[i].unlockDate < now && cycles[msg.sender].states[i].amount > 0) {
-                tokenRecords[msg.sender][uint8(AethState.Cycling)] = tokenRecords[msg.sender][uint8(AethState.Cycling)].sub(cycles[msg.sender].states[i].amount);
-                balances[msg.sender] = balances[msg.sender].add(cycles[msg.sender].states[i].amount);
+                currentAmount = cycles[msg.sender].states[i].amount;
+                tokenRecords[msg.sender][uint8(AethState.Cycling)] = tokenRecords[msg.sender][uint8(AethState.Cycling)].sub(currentAmount);
+                balances[msg.sender] = balances[msg.sender].add(currentAmount);
                 delete cycles[msg.sender].states[i];
                 // must refactor this
                 cycles[msg.sender].lastFreed = i;
-                Transition(msg.sender, AethState.Free, cycles[msg.sender].states[i].amount);
+                Transition(msg.sender, AethState.Free, currentAmount);
             }
         }
         return true;
     }
 
-    function transformEssence(address _to, uint256 _amount)
+    function transformKarma(address _to, uint256 _amount)
     fromEssence
     external
     returns (bool)
@@ -118,7 +133,7 @@ contract AETH is MintableToken, PausableToken {
         return true;
     }
 
-    function getCyclingStatesNr(address _holder)
+    function getCyclingStatesNr(address _holder, uint256 _fromDate)
     public
     constant
     returns (uint8 _total, uint8 _available)
@@ -129,14 +144,13 @@ contract AETH is MintableToken, PausableToken {
         for (uint8 i = 0; i < 32; i++) {
             if (cycles[_holder].states[i].amount > 0) {
                 total++;
-                if (cycles[_holder].states[i].unlockDate < now) {
+                if (cycles[_holder].states[i].unlockDate <= _fromDate) {
                     available++;
                 }
             }
         }
 
-        _total = total;
-        _available = available;
+        return(total, available);
     }
 
     function getCyclingState(address _holder, uint8 _fromIndex)
@@ -178,5 +192,26 @@ contract AETH is MintableToken, PausableToken {
         _bonded = tokenRecords[_holder][uint8(AethState.Bonded)];
         _cycling = tokenRecords[_holder][uint8(AethState.Cycling)];
     }
+
+//    function donate(address _to, uint256 _aethAmount, string _extraData)
+//    payable
+//    returns (bool)
+//    {
+//        require(_aethAmount > 0 || msg.value > 0);
+//        bytes32 resolved = resolver.reverse(_to);
+//        if (resolved != bytes32(0x0)) {
+//            // explicit opt for receiving donations
+//            require(resolver.donationsEnabled(resolved));
+//        }
+//        if (_aethAmount > 0) {
+//            balances[msg.sender] = balances[msg.sender].sub(_aethAmount);
+//            balances[_to] = balances[_to].add(_aethAmount);
+//        }
+//
+//        if (msg.value > 0) {
+//            require(_to.send(msg.value));
+//        }
+//        Donate(msg.sender, _to, _aethAmount, msg.value, _extraData);
+//    }
 
 }

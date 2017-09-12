@@ -14,6 +14,10 @@ const advanceBlock = function advanceBlock() {
   })
 };
 
+const sleep = function(seconds) {
+  return new Promise(res=>setTimeout(()=>res(), seconds*1000));
+};
+
 // Advances the block number so that the last mined block is `number`.
 const advanceToBlock =  async function advanceToBlock(number) {
   if (await getCurrentBlockNumber() > number) {
@@ -42,5 +46,6 @@ module.exports = {
   advanceBlock,
   advanceToBlock,
   getCurrentBlockNumber,
+  sleep,
   EVMThrow
 };
