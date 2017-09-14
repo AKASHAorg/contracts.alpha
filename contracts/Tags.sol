@@ -7,6 +7,7 @@ import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 import "./IpfsHash.sol";
 import './Entries.sol';
 import './token/Essence.sol';
+import './Votes.sol';
 
 
 contract Tags is HasNoEther, HasNoTokens {
@@ -15,6 +16,8 @@ contract Tags is HasNoEther, HasNoTokens {
     Entries entry;
 
     Essence essence;
+
+    Votes votes;
 
     uint256 public total = 0;
 
@@ -71,6 +74,14 @@ contract Tags is HasNoEther, HasNoTokens {
     onlyOwner
     {
         essence = _essence;
+    }
+
+    function setVotesAddress(address _votes)
+    onlyOwner
+    returns (bool)
+    {
+        votes = Votes(_votes);
+        return true;
     }
 
     function incrementTotalEntries(bytes32 _tag)
@@ -135,6 +146,7 @@ contract Tags is HasNoEther, HasNoTokens {
         require(IpfsHash.create(lists[listHash].hash, _hash, _fn, _digestSize));
         lists[listHash].creator = msg.sender;
         listsCount[msg.sender] = listsCount[msg.sender].add(1);
+        require(votes.registerResource(listHash, 0));
         ListCreate(_name, msg.sender, listHash);
     }
 

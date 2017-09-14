@@ -73,6 +73,14 @@ const deployAkasha = async function (deployer) {
   await Entries.at(Entries.address).setTagsAddress(Tags.address);
   await Entries.at(Entries.address).setEssenceAddress(Essence.address);
 
+  await Essence.at(Essence.address).addToWhiteList(Entries.address);
+  await Essence.at(Essence.address).addToWhiteList(Comments.address);
+  await Essence.at(Essence.address).addToWhiteList(Votes.address);
+
+  await Votes.at(Votes.address).whiteList(Entries.address, true);
+  await Votes.at(Votes.address).whiteList(Comments.address, true);
+  await Votes.at(Votes.address).whiteList(Tags.address, true);
+
   await ProfileRegistrar.at(ProfileRegistrar.address).setResolver(ProfileResolver.address);
   await ProfileResolver.at(ProfileResolver.address).setModule(ProfileRegistrar.address);
   await ProfileRegistrar.deployed();

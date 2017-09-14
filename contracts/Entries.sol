@@ -24,6 +24,8 @@ contract Entries is HasNoEther, HasNoTokens {
 
     uint256 public discount_every = 10000;
 
+    uint256 public voting_period = 2 weeks;
+
     event Publish(address indexed author, bytes32[] indexed tagsPublished, bytes32 indexed entryId);
 
     event Update(address indexed author, bytes32 indexed entryId);
@@ -47,6 +49,14 @@ contract Entries is HasNoEther, HasNoTokens {
     returns (bool)
     {
         required_essence = _amount;
+        return true;
+    }
+
+    function setVotingPeriod(uint256 _period)
+    onlyOwner
+    returns (bool)
+    {
+        voting_period = _period;
         return true;
     }
 
@@ -106,9 +116,10 @@ contract Entries is HasNoEther, HasNoTokens {
             }
             tags.incrementTotalEntries(_tags[i]);
         }
-        var entryId = sha3(msg.sender, entryIndex[msg.sender].total);
-
+        bytes32 entryId = sha3(msg.sender, entryIndex[msg.sender].total);
+        uint256 endPeriod = voting_period.add(now);
         require(IpfsHash.create(entryIndex[msg.sender].records[entryId], _hash, _fn, _digestSize));
+        require(votes.registerResource(entryId, endPeriod));
         entryIndex[msg.sender].total = entryIndex[msg.sender].total.add(1);
         Publish(msg.sender, _tags, entryId);
     }

@@ -23,6 +23,8 @@ contract Comments is HasNoEther, HasNoTokens {
 
     uint256 public discount_every = 20000;
 
+    uint256 public voting_period = 1 years; // blocks
+
     event Publish(address indexed author, bytes32 indexed entryId, bytes32 indexed parent, bytes32 id);
 
     event Update(address indexed author, bytes32 indexed entryId, bytes32 indexed id);
@@ -60,6 +62,14 @@ contract Comments is HasNoEther, HasNoTokens {
         votes = _votes;
     }
 
+    function setVotingPeriod(uint256 _period)
+    onlyOwner
+    returns (bool)
+    {
+        voting_period = _period;
+        return true;
+    }
+
     function setEntries(Entries _entries)
     onlyOwner
     {
@@ -86,10 +96,12 @@ contract Comments is HasNoEther, HasNoTokens {
         require(essence.spendEssence(msg.sender, calcPublishCost(msg.sender), 0x636f6d6d656e743a7075626c697368));
 
         bytes32 commentId = sha3(_entryId, commentList[_entryId].nextId);
+        uint256 endPeriod = voting_period.add(now);
         require(IpfsHash.create(commentList[_entryId].comment[commentId].hash, _hash, _fn, _digestSize));
         commentList[_entryId].comment[commentId].author = msg.sender;
         commentList[_entryId].comment[commentId].parent = _parent;
         commentList[_entryId].comment[commentId].date = now;
+        require(votes.registerResource(commentId, endPeriod));
         Publish(msg.sender, _entryId, _parent, commentId);
         commentList[_entryId].nextId++;
         return true;

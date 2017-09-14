@@ -26,6 +26,8 @@ contract Votes is HasNoEther, HasNoTokens {
     uint8 public MAX_WEIGHT = 10; // (MIN_WEIGHT, MAX_WEIGHT) interval
     uint8 public VOTE_KARMA = 1;
 
+    mapping(address => bool) whitelist;
+
     enum Target {Entry, Comment, List}
     event Vote(uint8 indexed voteType, bytes32 indexed target, address indexed voter, uint8 weight, bool negative);
 
@@ -71,6 +73,11 @@ contract Votes is HasNoEther, HasNoTokens {
         _;
     }
 
+    modifier onlyWhitelisted () {
+        require(whitelist[msg.sender]);
+        _;
+    }
+
     function setTags(Tags _tags)
     onlyOwner
     {
@@ -93,6 +100,14 @@ contract Votes is HasNoEther, HasNoTokens {
     onlyOwner
     {
         required_essence = _amount;
+    }
+
+    function whiteList(address _contract, bool _status)
+    onlyOwner
+    returns (bool)
+    {
+        whitelist[_contract] = _status;
+        return true;
     }
 
     function voteEntry(uint8 _weight, bytes32 _source, bool _negative, address _publisher)
@@ -122,6 +137,14 @@ contract Votes is HasNoEther, HasNoTokens {
         // divided by MAX_WEIGHT client side
     }
 
+    function registerResource(bytes32 _id, uint256 _period)
+    onlyWhitelisted
+    returns (bool)
+    {
+        records[_id].endPeriod = _period;
+        return true;
+    }
+
     function voteComment(uint8 _weight, bytes32 _source, bytes32 _commentId, bool _negative)
     returns (bool)
     {
@@ -134,7 +157,7 @@ contract Votes is HasNoEther, HasNoTokens {
 
         require(registerVote(_weight, _commentId, _negative, msg.sender, Target.Comment));
 
-        if (!_negative) {
+        if (!_negative && records[_source].endPeriod >= now) {
             require(essence.collectFor(comments.commentAuthor(_source, _commentId), calcKarmaFrom(_weight), 0x636f6d6d656e743a766f7465, _commentId));
         }
 
@@ -207,18 +230,18 @@ contract Votes is HasNoEther, HasNoTokens {
         return true;
     }
 
-    function canClaimEntry(bytes32 _id)
+    function canClaimEntry(bytes32 _id, uint256 _timeStamp)
     constant
     returns (bool)
     {
-        return (records[_id].endPeriod < now && records[_id].score >= 0 && !records[_id].claimed);
+        return (records[_id].endPeriod < _timeStamp && records[_id].score >= 0 && !records[_id].claimed);
     }
 
-    function canClaimEntryVote(bytes32 _id, address _voter)
+    function canClaimEntryVote(bytes32 _id, address _voter, uint256 _timeStamp)
     constant
     returns (bool)
     {
-        if (records[_id].endPeriod < now || records[_id].karma[_voter].claimed) {
+        if (records[_id].endPeriod < _timeStamp || records[_id].karma[_voter].claimed) {
             return false;
         }
 
@@ -237,7 +260,7 @@ contract Votes is HasNoEther, HasNoTokens {
     constant
     returns (bool)
     {
-        require(canClaimEntryVote(_id, msg.sender));
+        require(canClaimEntryVote(_id, msg.sender, now));
         records[_id].karma[msg.sender].claimed = true;
         require(essence.collectFor(msg.sender, records[_id].karma[msg.sender].amount, 0x656e7472793a766f74653a636c61696d, _id));
         return true;
