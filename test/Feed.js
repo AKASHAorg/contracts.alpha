@@ -28,6 +28,7 @@ contract('Feed', function ([owner, wallet, otherAccount]) {
     });
 
     it('should unfollow', async function() {
+      console.log(feed.follow.request(otherAccount, {from: wallet, gas: 1000}));
       const unfollow = await feed.unFollow(otherAccount, {from: wallet});
       const event = unfollow.logs.find(e => e.event === 'UnFollow');
       should.exist(event);

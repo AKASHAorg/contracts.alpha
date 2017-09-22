@@ -7,14 +7,14 @@
     "test": "test"
   },
   "dependencies": {
-    "zeppelin-solidity": "1.2.0",
+    "zeppelin-solidity": "1.3.0",
     "ens": "git+https://github.com/ethereum/ens"
   },
   "devDependencies": {
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
     "chai-bignumber": "2.0.1",
-    "ethereumjs-testrpc": "4.1.2",
+    "ethereumjs-testrpc": "4.1.3",
     "truffle": "3.4.9",
     "truffle-config": "1.0.2",
     "truffle-expect": "0.0.3"

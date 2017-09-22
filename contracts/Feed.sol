@@ -75,4 +75,11 @@ contract Feed is HasNoEther, HasNoTokens {
         _followingCount = totalFollowing(_profile);
     }
 
+    function follows(address _follower, address _following)
+    constant
+    returns (bool)
+    {
+        return followingRecords[_follower].following[_following];
+    }
+
 }
