@@ -7,6 +7,7 @@ import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
 import './Essence.sol';
 import '../ProfileResolver.sol';
 
+
 contract AETH is MintableToken, PausableToken {
     string public name = "AKASHA Token";
 
@@ -24,7 +25,7 @@ contract AETH is MintableToken, PausableToken {
 
     event Transition(address owner, AethState state, uint256 value);
 
-//    event Donate(address indexed from, address indexed to, uint256 aeth, uint256 eth, string extraData);
+    event Donate(address indexed from, address indexed to, uint256 aeth, uint256 eth, string extraData);
 
     struct CyclingState {
     uint256 amount;
@@ -52,11 +53,11 @@ contract AETH is MintableToken, PausableToken {
         essence = _essence;
     }
 
-//    function setResolver(ProfileResolver _resolver)
-//    onlyOwner
-//    {
-//        resolver = _resolver;
-//    }
+    function setResolver(ProfileResolver _resolver)
+    onlyOwner
+    {
+        resolver = _resolver;
+    }
 
     function setLockTime(uint256 _time)
     onlyOwner
@@ -150,7 +151,7 @@ contract AETH is MintableToken, PausableToken {
             }
         }
 
-        return(total, available);
+        return (total, available);
     }
 
     function getCyclingState(address _holder, uint8 _fromIndex)
@@ -193,25 +194,25 @@ contract AETH is MintableToken, PausableToken {
         _cycling = tokenRecords[_holder][uint8(AethState.Cycling)];
     }
 
-//    function donate(address _to, uint256 _aethAmount, string _extraData)
-//    payable
-//    returns (bool)
-//    {
-//        require(_aethAmount > 0 || msg.value > 0);
-//        bytes32 resolved = resolver.reverse(_to);
-//        if (resolved != bytes32(0x0)) {
-//            // explicit opt for receiving donations
-//            require(resolver.donationsEnabled(resolved));
-//        }
-//        if (_aethAmount > 0) {
-//            balances[msg.sender] = balances[msg.sender].sub(_aethAmount);
-//            balances[_to] = balances[_to].add(_aethAmount);
-//        }
-//
-//        if (msg.value > 0) {
-//            require(_to.send(msg.value));
-//        }
-//        Donate(msg.sender, _to, _aethAmount, msg.value, _extraData);
-//    }
+        function donate(address _to, uint256 _aethAmount, string _extraData)
+        payable
+        returns (bool)
+        {
+            require(_aethAmount > 0 || msg.value > 0);
+            bytes32 resolved = resolver.reverse(_to);
+            if (resolved != bytes32(0x0)) {
+                // explicit opt for receiving donations
+                require(resolver.donationsEnabled(resolved));
+            }
+            if (_aethAmount > 0) {
+                balances[msg.sender] = balances[msg.sender].sub(_aethAmount);
+                balances[_to] = balances[_to].add(_aethAmount);
+            }
+
+            if (msg.value > 0) {
+                require(_to.send(msg.value));
+            }
+            Donate(msg.sender, _to, _aethAmount, msg.value, _extraData);
+        }
 
 }
