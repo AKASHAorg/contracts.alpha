@@ -26,7 +26,9 @@ contract Entries is HasNoEther, HasNoTokens {
 
     uint256 public voting_period = 2 weeks;
 
-    event Publish(address indexed author, bytes32[] indexed tagsPublished, bytes32 indexed entryId);
+    enum EntryType { Article, Link, Media, Other }
+
+    event Publish(address indexed author, bytes32[] indexed tagsPublished, EntryType indexed entryType, bytes32 entryId);
 
     event Update(address indexed author, bytes32 indexed entryId);
 
@@ -104,7 +106,9 @@ contract Entries is HasNoEther, HasNoTokens {
         return required_essence.sub(discount);
     }
 
-    function publish(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
+    function publish(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags, EntryType _type)
+    internal
+    returns(bool)
     {
         require(_tags.length < 11 && _tags.length > 0);
         require(essence.spendEssence(msg.sender, calcPublishCost(msg.sender), 0x656e7472793a7075626c697368));
@@ -121,7 +125,28 @@ contract Entries is HasNoEther, HasNoTokens {
         require(IpfsHash.create(entryIndex[msg.sender].records[entryId], _hash, _fn, _digestSize));
         require(votes.registerResource(entryId, endPeriod));
         entryIndex[msg.sender].total = entryIndex[msg.sender].total.add(1);
-        Publish(msg.sender, _tags, entryId);
+        Publish(msg.sender, _tags, _type, entryId);
+        return true;
+    }
+
+    function publishArticle(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
+    {
+        require(publish(_hash, _fn, _digestSize, _tags, EntryType.Article));
+    }
+
+    function publishLink(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
+    {
+        require(publish(_hash, _fn, _digestSize, _tags, EntryType.Link));
+    }
+
+    function publishMedia(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
+    {
+        require(publish(_hash, _fn, _digestSize, _tags, EntryType.Media));
+    }
+
+    function publishOther(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
+    {
+        require(publish(_hash, _fn, _digestSize, _tags, EntryType.Other));
     }
 
     function edit(bytes32 _entryId, bytes32 _hash, uint8 _fn, uint8 _digestSize)
@@ -151,6 +176,7 @@ contract Entries is HasNoEther, HasNoTokens {
     {
         return entryIndex[_publisher].records[_entryId].fn != 0;
     }
+
 
     function claim(bytes32 _entryId)
     returns (bool)
