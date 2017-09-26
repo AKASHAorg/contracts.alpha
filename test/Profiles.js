@@ -31,9 +31,12 @@ contract('ProfileRegistrar', function ([owner, wallet]) {
       const reversed = await resolver.reverse(owner);
       const resolverAddress = await ens.resolver(userName);
 
+      const fetched = await resolver.resolve(userName);
+
+      fetched[0].should.equal('0x7465737475736572000000000000000000000000000000000000000000000000'); // testuser
       resolverAddress.should.equal(ProfileResolver.address);
       resolved.should.equal(owner);
-      userName.should.equal(reversed);
+      reversed.should.equal(userName);
 
       const event = logs.find(e => e.event === 'Register');
       should.exist(event)

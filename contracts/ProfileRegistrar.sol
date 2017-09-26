@@ -10,7 +10,7 @@ import 'ens/contracts/FIFSRegistrar.sol';
 // also has Registrar functionality
 contract ProfileRegistrar is AkashaModule {
 
-    ENS ens;
+    ENS public ens;
 
     ProfileResolver resolver;
 
@@ -67,7 +67,7 @@ contract ProfileRegistrar is AkashaModule {
         ens.setResolver(hash(_subNode), resolver);
 
         ens.setSubnodeOwner(rootNode, _subNode, msg.sender);
-        resolver.registerHash(hash(_subNode), msg.sender, _enableDonations, _hash, _fn, _digestSize);
+        resolver.registerHash(_subNode, hash(_subNode), msg.sender, _enableDonations, _hash, _fn, _digestSize);
         Register(_subNode, version);
         return true;
     }

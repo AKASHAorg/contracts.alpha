@@ -27,15 +27,15 @@ contract AethSale is OngoingSale {
     RefundVault public vault;
 
     function AethSale(
-    uint256 _startBlock,
-    uint256 _endBlock,
+    uint256 _startTime,
+    uint256 _endTime,
     uint256 _rate,
     address _wallet,
     uint256 _cap,
     uint256 _goal,
     uint256 _endBlockAfterGoal
     )
-    OngoingSale(_startBlock, _endBlock, _rate, _wallet, _cap)
+    OngoingSale(_startTime, _endTime, _rate, _wallet, _cap)
     {
         vault = new RefundVault(wallet);
         goal = _goal;

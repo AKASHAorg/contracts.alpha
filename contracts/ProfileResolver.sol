@@ -17,6 +17,7 @@ contract ProfileResolver is Bundled {
     struct Profile {
     IpfsHash.Multihash contentHash;
     address addr;
+    bytes32 akashaId;
     bool donations;
     }
 
@@ -56,21 +57,21 @@ contract ProfileResolver is Bundled {
     }
 
     // register an ipfs hash
-    function registerHash(bytes32 _node, address _owner, bool _status, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    function registerHash(bytes32 _akashaId, bytes32 _nodeHash, address _owner, bool _status, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     onlyModule
     returns (uint)
     {
-        assert(profileList[_node].addr == 0);
-        require(createHash(_node, _owner, _hash, _fn, _digestSize));
-        require(enableDonations(_node, _status));
+        assert(profileList[_nodeHash].addr == 0);
+        require(createHash(_nodeHash, _akashaId, _owner, _hash, _fn, _digestSize));
+        require(enableDonations(_nodeHash, _status));
         return totalProfiles++;
     }
 
-    function setHash(bytes32 _node, bytes32 _hash, uint8 _fn, uint8 _digestSize)
-    only_owner(_node)
+    function setHash(bytes32 _nodeHash, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    only_owner(_nodeHash)
     returns (bool)
     {
-        require(createHash(_node, msg.sender, _hash, _fn, _digestSize));
+        require(IpfsHash.create(profileList[_nodeHash].contentHash, _hash, _fn, _digestSize));
         return true;
     }
 
@@ -90,12 +91,13 @@ contract ProfileResolver is Bundled {
         return true;
     }
 
-    function createHash(bytes32 _node, address _owner, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    function createHash(bytes32 _node, bytes32 _akashaId, address _owner, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     internal
     returns (bool)
     {
         require(IpfsHash.create(profileList[_node].contentHash, _hash, _fn, _digestSize));
         profileList[_node].addr = _owner;
+        profileList[_node].akashaId = _akashaId;
         reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(_owner))] = _node;
         return true;
     }
@@ -128,8 +130,9 @@ contract ProfileResolver is Bundled {
 
     function resolve(bytes32 _node)
     constant
-    returns (address _addr, bool _donationsEnabled, uint8 _fn, uint8 _digestSize, bytes32 _hash)
+    returns (bytes32 _akashaId, address _addr, bool _donationsEnabled, uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
+        _akashaId = profileList[_node].akashaId;
         _addr = addr(_node);
         (_fn, _digestSize, _hash) = hash(_node);
         _donationsEnabled = profileList[_node].donations;
@@ -137,7 +140,7 @@ contract ProfileResolver is Bundled {
 
     function donationsEnabled(bytes32 _node)
     constant
-    returns(bool)
+    returns (bool)
     {
         return profileList[_node].donations;
     }
@@ -188,7 +191,7 @@ contract ProfileResolver is Bundled {
         mstore8(i, byte(and(addr, 0xf), lookup))
         addr := div(addr, 0x10)
         jumpi(loop, i)
-    ret := sha3(0, 40)
+        ret := sha3(0, 40)
+        }
     }
-}
 }

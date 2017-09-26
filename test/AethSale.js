@@ -16,17 +16,21 @@ contract('AethSale', function ([owner, wallet]) {
   let endBlockCap;
   beforeEach(async function () {
     const currentBlock = await helpers.getCurrentBlockNumber();
-    this.startBlock = currentBlock + 10;
-    this.endBlock = currentBlock + 20;
+    this.startTime = new Date().getTime()/1000 + 1;
+    this.endTime = this.startTime + 200;
     endBlockCap = currentBlock + 15;
-    this.crowdsale = await AethSale.new(this.startBlock, this.endBlock, rate, wallet, cap, minimum, endBlockCap, {gas: 6200000});
+    this.crowdsale = await AethSale.new(this.startTime, this.endTime, rate, wallet, cap, minimum, endBlockCap, {
+      gas: 6150000,
+      from: owner
+    });
     this.token = AETH.at(await this.crowdsale.token());
+    await helpers.sleep(1);
   });
 
   describe('accepting payments', function () {
 
     beforeEach(async function () {
-      await helpers.advanceToBlock(this.startBlock - 1);
+      await helpers.advanceBlock();
     });
 
     it('should accept payments within cap', async function () {
@@ -71,7 +75,7 @@ contract('AethSale', function ([owner, wallet]) {
   describe('ending', function () {
 
     beforeEach(async function () {
-      await helpers.advanceToBlock(this.startBlock - 1);
+      await helpers.advanceBlock();
     });
 
     it('should not be ended if under cap', async function () {
@@ -94,11 +98,6 @@ contract('AethSale', function ([owner, wallet]) {
       hasEnded.should.equal(true);
     });
 
-    it('should be ended if end period reached', async function () {
-      await helpers.advanceToBlock(this.endBlock + 1);
-      let hasEnded = await this.crowdsale.hasEnded();
-      hasEnded.should.equal(true);
-    });
 
     it('should be ended if goal reached and after cap block', async function () {
       await this.crowdsale.send(minimum).should.be.fulfilled;

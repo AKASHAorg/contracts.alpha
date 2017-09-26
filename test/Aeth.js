@@ -17,15 +17,15 @@ contract('AETH', function ([_, holder1, holder2, holder3]) {
   let endBlockCap;
   before(async function () {
     const currentBlock = await helpers.getCurrentBlockNumber();
-    this.startBlock = currentBlock + 10;
-    this.endBlock = currentBlock + 20;
+    this.startTime = new Date().getTime()/1000 + 1;
+    this.endTime = this.startTime + 200;
     endBlockCap = currentBlock + 15;
-    this.crowdsale = await AethSale.new(this.startBlock, this.endBlock, rate, _, cap, minimum, endBlockCap, {
-      gas: 6200000,
+    this.crowdsale = await AethSale.new(this.startTime, this.endTime, rate, holder3, cap, minimum, endBlockCap, {
+      gas: 6150000,
       from: _
     });
     this.token = AETH.at(await this.crowdsale.token());
-    await helpers.advanceToBlock(this.startBlock);
+    await helpers.sleep(1);
   });
 
   describe('accepting payments', function () {
