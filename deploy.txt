@@ -1,0 +1,90 @@
+const Web3 = require('web3');
+const init = require('./index');
+const contract = require("truffle-contract");
+const AethSale = require("./build/contracts/AethSale.json");
+const AETHabi = require("./build/contracts/AETH.json");
+const web3 = new Web3();
+
+const provider = new Web3.providers.HttpProvider("http://localhost:8545");
+const Sale = contract(AethSale);
+const AETH = contract(AETHabi);
+AETH.setProvider(provider);
+Sale.setProvider(provider);
+
+const deploySale = async function () {
+
+  const rate = new web3.BigNumber(1000);
+  const cap = web3.toWei(10, 'ether');
+  const minimum = web3.toWei(1, 'ether');
+
+  this.startTime = new Date().getTime() / 1000 + 120;
+  this.endTime = this.startTime + 20000;
+  this.endBlockCap = 1000000;
+  this.crowdsale = await Sale.new(this.startTime, this.endTime, rate, '0x551df15db6f9f834c6b5795183190582452cb10c', cap, minimum, this.endBlockCap, {
+    from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+    gas: 6110000
+  });
+  this.token = AETH.at(await this.crowdsale.token());
+  console.log(this.token);
+};
+
+const buy = async function () {
+  const transaction = await Sale.at('0x52A5972B6CbD8a7a312f630188CDf8339C3429A7')
+    .sendTransaction(
+      {
+        from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+        gas: 200000,
+        value: web3.toWei(10, 'ether')
+      });
+  console.log(transaction);
+};
+
+const finishSale = async function () {
+  const transaction = await Sale.at('0x52A5972B6CbD8a7a312f630188CDf8339C3429A7').finalize({
+    from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+    gas: 200000
+  });
+
+  console.log(transaction);
+};
+
+const finalize = async function () {
+  const contracts = await init(provider);
+  await contracts.AETH.setEssence(contracts.Essence.address,
+    {
+      from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+      gas: 200000
+    });
+
+  await contracts.AETH.setResolver(contracts.ProfileResolver.address,
+    {
+      from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+      gas: 200000
+    });
+
+  await contracts.Essence.setAeth(contracts.AETH.address, {
+    from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+    gas: 200000
+  });
+};
+
+const createTags = async function () {
+  const contracts = await init(provider);
+  const initialTags = ['ethereum', 'akasha', 'testing', 'ipfs', 'story', 'development', 'bugs', 'announcements', 'tutorials', 'bitcoin', 'crypto', 'trading', 'news'];
+  for (let i = 0; i < initialTags.length; i++) {
+    await contracts.Tags.adminAdd(initialTags[i], {
+      from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+      gas: 200000
+    })
+  }
+  console.log('done');
+};
+
+const bondAeth = async function () {
+  const contracts = await init(provider);
+    await contracts.AETH.bondAeth(web3.toWei(1, 'ether'), {
+      from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+      gas: 200000
+    })
+};
+//bondAeth();

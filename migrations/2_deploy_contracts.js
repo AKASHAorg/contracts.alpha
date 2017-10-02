@@ -75,6 +75,7 @@ const deployAkasha = async function (deployer) {
 
   await Essence.at(Essence.address).addToWhiteList(Entries.address);
   await Essence.at(Essence.address).addToWhiteList(Comments.address);
+  await Essence.at(Essence.address).addToWhiteList(Tags.address);
   await Essence.at(Essence.address).addToWhiteList(Votes.address);
 
   await Votes.at(Votes.address).whiteList(Entries.address, true);

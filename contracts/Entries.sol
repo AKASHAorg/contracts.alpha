@@ -20,7 +20,7 @@ contract Entries is HasNoEther, HasNoTokens {
     Votes votes;
 
 
-    uint256 public required_essence = 100;
+    uint256 public required_essence = 100; // *10^18
 
     uint256 public discount_every = 10000;
 
@@ -99,7 +99,7 @@ contract Entries is HasNoEther, HasNoTokens {
     {
 
         uint256 karma = essence.getCollectedEssence(_author);
-        uint256 discount = karma.div(discount_every);
+        uint256 discount = (karma > 0) ? karma.div(discount_every) : 0;
         if (discount >= required_essence) {
             return 1;
         }
