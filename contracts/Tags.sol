@@ -201,6 +201,12 @@ contract Tags is HasNoEther, HasNoTokens {
         return tags[_tag].created;
     }
 
+    function totalEntries(bytes32 _tag)
+    constant returns(uint _total)
+    {
+        _total = tags[_tag].totalEntries;
+    }
+
     //[a-z0-9---.]
     function check_format(bytes32 id)
     constant returns (bool)

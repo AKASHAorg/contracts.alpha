@@ -26,7 +26,7 @@ contract Votes is HasNoEther, HasNoTokens {
     uint8 public MAX_WEIGHT = 10; // (MIN_WEIGHT, MAX_WEIGHT) interval
     uint8 public VOTE_KARMA = 1;
 
-    mapping(address => bool) whitelist;
+    mapping (address => bool) whitelist;
 
     enum Target {Entry, Comment, List}
     event Vote(uint8 indexed voteType, bytes32 indexed target, address indexed voter, uint8 weight, bool negative);
@@ -283,6 +283,13 @@ contract Votes is HasNoEther, HasNoTokens {
     {
         _karma = records[_id].karma[_voter].amount;
         _claimed = records[_id].karma[_voter].claimed;
+    }
+
+    function getEssenceCost(uint _weight)
+    constant
+    returns (uint)
+    {
+        return required_essence.mul(_weight);
     }
 
 }

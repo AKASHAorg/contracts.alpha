@@ -160,4 +160,10 @@ contract Comments is HasNoEther, HasNoTokens {
         _deleted = commentList[_entryId].comment[_commentId].deleted;
     }
 
+    function totalComments(bytes32 _entryId)
+    constant
+    returns(uint256 _total)
+    {
+        _total = commentList[_entryId].nextId;
+    }
 }
