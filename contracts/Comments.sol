@@ -25,6 +25,8 @@ contract Comments is HasNoEther, HasNoTokens {
 
     uint256 public voting_period = 1 years; // blocks
 
+    mapping (address => uint) totalAddressComments;
+
     event Publish(address indexed author, bytes32 indexed entryId, bytes32 indexed parent, bytes32 id);
 
     event Update(address indexed author, bytes32 indexed entryId, bytes32 indexed id);
@@ -94,7 +96,9 @@ contract Comments is HasNoEther, HasNoTokens {
     {
         require(entries.exists(_entryAuthor, _entryId));
         require(essence.spendEssence(msg.sender, calcPublishCost(msg.sender), 0x636f6d6d656e743a7075626c697368));
-
+        if (_parent!=bytes32(0x0)) {
+            assert(commentList[_entryId].comment[_parent].date > 0);
+        }
         bytes32 commentId = sha3(_entryId, commentList[_entryId].nextId);
         uint256 endPeriod = voting_period.add(now);
         require(IpfsHash.create(commentList[_entryId].comment[commentId].hash, _hash, _fn, _digestSize));
@@ -102,8 +106,9 @@ contract Comments is HasNoEther, HasNoTokens {
         commentList[_entryId].comment[commentId].parent = _parent;
         commentList[_entryId].comment[commentId].date = now;
         require(votes.registerResource(commentId, endPeriod));
-        Publish(msg.sender, _entryId, _parent, commentId);
         commentList[_entryId].nextId++;
+        totalAddressComments[msg.sender]++;
+        Publish(msg.sender, _entryId, _parent, commentId);
         return true;
     }
 
@@ -162,8 +167,15 @@ contract Comments is HasNoEther, HasNoTokens {
 
     function totalComments(bytes32 _entryId)
     constant
-    returns(uint256 _total)
+    returns (uint256 _total)
     {
         _total = commentList[_entryId].nextId;
+    }
+
+    function totalCommentsOf(address _publisher)
+    constant
+    returns (uint)
+    {
+        return totalAddressComments[_publisher];
     }
 }

@@ -27,7 +27,7 @@ contract Votes is HasNoEther, HasNoTokens {
     uint8 public VOTE_KARMA = 1;
 
     mapping (address => bool) whitelist;
-
+    mapping (address => uint) totalVotes;
     enum Target {Entry, Comment, List}
     event Vote(uint8 indexed voteType, bytes32 indexed target, address indexed voter, uint8 weight, bool negative);
 
@@ -199,6 +199,7 @@ contract Votes is HasNoEther, HasNoTokens {
             records[_source].score += int(_weight);
             records[_source].votes[_voter] = int8(_weight);
         }
+        totalVotes[_voter]++;
         records[_source].totalVotes++;
         return true;
     }
@@ -290,6 +291,13 @@ contract Votes is HasNoEther, HasNoTokens {
     returns (uint)
     {
         return required_essence.mul(_weight);
+    }
+
+    function totalVotesOf(address _voter)
+    constant
+    returns (uint)
+    {
+        return totalVotes[_voter];
     }
 
 }

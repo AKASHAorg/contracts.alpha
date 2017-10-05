@@ -157,12 +157,13 @@ contract AETH is MintableToken, PausableToken {
     function getCyclingState(address _holder, uint8 _fromIndex)
     public
     constant
-    returns (uint256 _amount, uint256 _unlockDate)
+    returns (uint256 _amount, uint256 _unlockDate, uint8 _index)
     {
         for (uint8 i = _fromIndex; i < 32; i++) {
             if (cycles[_holder].states[i].amount > 0) {
                 _amount = cycles[_holder].states[i].amount;
                 _unlockDate = cycles[_holder].states[i].unlockDate;
+                _index = i;
                 break;
             }
         }
