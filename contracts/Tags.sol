@@ -21,7 +21,7 @@ contract Tags is HasNoEther, HasNoTokens {
 
     uint256 public total = 0;
 
-    uint256 public minCollected = 1000;
+    uint256 public minCollected = 10^21;
 
     struct TagList {
     IpfsHash.Multihash hash;
@@ -100,7 +100,9 @@ contract Tags is HasNoEther, HasNoTokens {
 
     function add(bytes32 _tag)
     {
-        require(essence.getCollectedEssence(msg.sender) >= minCollected);
+        uint256 karma;
+        (karma, ) = essence.getCollected(msg.sender);
+        require(karma >= minCollected);
         require(createTag(_tag));
     }
 
@@ -108,7 +110,9 @@ contract Tags is HasNoEther, HasNoTokens {
     only_entry
     returns (bool)
     {
-        require(essence.getCollectedEssence(_creator) >= minCollected);
+        uint256 karma;
+        (karma, ) = essence.getCollected(_creator);
+        require(karma >= minCollected);
         require(createTag(_tag));
         return true;
     }
@@ -123,7 +127,9 @@ contract Tags is HasNoEther, HasNoTokens {
     constant
     returns (bool)
     {
-        return (essence.getCollectedEssence(_creator) >= minCollected);
+        uint256 karma;
+        (karma, ) = essence.getCollected(_creator);
+        return (karma >= minCollected);
     }
 
     function createTag(bytes32 _tag)
@@ -140,7 +146,7 @@ contract Tags is HasNoEther, HasNoTokens {
 
     function create_list(bytes32 _name, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     {
-        require(essence.getCollectedEssence(msg.sender) >= minCollected);
+        require(canCreate(msg.sender));
         var listHash = sha3(msg.sender, _name);
         require(lists[listHash].creator == address(0x0));
         require(IpfsHash.create(lists[listHash].hash, _hash, _fn, _digestSize));

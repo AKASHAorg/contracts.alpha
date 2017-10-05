@@ -20,9 +20,9 @@ contract Entries is HasNoEther, HasNoTokens {
     Votes votes;
 
 
-    uint256 public required_essence = 100; // *10^18
+    uint256 public required_essence = 10^19;
 
-    uint256 public discount_every = 10000;
+    uint256 public discount_every = 10^22;
 
     uint256 public voting_period = 2 weeks;
 
@@ -97,9 +97,9 @@ contract Entries is HasNoEther, HasNoTokens {
     internal
     returns (uint _amount)
     {
-
-        uint256 karma = essence.getCollectedEssence(_author);
-        uint256 discount = (karma > 0) ? karma.div(discount_every) : 0;
+        uint256 essenceAmount;
+        (, essenceAmount) = essence.getCollected(_author);
+        uint256 discount = essenceAmount.div(discount_every);
         if (discount >= required_essence) {
             return 1;
         }
@@ -111,7 +111,7 @@ contract Entries is HasNoEther, HasNoTokens {
     returns(bool)
     {
         require(_tags.length < 11 && _tags.length > 0);
-        require(essence.spendEssence(msg.sender, calcPublishCost(msg.sender), 0x656e7472793a7075626c697368));
+        require(essence.spendMana(msg.sender, calcPublishCost(msg.sender), 0x656e7472793a7075626c697368));
 
         for (uint8 i = 0; i < _tags.length; i++)
         {

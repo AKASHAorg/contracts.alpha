@@ -19,9 +19,9 @@ contract Comments is HasNoEther, HasNoTokens {
 
     Votes votes;
 
-    uint256 public required_essence = 20;
+    uint256 public required_essence = 2*10^18;
 
-    uint256 public discount_every = 20000;
+    uint256 public discount_every = 2*10^21;
 
     uint256 public voting_period = 1 years; // blocks
 
@@ -82,9 +82,9 @@ contract Comments is HasNoEther, HasNoTokens {
     internal
     returns (uint _amount)
     {
-
-        uint256 karma = essence.getCollectedEssence(_author);
-        uint256 discount = karma.div(discount_every);
+        uint256 essenceAmount;
+        (, essenceAmount) = essence.getCollected(_author);
+        uint256 discount = essenceAmount.div(discount_every);
         if (discount >= required_essence) {
             return 1;
         }
@@ -95,7 +95,7 @@ contract Comments is HasNoEther, HasNoTokens {
     returns (bool)
     {
         require(entries.exists(_entryAuthor, _entryId));
-        require(essence.spendEssence(msg.sender, calcPublishCost(msg.sender), 0x636f6d6d656e743a7075626c697368));
+        require(essence.spendMana(msg.sender, calcPublishCost(msg.sender), 0x636f6d6d656e743a7075626c697368));
         if (_parent!=bytes32(0x0)) {
             assert(commentList[_entryId].comment[_parent].date > 0);
         }

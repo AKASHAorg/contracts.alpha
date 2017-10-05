@@ -21,7 +21,7 @@ contract Votes is HasNoEther, HasNoTokens {
 
     Comments comments;
 
-    uint256 public required_essence = 10;
+    uint256 public required_essence = 10^18;
 
     uint8 public MAX_WEIGHT = 10; // (MIN_WEIGHT, MAX_WEIGHT) interval
     uint8 public VOTE_KARMA = 1;
@@ -116,7 +116,7 @@ contract Votes is HasNoEther, HasNoTokens {
         require(entries.exists(_publisher, _source));
         require(msg.sender != _publisher);
         uint256 weight = uint256(_weight);
-        essence.spendEssence(msg.sender, required_essence.mul(weight), 0x656e7472793a766f7465);
+        essence.spendMana(msg.sender, required_essence.mul(weight), 0x656e7472793a766f7465);
         require(registerVote(_weight, _source, _negative, msg.sender, Target.Entry));
         if (!_negative && records[_source].endPeriod >= now) {
             uint256 karmaGenerated = calcKarmaFrom(_weight);
@@ -153,7 +153,7 @@ contract Votes is HasNoEther, HasNoTokens {
         require(msg.sender != comments.commentAuthor(_source, _commentId));
         require(comments.isDeleted(_source, _commentId));
 
-        essence.spendEssence(msg.sender, required_essence.mul(weight), 0x636f6d6d656e743a766f7465);
+        essence.spendMana(msg.sender, required_essence.mul(weight), 0x636f6d6d656e743a766f7465);
 
         require(registerVote(_weight, _commentId, _negative, msg.sender, Target.Comment));
 
@@ -171,7 +171,7 @@ contract Votes is HasNoEther, HasNoTokens {
         require(tags.list_exists(_source));
         require(tags.list_creator(_source) != msg.sender);
         uint256 weight = uint256(_weight);
-        essence.spendEssence(msg.sender, required_essence.mul(weight), 0x6c6973743a766f7465);
+        essence.spendMana(msg.sender, required_essence.mul(weight), 0x6c6973743a766f7465);
 
         require(registerVote(_weight, _source, _negative, msg.sender, Target.List));
 

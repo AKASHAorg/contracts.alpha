@@ -12,7 +12,8 @@ contract Essence is HasNoEther, HasNoTokens {
     // this is updated frequently by owner
     bytes32 currentHash;
 
-    uint256 public transformFactor = 1000;
+    uint256 public transformFactor = 10^3;
+    uint256 public minAmount = 10^21;
 
     AETH aeth;
 
@@ -20,10 +21,14 @@ contract Essence is HasNoEther, HasNoTokens {
     uint256 total;
     uint256 transformed;
     }
+    struct Collect {
+        uint256 karma;
+        uint256 essence;
+    }
 
     mapping (address => mapping (bytes32 => uint256)) balance;
 
-    mapping (address => uint256) collectedEssence; // some kind of reputation
+    mapping (address => Collect) collected;
 
     mapping (address => bool) whitelist;
 
@@ -31,7 +36,7 @@ contract Essence is HasNoEther, HasNoTokens {
 
     event RefreshEssence(bytes32 newHash, uint256 totalToMint);
 
-    event SpendEssence(address indexed spender, bytes32 indexed hash, uint256 amount, uint256 total, bytes32 scope);
+    event SpendMana(address indexed spender, bytes32 indexed hash, uint256 amount, uint256 total, bytes32 scope);
 
     event CollectEssence(address indexed receiver, uint256 amount, bytes32 action, bytes32 source);
 
@@ -54,6 +59,13 @@ contract Essence is HasNoEther, HasNoTokens {
     {
         aeth = _aeth;
         return true;
+    }
+
+    function setMinAmount(uint256 _min)
+    onlyOwner
+    returns (bool)
+    {
+        minAmount = _min;
     }
 
     function newHash(bytes32 _hash, uint256 _total)
@@ -90,7 +102,7 @@ contract Essence is HasNoEther, HasNoTokens {
         return true;
     }
 
-    function spendEssence(address _initiator, uint256 _amount, bytes32 _scope)
+    function spendMana(address _initiator, uint256 _amount, bytes32 _scope)
     external
     onlyWhitelisted
     returns (bool)
@@ -100,11 +112,12 @@ contract Essence is HasNoEther, HasNoTokens {
 
         assert(balance[_initiator][currentHash] <= totalBonded);
 
-        SpendEssence(_initiator, currentHash, _amount, balance[_initiator][currentHash], _scope);
+        SpendMana(_initiator, currentHash, _amount, balance[_initiator][currentHash], _scope);
         return true;
     }
 
-    function essence(address _spender)
+    function mana(address _spender)
+    constant
     returns (uint256 _total, uint256 _spent, uint256 _remaining)
     {
         _total = aeth.bonded(_spender);
@@ -117,19 +130,21 @@ contract Essence is HasNoEther, HasNoTokens {
     onlyWhitelisted
     returns (bool)
     {
-        collectedEssence[_receiver] = collectedEssence[_receiver].add(_amount);
+        uint256 obtainedEssence = _amount.div(10);
+        collected[_receiver].karma = collected[_receiver].karma.add(_amount);
+        collected[_receiver].essence = collected[_receiver].essence.add(obtainedEssence);
         CollectEssence(_receiver, _amount, _action, _source);
         return true;
     }
 
-    function transformKarma(uint256 _amount)
+    function transformEssence(uint256 _amount)
     returns (bool)
     {
-        require(_amount > 0);
-        require(collectedEssence[msg.sender] >= _amount);
+        require(_amount > minAmount);
+        require(collected[msg.sender].essence >= _amount);
         hashBalance[currentHash].transformed = hashBalance[currentHash].transformed.add(_amount);
         assert(hashBalance[currentHash].total >= hashBalance[currentHash].transformed);
-        collectedEssence[msg.sender] = collectedEssence[msg.sender].sub(_amount);
+        collected[msg.sender].essence = collected[msg.sender].essence.sub(_amount);
         assert(aeth.transformKarma(msg.sender, _amount.div(transformFactor)));
     }
 
@@ -140,12 +155,10 @@ contract Essence is HasNoEther, HasNoTokens {
         return _collected.div(transformFactor);
     }
 
-    function getCollectedEssence(address _collector)
+    function getCollected(address _collector)
     constant
-    returns (uint256)
+    returns (uint256 _karma, uint256 _essence)
     {
-        return collectedEssence[_collector];
+        return (collected[_collector].karma, collected[_collector].essence);
     }
-
-
 }
