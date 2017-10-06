@@ -69,6 +69,7 @@ contract AETH is MintableToken, PausableToken {
     function bondAeth(uint256 _amount)
     returns (bool)
     {
+        assert(balances[msg.sender] >= _amount);
         balances[msg.sender] = balances[msg.sender].sub(_amount);
         tokenRecords[msg.sender][uint8(AethState.Bonded)] = tokenRecords[msg.sender][uint8(AethState.Bonded)].add(_amount);
         Transition(msg.sender, AethState.Bonded, _amount);
@@ -131,6 +132,7 @@ contract AETH is MintableToken, PausableToken {
         totalSupply = totalSupply.add(_amount);
         balances[_to] = balances[_to].add(_amount);
         Mint(_to, _amount);
+        Transfer(0x0, _to, _amount);
         return true;
     }
 
@@ -195,25 +197,24 @@ contract AETH is MintableToken, PausableToken {
         _cycling = tokenRecords[_holder][uint8(AethState.Cycling)];
     }
 
-        function donate(address _to, uint256 _aethAmount, string _extraData)
-        payable
-        returns (bool)
-        {
-            require(_aethAmount > 0 || msg.value > 0);
-            bytes32 resolved = resolver.reverse(_to);
-            if (resolved != bytes32(0x0)) {
-                // explicit opt for receiving donations
-                require(resolver.donationsEnabled(resolved));
-            }
-            if (_aethAmount > 0) {
-                balances[msg.sender] = balances[msg.sender].sub(_aethAmount);
-                balances[_to] = balances[_to].add(_aethAmount);
-            }
-
-            if (msg.value > 0) {
-                require(_to.send(msg.value));
-            }
-            Donate(msg.sender, _to, _aethAmount, msg.value, _extraData);
+    function donate(address _to, uint256 _aethAmount, string _extraData)
+    payable
+    returns (bool)
+    {
+        require(_aethAmount > 0 || msg.value > 0);
+        bytes32 resolved = resolver.reverse(_to);
+        if (resolved != bytes32(0x0)) {
+            // explicit opt for receiving donations
+            require(resolver.donationsEnabled(resolved));
         }
+        if (_aethAmount > 0) {
+            require(transfer(_to, _aethAmount));
+        }
+
+        if (msg.value > 0) {
+            require(_to.send(msg.value));
+        }
+        Donate(msg.sender, _to, _aethAmount, msg.value, _extraData);
+    }
 
 }

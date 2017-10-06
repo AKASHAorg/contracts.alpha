@@ -13,23 +13,23 @@ Sale.setProvider(provider);
 
 const deploySale = async function () {
 
-  const rate = new web3.BigNumber(1000);
+  const rate = new web3.BigNumber(10000);
   const cap = web3.toWei(10, 'ether');
   const minimum = web3.toWei(1, 'ether');
 
-  this.startTime = new Date().getTime() / 1000 + 120;
+  this.startTime = new Date().getTime() / 1000 + 320;
   this.endTime = this.startTime + 20000;
-  this.endBlockCap = 1000000;
+  this.endBlockCap = 1200000;
   this.crowdsale = await Sale.new(this.startTime, this.endTime, rate, '0x551df15db6f9f834c6b5795183190582452cb10c', cap, minimum, this.endBlockCap, {
     from: '0x551df15db6f9f834c6b5795183190582452cb10c',
-    gas: 6110000
+    gas: 6115909
   });
   this.token = AETH.at(await this.crowdsale.token());
   console.log(this.token);
 };
 
 const buy = async function () {
-  const transaction = await Sale.at('0x52A5972B6CbD8a7a312f630188CDf8339C3429A7')
+  const transaction = await Sale.at('0x462c519e91ec498823da90f0118485b75253379a')
     .sendTransaction(
       {
         from: '0x551df15db6f9f834c6b5795183190582452cb10c',
@@ -38,9 +38,8 @@ const buy = async function () {
       });
   console.log(transaction);
 };
-
 const finishSale = async function () {
-  const transaction = await Sale.at('0x52A5972B6CbD8a7a312f630188CDf8339C3429A7').finalize({
+  const transaction = await Sale.at('0x462c519e91ec498823da90f0118485b75253379a').finalize({
     from: '0x551df15db6f9f834c6b5795183190582452cb10c',
     gas: 200000
   });
@@ -82,9 +81,9 @@ const createTags = async function () {
 
 const bondAeth = async function () {
   const contracts = await init(provider);
-    await contracts.AETH.bondAeth(web3.toWei(1, 'ether'), {
-      from: '0x551df15db6f9f834c6b5795183190582452cb10c',
-      gas: 200000
-    })
+  await contracts.AETH.bondAeth(web3.toWei(3, 'ether'), {
+    from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+    gas: 200000
+  })
 };
-//bondAeth();
+//buy().then(() => finishSale()).then(() => finalize()).then(() => createTags()).then(() => bondAeth());
