@@ -12,8 +12,9 @@ contract Essence is HasNoEther, HasNoTokens {
     // this is updated frequently by owner
     bytes32 currentHash;
 
-    uint256 public transformFactor = 10^3;
-    uint256 public minAmount = 10^21;
+    uint256 public transformFactor = 10 ^ 3;
+
+    uint256 public minAmount = 10 ^ 21;
 
     AETH aeth;
 
@@ -21,9 +22,10 @@ contract Essence is HasNoEther, HasNoTokens {
     uint256 total;
     uint256 transformed;
     }
+
     struct Collect {
-        uint256 karma;
-        uint256 essence;
+    uint256 karma;
+    uint256 essence;
     }
 
     mapping (address => mapping (bytes32 => uint256)) balance;
@@ -34,11 +36,13 @@ contract Essence is HasNoEther, HasNoTokens {
 
     mapping (bytes32 => Pot) hashBalance;
 
-    event RefreshEssence(bytes32 newHash, uint256 totalToMint);
+    event RefreshMana(bytes32 newHash, uint256 totalToMint);
 
     event SpendMana(address indexed spender, bytes32 indexed hash, uint256 amount, uint256 total, bytes32 scope);
 
     event CollectEssence(address indexed receiver, uint256 amount, bytes32 action, bytes32 source);
+
+    event ConvertEssence(address indexed spender, uint256 amount);
 
     modifier onlyWhitelisted()
     {
@@ -74,7 +78,7 @@ contract Essence is HasNoEther, HasNoTokens {
     {
         currentHash = _hash;
         hashBalance[currentHash].total = _total;
-        RefreshEssence(currentHash, _total);
+        RefreshMana(currentHash, _total);
         return true;
     }
 
@@ -146,6 +150,7 @@ contract Essence is HasNoEther, HasNoTokens {
         assert(hashBalance[currentHash].total >= hashBalance[currentHash].transformed);
         collected[msg.sender].essence = collected[msg.sender].essence.sub(_amount);
         assert(aeth.transformKarma(msg.sender, _amount.div(transformFactor)));
+        ConvertEssence(msg.sender, _amount);
     }
 
     function aethValueFrom(uint256 _collected)

@@ -28,7 +28,9 @@ contract Entries is HasNoEther, HasNoTokens {
 
     enum EntryType { Article, Link, Media, Other }
 
-    event Publish(address indexed author, bytes32[] indexed tagsPublished, EntryType indexed entryType, bytes32 entryId);
+    event Publish(address indexed author, bytes32 entryId, EntryType indexed entryType);
+
+    event TagIndex(bytes32 indexed tagName, address indexed author, bytes32 entryId);
 
     event Update(address indexed author, bytes32 indexed entryId);
 
@@ -112,20 +114,21 @@ contract Entries is HasNoEther, HasNoTokens {
     {
         require(_tags.length < 11 && _tags.length > 0);
         require(essence.spendMana(msg.sender, calcPublishCost(msg.sender), 0x656e7472793a7075626c697368));
-
+        bytes32 entryId = sha3(msg.sender, entryIndex[msg.sender].total);
         for (uint8 i = 0; i < _tags.length; i++)
         {
             if (!tags.exists(_tags[i])) {
                 require(tags.addFromEntry(_tags[i], msg.sender));
             }
             tags.incrementTotalEntries(_tags[i]);
+            TagIndex(_tags[i], msg.sender, entryId);
         }
-        bytes32 entryId = sha3(msg.sender, entryIndex[msg.sender].total);
+
         uint256 endPeriod = voting_period.add(now);
         require(IpfsHash.create(entryIndex[msg.sender].records[entryId], _hash, _fn, _digestSize));
         require(votes.registerResource(entryId, endPeriod));
         entryIndex[msg.sender].total = entryIndex[msg.sender].total.add(1);
-        Publish(msg.sender, _tags, _type, entryId);
+        Publish(msg.sender, entryId, _type);
         return true;
     }
 

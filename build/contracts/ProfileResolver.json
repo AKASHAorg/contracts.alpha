@@ -471,12 +471,12 @@
         }
       },
       "links": {
-        "IpfsHash": "0x318d02f4d054d8f22d72689a6017e6c47cd7fd05"
+        "IpfsHash": "0xdcaacf6ed38967a1c48bcacfc64bc8115d286cf1"
       },
-      "address": "0xd131d1852338a06906106b567923a4589e3df67d",
-      "updated_at": 1507204504579
+      "address": "0x29f0e77e9c97faad5bba2e17f8dbf712846eeeeb",
+      "updated_at": 1507553754590
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1507299930226
+  "updated_at": 1507553754590
 }
