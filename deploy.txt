@@ -29,7 +29,7 @@ const deploySale = async function () {
 };
 // deploySale();
 const buy = async function () {
-  const transaction = await Sale.at('0xf42e810b936c660B9d232562ff8210F075583c4A')
+  const transaction = await Sale.at('0x54F1EaD1d40bA5Ab28f900002C4CD56a311e5983')
     .sendTransaction(
       {
         from: '0x551df15db6f9f834c6b5795183190582452cb10c',
@@ -39,7 +39,7 @@ const buy = async function () {
   console.log(transaction);
 };
 const finishSale = async function () {
-  const transaction = await Sale.at('0xf42e810b936c660B9d232562ff8210F075583c4A').finalize({
+  const transaction = await Sale.at('0x54F1EaD1d40bA5Ab28f900002C4CD56a311e5983').finalize({
     from: '0x551df15db6f9f834c6b5795183190582452cb10c',
     gas: 200000
   });

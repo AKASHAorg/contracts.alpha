@@ -28,9 +28,9 @@ contract Entries is HasNoEther, HasNoTokens {
 
     enum EntryType { Article, Link, Media, Other }
 
-    event Publish(address indexed author, bytes32 entryId, EntryType indexed entryType);
+    event Publish(address indexed author, bytes32 indexed entryId);
 
-    event TagIndex(bytes32 indexed tagName, address indexed author, bytes32 entryId);
+    event TagIndex(bytes32 indexed tagName, bytes32 indexed entryId, EntryType indexed entryType);
 
     event Update(address indexed author, bytes32 indexed entryId);
 
@@ -121,14 +121,14 @@ contract Entries is HasNoEther, HasNoTokens {
                 require(tags.addFromEntry(_tags[i], msg.sender));
             }
             tags.incrementTotalEntries(_tags[i]);
-            TagIndex(_tags[i], msg.sender, entryId);
+            TagIndex(_tags[i], entryId, _type);
         }
 
         uint256 endPeriod = voting_period.add(now);
         require(IpfsHash.create(entryIndex[msg.sender].records[entryId], _hash, _fn, _digestSize));
         require(votes.registerResource(entryId, endPeriod));
         entryIndex[msg.sender].total = entryIndex[msg.sender].total.add(1);
-        Publish(msg.sender, entryId, _type);
+        Publish(msg.sender, entryId);
         return true;
     }
 
