@@ -21,7 +21,7 @@ contract Tags is HasNoEther, HasNoTokens {
 
     uint256 public total = 0;
 
-    uint256 public minCollected = 10^21;
+    uint256 public minCollected = 10**21;
 
     struct TagList {
     IpfsHash.Multihash hash;

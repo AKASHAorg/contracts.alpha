@@ -19,9 +19,9 @@ contract Comments is HasNoEther, HasNoTokens {
 
     Votes votes;
 
-    uint256 public required_essence = 2*10^18;
+    uint256 public required_essence = 2*10**18;
 
-    uint256 public discount_every = 2*10^21;
+    uint256 public discount_every = 2*10**21;
 
     uint256 public voting_period = 1 years; // blocks
 

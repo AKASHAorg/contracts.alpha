@@ -21,13 +21,17 @@ contract Votes is HasNoEther, HasNoTokens {
 
     Comments comments;
 
-    uint256 public required_essence = 10^18;
+    uint256 public required_essence = 10**18;
 
     uint8 public MAX_WEIGHT = 10; // (MIN_WEIGHT, MAX_WEIGHT) interval
     uint8 public VOTE_KARMA = 1;
 
+    struct Counter {
+        uint256 weight;
+        uint256 count;
+    }
     mapping (address => bool) whitelist;
-    mapping (address => uint) totalVotes;
+    mapping (address => Counter) totalVotes;
     enum Target {Entry, Comment, List}
     event Vote(uint8 indexed voteType, bytes32 indexed target, address indexed voter, uint8 weight, bool negative);
 
@@ -199,7 +203,8 @@ contract Votes is HasNoEther, HasNoTokens {
             records[_source].score += int(_weight);
             records[_source].votes[_voter] = int8(_weight);
         }
-        totalVotes[_voter]++;
+        totalVotes[_voter].count++;
+        totalVotes[_voter].weight = totalVotes[_voter].weight.add(_weight);
         records[_source].totalVotes++;
         return true;
     }
@@ -295,9 +300,9 @@ contract Votes is HasNoEther, HasNoTokens {
 
     function totalVotesOf(address _voter)
     constant
-    returns (uint)
+    returns (uint weight, uint count)
     {
-        return totalVotes[_voter];
+        return (totalVotes[_voter].weight, totalVotes[_voter].count);
     }
 
 }

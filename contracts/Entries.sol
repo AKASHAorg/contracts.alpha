@@ -20,9 +20,9 @@ contract Entries is HasNoEther, HasNoTokens {
     Votes votes;
 
 
-    uint256 public required_essence = 10^19;
+    uint256 public required_essence = 10**19;
 
-    uint256 public discount_every = 10^22;
+    uint256 public discount_every = 10**22;
 
     uint256 public voting_period = 2 weeks;
 
