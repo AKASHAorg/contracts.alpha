@@ -72,6 +72,14 @@ contract Comments is HasNoEther, HasNoTokens {
         return true;
     }
 
+    function setRequiredEssence(uint256 _amount)
+    onlyOwner
+    returns (bool)
+    {
+        required_essence = _amount;
+        return true;
+    }
+
     function setEntries(Entries _entries)
     onlyOwner
     {

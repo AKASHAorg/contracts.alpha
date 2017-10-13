@@ -155,7 +155,7 @@ contract Votes is HasNoEther, HasNoTokens {
         uint256 weight = uint256(_weight);
         require(comments.exists(_source, _commentId));
         require(msg.sender != comments.commentAuthor(_source, _commentId));
-        require(comments.isDeleted(_source, _commentId));
+        require(!comments.isDeleted(_source, _commentId));
 
         essence.spendMana(msg.sender, required_essence.mul(weight), 0x636f6d6d656e743a766f7465);
 
@@ -194,6 +194,7 @@ contract Votes is HasNoEther, HasNoTokens {
         // require(records[_source].endPeriod <= now);
         require(_weight > 0);
         require(_weight <= MAX_WEIGHT);
+        require(records[_source].votes[_voter] == 0);
         records[_source].target = _target;
         if (_negative) {
             records[_source].score -= int(_weight);
