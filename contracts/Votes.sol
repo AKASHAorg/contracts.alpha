@@ -137,7 +137,7 @@ contract Votes is HasNoEther, HasNoTokens {
     {
         uint256 base = uint256(VOTE_KARMA);
         uint256 factor = uint256(_weight);
-        return base.mul(factor);
+        return base.mul(factor).mul(10**18);
         // divided by MAX_WEIGHT client side
     }
 
@@ -161,7 +161,7 @@ contract Votes is HasNoEther, HasNoTokens {
 
         require(registerVote(_weight, _commentId, _negative, msg.sender, Target.Comment));
 
-        if (!_negative && records[_source].endPeriod >= now) {
+        if (!_negative && (records[_source].endPeriod >= now)) {
             require(essence.collectFor(comments.commentAuthor(_source, _commentId), calcKarmaFrom(_weight), 0x636f6d6d656e743a766f7465, _commentId));
         }
 

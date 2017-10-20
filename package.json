@@ -21,7 +21,7 @@
     "truffle-expect": "0.0.3"
   },
   "scripts": {
-    "test": "truffle test",
+    "test": "truffle test ./test/Votes.js",
     "compile": "truffle compile",
     "migrate": "truffle migrate"
   },

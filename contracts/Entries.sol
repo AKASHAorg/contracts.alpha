@@ -114,7 +114,7 @@ contract Entries is HasNoEther, HasNoTokens {
     {
         require(_tags.length < 11 && _tags.length > 0);
         require(essence.spendMana(msg.sender, calcPublishCost(msg.sender), 0x656e7472793a7075626c697368));
-        bytes32 entryId = sha3(msg.sender, entryIndex[msg.sender].total);
+        bytes32 entryId = sha3(msg.sender, entryIndex[msg.sender].total, now);
         for (uint8 i = 0; i < _tags.length; i++)
         {
             if (!tags.exists(_tags[i])) {

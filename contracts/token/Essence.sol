@@ -149,7 +149,7 @@ contract Essence is HasNoEther, HasNoTokens {
         hashBalance[currentHash].transformed = hashBalance[currentHash].transformed.add(_amount);
         assert(hashBalance[currentHash].total >= hashBalance[currentHash].transformed);
         collected[msg.sender].essence = collected[msg.sender].essence.sub(_amount);
-        assert(aeth.transformKarma(msg.sender, _amount.div(transformFactor)));
+        assert(aeth.consumeEssence(msg.sender, _amount.div(transformFactor)));
         ConvertEssence(msg.sender, _amount);
     }
 

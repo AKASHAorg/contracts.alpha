@@ -107,7 +107,7 @@ contract Comments is HasNoEther, HasNoTokens {
         if (_parent!=bytes32(0x0)) {
             assert(commentList[_entryId].comment[_parent].date > 0);
         }
-        bytes32 commentId = sha3(_entryId, commentList[_entryId].nextId);
+        bytes32 commentId = sha3(_entryId, commentList[_entryId].nextId, msg.sender);
         uint256 endPeriod = voting_period.add(now);
         require(IpfsHash.create(commentList[_entryId].comment[commentId].hash, _hash, _fn, _digestSize));
         commentList[_entryId].comment[commentId].author = msg.sender;

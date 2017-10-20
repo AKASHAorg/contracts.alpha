@@ -72,6 +72,7 @@ contract AETH is MintableToken, PausableToken {
         assert(balances[msg.sender] >= _amount);
         balances[msg.sender] = balances[msg.sender].sub(_amount);
         tokenRecords[msg.sender][uint8(AethState.Bonded)] = tokenRecords[msg.sender][uint8(AethState.Bonded)].add(_amount);
+        Transfer(msg.sender, 0x0, _amount);
         Transition(msg.sender, AethState.Bonded, _amount);
         return true;
     }
@@ -124,7 +125,7 @@ contract AETH is MintableToken, PausableToken {
         return true;
     }
 
-    function transformKarma(address _to, uint256 _amount)
+    function consumeEssence(address _to, uint256 _amount)
     fromEssence
     external
     returns (bool)
