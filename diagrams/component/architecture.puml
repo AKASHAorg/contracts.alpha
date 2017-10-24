@@ -1,0 +1,14 @@
+@startuml
+
+node "Contracts" {
+[Entries]
+[Comments]
+[Votes]
+[Feed]
+[Resolver]..> ENS
+[Registrar]..> ENS: subdomains
+[AETH]..> ERC20
+[Essence]
+}
+
+@enduml

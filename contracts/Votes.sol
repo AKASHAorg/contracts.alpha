@@ -133,12 +133,12 @@ contract Votes is HasNoEther, HasNoTokens {
 
     function calcKarmaFrom(uint8 _weight)
     internal
-    returns (uint256)
+    returns (uint256 _total)
     {
         uint256 base = uint256(VOTE_KARMA);
         uint256 factor = uint256(_weight);
-        return base.mul(factor).mul(10**18);
-        // divided by MAX_WEIGHT client side
+        uint256 initial = base.mul(factor);
+        _total = initial.mul(required_essence);
     }
 
     function registerResource(bytes32 _id, uint256 _period)
@@ -161,7 +161,7 @@ contract Votes is HasNoEther, HasNoTokens {
 
         require(registerVote(_weight, _commentId, _negative, msg.sender, Target.Comment));
 
-        if (!_negative && (records[_source].endPeriod >= now)) {
+        if ((!_negative) && (records[_source].endPeriod >= now)) {
             require(essence.collectFor(comments.commentAuthor(_source, _commentId), calcKarmaFrom(_weight), 0x636f6d6d656e743a766f7465, _commentId));
         }
 
@@ -248,15 +248,15 @@ contract Votes is HasNoEther, HasNoTokens {
     constant
     returns (bool)
     {
-        if (records[_id].endPeriod < _timeStamp || records[_id].karma[_voter].claimed) {
+        if ((records[_id].endPeriod < _timeStamp) || records[_id].karma[_voter].claimed) {
             return false;
         }
 
-        if (records[_id].score < 0 && records[_id].votes[_voter] < 0) {
+        if (records[_id].score < 0 && (records[_id].votes[_voter] < 0)) {
             return true;
         }
 
-        if (records[_id].score > 0 && records[_id].votes[_voter] > 0) {
+        if (records[_id].score > 0 && (records[_id].votes[_voter] > 0)) {
             return true;
         }
         // voters cant claim if entry score = 0;

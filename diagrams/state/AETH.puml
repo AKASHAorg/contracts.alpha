@@ -1,0 +1,30 @@
+@startuml
+scale 860 width
+
+state Cycling {
+    [*] --> CyclingStates : Cycle
+    CyclingStates --> AETH : Free
+}
+
+state Bonded {
+  [*] --> Mana : Generates
+  State Mana {
+     Mana --> Mana : Regenerates
+     [*] --> Collected : Burn
+  }
+  State Collected {
+     [*] --> Essence : Collect
+     [*] --> Karma
+    State Essence {
+      [*] --> AETH : ConvertEssence
+    }
+  }
+
+  [*] --> Cycling : Cycle
+}
+
+State AETH {
+  [*] --> Bonded : Lock
+}
+
+@enduml

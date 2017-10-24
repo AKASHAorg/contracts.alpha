@@ -1,0 +1,14 @@
+@startuml
+scale 860 width
+actor Publisher
+create entity Entry
+Publisher -> Entry: posts
+actor Voter
+Voter -> Entry: votes
+create entity Essence
+Entry -> Essence: generates
+create control Collect
+Essence -> Collect
+Collect -> Publisher: all mana burned as essence
+Collect -> Voter: mana spent as essence
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+
+start
+
+if (resolve multiple ipfs resources?) then (1<n)
+  fork
+    :Fetch Resource 1;
+  fork again
+    :Fetch Resource 2;
+  fork again
+    :.....;
+  fork again
+    :Fetch Resource n;
+  end fork
+  note left
+    The response time is equal
+    with the slowest response
+  end note
+else (1)
+  :Fetch Ipfs resource;
+endif
+
+@enduml
+
