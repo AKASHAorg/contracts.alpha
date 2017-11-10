@@ -1,5 +1,5 @@
 {
-  "contract_name": "HasNoTokens",
+  "contractName": "HasNoTokens",
   "abi": [
     {
       "constant": false,
@@ -12,6 +12,7 @@
       "name": "reclaimToken",
       "outputs": [],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -25,6 +26,7 @@
         }
       ],
       "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -46,6 +48,7 @@
       "name": "tokenFallback",
       "outputs": [],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -59,6 +62,7 @@
       "name": "transferOwnership",
       "outputs": [],
       "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -79,8 +83,276 @@
       "type": "event"
     }
   ],
-  "unlinked_binary": "0x60606040525b60008054600160a060020a03191633600160a060020a03161790555b5b610302806100316000396000f300606060405263ffffffff60e060020a60003504166317ffc32081146100455780638da5cb5b14610066578063c0ee0b8a14610095578063f2fde38b146100c6575b600080fd5b341561005057600080fd5b610064600160a060020a03600435166100e7565b005b341561007157600080fd5b61007961019d565b604051600160a060020a03909116815260200160405180910390f35b34156100a057600080fd5b61006460048035600160a060020a0316906024803591604435918201910135610040565b005b34156100d157600080fd5b610064600160a060020a03600435166101b7565b005b6000805433600160a060020a0390811691161461010357600080fd5b81600160a060020a03166370a082313060006040516020015260405160e060020a63ffffffff8416028152600160a060020a039091166004820152602401602060405180830381600087803b151561015a57600080fd5b6102c65a03f1151561016b57600080fd5b50505060405180516000549092506101979150600160a060020a0384811691168363ffffffff61025016565b5b5b5050565b600054600160a060020a031681565b600080fd5b50505050565b60005433600160a060020a039081169116146101d257600080fd5b600160a060020a03811615156101e757600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b50565b82600160a060020a031663a9059cbb838360006040516020015260405160e060020a63ffffffff8516028152600160a060020a0390921660048301526024820152604401602060405180830381600087803b15156102ad57600080fd5b6102c65a03f115156102be57600080fd5b5050506040518051905015156102d057fe5b5b5050505600a165627a7a7230582026d1e741534a9c18a087a4b94131be7068f9ed552d75a672f40b493272e973b10029",
+  "bytecode": "0x6060604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555061056f806100536000396000f300606060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806317ffc320146100675780638da5cb5b146100a0578063c0ee0b8a146100f5578063f2fde38b1461014b575b600080fd5b341561007257600080fd5b61009e600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610184565b005b34156100ab57600080fd5b6100b36102f1565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561010057600080fd5b610149600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919080359060200190919080359060200190820180359060200191909192905050610316565b005b341561015657600080fd5b610182600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061031b565b005b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101e157600080fd5b8173ffffffffffffffffffffffffffffffffffffffff166370a08231306000604051602001526040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b151561028457600080fd5b6102c65a03f1151561029557600080fd5b5050506040518051905090506102ed6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16828473ffffffffffffffffffffffffffffffffffffffff166104709092919063ffffffff16565b5050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561037657600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156103b257600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b8273ffffffffffffffffffffffffffffffffffffffff1663a9059cbb83836000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b151561051b57600080fd5b6102c65a03f1151561052c57600080fd5b50505060405180519050151561053e57fe5b5050505600a165627a7a72305820ba402a9e9a76db2f98a6fbb338ce85bbca64749e53beea63760189b1ae0e25ba0029",
+  "deployedBytecode": "0x606060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806317ffc320146100675780638da5cb5b146100a0578063c0ee0b8a146100f5578063f2fde38b1461014b575b600080fd5b341561007257600080fd5b61009e600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610184565b005b34156100ab57600080fd5b6100b36102f1565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561010057600080fd5b610149600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919080359060200190919080359060200190820180359060200191909192905050610316565b005b341561015657600080fd5b610182600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190505061031b565b005b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101e157600080fd5b8173ffffffffffffffffffffffffffffffffffffffff166370a08231306000604051602001526040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b151561028457600080fd5b6102c65a03f1151561029557600080fd5b5050506040518051905090506102ed6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16828473ffffffffffffffffffffffffffffffffffffffff166104709092919063ffffffff16565b5050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561037657600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156103b257600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b8273ffffffffffffffffffffffffffffffffffffffff1663a9059cbb83836000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b151561051b57600080fd5b6102c65a03f1151561052c57600080fd5b50505060405180519050151561053e57fe5b5050505600a165627a7a72305820ba402a9e9a76db2f98a6fbb338ce85bbca64749e53beea63760189b1ae0e25ba0029",
+  "sourceMap": "350:382:30:-;;;502:10:31;494:5;;:18;;;;;;;;;;;;;;;;;;350:382:30;;;;;;",
+  "deployedSourceMap": "350:382:30:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;585:149:28;;;;;;;;;;;;;;;;;;;;;;;;;;;;238:20:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;634:95:30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;827:169:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;585:149:28;650:15;647:5:31;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;668:5:28;:15;;;684:4;668:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;650:39;;695:34;714:5;;;;;;;;;;;721:7;695:5;:18;;;;:34;;;;;:::i;:::-;585:149;;:::o;238:20:31:-;;;;;;;;;;;;;:::o;634:95:30:-;716:8;;;827:169:31;647:5;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;923:1;903:22;;:8;:22;;;;895:31;;;;;;;;960:8;932:37;;953:5;;;;;;;;;;;932:37;;;;;;;;;;;;983:8;975:5;;:16;;;;;;;;;;;;;;;;;;827:169;:::o;367:120:37:-;456:5;:14;;;471:2;475:5;456:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;449:33;;;;;;367:120;;;:::o",
+  "source": "pragma solidity ^0.4.11;\n\nimport \"./CanReclaimToken.sol\";\n\n/**\n * @title Contracts that should not own Tokens\n * @author Remco Bloemen <remco@2π.com>\n * @dev This blocks incoming ERC23 tokens to prevent accidental loss of tokens.\n * Should tokens (any ERC20Basic compatible) end up in the contract, it allows the\n * owner to reclaim the tokens.\n */\ncontract HasNoTokens is CanReclaimToken {\n\n /**\n  * @dev Reject all ERC23 compatible tokens\n  * @param from_ address The address that is transferring the tokens\n  * @param value_ uint256 the amount of the specified token\n  * @param data_ Bytes The data passed from the caller.\n  */\n  function tokenFallback(address from_, uint256 value_, bytes data_) external {\n    revert();\n  }\n\n}\n",
+  "sourcePath": "zeppelin-solidity/contracts/ownership/HasNoTokens.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "zeppelin-solidity/contracts/ownership/HasNoTokens.sol",
+      "exportedSymbols": {
+        "HasNoTokens": [
+          7216
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".11"
+          ]
+        },
+        "id": 7199,
+        "name": "PragmaDirective",
+        "src": "0:24:30"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 7163,
+          "absolutePath": "zeppelin-solidity/contracts/ownership/CanReclaimToken.sol",
+          "file": "./CanReclaimToken.sol",
+          "scope": 7217,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 7200,
+        "name": "ImportDirective",
+        "src": "26:31:30"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            7162,
+            7272
+          ],
+          "contractKind": "contract",
+          "documentation": "@title Contracts that should not own Tokens\n@author Remco Bloemen <remco@2π.com>\n@dev This blocks incoming ERC23 tokens to prevent accidental loss of tokens.\nShould tokens (any ERC20Basic compatible) end up in the contract, it allows the\nowner to reclaim the tokens.",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            7216,
+            7162,
+            7272
+          ],
+          "name": "HasNoTokens",
+          "scope": 7217
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": [
+                null
+              ]
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "CanReclaimToken",
+                  "referencedDeclaration": 7162,
+                  "type": "contract CanReclaimToken"
+                },
+                "id": 7201,
+                "name": "UserDefinedTypeName",
+                "src": "374:15:30"
+              }
+            ],
+            "id": 7202,
+            "name": "InheritanceSpecifier",
+            "src": "374:15:30"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "tokenFallback",
+              "payable": false,
+              "scope": 7216,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "from_",
+                      "scope": 7215,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 7203,
+                        "name": "ElementaryTypeName",
+                        "src": "657:7:30"
+                      }
+                    ],
+                    "id": 7204,
+                    "name": "VariableDeclaration",
+                    "src": "657:13:30"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "value_",
+                      "scope": 7215,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7205,
+                        "name": "ElementaryTypeName",
+                        "src": "672:7:30"
+                      }
+                    ],
+                    "id": 7206,
+                    "name": "VariableDeclaration",
+                    "src": "672:14:30"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "data_",
+                      "scope": 7215,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes calldata",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes storage pointer"
+                        },
+                        "id": 7207,
+                        "name": "ElementaryTypeName",
+                        "src": "688:5:30"
+                      }
+                    ],
+                    "id": 7208,
+                    "name": "VariableDeclaration",
+                    "src": "688:11:30"
+                  }
+                ],
+                "id": 7209,
+                "name": "ParameterList",
+                "src": "656:44:30"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7210,
+                "name": "ParameterList",
+                "src": "710:0:30"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "arguments": [
+                            null
+                          ],
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                null
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7923,
+                              "type": "function () pure",
+                              "value": "revert"
+                            },
+                            "id": 7211,
+                            "name": "Identifier",
+                            "src": "716:6:30"
+                          }
+                        ],
+                        "id": 7212,
+                        "name": "FunctionCall",
+                        "src": "716:8:30"
+                      }
+                    ],
+                    "id": 7213,
+                    "name": "ExpressionStatement",
+                    "src": "716:8:30"
+                  }
+                ],
+                "id": 7214,
+                "name": "Block",
+                "src": "710:19:30"
+              }
+            ],
+            "id": 7215,
+            "name": "FunctionDefinition",
+            "src": "634:95:30"
+          }
+        ],
+        "id": 7216,
+        "name": "ContractDefinition",
+        "src": "350:382:30"
+      }
+    ],
+    "id": 7217,
+    "name": "SourceUnit",
+    "src": "0:733:30"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
   "networks": {},
-  "schema_version": "0.0.5",
-  "updated_at": 1508869117729
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2017-11-10T14:25:03.582Z"
 }

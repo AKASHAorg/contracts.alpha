@@ -122,11 +122,14 @@ contract Votes is HasNoEther, HasNoTokens {
         uint256 weight = uint256(_weight);
         essence.spendMana(msg.sender, required_essence.mul(weight), 0x656e7472793a766f7465);
         require(registerVote(_weight, _source, _negative, msg.sender, Target.Entry));
-        if (!_negative && records[_source].endPeriod >= now) {
-            uint256 karmaGenerated = calcKarmaFrom(_weight);
-            records[_source].totalKarma = records[_source].totalKarma.add(karmaGenerated);
+        uint256 karmaGenerated = calcKarmaFrom(_weight);
+        if (records[_source].endPeriod >= now) {
+            if (!_negative) {
+                records[_source].totalKarma = records[_source].totalKarma.add(karmaGenerated);
+            }
             records[_source].karma[msg.sender].amount = karmaGenerated;
         }
+
         Vote(uint8(Target.Entry), _source, msg.sender, _weight, _negative);
         return true;
     }
