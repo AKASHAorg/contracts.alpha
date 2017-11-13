@@ -28,6 +28,7 @@ contract Feed is HasNoEther, HasNoTokens {
     }
 
     function follow(address _profile)
+    public
     returns (bool)
     {
         require(!followingRecords[msg.sender].following[_profile]);
@@ -41,6 +42,7 @@ contract Feed is HasNoEther, HasNoTokens {
     }
 
     function unFollow(address _profile)
+    public
     returns (bool)
     {
         require(followingRecords[msg.sender].following[_profile]);

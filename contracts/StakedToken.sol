@@ -29,11 +29,13 @@ contract StakedToken is HasNoEther {
     }
 
     function saveStake(bytes32 _resource, address _staker, uint256 _amount, uint _idToken)
+    public
     {
 
     }
 
     function registerToken(address _token)
+    public
     onlyOwner
     {
         tokens[totalTokens] = StandardToken(_token);

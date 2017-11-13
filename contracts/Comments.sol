@@ -53,18 +53,21 @@ contract Comments is HasNoEther, HasNoTokens {
     }
 
     function setEssence(Essence _essence)
+    public
     onlyOwner
     {
         essence = _essence;
     }
 
     function setVotes(Votes _votes)
+    public
     onlyOwner
     {
         votes = _votes;
     }
 
     function setVotingPeriod(uint256 _period)
+    public
     onlyOwner
     returns (bool)
     {
@@ -73,6 +76,7 @@ contract Comments is HasNoEther, HasNoTokens {
     }
 
     function setRequiredEssence(uint256 _amount)
+    public
     onlyOwner
     returns (bool)
     {
@@ -81,6 +85,7 @@ contract Comments is HasNoEther, HasNoTokens {
     }
 
     function setEntries(Entries _entries)
+    public
     onlyOwner
     {
         entries = _entries;
@@ -100,6 +105,7 @@ contract Comments is HasNoEther, HasNoTokens {
     }
 
     function publish(bytes32 _entryId, address _entryAuthor, bytes32 _parent, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    public
     returns (bool)
     {
         require(entries.exists(_entryAuthor, _entryId));
@@ -107,7 +113,7 @@ contract Comments is HasNoEther, HasNoTokens {
         if (_parent!=bytes32(0x0)) {
             assert(commentList[_entryId].comment[_parent].date > 0);
         }
-        bytes32 commentId = sha3(_entryId, commentList[_entryId].nextId, msg.sender);
+        bytes32 commentId = keccak256(_entryId, commentList[_entryId].nextId, msg.sender);
         uint256 endPeriod = voting_period.add(now);
         require(IpfsHash.create(commentList[_entryId].comment[commentId].hash, _hash, _fn, _digestSize));
         commentList[_entryId].comment[commentId].author = msg.sender;
@@ -121,6 +127,7 @@ contract Comments is HasNoEther, HasNoTokens {
     }
 
     function edit(bytes32 _entryId, address _entryAuthor, bytes32 _commentId, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    public
     returns (bool)
     {
         require(entries.exists(_entryAuthor, _entryId));
@@ -131,6 +138,7 @@ contract Comments is HasNoEther, HasNoTokens {
     }
 
     function deleteComment(bytes32 _entryId, address _entryAuthor, bytes32 _commentId)
+    public
     returns (bool)
     {
         require(entries.exists(_entryAuthor, _entryId));

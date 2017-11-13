@@ -48,18 +48,21 @@ contract AETH is MintableToken, PausableToken {
     }
 
     function setEssence(Essence _essence)
+    public
     onlyOwner
     {
         essence = _essence;
     }
 
     function setResolver(ProfileResolver _resolver)
+    public
     onlyOwner
     {
         resolver = _resolver;
     }
 
     function setLockTime(uint256 _time)
+    public
     onlyOwner
     {
         lockTime = _time;
@@ -67,6 +70,7 @@ contract AETH is MintableToken, PausableToken {
 
 
     function bondAeth(uint256 _amount)
+    public
     returns (bool)
     {
         assert(balances[msg.sender] >= _amount);
@@ -78,6 +82,7 @@ contract AETH is MintableToken, PausableToken {
     }
 
     function cycleAeth(uint256 _amount)
+    public
     returns (bool)
     {
         require(_amount > 0);
@@ -108,6 +113,7 @@ contract AETH is MintableToken, PausableToken {
     }
 
     function freeAeth()
+    public
     returns (bool)
     {
         uint256 currentAmount;
@@ -199,6 +205,7 @@ contract AETH is MintableToken, PausableToken {
     }
 
     function donate(address _to, uint256 _aethAmount, string _extraData)
+    public
     payable
     returns (bool)
     {

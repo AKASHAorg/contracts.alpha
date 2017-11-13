@@ -49,6 +49,7 @@ contract Entries is HasNoEther, HasNoTokens {
     }
 
     function setRequiredEssence(uint256 _amount)
+    public
     onlyOwner
     returns (bool)
     {
@@ -57,6 +58,7 @@ contract Entries is HasNoEther, HasNoTokens {
     }
 
     function setVotingPeriod(uint256 _period)
+    public
     onlyOwner
     returns (bool)
     {
@@ -65,6 +67,7 @@ contract Entries is HasNoEther, HasNoTokens {
     }
 
     function setDiscountEvery(uint256 _amount)
+    public
     onlyOwner
     returns (bool)
     {
@@ -72,6 +75,7 @@ contract Entries is HasNoEther, HasNoTokens {
     }
 
     function setTagsAddress(address _tags)
+    public
     onlyOwner
     returns (bool)
     {
@@ -80,6 +84,7 @@ contract Entries is HasNoEther, HasNoTokens {
     }
 
     function setEssenceAddress(address _essence)
+    public
     onlyOwner
     returns (bool)
     {
@@ -88,6 +93,7 @@ contract Entries is HasNoEther, HasNoTokens {
     }
 
     function setVotesAddress(address _votes)
+    public
     onlyOwner
     returns (bool)
     {
@@ -114,7 +120,7 @@ contract Entries is HasNoEther, HasNoTokens {
     {
         require(_tags.length < 11 && _tags.length > 0);
         require(essence.spendMana(msg.sender, calcPublishCost(msg.sender), 0x656e7472793a7075626c697368));
-        bytes32 entryId = sha3(msg.sender, entryIndex[msg.sender].total, now);
+        bytes32 entryId = keccak256(msg.sender, entryIndex[msg.sender].total, now);
         for (uint8 i = 0; i < _tags.length; i++)
         {
             if (!tags.exists(_tags[i])) {
@@ -133,26 +139,31 @@ contract Entries is HasNoEther, HasNoTokens {
     }
 
     function publishArticle(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
+    public
     {
         require(publish(_hash, _fn, _digestSize, _tags, EntryType.Article));
     }
 
     function publishLink(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
+    public
     {
         require(publish(_hash, _fn, _digestSize, _tags, EntryType.Link));
     }
 
     function publishMedia(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
+    public
     {
         require(publish(_hash, _fn, _digestSize, _tags, EntryType.Media));
     }
 
     function publishOther(bytes32 _hash, uint8 _fn, uint8 _digestSize, bytes32[] _tags)
+    public
     {
         require(publish(_hash, _fn, _digestSize, _tags, EntryType.Other));
     }
 
     function edit(bytes32 _entryId, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    public
     {
         require(entryIndex[msg.sender].records[_entryId].fn != 0);
         require(IpfsHash.create(entryIndex[msg.sender].records[_entryId], _hash, _fn, _digestSize));
@@ -182,6 +193,7 @@ contract Entries is HasNoEther, HasNoTokens {
 
 
     function claim(bytes32 _entryId)
+    public
     returns (bool)
     {
         require(entryIndex[msg.sender].records[_entryId].fn != 0);

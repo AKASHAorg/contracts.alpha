@@ -26,6 +26,7 @@ contract AkashaModule is HasNoEther, HasNoTokens {
     }
 
     function destroy()
+    public
     onlyOwner
     {
         selfdestruct(owner);

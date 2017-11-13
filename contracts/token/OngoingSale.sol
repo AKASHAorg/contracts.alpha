@@ -33,6 +33,7 @@ contract OngoingSale is CappedCrowdsale, Ownable {
 
     // mark crowdsale as finished
     function finalize()
+    public
     onlyOwner
     {
         require(!isFinalized);

@@ -58,6 +58,7 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function setAeth(AETH _aeth)
+    public
     onlyOwner
     returns (bool)
     {
@@ -66,6 +67,7 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function setMinAmount(uint256 _min)
+    public
     onlyOwner
     returns (bool)
     {
@@ -73,6 +75,7 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function newHash(bytes32 _hash, uint256 _total)
+    public
     onlyOwner
     returns (bool)
     {
@@ -83,6 +86,7 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function setFactor(uint256 _newFactor)
+    public
     onlyOwner
     returns (bool)
     {
@@ -90,6 +94,7 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function addToWhiteList(address _contract)
+    public
     onlyOwner
     returns (bool)
     {
@@ -98,6 +103,7 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function removeWhitelisted(address _contract)
+    public
     onlyOwner
     returns (bool)
     {
@@ -142,6 +148,7 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function transformEssence(uint256 _amount)
+    public
     returns (bool)
     {
         require(_amount > minAmount);

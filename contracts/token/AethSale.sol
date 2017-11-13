@@ -53,6 +53,7 @@ contract AethSale is OngoingSale {
 
     // if crowdsale is unsuccessful, investors can claim refunds here
     function claimRefund()
+    public
     {
         require(isFinalized);
         require(!goalReached());

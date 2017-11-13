@@ -26,7 +26,7 @@ contract ProfileRegistrar is AkashaModule {
 
     modifier only_subNode_owner(bytes32 subNode)
     {
-        var node = sha3(rootNode, subNode);
+        var node = keccak256(rootNode, subNode);
         var currentOwner = ens.owner(node);
 
         require(currentOwner == 0 || currentOwner == msg.sender);
@@ -35,6 +35,7 @@ contract ProfileRegistrar is AkashaModule {
 
     // change ENS address
     function setEns(address _ens)
+    public
     onlyOwner
     returns (bool)
     {
@@ -44,6 +45,7 @@ contract ProfileRegistrar is AkashaModule {
     }
 
     function setResolver(address _resolver)
+    public
     onlyOwner
     {
         resolver = ProfileResolver(_resolver);
@@ -58,6 +60,7 @@ contract ProfileRegistrar is AkashaModule {
     //    }
 
     function register(bytes32 _subNode, bool _enableDonations, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    public
     only_subNode_owner(_subNode)
     returns (bool)
     {
@@ -74,6 +77,7 @@ contract ProfileRegistrar is AkashaModule {
 
     // fk squatters
     function adminSetSubNode(bytes32 _subNode, address _newOwner)
+    public
     onlyOwner
     returns (bool)
     {
@@ -84,6 +88,7 @@ contract ProfileRegistrar is AkashaModule {
 
     // in case something goes wrong :D
     function changeRootOwner(address _newOwner)
+    public
     onlyOwner
     returns (bool)
     {
@@ -94,6 +99,7 @@ contract ProfileRegistrar is AkashaModule {
 
     // change domain
     function setRootNode(bytes32 _newRoot)
+    public
     onlyOwner
     returns (bool)
     {
@@ -128,6 +134,6 @@ contract ProfileRegistrar is AkashaModule {
     constant
     returns (bytes32 nameHash)
     {
-        nameHash = sha3(rootNode, _subNode);
+        nameHash = keccak256(rootNode, _subNode);
     }
 }

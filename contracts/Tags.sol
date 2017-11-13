@@ -54,7 +54,7 @@ contract Tags is HasNoEther, HasNoTokens {
 
     modifier only_creator(bytes32 _name)
     {
-        require(lists[sha3(msg.sender, _name)].creator == msg.sender);
+        require(lists[keccak256(msg.sender, _name)].creator == msg.sender);
         _;
     }
 
@@ -65,18 +65,21 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function setEntry(Entries _entry)
+    public
     onlyOwner
     {
         entry = _entry;
     }
 
     function setEssence(Essence _essence)
+    public
     onlyOwner
     {
         essence = _essence;
     }
 
     function setVotesAddress(address _votes)
+    public
     onlyOwner
     returns (bool)
     {
@@ -85,6 +88,7 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function incrementTotalEntries(bytes32 _tag)
+    public
     only_entry
     {
         require(exists(_tag));
@@ -93,12 +97,14 @@ contract Tags is HasNoEther, HasNoTokens {
 
 
     function adminAdd(bytes32 _tag)
+    public
     onlyOwner
     {
         require(createTag(_tag));
     }
 
     function add(bytes32 _tag)
+    public
     {
         uint256 karma;
         (karma, ) = essence.getCollected(msg.sender);
@@ -107,6 +113,7 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function addFromEntry(bytes32 _tag, address _creator)
+    public
     only_entry
     returns (bool)
     {
@@ -118,6 +125,7 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function setMinCollected(uint256 _amount)
+    public
     onlyOwner
     {
         minCollected = _amount;
@@ -145,9 +153,10 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function create_list(bytes32 _name, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    public
     {
         require(canCreate(msg.sender));
-        var listHash = sha3(msg.sender, _name);
+        var listHash = keccak256(msg.sender, _name);
         require(lists[listHash].creator == address(0x0));
         require(IpfsHash.create(lists[listHash].hash, _hash, _fn, _digestSize));
         lists[listHash].creator = msg.sender;
@@ -164,9 +173,10 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function update_list(bytes32 _name, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    public
     only_creator(_name)
     {
-        var listHash = sha3(msg.sender, _name);
+        var listHash = keccak256(msg.sender, _name);
         require(IpfsHash.create(lists[listHash].hash, _hash, _fn, _digestSize));
         ListUpdate(_name, msg.sender);
     }
@@ -197,7 +207,7 @@ contract Tags is HasNoEther, HasNoTokens {
     constant
     returns (address _creator, uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
-        var listHash = sha3(_publisher, _name);
+        var listHash = keccak256(_publisher, _name);
         return get_list(listHash);
     }
 

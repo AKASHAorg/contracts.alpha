@@ -49,6 +49,7 @@ contract ProfileResolver is Bundled {
 
     // mark as disabled when migrating to a new controller
     function upgradeController()
+    public
     onlyModule
     returns (bool)
     {
@@ -58,6 +59,7 @@ contract ProfileResolver is Bundled {
 
     // register an ipfs hash
     function registerHash(bytes32 _akashaId, bytes32 _nodeHash, address _owner, bool _status, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    public
     onlyModule
     returns (uint)
     {
@@ -68,6 +70,7 @@ contract ProfileResolver is Bundled {
     }
 
     function setHash(bytes32 _nodeHash, bytes32 _hash, uint8 _fn, uint8 _digestSize)
+    public
     only_owner(_nodeHash)
     returns (bool)
     {
@@ -76,6 +79,7 @@ contract ProfileResolver is Bundled {
     }
 
     function toggleDonations(bytes32 _node, bool _status)
+    public
     only_owner(_node)
     returns (bool)
     {
@@ -98,12 +102,13 @@ contract ProfileResolver is Bundled {
         require(IpfsHash.create(profileList[_node].contentHash, _hash, _fn, _digestSize));
         profileList[_node].addr = _owner;
         profileList[_node].akashaId = _akashaId;
-        reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(_owner))] = _node;
+        reverseRecords[keccak256(ADDR_REVERSE_NODE, sha3HexAddress(_owner))] = _node;
         return true;
     }
 
     // remove extra data from profile at index
     function removeProfile(bytes32 _node)
+    public
     onlyModule
     notDisabled
     returns (bool)
@@ -146,12 +151,13 @@ contract ProfileResolver is Bundled {
     }
 
     function setAddr(bytes32 node, address newAddress)
+    public
     only_owner(node)
     {
-        delete reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(profileList[node].addr))];
+        delete reverseRecords[keccak256(ADDR_REVERSE_NODE, sha3HexAddress(profileList[node].addr))];
         profileList[node].addr = newAddress;
-        assert(reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(newAddress))] == bytes32(0x0));
-        reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(newAddress))] = node;
+        assert(reverseRecords[keccak256(ADDR_REVERSE_NODE, sha3HexAddress(newAddress))] == bytes32(0x0));
+        reverseRecords[keccak256(ADDR_REVERSE_NODE, sha3HexAddress(newAddress))] = node;
     }
 
 
@@ -161,7 +167,7 @@ contract ProfileResolver is Bundled {
     constant
     returns (bytes32)
     {
-        return reverseRecords[sha3(ADDR_REVERSE_NODE, sha3HexAddress(owner))];
+        return reverseRecords[keccak256(ADDR_REVERSE_NODE, sha3HexAddress(owner))];
     }
 
     /**
@@ -191,7 +197,7 @@ contract ProfileResolver is Bundled {
         mstore8(i, byte(and(addr, 0xf), lookup))
         addr := div(addr, 0x10)
         jumpi(loop, i)
-        ret := sha3(0, 40)
+        ret := keccak256(0, 40)
         }
     }
 }

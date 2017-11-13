@@ -61,12 +61,14 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function setEntries(Entries _entries)
+    public
     onlyOwner
     {
         entries = _entries;
     }
 
     function setComments(Comments _comments)
+    public
     onlyOwner
     {
         comments = _comments;
@@ -83,30 +85,35 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function setTags(Tags _tags)
+    public
     onlyOwner
     {
         tags = _tags;
     }
 
     function setVoteKarma(uint8 _amount)
+    public
     onlyOwner
     {
         VOTE_KARMA = _amount;
     }
 
     function setEssence(Essence _essence)
+    public
     onlyOwner
     {
         essence = _essence;
     }
 
     function setRequiredEssence(uint256 _amount)
+    public
     onlyOwner
     {
         required_essence = _amount;
     }
 
     function whiteList(address _contract, bool _status)
+    public
     onlyOwner
     returns (bool)
     {
@@ -115,6 +122,7 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function voteEntry(uint8 _weight, bytes32 _source, bool _negative, address _publisher)
+    public
     returns (bool)
     {
         require(entries.exists(_publisher, _source));
@@ -145,6 +153,7 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function registerResource(bytes32 _id, uint256 _period)
+    public
     onlyWhitelisted
     returns (bool)
     {
@@ -153,6 +162,7 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function voteComment(uint8 _weight, bytes32 _source, bytes32 _commentId, bool _negative)
+    public
     returns (bool)
     {
         uint256 weight = uint256(_weight);
@@ -173,6 +183,7 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function voteList(uint8 _weight, bytes32 _source, bool _negative)
+    public
     returns (bool)
     {
         require(tags.list_exists(_source));
@@ -221,6 +232,7 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function setMax(uint8 _max)
+    public
     onlyOwner
     {
         assert(_max > 0);
@@ -228,6 +240,7 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function claimEntry(bytes32 _id, address _publisher)
+    external
     onlyFromEntries
     returns (bool)
     {

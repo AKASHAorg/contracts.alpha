@@ -259,11 +259,11 @@
       "type": "event"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060003414151561005e57600080fd5b610e648061006d6000396000f3006060604052600436106100af576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063034889ff146100bc57806317ffc3201461010d5780634dbf27cc146101465780635d1ca476146101975780638da5cb5b146102075780638dea1cb81461025c5780639f727c27146102a9578063a0aba3a1146102be578063bb5f4d341461030b578063c0ee0b8a1461035f578063f2fde38b146103b5575b34156100ba57600080fd5b005b34156100c757600080fd5b6100f3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506103ee565b604051808215151515815260200191505060405180910390f35b341561011857600080fd5b610144600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610626565b005b341561015157600080fd5b61017d600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610793565b604051808215151515815260200191505060405180910390f35b34156101a257600080fd5b6101ed600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506109ca565b604051808215151515815260200191505060405180910390f35b341561021257600080fd5b61021a610a61565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561026757600080fd5b610293600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a86565b6040518082815260200191505060405180910390f35b34156102b457600080fd5b6102bc610ad2565b005b34156102c957600080fd5b6102f5600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610ba4565b6040518082815260200191505060405180910390f35b341561031657600080fd5b610342600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610bed565b604051808381526020018281526020019250505060405180910390f35b341561036a57600080fd5b6103b3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919080359060200190919080359060200190820180359060200191909192905050610c0b565b005b34156103c057600080fd5b6103ec600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610c10565b005b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16151561048857600080fd5b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001016000815480929190600190039190505550600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008154809291906001900391905055503373ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff167fe5dcccfe8e7890c6d4aa94d44c3b409fb6f023337f29c3308077c0c4068192c460405160405180910390a360019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561068357600080fd5b8173ffffffffffffffffffffffffffffffffffffffff166370a08231306000604051602001526040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b151561072657600080fd5b6102c65a03f1151561073757600080fd5b50505060405180519050905061078f6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16828473ffffffffffffffffffffffffffffffffffffffff16610d659092919063ffffffff16565b5050565b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1615151561082e57600080fd5b6001600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008154809291906001019190505550600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600081548092919060010191905055503373ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff167fbccc71dc7842b86291138666aa18e133ee6d41aa71e6d7c650debad1a057663560405160405180910390a360019050919050565b6000600260008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600260008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101549050919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610b2d57600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f193505050501515610ba257fe5b565b6000600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b600080610bf983610ba4565b9150610c0483610a86565b9050915091565b600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610c6b57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515610ca757600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b8273ffffffffffffffffffffffffffffffffffffffff1663a9059cbb83836000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1515610e1057600080fd5b6102c65a03f11515610e2157600080fd5b505050604051805190501515610e3357fe5b5050505600a165627a7a72305820cef94bbf8e28d0c66f5cfcf0369e4d900e4d454d1e995ab5624ee662ac7602a30029",
-  "deployedBytecode": "0x6060604052600436106100af576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063034889ff146100bc57806317ffc3201461010d5780634dbf27cc146101465780635d1ca476146101975780638da5cb5b146102075780638dea1cb81461025c5780639f727c27146102a9578063a0aba3a1146102be578063bb5f4d341461030b578063c0ee0b8a1461035f578063f2fde38b146103b5575b34156100ba57600080fd5b005b34156100c757600080fd5b6100f3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506103ee565b604051808215151515815260200191505060405180910390f35b341561011857600080fd5b610144600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610626565b005b341561015157600080fd5b61017d600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610793565b604051808215151515815260200191505060405180910390f35b34156101a257600080fd5b6101ed600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506109ca565b604051808215151515815260200191505060405180910390f35b341561021257600080fd5b61021a610a61565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561026757600080fd5b610293600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a86565b6040518082815260200191505060405180910390f35b34156102b457600080fd5b6102bc610ad2565b005b34156102c957600080fd5b6102f5600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610ba4565b6040518082815260200191505060405180910390f35b341561031657600080fd5b610342600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610bed565b604051808381526020018281526020019250505060405180910390f35b341561036a57600080fd5b6103b3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919080359060200190919080359060200190820180359060200191909192905050610c0b565b005b34156103c057600080fd5b6103ec600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610c10565b005b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16151561048857600080fd5b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001016000815480929190600190039190505550600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008154809291906001900391905055503373ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff167fe5dcccfe8e7890c6d4aa94d44c3b409fb6f023337f29c3308077c0c4068192c460405160405180910390a360019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561068357600080fd5b8173ffffffffffffffffffffffffffffffffffffffff166370a08231306000604051602001526040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b151561072657600080fd5b6102c65a03f1151561073757600080fd5b50505060405180519050905061078f6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16828473ffffffffffffffffffffffffffffffffffffffff16610d659092919063ffffffff16565b5050565b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1615151561082e57600080fd5b6001600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008154809291906001019190505550600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600081548092919060010191905055503373ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff167fbccc71dc7842b86291138666aa18e133ee6d41aa71e6d7c650debad1a057663560405160405180910390a360019050919050565b6000600260008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600260008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101549050919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610b2d57600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f193505050501515610ba257fe5b565b6000600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b600080610bf983610ba4565b9150610c0483610a86565b9050915091565b600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610c6b57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515610ca757600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b8273ffffffffffffffffffffffffffffffffffffffff1663a9059cbb83836000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1515610e1057600080fd5b6102c65a03f11515610e2157600080fd5b505050604051805190501515610e3357fe5b5050505600a165627a7a72305820cef94bbf8e28d0c66f5cfcf0369e4d900e4d454d1e995ab5624ee662ac7602a30029",
-  "sourceMap": "155:1840:6:-;;;541:63;;;;;;;;502:10:31;494:5;;:18;;;;;;;;;;;;;;;;;;975:1:29;962:9;:14;954:23;;;;;;;;155:1840:6;;;;;;",
-  "deployedSourceMap": "155:1840:6:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;956:344;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;585:149:28;;;;;;;;;;;;;;;;;;;;;;;;;;;;610:340:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1827:165;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;238:20:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1447:143:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1194:86:29;;;;;;;;;;;;;;1306:135:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1596:225;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;634:95:30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;827:169:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;956:344:6;1005:4;1033:16;:28;1050:10;1033:28;;;;;;;;;;;;;;;:38;;:48;1072:8;1033:48;;;;;;;;;;;;;;;;;;;;;;;;;1025:57;;;;;;;;1143:5;1092:16;:28;1109:10;1092:28;;;;;;;;;;;;;;;:38;;:48;1131:8;1092:48;;;;;;;;;;;;;;;;:56;;;;;;;;;;;;;;;;;;1159:16;:28;1176:10;1159:28;;;;;;;;;;;;;;;:34;;;:36;;;;;;;;;;;;;;1205:14;:24;1220:8;1205:24;;;;;;;;;;;;;;;;:26;;;;;;;;;;;;;;1261:10;1242:30;;1251:8;1242:30;;;;;;;;;;;;1289:4;1282:11;;956:344;;;:::o;585:149:28:-;650:15;647:5:31;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;668:5:28;:15;;;684:4;668:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;650:39;;695:34;714:5;;;;;;;;;;;721:7;695:5;:18;;;;:34;;;;;:::i;:::-;585:149;;:::o;610:340:6:-;657:4;686:16;:28;703:10;686:28;;;;;;;;;;;;;;;:38;;:48;725:8;686:48;;;;;;;;;;;;;;;;;;;;;;;;;685:49;677:58;;;;;;;;796:4;745:16;:28;762:10;745:28;;;;;;;;;;;;;;;:38;;:48;784:8;745:48;;;;;;;;;;;;;;;;:55;;;;;;;;;;;;;;;;;;811:16;:28;828:10;811:28;;;;;;;;;;;;;;;:34;;;:36;;;;;;;;;;;;;857:14;:24;872:8;857:24;;;;;;;;;;;;;;;;:26;;;;;;;;;;;;;911:10;894:28;;901:8;894:28;;;;;;;;;;;;939:4;932:11;;610:340;;;:::o;1827:165::-;1909:4;1936:16;:27;1953:9;1936:27;;;;;;;;;;;;;;;:37;;:49;1974:10;1936:49;;;;;;;;;;;;;;;;;;;;;;;;;1929:56;;1827:165;;;;:::o;238:20:31:-;;;;;;;;;;;;;:::o;1447:143:6:-;1515:11;1551:16;:26;1568:8;1551:26;;;;;;;;;;;;;;;:32;;;1542:41;;1447:143;;;:::o;1194:86:29:-;647:5:31;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;1250:5:29;;;;;;;;;;;:10;;:24;1261:4;:12;;;1250:24;;;;;;;;;;;;;;;;;;;;;;;1243:32;;;;;;1194:86::o;1306:135:6:-;1374:11;1410:14;:24;1425:8;1410:24;;;;;;;;;;;;;;;;1401:33;;1306:135;;;:::o;1596:225::-;1662:20;1684;1738:24;1753:8;1738:14;:24::i;:::-;1720:42;;1790:24;1805:8;1790:14;:24::i;:::-;1772:42;;1596:225;;;:::o;634:95:30:-;716:8;;;827:169:31;647:5;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;923:1;903:22;;:8;:22;;;;895:31;;;;;;;;960:8;932:37;;953:5;;;;;;;;;;;932:37;;;;;;;;;;;;983:8;975:5;;:16;;;;;;;;;;;;;;;;;;827:169;:::o;367:120:37:-;456:5;:14;;;471:2;475:5;456:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;449:33;;;;;;367:120;;;:::o",
-  "source": "pragma solidity ^0.4.0;\n\n\nimport 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';\nimport 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';\n\n\ncontract Feed is HasNoEther, HasNoTokens {\n\n    struct FollowRecord {\n    mapping (address => bool) following;\n    uint total;\n    }\n\n    mapping (address => uint) followersCount;\n\n    mapping (address => FollowRecord) followingRecords;\n\n    event Follow(address indexed followed, address indexed follower);\n\n    event UnFollow(address indexed followed, address indexed follower);\n\n    function Feed()\n    HasNoEther()\n    HasNoTokens()\n    {\n\n    }\n\n    function follow(address _profile)\n    returns (bool)\n    {\n        require(!followingRecords[msg.sender].following[_profile]);\n        followingRecords[msg.sender].following[_profile] = true;\n\n        followingRecords[msg.sender].total++;\n        followersCount[_profile]++;\n\n        Follow(_profile, msg.sender);\n        return true;\n    }\n\n    function unFollow(address _profile)\n    returns (bool)\n    {\n        require(followingRecords[msg.sender].following[_profile]);\n        followingRecords[msg.sender].following[_profile] = false;\n\n        followingRecords[msg.sender].total--;\n        followersCount[_profile]--;\n\n        UnFollow(_profile, msg.sender);\n        return true;\n    }\n\n    function totalFollowers(address _profile)\n    constant\n    returns (uint _total)\n    {\n        _total = followersCount[_profile];\n    }\n\n    function totalFollowing(address _profile)\n    constant\n    returns (uint _total)\n    {\n        _total = followingRecords[_profile].total;\n    }\n\n    function followsCount(address _profile)\n    constant\n    returns (uint _followersCount, uint _followingCount)\n    {\n        _followersCount = totalFollowers(_profile);\n        _followingCount = totalFollowing(_profile);\n    }\n\n    function follows(address _follower, address _following)\n    constant\n    returns (bool)\n    {\n        return followingRecords[_follower].following[_following];\n    }\n\n}\n",
+  "bytecode": "0x6060604052341561000f57600080fd5b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060003414151561005e57600080fd5b610e648061006d6000396000f3006060604052600436106100af576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063034889ff146100bc57806317ffc3201461010d5780634dbf27cc146101465780635d1ca476146101975780638da5cb5b146102075780638dea1cb81461025c5780639f727c27146102a9578063a0aba3a1146102be578063bb5f4d341461030b578063c0ee0b8a1461035f578063f2fde38b146103b5575b34156100ba57600080fd5b005b34156100c757600080fd5b6100f3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506103ee565b604051808215151515815260200191505060405180910390f35b341561011857600080fd5b610144600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610626565b005b341561015157600080fd5b61017d600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610793565b604051808215151515815260200191505060405180910390f35b34156101a257600080fd5b6101ed600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506109ca565b604051808215151515815260200191505060405180910390f35b341561021257600080fd5b61021a610a61565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561026757600080fd5b610293600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a86565b6040518082815260200191505060405180910390f35b34156102b457600080fd5b6102bc610ad2565b005b34156102c957600080fd5b6102f5600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610ba4565b6040518082815260200191505060405180910390f35b341561031657600080fd5b610342600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610bed565b604051808381526020018281526020019250505060405180910390f35b341561036a57600080fd5b6103b3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919080359060200190919080359060200190820180359060200191909192905050610c0b565b005b34156103c057600080fd5b6103ec600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610c10565b005b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16151561048857600080fd5b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001016000815480929190600190039190505550600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008154809291906001900391905055503373ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff167fe5dcccfe8e7890c6d4aa94d44c3b409fb6f023337f29c3308077c0c4068192c460405160405180910390a360019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561068357600080fd5b8173ffffffffffffffffffffffffffffffffffffffff166370a08231306000604051602001526040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b151561072657600080fd5b6102c65a03f1151561073757600080fd5b50505060405180519050905061078f6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16828473ffffffffffffffffffffffffffffffffffffffff16610d659092919063ffffffff16565b5050565b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1615151561082e57600080fd5b6001600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008154809291906001019190505550600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600081548092919060010191905055503373ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff167fbccc71dc7842b86291138666aa18e133ee6d41aa71e6d7c650debad1a057663560405160405180910390a360019050919050565b6000600260008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600260008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101549050919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610b2d57600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f193505050501515610ba257fe5b565b6000600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b600080610bf983610ba4565b9150610c0483610a86565b9050915091565b600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610c6b57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515610ca757600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b8273ffffffffffffffffffffffffffffffffffffffff1663a9059cbb83836000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1515610e1057600080fd5b6102c65a03f11515610e2157600080fd5b505050604051805190501515610e3357fe5b5050505600a165627a7a723058209b7e461a86bf088fe75e84b8c1efcb6c0894d028f0bd13dd9f606d16c3e473630029",
+  "deployedBytecode": "0x6060604052600436106100af576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063034889ff146100bc57806317ffc3201461010d5780634dbf27cc146101465780635d1ca476146101975780638da5cb5b146102075780638dea1cb81461025c5780639f727c27146102a9578063a0aba3a1146102be578063bb5f4d341461030b578063c0ee0b8a1461035f578063f2fde38b146103b5575b34156100ba57600080fd5b005b34156100c757600080fd5b6100f3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506103ee565b604051808215151515815260200191505060405180910390f35b341561011857600080fd5b610144600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610626565b005b341561015157600080fd5b61017d600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610793565b604051808215151515815260200191505060405180910390f35b34156101a257600080fd5b6101ed600480803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506109ca565b604051808215151515815260200191505060405180910390f35b341561021257600080fd5b61021a610a61565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b341561026757600080fd5b610293600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a86565b6040518082815260200191505060405180910390f35b34156102b457600080fd5b6102bc610ad2565b005b34156102c957600080fd5b6102f5600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610ba4565b6040518082815260200191505060405180910390f35b341561031657600080fd5b610342600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610bed565b604051808381526020018281526020019250505060405180910390f35b341561036a57600080fd5b6103b3600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919080359060200190919080359060200190820180359060200191909192905050610c0b565b005b34156103c057600080fd5b6103ec600480803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610c10565b005b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16151561048857600080fd5b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019081526020016000206001016000815480929190600190039190505550600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008154809291906001900391905055503373ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff167fe5dcccfe8e7890c6d4aa94d44c3b409fb6f023337f29c3308077c0c4068192c460405160405180910390a360019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561068357600080fd5b8173ffffffffffffffffffffffffffffffffffffffff166370a08231306000604051602001526040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b151561072657600080fd5b6102c65a03f1151561073757600080fd5b50505060405180519050905061078f6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16828473ffffffffffffffffffffffffffffffffffffffff16610d659092919063ffffffff16565b5050565b6000600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff1615151561082e57600080fd5b6001600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908315150217905550600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060010160008154809291906001019190505550600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600081548092919060010191905055503373ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff167fbccc71dc7842b86291138666aa18e133ee6d41aa71e6d7c650debad1a057663560405160405180910390a360019050919050565b6000600260008473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600260008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600101549050919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610b2d57600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f193505050501515610ba257fe5b565b6000600160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b600080610bf983610ba4565b9150610c0483610a86565b9050915091565b600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610c6b57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515610ca757600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b8273ffffffffffffffffffffffffffffffffffffffff1663a9059cbb83836000604051602001526040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1515610e1057600080fd5b6102c65a03f11515610e2157600080fd5b505050604051805190501515610e3357fe5b5050505600a165627a7a723058209b7e461a86bf088fe75e84b8c1efcb6c0894d028f0bd13dd9f606d16c3e473630029",
+  "sourceMap": "155:1862:6:-;;;541:63;;;;;;;;502:10:31;494:5;;:18;;;;;;;;;;;;;;;;;;975:1:29;962:9;:14;954:23;;;;;;;;155:1862:6;;;;;;",
+  "deployedSourceMap": "155:1862:6:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;967:355;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;585:149:28;;;;;;;;;;;;;;;;;;;;;;;;;;;;610:351:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1849:165;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;238:20:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1469:143:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1194:86:29;;;;;;;;;;;;;;1328:135:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1618:225;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;634:95:30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;827:169:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;967:355:6;1027:4;1055:16;:28;1072:10;1055:28;;;;;;;;;;;;;;;:38;;:48;1094:8;1055:48;;;;;;;;;;;;;;;;;;;;;;;;;1047:57;;;;;;;;1165:5;1114:16;:28;1131:10;1114:28;;;;;;;;;;;;;;;:38;;:48;1153:8;1114:48;;;;;;;;;;;;;;;;:56;;;;;;;;;;;;;;;;;;1181:16;:28;1198:10;1181:28;;;;;;;;;;;;;;;:34;;;:36;;;;;;;;;;;;;;1227:14;:24;1242:8;1227:24;;;;;;;;;;;;;;;;:26;;;;;;;;;;;;;;1283:10;1264:30;;1273:8;1264:30;;;;;;;;;;;;1311:4;1304:11;;967:355;;;:::o;585:149:28:-;650:15;647:5:31;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;668:5:28;:15;;;684:4;668:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;650:39;;695:34;714:5;;;;;;;;;;;721:7;695:5;:18;;;;:34;;;;;:::i;:::-;585:149;;:::o;610:351:6:-;668:4;697:16;:28;714:10;697:28;;;;;;;;;;;;;;;:38;;:48;736:8;697:48;;;;;;;;;;;;;;;;;;;;;;;;;696:49;688:58;;;;;;;;807:4;756:16;:28;773:10;756:28;;;;;;;;;;;;;;;:38;;:48;795:8;756:48;;;;;;;;;;;;;;;;:55;;;;;;;;;;;;;;;;;;822:16;:28;839:10;822:28;;;;;;;;;;;;;;;:34;;;:36;;;;;;;;;;;;;868:14;:24;883:8;868:24;;;;;;;;;;;;;;;;:26;;;;;;;;;;;;;922:10;905:28;;912:8;905:28;;;;;;;;;;;;950:4;943:11;;610:351;;;:::o;1849:165::-;1931:4;1958:16;:27;1975:9;1958:27;;;;;;;;;;;;;;;:37;;:49;1996:10;1958:49;;;;;;;;;;;;;;;;;;;;;;;;;1951:56;;1849:165;;;;:::o;238:20:31:-;;;;;;;;;;;;;:::o;1469:143:6:-;1537:11;1573:16;:26;1590:8;1573:26;;;;;;;;;;;;;;;:32;;;1564:41;;1469:143;;;:::o;1194:86:29:-;647:5:31;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;1250:5:29;;;;;;;;;;;:10;;:24;1261:4;:12;;;1250:24;;;;;;;;;;;;;;;;;;;;;;;1243:32;;;;;;1194:86::o;1328:135:6:-;1396:11;1432:14;:24;1447:8;1432:24;;;;;;;;;;;;;;;;1423:33;;1328:135;;;:::o;1618:225::-;1684:20;1706;1760:24;1775:8;1760:14;:24::i;:::-;1742:42;;1812:24;1827:8;1812:14;:24::i;:::-;1794:42;;1618:225;;;:::o;634:95:30:-;716:8;;;827:169:31;647:5;;;;;;;;;;;633:19;;:10;:19;;;625:28;;;;;;;;923:1;903:22;;:8;:22;;;;895:31;;;;;;;;960:8;932:37;;953:5;;;;;;;;;;;932:37;;;;;;;;;;;;983:8;975:5;;:16;;;;;;;;;;;;;;;;;;827:169;:::o;367:120:37:-;456:5;:14;;;471:2;475:5;456:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;449:33;;;;;;367:120;;;:::o",
+  "source": "pragma solidity ^0.4.0;\n\n\nimport 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';\nimport 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';\n\n\ncontract Feed is HasNoEther, HasNoTokens {\n\n    struct FollowRecord {\n    mapping (address => bool) following;\n    uint total;\n    }\n\n    mapping (address => uint) followersCount;\n\n    mapping (address => FollowRecord) followingRecords;\n\n    event Follow(address indexed followed, address indexed follower);\n\n    event UnFollow(address indexed followed, address indexed follower);\n\n    function Feed()\n    HasNoEther()\n    HasNoTokens()\n    {\n\n    }\n\n    function follow(address _profile)\n    public\n    returns (bool)\n    {\n        require(!followingRecords[msg.sender].following[_profile]);\n        followingRecords[msg.sender].following[_profile] = true;\n\n        followingRecords[msg.sender].total++;\n        followersCount[_profile]++;\n\n        Follow(_profile, msg.sender);\n        return true;\n    }\n\n    function unFollow(address _profile)\n    public\n    returns (bool)\n    {\n        require(followingRecords[msg.sender].following[_profile]);\n        followingRecords[msg.sender].following[_profile] = false;\n\n        followingRecords[msg.sender].total--;\n        followersCount[_profile]--;\n\n        UnFollow(_profile, msg.sender);\n        return true;\n    }\n\n    function totalFollowers(address _profile)\n    constant\n    returns (uint _total)\n    {\n        _total = followersCount[_profile];\n    }\n\n    function totalFollowing(address _profile)\n    constant\n    returns (uint _total)\n    {\n        _total = followingRecords[_profile].total;\n    }\n\n    function followsCount(address _profile)\n    constant\n    returns (uint _followersCount, uint _followingCount)\n    {\n        _followersCount = totalFollowers(_profile);\n        _followingCount = totalFollowing(_profile);\n    }\n\n    function follows(address _follower, address _following)\n    constant\n    returns (bool)\n    {\n        return followingRecords[_follower].following[_following];\n    }\n\n}\n",
   "sourcePath": "/home/kenshyx/projects/contracts.alpha/contracts/Feed.sol",
   "ast": {
     "attributes": {
@@ -879,17 +879,17 @@
                         },
                         "id": 1605,
                         "name": "ElementaryTypeName",
-                        "src": "657:4:6"
+                        "src": "668:4:6"
                       }
                     ],
                     "id": 1606,
                     "name": "VariableDeclaration",
-                    "src": "657:4:6"
+                    "src": "668:4:6"
                   }
                 ],
                 "id": 1607,
                 "name": "ParameterList",
-                "src": "656:6:6"
+                "src": "667:6:6"
               },
               {
                 "children": [
@@ -927,7 +927,7 @@
                             },
                             "id": 1608,
                             "name": "Identifier",
-                            "src": "677:7:6"
+                            "src": "688:7:6"
                           },
                           {
                             "attributes": {
@@ -985,7 +985,7 @@
                                             },
                                             "id": 1609,
                                             "name": "Identifier",
-                                            "src": "686:16:6"
+                                            "src": "697:16:6"
                                           },
                                           {
                                             "attributes": {
@@ -1011,22 +1011,22 @@
                                                 },
                                                 "id": 1610,
                                                 "name": "Identifier",
-                                                "src": "703:3:6"
+                                                "src": "714:3:6"
                                               }
                                             ],
                                             "id": 1611,
                                             "name": "MemberAccess",
-                                            "src": "703:10:6"
+                                            "src": "714:10:6"
                                           }
                                         ],
                                         "id": 1612,
                                         "name": "IndexAccess",
-                                        "src": "686:28:6"
+                                        "src": "697:28:6"
                                       }
                                     ],
                                     "id": 1613,
                                     "name": "MemberAccess",
-                                    "src": "686:38:6"
+                                    "src": "697:38:6"
                                   },
                                   {
                                     "attributes": {
@@ -1040,27 +1040,27 @@
                                     },
                                     "id": 1614,
                                     "name": "Identifier",
-                                    "src": "725:8:6"
+                                    "src": "736:8:6"
                                   }
                                 ],
                                 "id": 1615,
                                 "name": "IndexAccess",
-                                "src": "686:48:6"
+                                "src": "697:48:6"
                               }
                             ],
                             "id": 1616,
                             "name": "UnaryOperation",
-                            "src": "685:49:6"
+                            "src": "696:49:6"
                           }
                         ],
                         "id": 1617,
                         "name": "FunctionCall",
-                        "src": "677:58:6"
+                        "src": "688:58:6"
                       }
                     ],
                     "id": 1618,
                     "name": "ExpressionStatement",
-                    "src": "677:58:6"
+                    "src": "688:58:6"
                   },
                   {
                     "children": [
@@ -1119,7 +1119,7 @@
                                         },
                                         "id": 1619,
                                         "name": "Identifier",
-                                        "src": "745:16:6"
+                                        "src": "756:16:6"
                                       },
                                       {
                                         "attributes": {
@@ -1145,22 +1145,22 @@
                                             },
                                             "id": 1620,
                                             "name": "Identifier",
-                                            "src": "762:3:6"
+                                            "src": "773:3:6"
                                           }
                                         ],
                                         "id": 1621,
                                         "name": "MemberAccess",
-                                        "src": "762:10:6"
+                                        "src": "773:10:6"
                                       }
                                     ],
                                     "id": 1622,
                                     "name": "IndexAccess",
-                                    "src": "745:28:6"
+                                    "src": "756:28:6"
                                   }
                                 ],
                                 "id": 1623,
                                 "name": "MemberAccess",
-                                "src": "745:38:6"
+                                "src": "756:38:6"
                               },
                               {
                                 "attributes": {
@@ -1174,12 +1174,12 @@
                                 },
                                 "id": 1624,
                                 "name": "Identifier",
-                                "src": "784:8:6"
+                                "src": "795:8:6"
                               }
                             ],
                             "id": 1625,
                             "name": "IndexAccess",
-                            "src": "745:48:6"
+                            "src": "756:48:6"
                           },
                           {
                             "attributes": {
@@ -1196,17 +1196,17 @@
                             },
                             "id": 1626,
                             "name": "Literal",
-                            "src": "796:4:6"
+                            "src": "807:4:6"
                           }
                         ],
                         "id": 1627,
                         "name": "Assignment",
-                        "src": "745:55:6"
+                        "src": "756:55:6"
                       }
                     ],
                     "id": 1628,
                     "name": "ExpressionStatement",
-                    "src": "745:55:6"
+                    "src": "756:55:6"
                   },
                   {
                     "children": [
@@ -1256,7 +1256,7 @@
                                     },
                                     "id": 1629,
                                     "name": "Identifier",
-                                    "src": "811:16:6"
+                                    "src": "822:16:6"
                                   },
                                   {
                                     "attributes": {
@@ -1282,32 +1282,32 @@
                                         },
                                         "id": 1630,
                                         "name": "Identifier",
-                                        "src": "828:3:6"
+                                        "src": "839:3:6"
                                       }
                                     ],
                                     "id": 1631,
                                     "name": "MemberAccess",
-                                    "src": "828:10:6"
+                                    "src": "839:10:6"
                                   }
                                 ],
                                 "id": 1632,
                                 "name": "IndexAccess",
-                                "src": "811:28:6"
+                                "src": "822:28:6"
                               }
                             ],
                             "id": 1633,
                             "name": "MemberAccess",
-                            "src": "811:34:6"
+                            "src": "822:34:6"
                           }
                         ],
                         "id": 1634,
                         "name": "UnaryOperation",
-                        "src": "811:36:6"
+                        "src": "822:36:6"
                       }
                     ],
                     "id": 1635,
                     "name": "ExpressionStatement",
-                    "src": "811:36:6"
+                    "src": "822:36:6"
                   },
                   {
                     "children": [
@@ -1345,7 +1345,7 @@
                                 },
                                 "id": 1636,
                                 "name": "Identifier",
-                                "src": "857:14:6"
+                                "src": "868:14:6"
                               },
                               {
                                 "attributes": {
@@ -1359,22 +1359,22 @@
                                 },
                                 "id": 1637,
                                 "name": "Identifier",
-                                "src": "872:8:6"
+                                "src": "883:8:6"
                               }
                             ],
                             "id": 1638,
                             "name": "IndexAccess",
-                            "src": "857:24:6"
+                            "src": "868:24:6"
                           }
                         ],
                         "id": 1639,
                         "name": "UnaryOperation",
-                        "src": "857:26:6"
+                        "src": "868:26:6"
                       }
                     ],
                     "id": 1640,
                     "name": "ExpressionStatement",
-                    "src": "857:26:6"
+                    "src": "868:26:6"
                   },
                   {
                     "children": [
@@ -1414,7 +1414,7 @@
                             },
                             "id": 1641,
                             "name": "Identifier",
-                            "src": "894:6:6"
+                            "src": "905:6:6"
                           },
                           {
                             "attributes": {
@@ -1428,7 +1428,7 @@
                             },
                             "id": 1642,
                             "name": "Identifier",
-                            "src": "901:8:6"
+                            "src": "912:8:6"
                           },
                           {
                             "attributes": {
@@ -1454,22 +1454,22 @@
                                 },
                                 "id": 1643,
                                 "name": "Identifier",
-                                "src": "911:3:6"
+                                "src": "922:3:6"
                               }
                             ],
                             "id": 1644,
                             "name": "MemberAccess",
-                            "src": "911:10:6"
+                            "src": "922:10:6"
                           }
                         ],
                         "id": 1645,
                         "name": "FunctionCall",
-                        "src": "894:28:6"
+                        "src": "905:28:6"
                       }
                     ],
                     "id": 1646,
                     "name": "ExpressionStatement",
-                    "src": "894:28:6"
+                    "src": "905:28:6"
                   },
                   {
                     "attributes": {
@@ -1491,22 +1491,22 @@
                         },
                         "id": 1647,
                         "name": "Literal",
-                        "src": "939:4:6"
+                        "src": "950:4:6"
                       }
                     ],
                     "id": 1648,
                     "name": "Return",
-                    "src": "932:11:6"
+                    "src": "943:11:6"
                   }
                 ],
                 "id": 1649,
                 "name": "Block",
-                "src": "667:283:6"
+                "src": "678:283:6"
               }
             ],
             "id": 1650,
             "name": "FunctionDefinition",
-            "src": "610:340:6"
+            "src": "610:351:6"
           },
           {
             "attributes": {
@@ -1545,17 +1545,17 @@
                         },
                         "id": 1651,
                         "name": "ElementaryTypeName",
-                        "src": "974:7:6"
+                        "src": "985:7:6"
                       }
                     ],
                     "id": 1652,
                     "name": "VariableDeclaration",
-                    "src": "974:16:6"
+                    "src": "985:16:6"
                   }
                 ],
                 "id": 1653,
                 "name": "ParameterList",
-                "src": "973:18:6"
+                "src": "984:18:6"
               },
               {
                 "children": [
@@ -1578,17 +1578,17 @@
                         },
                         "id": 1654,
                         "name": "ElementaryTypeName",
-                        "src": "1005:4:6"
+                        "src": "1027:4:6"
                       }
                     ],
                     "id": 1655,
                     "name": "VariableDeclaration",
-                    "src": "1005:4:6"
+                    "src": "1027:4:6"
                   }
                 ],
                 "id": 1656,
                 "name": "ParameterList",
-                "src": "1004:6:6"
+                "src": "1026:6:6"
               },
               {
                 "children": [
@@ -1626,7 +1626,7 @@
                             },
                             "id": 1657,
                             "name": "Identifier",
-                            "src": "1025:7:6"
+                            "src": "1047:7:6"
                           },
                           {
                             "attributes": {
@@ -1672,7 +1672,7 @@
                                         },
                                         "id": 1658,
                                         "name": "Identifier",
-                                        "src": "1033:16:6"
+                                        "src": "1055:16:6"
                                       },
                                       {
                                         "attributes": {
@@ -1698,22 +1698,22 @@
                                             },
                                             "id": 1659,
                                             "name": "Identifier",
-                                            "src": "1050:3:6"
+                                            "src": "1072:3:6"
                                           }
                                         ],
                                         "id": 1660,
                                         "name": "MemberAccess",
-                                        "src": "1050:10:6"
+                                        "src": "1072:10:6"
                                       }
                                     ],
                                     "id": 1661,
                                     "name": "IndexAccess",
-                                    "src": "1033:28:6"
+                                    "src": "1055:28:6"
                                   }
                                 ],
                                 "id": 1662,
                                 "name": "MemberAccess",
-                                "src": "1033:38:6"
+                                "src": "1055:38:6"
                               },
                               {
                                 "attributes": {
@@ -1727,22 +1727,22 @@
                                 },
                                 "id": 1663,
                                 "name": "Identifier",
-                                "src": "1072:8:6"
+                                "src": "1094:8:6"
                               }
                             ],
                             "id": 1664,
                             "name": "IndexAccess",
-                            "src": "1033:48:6"
+                            "src": "1055:48:6"
                           }
                         ],
                         "id": 1665,
                         "name": "FunctionCall",
-                        "src": "1025:57:6"
+                        "src": "1047:57:6"
                       }
                     ],
                     "id": 1666,
                     "name": "ExpressionStatement",
-                    "src": "1025:57:6"
+                    "src": "1047:57:6"
                   },
                   {
                     "children": [
@@ -1801,7 +1801,7 @@
                                         },
                                         "id": 1667,
                                         "name": "Identifier",
-                                        "src": "1092:16:6"
+                                        "src": "1114:16:6"
                                       },
                                       {
                                         "attributes": {
@@ -1827,22 +1827,22 @@
                                             },
                                             "id": 1668,
                                             "name": "Identifier",
-                                            "src": "1109:3:6"
+                                            "src": "1131:3:6"
                                           }
                                         ],
                                         "id": 1669,
                                         "name": "MemberAccess",
-                                        "src": "1109:10:6"
+                                        "src": "1131:10:6"
                                       }
                                     ],
                                     "id": 1670,
                                     "name": "IndexAccess",
-                                    "src": "1092:28:6"
+                                    "src": "1114:28:6"
                                   }
                                 ],
                                 "id": 1671,
                                 "name": "MemberAccess",
-                                "src": "1092:38:6"
+                                "src": "1114:38:6"
                               },
                               {
                                 "attributes": {
@@ -1856,12 +1856,12 @@
                                 },
                                 "id": 1672,
                                 "name": "Identifier",
-                                "src": "1131:8:6"
+                                "src": "1153:8:6"
                               }
                             ],
                             "id": 1673,
                             "name": "IndexAccess",
-                            "src": "1092:48:6"
+                            "src": "1114:48:6"
                           },
                           {
                             "attributes": {
@@ -1878,17 +1878,17 @@
                             },
                             "id": 1674,
                             "name": "Literal",
-                            "src": "1143:5:6"
+                            "src": "1165:5:6"
                           }
                         ],
                         "id": 1675,
                         "name": "Assignment",
-                        "src": "1092:56:6"
+                        "src": "1114:56:6"
                       }
                     ],
                     "id": 1676,
                     "name": "ExpressionStatement",
-                    "src": "1092:56:6"
+                    "src": "1114:56:6"
                   },
                   {
                     "children": [
@@ -1938,7 +1938,7 @@
                                     },
                                     "id": 1677,
                                     "name": "Identifier",
-                                    "src": "1159:16:6"
+                                    "src": "1181:16:6"
                                   },
                                   {
                                     "attributes": {
@@ -1964,32 +1964,32 @@
                                         },
                                         "id": 1678,
                                         "name": "Identifier",
-                                        "src": "1176:3:6"
+                                        "src": "1198:3:6"
                                       }
                                     ],
                                     "id": 1679,
                                     "name": "MemberAccess",
-                                    "src": "1176:10:6"
+                                    "src": "1198:10:6"
                                   }
                                 ],
                                 "id": 1680,
                                 "name": "IndexAccess",
-                                "src": "1159:28:6"
+                                "src": "1181:28:6"
                               }
                             ],
                             "id": 1681,
                             "name": "MemberAccess",
-                            "src": "1159:34:6"
+                            "src": "1181:34:6"
                           }
                         ],
                         "id": 1682,
                         "name": "UnaryOperation",
-                        "src": "1159:36:6"
+                        "src": "1181:36:6"
                       }
                     ],
                     "id": 1683,
                     "name": "ExpressionStatement",
-                    "src": "1159:36:6"
+                    "src": "1181:36:6"
                   },
                   {
                     "children": [
@@ -2027,7 +2027,7 @@
                                 },
                                 "id": 1684,
                                 "name": "Identifier",
-                                "src": "1205:14:6"
+                                "src": "1227:14:6"
                               },
                               {
                                 "attributes": {
@@ -2041,22 +2041,22 @@
                                 },
                                 "id": 1685,
                                 "name": "Identifier",
-                                "src": "1220:8:6"
+                                "src": "1242:8:6"
                               }
                             ],
                             "id": 1686,
                             "name": "IndexAccess",
-                            "src": "1205:24:6"
+                            "src": "1227:24:6"
                           }
                         ],
                         "id": 1687,
                         "name": "UnaryOperation",
-                        "src": "1205:26:6"
+                        "src": "1227:26:6"
                       }
                     ],
                     "id": 1688,
                     "name": "ExpressionStatement",
-                    "src": "1205:26:6"
+                    "src": "1227:26:6"
                   },
                   {
                     "children": [
@@ -2096,7 +2096,7 @@
                             },
                             "id": 1689,
                             "name": "Identifier",
-                            "src": "1242:8:6"
+                            "src": "1264:8:6"
                           },
                           {
                             "attributes": {
@@ -2110,7 +2110,7 @@
                             },
                             "id": 1690,
                             "name": "Identifier",
-                            "src": "1251:8:6"
+                            "src": "1273:8:6"
                           },
                           {
                             "attributes": {
@@ -2136,22 +2136,22 @@
                                 },
                                 "id": 1691,
                                 "name": "Identifier",
-                                "src": "1261:3:6"
+                                "src": "1283:3:6"
                               }
                             ],
                             "id": 1692,
                             "name": "MemberAccess",
-                            "src": "1261:10:6"
+                            "src": "1283:10:6"
                           }
                         ],
                         "id": 1693,
                         "name": "FunctionCall",
-                        "src": "1242:30:6"
+                        "src": "1264:30:6"
                       }
                     ],
                     "id": 1694,
                     "name": "ExpressionStatement",
-                    "src": "1242:30:6"
+                    "src": "1264:30:6"
                   },
                   {
                     "attributes": {
@@ -2173,22 +2173,22 @@
                         },
                         "id": 1695,
                         "name": "Literal",
-                        "src": "1289:4:6"
+                        "src": "1311:4:6"
                       }
                     ],
                     "id": 1696,
                     "name": "Return",
-                    "src": "1282:11:6"
+                    "src": "1304:11:6"
                   }
                 ],
                 "id": 1697,
                 "name": "Block",
-                "src": "1015:285:6"
+                "src": "1037:285:6"
               }
             ],
             "id": 1698,
             "name": "FunctionDefinition",
-            "src": "956:344:6"
+            "src": "967:355:6"
           },
           {
             "attributes": {
@@ -2227,17 +2227,17 @@
                         },
                         "id": 1699,
                         "name": "ElementaryTypeName",
-                        "src": "1330:7:6"
+                        "src": "1352:7:6"
                       }
                     ],
                     "id": 1700,
                     "name": "VariableDeclaration",
-                    "src": "1330:16:6"
+                    "src": "1352:16:6"
                   }
                 ],
                 "id": 1701,
                 "name": "ParameterList",
-                "src": "1329:18:6"
+                "src": "1351:18:6"
               },
               {
                 "children": [
@@ -2260,17 +2260,17 @@
                         },
                         "id": 1702,
                         "name": "ElementaryTypeName",
-                        "src": "1374:4:6"
+                        "src": "1396:4:6"
                       }
                     ],
                     "id": 1703,
                     "name": "VariableDeclaration",
-                    "src": "1374:11:6"
+                    "src": "1396:11:6"
                   }
                 ],
                 "id": 1704,
                 "name": "ParameterList",
-                "src": "1373:13:6"
+                "src": "1395:13:6"
               },
               {
                 "children": [
@@ -2299,7 +2299,7 @@
                             },
                             "id": 1705,
                             "name": "Identifier",
-                            "src": "1401:6:6"
+                            "src": "1423:6:6"
                           },
                           {
                             "attributes": {
@@ -2323,7 +2323,7 @@
                                 },
                                 "id": 1706,
                                 "name": "Identifier",
-                                "src": "1410:14:6"
+                                "src": "1432:14:6"
                               },
                               {
                                 "attributes": {
@@ -2337,32 +2337,32 @@
                                 },
                                 "id": 1707,
                                 "name": "Identifier",
-                                "src": "1425:8:6"
+                                "src": "1447:8:6"
                               }
                             ],
                             "id": 1708,
                             "name": "IndexAccess",
-                            "src": "1410:24:6"
+                            "src": "1432:24:6"
                           }
                         ],
                         "id": 1709,
                         "name": "Assignment",
-                        "src": "1401:33:6"
+                        "src": "1423:33:6"
                       }
                     ],
                     "id": 1710,
                     "name": "ExpressionStatement",
-                    "src": "1401:33:6"
+                    "src": "1423:33:6"
                   }
                 ],
                 "id": 1711,
                 "name": "Block",
-                "src": "1391:50:6"
+                "src": "1413:50:6"
               }
             ],
             "id": 1712,
             "name": "FunctionDefinition",
-            "src": "1306:135:6"
+            "src": "1328:135:6"
           },
           {
             "attributes": {
@@ -2401,17 +2401,17 @@
                         },
                         "id": 1713,
                         "name": "ElementaryTypeName",
-                        "src": "1471:7:6"
+                        "src": "1493:7:6"
                       }
                     ],
                     "id": 1714,
                     "name": "VariableDeclaration",
-                    "src": "1471:16:6"
+                    "src": "1493:16:6"
                   }
                 ],
                 "id": 1715,
                 "name": "ParameterList",
-                "src": "1470:18:6"
+                "src": "1492:18:6"
               },
               {
                 "children": [
@@ -2434,17 +2434,17 @@
                         },
                         "id": 1716,
                         "name": "ElementaryTypeName",
-                        "src": "1515:4:6"
+                        "src": "1537:4:6"
                       }
                     ],
                     "id": 1717,
                     "name": "VariableDeclaration",
-                    "src": "1515:11:6"
+                    "src": "1537:11:6"
                   }
                 ],
                 "id": 1718,
                 "name": "ParameterList",
-                "src": "1514:13:6"
+                "src": "1536:13:6"
               },
               {
                 "children": [
@@ -2473,7 +2473,7 @@
                             },
                             "id": 1719,
                             "name": "Identifier",
-                            "src": "1542:6:6"
+                            "src": "1564:6:6"
                           },
                           {
                             "attributes": {
@@ -2509,7 +2509,7 @@
                                     },
                                     "id": 1720,
                                     "name": "Identifier",
-                                    "src": "1551:16:6"
+                                    "src": "1573:16:6"
                                   },
                                   {
                                     "attributes": {
@@ -2523,37 +2523,37 @@
                                     },
                                     "id": 1721,
                                     "name": "Identifier",
-                                    "src": "1568:8:6"
+                                    "src": "1590:8:6"
                                   }
                                 ],
                                 "id": 1722,
                                 "name": "IndexAccess",
-                                "src": "1551:26:6"
+                                "src": "1573:26:6"
                               }
                             ],
                             "id": 1723,
                             "name": "MemberAccess",
-                            "src": "1551:32:6"
+                            "src": "1573:32:6"
                           }
                         ],
                         "id": 1724,
                         "name": "Assignment",
-                        "src": "1542:41:6"
+                        "src": "1564:41:6"
                       }
                     ],
                     "id": 1725,
                     "name": "ExpressionStatement",
-                    "src": "1542:41:6"
+                    "src": "1564:41:6"
                   }
                 ],
                 "id": 1726,
                 "name": "Block",
-                "src": "1532:58:6"
+                "src": "1554:58:6"
               }
             ],
             "id": 1727,
             "name": "FunctionDefinition",
-            "src": "1447:143:6"
+            "src": "1469:143:6"
           },
           {
             "attributes": {
@@ -2592,17 +2592,17 @@
                         },
                         "id": 1728,
                         "name": "ElementaryTypeName",
-                        "src": "1618:7:6"
+                        "src": "1640:7:6"
                       }
                     ],
                     "id": 1729,
                     "name": "VariableDeclaration",
-                    "src": "1618:16:6"
+                    "src": "1640:16:6"
                   }
                 ],
                 "id": 1730,
                 "name": "ParameterList",
-                "src": "1617:18:6"
+                "src": "1639:18:6"
               },
               {
                 "children": [
@@ -2625,12 +2625,12 @@
                         },
                         "id": 1731,
                         "name": "ElementaryTypeName",
-                        "src": "1662:4:6"
+                        "src": "1684:4:6"
                       }
                     ],
                     "id": 1732,
                     "name": "VariableDeclaration",
-                    "src": "1662:20:6"
+                    "src": "1684:20:6"
                   },
                   {
                     "attributes": {
@@ -2651,17 +2651,17 @@
                         },
                         "id": 1733,
                         "name": "ElementaryTypeName",
-                        "src": "1684:4:6"
+                        "src": "1706:4:6"
                       }
                     ],
                     "id": 1734,
                     "name": "VariableDeclaration",
-                    "src": "1684:20:6"
+                    "src": "1706:20:6"
                   }
                 ],
                 "id": 1735,
                 "name": "ParameterList",
-                "src": "1661:44:6"
+                "src": "1683:44:6"
               },
               {
                 "children": [
@@ -2690,7 +2690,7 @@
                             },
                             "id": 1736,
                             "name": "Identifier",
-                            "src": "1720:15:6"
+                            "src": "1742:15:6"
                           },
                           {
                             "attributes": {
@@ -2724,7 +2724,7 @@
                                 },
                                 "id": 1737,
                                 "name": "Identifier",
-                                "src": "1738:14:6"
+                                "src": "1760:14:6"
                               },
                               {
                                 "attributes": {
@@ -2738,22 +2738,22 @@
                                 },
                                 "id": 1738,
                                 "name": "Identifier",
-                                "src": "1753:8:6"
+                                "src": "1775:8:6"
                               }
                             ],
                             "id": 1739,
                             "name": "FunctionCall",
-                            "src": "1738:24:6"
+                            "src": "1760:24:6"
                           }
                         ],
                         "id": 1740,
                         "name": "Assignment",
-                        "src": "1720:42:6"
+                        "src": "1742:42:6"
                       }
                     ],
                     "id": 1741,
                     "name": "ExpressionStatement",
-                    "src": "1720:42:6"
+                    "src": "1742:42:6"
                   },
                   {
                     "children": [
@@ -2780,7 +2780,7 @@
                             },
                             "id": 1742,
                             "name": "Identifier",
-                            "src": "1772:15:6"
+                            "src": "1794:15:6"
                           },
                           {
                             "attributes": {
@@ -2814,7 +2814,7 @@
                                 },
                                 "id": 1743,
                                 "name": "Identifier",
-                                "src": "1790:14:6"
+                                "src": "1812:14:6"
                               },
                               {
                                 "attributes": {
@@ -2828,32 +2828,32 @@
                                 },
                                 "id": 1744,
                                 "name": "Identifier",
-                                "src": "1805:8:6"
+                                "src": "1827:8:6"
                               }
                             ],
                             "id": 1745,
                             "name": "FunctionCall",
-                            "src": "1790:24:6"
+                            "src": "1812:24:6"
                           }
                         ],
                         "id": 1746,
                         "name": "Assignment",
-                        "src": "1772:42:6"
+                        "src": "1794:42:6"
                       }
                     ],
                     "id": 1747,
                     "name": "ExpressionStatement",
-                    "src": "1772:42:6"
+                    "src": "1794:42:6"
                   }
                 ],
                 "id": 1748,
                 "name": "Block",
-                "src": "1710:111:6"
+                "src": "1732:111:6"
               }
             ],
             "id": 1749,
             "name": "FunctionDefinition",
-            "src": "1596:225:6"
+            "src": "1618:225:6"
           },
           {
             "attributes": {
@@ -2892,12 +2892,12 @@
                         },
                         "id": 1750,
                         "name": "ElementaryTypeName",
-                        "src": "1844:7:6"
+                        "src": "1866:7:6"
                       }
                     ],
                     "id": 1751,
                     "name": "VariableDeclaration",
-                    "src": "1844:17:6"
+                    "src": "1866:17:6"
                   },
                   {
                     "attributes": {
@@ -2918,17 +2918,17 @@
                         },
                         "id": 1752,
                         "name": "ElementaryTypeName",
-                        "src": "1863:7:6"
+                        "src": "1885:7:6"
                       }
                     ],
                     "id": 1753,
                     "name": "VariableDeclaration",
-                    "src": "1863:18:6"
+                    "src": "1885:18:6"
                   }
                 ],
                 "id": 1754,
                 "name": "ParameterList",
-                "src": "1843:39:6"
+                "src": "1865:39:6"
               },
               {
                 "children": [
@@ -2951,17 +2951,17 @@
                         },
                         "id": 1755,
                         "name": "ElementaryTypeName",
-                        "src": "1909:4:6"
+                        "src": "1931:4:6"
                       }
                     ],
                     "id": 1756,
                     "name": "VariableDeclaration",
-                    "src": "1909:4:6"
+                    "src": "1931:4:6"
                   }
                 ],
                 "id": 1757,
                 "name": "ParameterList",
-                "src": "1908:6:6"
+                "src": "1930:6:6"
               },
               {
                 "children": [
@@ -3014,7 +3014,7 @@
                                     },
                                     "id": 1758,
                                     "name": "Identifier",
-                                    "src": "1936:16:6"
+                                    "src": "1958:16:6"
                                   },
                                   {
                                     "attributes": {
@@ -3028,17 +3028,17 @@
                                     },
                                     "id": 1759,
                                     "name": "Identifier",
-                                    "src": "1953:9:6"
+                                    "src": "1975:9:6"
                                   }
                                 ],
                                 "id": 1760,
                                 "name": "IndexAccess",
-                                "src": "1936:27:6"
+                                "src": "1958:27:6"
                               }
                             ],
                             "id": 1761,
                             "name": "MemberAccess",
-                            "src": "1936:37:6"
+                            "src": "1958:37:6"
                           },
                           {
                             "attributes": {
@@ -3052,37 +3052,37 @@
                             },
                             "id": 1762,
                             "name": "Identifier",
-                            "src": "1974:10:6"
+                            "src": "1996:10:6"
                           }
                         ],
                         "id": 1763,
                         "name": "IndexAccess",
-                        "src": "1936:49:6"
+                        "src": "1958:49:6"
                       }
                     ],
                     "id": 1764,
                     "name": "Return",
-                    "src": "1929:56:6"
+                    "src": "1951:56:6"
                   }
                 ],
                 "id": 1765,
                 "name": "Block",
-                "src": "1919:73:6"
+                "src": "1941:73:6"
               }
             ],
             "id": 1766,
             "name": "FunctionDefinition",
-            "src": "1827:165:6"
+            "src": "1849:165:6"
           }
         ],
         "id": 1767,
         "name": "ContractDefinition",
-        "src": "155:1840:6"
+        "src": "155:1862:6"
       }
     ],
     "id": 1768,
     "name": "SourceUnit",
-    "src": "0:1996:6"
+    "src": "0:2018:6"
   },
   "compiler": {
     "name": "solc",
@@ -3090,5 +3090,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-10T14:25:03.568Z"
+  "updatedAt": "2017-11-13T17:09:54.105Z"
 }

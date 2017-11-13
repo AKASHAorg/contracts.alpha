@@ -16,6 +16,7 @@ contract Bundled is HasNoEther, HasNoTokens {
     }
 
     function setModule(address _moduleAddress)
+    public
     onlyOwner
     returns (bool)
     {
@@ -41,6 +42,7 @@ contract Bundled is HasNoEther, HasNoTokens {
     }
 
     function destroy()
+    public
     onlyOwner
     {
         selfdestruct(owner);
