@@ -42,6 +42,7 @@ contract Entries is HasNoEther, HasNoTokens {
     mapping (address => Entry) entryIndex;
 
     function Entries(Essence _essence)
+    public
     HasNoEther()
     HasNoTokens()
     {
@@ -102,6 +103,7 @@ contract Entries is HasNoEther, HasNoTokens {
     }
 
     function calcPublishCost(address _author)
+    view
     internal
     returns (uint _amount)
     {
@@ -171,21 +173,24 @@ contract Entries is HasNoEther, HasNoTokens {
     }
 
     function getEntryCount(address _publisher)
-    constant
+    public
+    view
     returns (uint256)
     {
         return entryIndex[_publisher].total;
     }
 
     function getEntry(address _publisher, bytes32 _entryId)
-    constant
+    public
+    view
     returns (uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         (_fn, _digestSize, _hash) = IpfsHash.getHash(entryIndex[_publisher].records[_entryId]);
     }
 
     function exists(address _publisher, bytes32 _entryId)
-    constant
+    public
+    view
     returns (bool)
     {
         return entryIndex[_publisher].records[_entryId].fn != 0;

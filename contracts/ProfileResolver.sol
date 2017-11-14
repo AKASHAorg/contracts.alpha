@@ -28,6 +28,7 @@ contract ProfileResolver is Bundled {
     bytes32 constant ADDR_REVERSE_NODE = 0x91d1777781884d03a6757a803996e38de2a42967fb37eeaca72729271025a9e2;
 
     function ProfileResolver(ENS _ens, uint _totalProfiles)
+    public
     Bundled()
     {
         ens = _ens;
@@ -120,21 +121,24 @@ contract ProfileResolver is Bundled {
 
 
     function hash(bytes32 _node)
-    constant
+    public
+    view
     returns (uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         (_fn, _digestSize, _hash) = IpfsHash.getHash(profileList[_node].contentHash);
     }
 
     function addr(bytes32 node)
-    constant
+    public
+    view
     returns (address)
     {
         return profileList[node].addr;
     }
 
     function resolve(bytes32 _node)
-    constant
+    public
+    view
     returns (bytes32 _akashaId, address _addr, bool _donationsEnabled, uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         _akashaId = profileList[_node].akashaId;
@@ -144,7 +148,8 @@ contract ProfileResolver is Bundled {
     }
 
     function donationsEnabled(bytes32 _node)
-    constant
+    public
+    view
     returns (bool)
     {
         return profileList[_node].donations;
@@ -164,7 +169,8 @@ contract ProfileResolver is Bundled {
     // reverse eth address to ens node
     // this works only for subdomains
     function reverse(address owner)
-    constant
+    public
+    view
     returns (bytes32)
     {
         return reverseRecords[keccak256(ADDR_REVERSE_NODE, sha3HexAddress(owner))];
@@ -179,6 +185,7 @@ contract ProfileResolver is Bundled {
      *         input address.
      */
     function sha3HexAddress(address addr)
+    view
     private
     returns (bytes32 ret)
     {

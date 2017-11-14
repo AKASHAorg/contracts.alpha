@@ -15,6 +15,7 @@ contract OngoingSale is CappedCrowdsale, Ownable {
     event Finalized();
 
     function OngoingSale(uint256 _startBlock, uint256 _endBlock, uint256 _rate, address _wallet, uint256 _cap)
+    public
     Crowdsale(_startBlock, _endBlock, _rate, _wallet)
     CappedCrowdsale(_cap)
     {

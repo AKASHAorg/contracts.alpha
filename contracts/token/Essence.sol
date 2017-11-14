@@ -51,6 +51,7 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function Essence()
+    public
     HasNoEther()
     HasNoTokens()
     {
@@ -127,7 +128,8 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function mana(address _spender)
-    constant
+    public
+    view
     returns (uint256 _total, uint256 _spent, uint256 _remaining)
     {
         _total = aeth.bonded(_spender);
@@ -161,14 +163,16 @@ contract Essence is HasNoEther, HasNoTokens {
     }
 
     function aethValueFrom(uint256 _collected)
-    constant
+    public
+    view
     returns (uint256)
     {
         return _collected.div(transformFactor);
     }
 
     function getCollected(address _collector)
-    constant
+    public
+    view
     returns (uint256 _karma, uint256 _essence)
     {
         return (collected[_collector].karma, collected[_collector].essence);

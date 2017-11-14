@@ -6,7 +6,7 @@ import './Bundled.sol';
 
 contract AkashaController is Bundled {
 
-    function AkashaController(address _owner) Bundled() {
+    function AkashaController(address _owner) public Bundled() {
 
     }
 }

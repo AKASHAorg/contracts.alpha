@@ -47,6 +47,7 @@ contract Comments is HasNoEther, HasNoTokens {
     mapping (bytes32 => Record) commentList;
 
     function Comments()
+    public
     HasNoEther()
     HasNoTokens()
     {
@@ -92,6 +93,7 @@ contract Comments is HasNoEther, HasNoTokens {
     }
 
     function calcPublishCost(address _author)
+    view
     internal
     returns (uint _amount)
     {
@@ -150,7 +152,8 @@ contract Comments is HasNoEther, HasNoTokens {
     }
 
     function getComment(bytes32 _entryId, bytes32 _commentId)
-    constant
+    public
+    view
     returns (bytes32 parent, address author, bool deleted, uint256 publishDate, uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         parent = commentList[_entryId].comment[_commentId].parent;
@@ -161,35 +164,40 @@ contract Comments is HasNoEther, HasNoTokens {
     }
 
     function exists(bytes32 _entryId, bytes32 _commentId)
-    constant
+    public
+    view
     returns (bool)
     {
         return (commentList[_entryId].comment[_commentId].author != address(0x0) && !commentList[_entryId].comment[_commentId].deleted);
     }
 
     function commentAuthor(bytes32 _entryId, bytes32 _commentId)
-    constant
+    public
+    view
     returns (address _author)
     {
         _author = commentList[_entryId].comment[_commentId].author;
     }
 
     function isDeleted(bytes32 _entryId, bytes32 _commentId)
-    constant
+    public
+    view
     returns (bool _deleted)
     {
         _deleted = commentList[_entryId].comment[_commentId].deleted;
     }
 
     function totalComments(bytes32 _entryId)
-    constant
+    public
+    view
     returns (uint256 _total)
     {
         _total = commentList[_entryId].nextId;
     }
 
     function totalCommentsOf(address _publisher)
-    constant
+    public
+    view
     returns (uint)
     {
         return totalAddressComments[_publisher];

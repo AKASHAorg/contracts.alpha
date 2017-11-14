@@ -21,6 +21,7 @@ contract Feed is HasNoEther, HasNoTokens {
     event UnFollow(address indexed followed, address indexed follower);
 
     function Feed()
+    public
     HasNoEther()
     HasNoTokens()
     {
@@ -56,21 +57,24 @@ contract Feed is HasNoEther, HasNoTokens {
     }
 
     function totalFollowers(address _profile)
-    constant
+    public
+    view
     returns (uint _total)
     {
         _total = followersCount[_profile];
     }
 
     function totalFollowing(address _profile)
-    constant
+    public
+    view
     returns (uint _total)
     {
         _total = followingRecords[_profile].total;
     }
 
     function followsCount(address _profile)
-    constant
+    public
+    view
     returns (uint _followersCount, uint _followingCount)
     {
         _followersCount = totalFollowers(_profile);
@@ -78,7 +82,8 @@ contract Feed is HasNoEther, HasNoTokens {
     }
 
     function follows(address _follower, address _following)
-    constant
+    public
+    view
     returns (bool)
     {
         return followingRecords[_follower].following[_following];

@@ -35,6 +35,7 @@ contract AethSale is OngoingSale {
     uint256 _goal,
     uint256 _endBlockAfterGoal
     )
+    public
     OngoingSale(_startTime, _endTime, _rate, _wallet, _cap)
     {
         vault = new RefundVault(wallet);

@@ -15,7 +15,7 @@ contract AkashaStore is Bundled {
 
     mapping (bytes32 => Store) state;
 
-    function AkashaStore(address _owner) Bundled() {
+    function AkashaStore(address _owner) public Bundled() {
 
     }
 
@@ -40,14 +40,16 @@ contract AkashaStore is Bundled {
     }
 
     function get(bytes32 _nameSpace, uint _key)
-    constant
+    public
+    view
     returns (bytes32)
     {
         return state[_nameSpace].uintBytes[_key];
     }
 
     function get(bytes32 _nameSpace, bytes32 _key)
-    constant
+    public
+    view
     returns (uint)
     {
         return state[_nameSpace].bytesUint[_key];

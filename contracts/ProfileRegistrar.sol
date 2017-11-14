@@ -18,7 +18,7 @@ contract ProfileRegistrar is AkashaModule {
 
     event Register(bytes32 indexed label, uint indexed version);
 
-    function ProfileRegistrar(ENS _ens, bytes32 _rootNode) AkashaModule("profiles", 1)
+    function ProfileRegistrar(ENS _ens, bytes32 _rootNode) public AkashaModule("profiles", 1)
     {
         ens = _ens;
         rootNode = _rootNode;
@@ -109,7 +109,9 @@ contract ProfileRegistrar is AkashaModule {
     }
 
     function check_format(bytes32 _subNode)
-    constant returns (bool)
+    public
+    pure
+    returns (bool)
     {
         // enforce alpha first
         //if (_subNode[0] < 58) {
@@ -131,7 +133,8 @@ contract ProfileRegistrar is AkashaModule {
     }
 
     function hash(bytes32 _subNode)
-    constant
+    public
+    view
     returns (bytes32 nameHash)
     {
         nameHash = keccak256(rootNode, _subNode);

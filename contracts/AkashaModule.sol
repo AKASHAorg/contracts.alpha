@@ -11,6 +11,7 @@ contract AkashaModule is HasNoEther, HasNoTokens {
     string public moduleName;
 
     function AkashaModule(string _moduleName, uint256 _version)
+    public
     HasNoEther()
     HasNoTokens()
     {

@@ -46,6 +46,7 @@ contract Tags is HasNoEther, HasNoTokens {
     event ListUpdate(bytes32 indexed name, address indexed publisher);
 
     function Tags()
+    public
     HasNoEther()
     HasNoTokens()
     {
@@ -132,7 +133,8 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function canCreate(address _creator)
-    constant
+    public
+    view
     returns (bool)
     {
         uint256 karma;
@@ -166,7 +168,8 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function total_lists(address _publisher)
-    constant
+    public
+    view
     returns (uint256 _total)
     {
         _total = listsCount[_publisher];
@@ -182,21 +185,24 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function list_exists(bytes32 _id)
-    constant
+    public
+    view
     returns (bool)
     {
         return lists[_id].creator != address(0x0);
     }
 
     function list_creator(bytes32 _id)
-    constant
+    public
+    view
     returns (address)
     {
         return lists[_id].creator;
     }
 
     function get_list(bytes32 _id)
-    constant
+    public
+    view
     returns (address _creator, uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         _creator = lists[_id].creator;
@@ -204,7 +210,8 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function get_list_publisher(bytes32 _name, address _publisher)
-    constant
+    public
+    view
     returns (address _creator, uint8 _fn, uint8 _digestSize, bytes32 _hash)
     {
         var listHash = keccak256(_publisher, _name);
@@ -212,20 +219,26 @@ contract Tags is HasNoEther, HasNoTokens {
     }
 
     function exists(bytes32 _tag)
-    constant returns (bool)
+    public
+    view
+    returns (bool)
     {
         return tags[_tag].created;
     }
 
     function totalEntries(bytes32 _tag)
-    constant returns(uint _total)
+    public
+    view
+    returns(uint _total)
     {
         _total = tags[_tag].totalEntries;
     }
 
     //[a-z0-9---.]
     function check_format(bytes32 id)
-    constant returns (bool)
+    public
+    pure
+    returns (bool)
     {
 
         if (id[0] == 46 || id[0] == 95) {

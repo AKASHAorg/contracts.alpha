@@ -33,11 +33,11 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b6101328061001e6000396000f300606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063294ba8e714610046575b600080fd5b61008160048080359060200190919080356000191690602001909190803560ff1690602001909190803560ff1690602001909190505061009b565b604051808215151515815260200191505060405180910390f35b600060208260ff1611156100b257600090506100fe565b83856000018160001916905550828560010160006101000a81548160ff021916908360ff160217905550818560010160016101000a81548160ff021916908360ff160217905550600190505b9493505050505600a165627a7a72305820043a1876a09a72c0447d2cb8959748bee256466735e41e19185159b8f09818ec0029",
-  "deployedBytecode": "0x606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063294ba8e714610046575b600080fd5b61008160048080359060200190919080356000191690602001909190803560ff1690602001909190803560ff1690602001909190505061009b565b604051808215151515815260200191505060405180910390f35b600060208260ff1611156100b257600090506100fe565b83856000018160001916905550828560010160006101000a81548160ff021916908360ff160217905550818560010160016101000a81548160ff021916908360ff160217905550600190505b9493505050505600a165627a7a72305820043a1876a09a72c0447d2cb8959748bee256466735e41e19185159b8f09818ec0029",
-  "sourceMap": "29:922:7:-;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "29:922:7:-;;;;;;;;;;;;;;;;;;;;;;;;365:304;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;474:4;512:2;498:11;:16;;;494:59;;;537:5;530:12;;;;494:59;574:5;562:4;:9;;:17;;;;;;;599:3;589:4;:7;;;:13;;;;;;;;;;;;;;;;;;630:11;612:4;:15;;;:29;;;;;;;;;;;;;;;;;;658:4;651:11;;365:304;;;;;;;:::o",
-  "source": "pragma solidity ^0.4.0;\n\n\n//\nlibrary IpfsHash {\n\n    // decode ipfs hash to hex, strip prefix\n    // ex: 1220aa7ef8aced767773e8a47753ed0ef452a35845db3f02cd85b92c75ff593ee991\n    // { codec: 12, size: 20, hash: aa7ef8aced767773e8a47753ed0ef452a35845db3f02cd85b92c75ff593ee991 }\n    struct Multihash {\n    bytes32 hash;\n    uint8 fn;\n    uint8 digestSize;\n    }\n\n    function create(Multihash storage self, bytes32 _hash, uint8 _fn, uint8 _digestSize)\n    public\n    returns (bool)\n    {\n        if (_digestSize > 32) {\n            return false;\n        }\n        self.hash = _hash;\n        self.fn = _fn;\n        self.digestSize = _digestSize;\n        return true;\n    }\n\n    function getHash(Multihash _multiHash)\n    internal\n    constant\n    returns (uint8, uint8, bytes32)\n    {\n        // on dapp just concat all these in one string, transform to Buffer and encode it\n        return (_multiHash.fn, _multiHash.digestSize, _multiHash.hash);\n    }\n}\n",
+  "bytecode": "0x6060604052341561000f57600080fd5b6101328061001e6000396000f300606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063294ba8e714610046575b600080fd5b61008160048080359060200190919080356000191690602001909190803560ff1690602001909190803560ff1690602001909190505061009b565b604051808215151515815260200191505060405180910390f35b600060208260ff1611156100b257600090506100fe565b83856000018160001916905550828560010160006101000a81548160ff021916908360ff160217905550818560010160016101000a81548160ff021916908360ff160217905550600190505b9493505050505600a165627a7a7230582055a873c1b62b09ba2083a576733d7296c1f1d5e46d844db2765576fdb1d5f0290029",
+  "deployedBytecode": "0x606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063294ba8e714610046575b600080fd5b61008160048080359060200190919080356000191690602001909190803560ff1690602001909190803560ff1690602001909190505061009b565b604051808215151515815260200191505060405180910390f35b600060208260ff1611156100b257600090506100fe565b83856000018160001916905550828560010160006101000a81548160ff021916908360ff160217905550818560010160016101000a81548160ff021916908360ff160217905550600190505b9493505050505600a165627a7a7230582055a873c1b62b09ba2083a576733d7296c1f1d5e46d844db2765576fdb1d5f0290029",
+  "sourceMap": "29:918:7:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "29:918:7:-;;;;;;;;;;;;;;;;;;;;;;;;365:304;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;474:4;512:2;498:11;:16;;;494:59;;;537:5;530:12;;;;494:59;574:5;562:4;:9;;:17;;;;;;;599:3;589:4;:7;;;:13;;;;;;;;;;;;;;;;;;630:11;612:4;:15;;;:29;;;;;;;;;;;;;;;;;;658:4;651:11;;365:304;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.0;\n\n\n//\nlibrary IpfsHash {\n\n    // decode ipfs hash to hex, strip prefix\n    // ex: 1220aa7ef8aced767773e8a47753ed0ef452a35845db3f02cd85b92c75ff593ee991\n    // { codec: 12, size: 20, hash: aa7ef8aced767773e8a47753ed0ef452a35845db3f02cd85b92c75ff593ee991 }\n    struct Multihash {\n    bytes32 hash;\n    uint8 fn;\n    uint8 digestSize;\n    }\n\n    function create(Multihash storage self, bytes32 _hash, uint8 _fn, uint8 _digestSize)\n    public\n    returns (bool)\n    {\n        if (_digestSize > 32) {\n            return false;\n        }\n        self.hash = _hash;\n        self.fn = _fn;\n        self.digestSize = _digestSize;\n        return true;\n    }\n\n    function getHash(Multihash _multiHash)\n    pure\n    internal\n    returns (uint8, uint8, bytes32)\n    {\n        // on dapp just concat all these in one string, transform to Buffer and encode it\n        return (_multiHash.fn, _multiHash.digestSize, _multiHash.hash);\n    }\n}\n",
   "sourcePath": "/home/kenshyx/projects/contracts.alpha/contracts/IpfsHash.sol",
   "ast": {
     "attributes": {
@@ -682,7 +682,7 @@
               "name": "getHash",
               "payable": false,
               "scope": 1838,
-              "stateMutability": "view",
+              "stateMutability": "pure",
               "superFunction": null,
               "visibility": "internal"
             },
@@ -743,12 +743,12 @@
                         },
                         "id": 1821,
                         "name": "ElementaryTypeName",
-                        "src": "753:5:7"
+                        "src": "749:5:7"
                       }
                     ],
                     "id": 1822,
                     "name": "VariableDeclaration",
-                    "src": "753:5:7"
+                    "src": "749:5:7"
                   },
                   {
                     "attributes": {
@@ -769,12 +769,12 @@
                         },
                         "id": 1823,
                         "name": "ElementaryTypeName",
-                        "src": "760:5:7"
+                        "src": "756:5:7"
                       }
                     ],
                     "id": 1824,
                     "name": "VariableDeclaration",
-                    "src": "760:5:7"
+                    "src": "756:5:7"
                   },
                   {
                     "attributes": {
@@ -795,17 +795,17 @@
                         },
                         "id": 1825,
                         "name": "ElementaryTypeName",
-                        "src": "767:7:7"
+                        "src": "763:7:7"
                       }
                     ],
                     "id": 1826,
                     "name": "VariableDeclaration",
-                    "src": "767:7:7"
+                    "src": "763:7:7"
                   }
                 ],
                 "id": 1827,
                 "name": "ParameterList",
-                "src": "752:23:7"
+                "src": "748:23:7"
               },
               {
                 "children": [
@@ -849,12 +849,12 @@
                                 },
                                 "id": 1828,
                                 "name": "Identifier",
-                                "src": "888:10:7"
+                                "src": "884:10:7"
                               }
                             ],
                             "id": 1829,
                             "name": "MemberAccess",
-                            "src": "888:13:7"
+                            "src": "884:13:7"
                           },
                           {
                             "attributes": {
@@ -880,12 +880,12 @@
                                 },
                                 "id": 1830,
                                 "name": "Identifier",
-                                "src": "903:10:7"
+                                "src": "899:10:7"
                               }
                             ],
                             "id": 1831,
                             "name": "MemberAccess",
-                            "src": "903:21:7"
+                            "src": "899:21:7"
                           },
                           {
                             "attributes": {
@@ -911,42 +911,42 @@
                                 },
                                 "id": 1832,
                                 "name": "Identifier",
-                                "src": "926:10:7"
+                                "src": "922:10:7"
                               }
                             ],
                             "id": 1833,
                             "name": "MemberAccess",
-                            "src": "926:15:7"
+                            "src": "922:15:7"
                           }
                         ],
                         "id": 1834,
                         "name": "TupleExpression",
-                        "src": "887:55:7"
+                        "src": "883:55:7"
                       }
                     ],
                     "id": 1835,
                     "name": "Return",
-                    "src": "880:62:7"
+                    "src": "876:62:7"
                   }
                 ],
                 "id": 1836,
                 "name": "Block",
-                "src": "780:169:7"
+                "src": "776:169:7"
               }
             ],
             "id": 1837,
             "name": "FunctionDefinition",
-            "src": "675:274:7"
+            "src": "675:270:7"
           }
         ],
         "id": 1838,
         "name": "ContractDefinition",
-        "src": "29:922:7"
+        "src": "29:918:7"
       }
     ],
     "id": 1839,
     "name": "SourceUnit",
-    "src": "0:952:7"
+    "src": "0:948:7"
   },
   "compiler": {
     "name": "solc",
@@ -954,5 +954,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-13T17:09:54.105Z"
+  "updatedAt": "2017-11-14T16:08:17.283Z"
 }

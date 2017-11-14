@@ -15,7 +15,7 @@ contract AETH is MintableToken, PausableToken {
 
     uint8 public decimals = 18;
 
-    uint256 public lockTime = 7 days;
+    uint256 public lockTime = 1 days;
 
     Essence essence;
 

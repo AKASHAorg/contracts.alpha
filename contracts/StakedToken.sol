@@ -23,6 +23,7 @@ contract StakedToken is HasNoEther {
     //@TODO: find optimal structure
 
     function StakedToken()
+    public
     HasNoEther()
     {
 
@@ -43,7 +44,8 @@ contract StakedToken is HasNoEther {
     }
 
     function getToken(uint _idToken)
-    constant
+    public
+    view
     returns (address)
     {
         return tokens[_idToken];

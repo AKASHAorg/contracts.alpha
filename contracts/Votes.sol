@@ -54,6 +54,7 @@ contract Votes is HasNoEther, HasNoTokens {
     mapping (bytes32 => Record) records;
 
     function Votes()
+    public
     HasNoEther()
     HasNoTokens()
     {
@@ -143,6 +144,7 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function calcKarmaFrom(uint8 _weight)
+    view
     internal
     returns (uint256 _total)
     {
@@ -225,7 +227,8 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function voteOf(address _voter, bytes32 _source)
-    constant
+    public
+    view
     returns (int8)
     {
         return records[_source].votes[_voter];
@@ -254,14 +257,16 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function canClaimEntry(bytes32 _id, uint256 _timeStamp)
-    constant
+    public
+    view
     returns (bool)
     {
         return (records[_id].endPeriod < _timeStamp && records[_id].score >= 0 && !records[_id].claimed);
     }
 
     function canClaimEntryVote(bytes32 _id, address _voter, uint256 _timeStamp)
-    constant
+    public
+    view
     returns (bool)
     {
         if ((records[_id].endPeriod < _timeStamp) || records[_id].karma[_voter].claimed) {
@@ -280,7 +285,6 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function claimKarmaVote(bytes32 _id)
-    constant
     returns (bool)
     {
         require(canClaimEntryVote(_id, msg.sender, now));
@@ -290,7 +294,8 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function getRecord(bytes32 _id)
-    constant
+    public
+    view
     returns (uint256 _totalVotes, int _score, uint256 _endPeriod, uint256 _totalKarma, bool _claimed)
     {
         _totalVotes = records[_id].totalVotes;
@@ -301,7 +306,8 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function karmaOf(address _voter, bytes32 _id)
-    constant
+    public
+    view
     returns (uint _karma, bool _claimed)
     {
         _karma = records[_id].karma[_voter].amount;
@@ -309,14 +315,16 @@ contract Votes is HasNoEther, HasNoTokens {
     }
 
     function getEssenceCost(uint _weight)
-    constant
+    public
+    view
     returns (uint)
     {
         return required_essence.mul(_weight);
     }
 
     function totalVotesOf(address _voter)
-    constant
+    public
+    view
     returns (uint weight, uint count)
     {
         return (totalVotes[_voter].weight, totalVotes[_voter].count);

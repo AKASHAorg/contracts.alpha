@@ -9,6 +9,7 @@ contract Bundled is HasNoEther, HasNoTokens {
     address public moduleAddress;
 
     function Bundled()
+    public
     HasNoEther()
     HasNoTokens()
     {
