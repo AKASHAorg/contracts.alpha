@@ -3,9 +3,7 @@ pragma solidity ^0.4.0;
 
 import './Bundled.sol';
 import "./IpfsHash.sol";
-import './ResolverInterface.sol';
 import 'ens/contracts/ENS.sol';
-
 
 contract ProfileResolver is Bundled {
     uint public totalProfiles;

@@ -217,10 +217,10 @@
         "attributes": {
           "contractDependencies": [
             285,
-            7162,
-            7197,
-            7216,
-            7272
+            7140,
+            7175,
+            7194,
+            7250
           ],
           "contractKind": "contract",
           "documentation": null,
@@ -228,10 +228,10 @@
           "linearizedBaseContracts": [
             13,
             285,
-            7216,
-            7162,
-            7197,
-            7272
+            7194,
+            7140,
+            7175,
+            7250
           ],
           "name": "AkashaController",
           "scope": 14
@@ -375,5 +375,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-14T16:08:17.278Z"
+  "updatedAt": "2017-11-15T18:35:00.608Z"
 }

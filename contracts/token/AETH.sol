@@ -5,8 +5,7 @@ import 'zeppelin-solidity/contracts/token/MintableToken.sol';
 import 'zeppelin-solidity/contracts/token/PausableToken.sol';
 import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
 import './Essence.sol';
-import '../ProfileResolver.sol';
-
+import './ResolverInterface.sol';
 
 contract AETH is MintableToken, PausableToken {
     string public name = "AKASHA Token";
@@ -18,8 +17,6 @@ contract AETH is MintableToken, PausableToken {
     uint256 public lockTime = 1 days;
 
     Essence essence;
-
-    ProfileResolver resolver;
 
     enum AethState {Bonded, Cycling, Free}
 
@@ -54,12 +51,6 @@ contract AETH is MintableToken, PausableToken {
         essence = _essence;
     }
 
-    function setResolver(ProfileResolver _resolver)
-    public
-    onlyOwner
-    {
-        resolver = _resolver;
-    }
 
     function setLockTime(uint256 _time)
     public
@@ -210,11 +201,11 @@ contract AETH is MintableToken, PausableToken {
     returns (bool)
     {
         require(_aethAmount > 0 || msg.value > 0);
-        bytes32 resolved = resolver.reverse(_to);
-        if (resolved != bytes32(0x0)) {
-            // explicit opt for receiving donations
-            require(resolver.donationsEnabled(resolved));
-        }
+//        bytes32 resolved = resolver.reverse(_to);
+//        if (resolved != bytes32(0x0)) {
+//            // explicit opt for receiving donations
+//            require(resolver.donationsEnabled(resolved));
+//        }
         if (_aethAmount > 0) {
             require(transfer(_to, _aethAmount));
         }

@@ -94,7 +94,7 @@
       "absolutePath": "zeppelin-solidity/contracts/ownership/HasNoTokens.sol",
       "exportedSymbols": {
         "HasNoTokens": [
-          7216
+          7194
         ]
       }
     },
@@ -108,41 +108,41 @@
             ".11"
           ]
         },
-        "id": 7199,
+        "id": 7177,
         "name": "PragmaDirective",
         "src": "0:24:30"
       },
       {
         "attributes": {
-          "SourceUnit": 7163,
+          "SourceUnit": 7141,
           "absolutePath": "zeppelin-solidity/contracts/ownership/CanReclaimToken.sol",
           "file": "./CanReclaimToken.sol",
-          "scope": 7217,
+          "scope": 7195,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 7200,
+        "id": 7178,
         "name": "ImportDirective",
         "src": "26:31:30"
       },
       {
         "attributes": {
           "contractDependencies": [
-            7162,
-            7272
+            7140,
+            7250
           ],
           "contractKind": "contract",
           "documentation": "@title Contracts that should not own Tokens\n@author Remco Bloemen <remco@2π.com>\n@dev This blocks incoming ERC23 tokens to prevent accidental loss of tokens.\nShould tokens (any ERC20Basic compatible) end up in the contract, it allows the\nowner to reclaim the tokens.",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            7216,
-            7162,
-            7272
+            7194,
+            7140,
+            7250
           ],
           "name": "HasNoTokens",
-          "scope": 7217
+          "scope": 7195
         },
         "children": [
           {
@@ -156,15 +156,15 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "CanReclaimToken",
-                  "referencedDeclaration": 7162,
+                  "referencedDeclaration": 7140,
                   "type": "contract CanReclaimToken"
                 },
-                "id": 7201,
+                "id": 7179,
                 "name": "UserDefinedTypeName",
                 "src": "374:15:30"
               }
             ],
-            "id": 7202,
+            "id": 7180,
             "name": "InheritanceSpecifier",
             "src": "374:15:30"
           },
@@ -178,7 +178,7 @@
               ],
               "name": "tokenFallback",
               "payable": false,
-              "scope": 7216,
+              "scope": 7194,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -190,7 +190,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "from_",
-                      "scope": 7215,
+                      "scope": 7193,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -203,12 +203,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 7203,
+                        "id": 7181,
                         "name": "ElementaryTypeName",
                         "src": "657:7:30"
                       }
                     ],
-                    "id": 7204,
+                    "id": 7182,
                     "name": "VariableDeclaration",
                     "src": "657:13:30"
                   },
@@ -216,7 +216,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "value_",
-                      "scope": 7215,
+                      "scope": 7193,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -229,12 +229,12 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 7205,
+                        "id": 7183,
                         "name": "ElementaryTypeName",
                         "src": "672:7:30"
                       }
                     ],
-                    "id": 7206,
+                    "id": 7184,
                     "name": "VariableDeclaration",
                     "src": "672:14:30"
                   },
@@ -242,7 +242,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "data_",
-                      "scope": 7215,
+                      "scope": 7193,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes calldata",
@@ -255,17 +255,17 @@
                           "name": "bytes",
                           "type": "bytes storage pointer"
                         },
-                        "id": 7207,
+                        "id": 7185,
                         "name": "ElementaryTypeName",
                         "src": "688:5:30"
                       }
                     ],
-                    "id": 7208,
+                    "id": 7186,
                     "name": "VariableDeclaration",
                     "src": "688:11:30"
                   }
                 ],
-                "id": 7209,
+                "id": 7187,
                 "name": "ParameterList",
                 "src": "656:44:30"
               },
@@ -276,7 +276,7 @@
                   ]
                 },
                 "children": [],
-                "id": 7210,
+                "id": 7188,
                 "name": "ParameterList",
                 "src": "710:0:30"
               },
@@ -310,41 +310,41 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 7923,
+                              "referencedDeclaration": 7901,
                               "type": "function () pure",
                               "value": "revert"
                             },
-                            "id": 7211,
+                            "id": 7189,
                             "name": "Identifier",
                             "src": "716:6:30"
                           }
                         ],
-                        "id": 7212,
+                        "id": 7190,
                         "name": "FunctionCall",
                         "src": "716:8:30"
                       }
                     ],
-                    "id": 7213,
+                    "id": 7191,
                     "name": "ExpressionStatement",
                     "src": "716:8:30"
                   }
                 ],
-                "id": 7214,
+                "id": 7192,
                 "name": "Block",
                 "src": "710:19:30"
               }
             ],
-            "id": 7215,
+            "id": 7193,
             "name": "FunctionDefinition",
             "src": "634:95:30"
           }
         ],
-        "id": 7216,
+        "id": 7194,
         "name": "ContractDefinition",
         "src": "350:382:30"
       }
     ],
-    "id": 7217,
+    "id": 7195,
     "name": "SourceUnit",
     "src": "0:733:30"
   },
@@ -354,5 +354,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-14T16:08:17.296Z"
+  "updatedAt": "2017-11-15T18:35:00.625Z"
 }

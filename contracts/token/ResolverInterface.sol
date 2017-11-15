@@ -9,4 +9,8 @@ contract ResolverInterface {
     function hash(bytes32 node) public view returns (uint8 fn, uint8 digestSize, bytes32 ipfsHash);
 
     function setHash(bytes32 node, uint8 fn, uint8 digestSize, bytes32 ipfsHash) public;
+
+    function reverse(address owner) public view returns(bytes32);
+
+    function donationsEnabled(bytes32 _node) public view returns(bool);
 }

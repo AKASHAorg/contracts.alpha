@@ -290,7 +290,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 7217,
+          "SourceUnit": 7195,
           "absolutePath": "zeppelin-solidity/contracts/ownership/HasNoTokens.sol",
           "file": "zeppelin-solidity/contracts/ownership/HasNoTokens.sol",
           "scope": 1768,
@@ -305,7 +305,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 7198,
+          "SourceUnit": 7176,
           "absolutePath": "zeppelin-solidity/contracts/ownership/HasNoEther.sol",
           "file": "zeppelin-solidity/contracts/ownership/HasNoEther.sol",
           "scope": 1768,
@@ -321,20 +321,20 @@
       {
         "attributes": {
           "contractDependencies": [
-            7162,
-            7197,
-            7216,
-            7272
+            7140,
+            7175,
+            7194,
+            7250
           ],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             1767,
-            7216,
-            7162,
-            7197,
-            7272
+            7194,
+            7140,
+            7175,
+            7250
           ],
           "name": "Feed",
           "scope": 1768
@@ -351,7 +351,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "HasNoEther",
-                  "referencedDeclaration": 7197,
+                  "referencedDeclaration": 7175,
                   "type": "contract HasNoEther"
                 },
                 "id": 1563,
@@ -374,7 +374,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "HasNoTokens",
-                  "referencedDeclaration": 7216,
+                  "referencedDeclaration": 7194,
                   "type": "contract HasNoTokens"
                 },
                 "id": 1565,
@@ -754,7 +754,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 7197,
+                      "referencedDeclaration": 7175,
                       "type": "type(contract HasNoEther)",
                       "value": "HasNoEther"
                     },
@@ -780,7 +780,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 7216,
+                      "referencedDeclaration": 7194,
                       "type": "type(contract HasNoTokens)",
                       "value": "HasNoTokens"
                     },
@@ -921,7 +921,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 7922,
+                              "referencedDeclaration": 7900,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -1005,7 +1005,7 @@
                                                   "overloadedDeclarations": [
                                                     null
                                                   ],
-                                                  "referencedDeclaration": 7919,
+                                                  "referencedDeclaration": 7897,
                                                   "type": "msg",
                                                   "value": "msg"
                                                 },
@@ -1139,7 +1139,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 7919,
+                                              "referencedDeclaration": 7897,
                                               "type": "msg",
                                               "value": "msg"
                                             },
@@ -1276,7 +1276,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 7919,
+                                          "referencedDeclaration": 7897,
                                           "type": "msg",
                                           "value": "msg"
                                         },
@@ -1448,7 +1448,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 7919,
+                                  "referencedDeclaration": 7897,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -1620,7 +1620,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 7922,
+                              "referencedDeclaration": 7900,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -1692,7 +1692,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 7919,
+                                              "referencedDeclaration": 7897,
                                               "type": "msg",
                                               "value": "msg"
                                             },
@@ -1821,7 +1821,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 7919,
+                                              "referencedDeclaration": 7897,
                                               "type": "msg",
                                               "value": "msg"
                                             },
@@ -1958,7 +1958,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 7919,
+                                          "referencedDeclaration": 7897,
                                           "type": "msg",
                                           "value": "msg"
                                         },
@@ -2130,7 +2130,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 7919,
+                                  "referencedDeclaration": 7897,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -3090,5 +3090,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-14T16:08:17.282Z"
+  "updatedAt": "2017-11-15T18:35:00.612Z"
 }

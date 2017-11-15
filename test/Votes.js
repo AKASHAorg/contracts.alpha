@@ -30,7 +30,7 @@ contract('Votes', function ([owner, wallet]) {
   let entryObj = {entryId: null, ethAddress: null};
   before(async function () {
     const currentBlock = await helpers.getCurrentBlockNumber();
-    this.startTime = new Date().getTime() / 1000 + 20;
+    this.startTime = new Date().getTime() / 1000 + 19;
     this.endTime = this.startTime + 200;
     endBlockCap = currentBlock + 15;
     const token = await AETH.new({
@@ -43,9 +43,8 @@ contract('Votes', function ([owner, wallet]) {
       gas: 9650000,
       from: owner
     });
-    console.log(this.crowdsale);
     this.token = AETH.at(await this.crowdsale.token());
-    await helpers.sleep(1);
+    await helpers.sleep(20);
     await this.crowdsale.send(cap, { from: owner }).should.be.fulfilled;
     await helpers.advanceToBlock(endBlockCap + 1);
     await this.crowdsale.finalize();

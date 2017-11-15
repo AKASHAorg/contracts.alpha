@@ -78,7 +78,7 @@
       "absolutePath": "zeppelin-solidity/contracts/ownership/HasNoEther.sol",
       "exportedSymbols": {
         "HasNoEther": [
-          7197
+          7175
         ]
       }
     },
@@ -92,39 +92,39 @@
             ".11"
           ]
         },
-        "id": 7164,
+        "id": 7142,
         "name": "PragmaDirective",
         "src": "0:24:29"
       },
       {
         "attributes": {
-          "SourceUnit": 7273,
+          "SourceUnit": 7251,
           "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
           "file": "./Ownable.sol",
-          "scope": 7198,
+          "scope": 7176,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 7165,
+        "id": 7143,
         "name": "ImportDirective",
         "src": "26:23:29"
       },
       {
         "attributes": {
           "contractDependencies": [
-            7272
+            7250
           ],
           "contractKind": "contract",
           "documentation": "@title Contracts that should not own Ether\n@author Remco Bloemen <remco@2π.com>\n@dev This tries to block incoming ether to prevent accidental loss of Ether. Should Ether end up\nin the contract, it will allow the owner to reclaim this ether.\n@notice Ether can still be send to this contract by:\ncalling functions labeled `payable`\n`selfdestruct(contract_address)`\nmining directly to the contract address",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            7197,
-            7272
+            7175,
+            7250
           ],
           "name": "HasNoEther",
-          "scope": 7198
+          "scope": 7176
         },
         "children": [
           {
@@ -138,15 +138,15 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "Ownable",
-                  "referencedDeclaration": 7272,
+                  "referencedDeclaration": 7250,
                   "type": "contract Ownable"
                 },
-                "id": 7166,
+                "id": 7144,
                 "name": "UserDefinedTypeName",
                 "src": "509:7:29"
               }
             ],
-            "id": 7167,
+            "id": 7145,
             "name": "InheritanceSpecifier",
             "src": "509:7:29"
           },
@@ -160,7 +160,7 @@
               ],
               "name": "HasNoEther",
               "payable": true,
-              "scope": 7197,
+              "scope": 7175,
               "stateMutability": "payable",
               "superFunction": null,
               "visibility": "public"
@@ -173,7 +173,7 @@
                   ]
                 },
                 "children": [],
-                "id": 7168,
+                "id": 7146,
                 "name": "ParameterList",
                 "src": "937:2:29"
               },
@@ -184,7 +184,7 @@
                   ]
                 },
                 "children": [],
-                "id": 7169,
+                "id": 7147,
                 "name": "ParameterList",
                 "src": "948:0:29"
               },
@@ -218,11 +218,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 7922,
+                              "referencedDeclaration": 7900,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 7170,
+                            "id": 7148,
                             "name": "Identifier",
                             "src": "954:7:29"
                           },
@@ -259,16 +259,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 7919,
+                                      "referencedDeclaration": 7897,
                                       "type": "msg",
                                       "value": "msg"
                                     },
-                                    "id": 7171,
+                                    "id": 7149,
                                     "name": "Identifier",
                                     "src": "962:3:29"
                                   }
                                 ],
-                                "id": 7172,
+                                "id": 7150,
                                 "name": "MemberAccess",
                                 "src": "962:9:29"
                               },
@@ -285,32 +285,32 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 7173,
+                                "id": 7151,
                                 "name": "Literal",
                                 "src": "975:1:29"
                               }
                             ],
-                            "id": 7174,
+                            "id": 7152,
                             "name": "BinaryOperation",
                             "src": "962:14:29"
                           }
                         ],
-                        "id": 7175,
+                        "id": 7153,
                         "name": "FunctionCall",
                         "src": "954:23:29"
                       }
                     ],
-                    "id": 7176,
+                    "id": 7154,
                     "name": "ExpressionStatement",
                     "src": "954:23:29"
                   }
                 ],
-                "id": 7177,
+                "id": 7155,
                 "name": "Block",
                 "src": "948:34:29"
               }
             ],
-            "id": 7178,
+            "id": 7156,
             "name": "FunctionDefinition",
             "src": "918:64:29"
           },
@@ -324,7 +324,7 @@
               ],
               "name": "",
               "payable": false,
-              "scope": 7197,
+              "scope": 7175,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -337,7 +337,7 @@
                   ]
                 },
                 "children": [],
-                "id": 7179,
+                "id": 7157,
                 "name": "ParameterList",
                 "src": "1097:2:29"
               },
@@ -348,7 +348,7 @@
                   ]
                 },
                 "children": [],
-                "id": 7180,
+                "id": 7158,
                 "name": "ParameterList",
                 "src": "1109:0:29"
               },
@@ -359,12 +359,12 @@
                   ]
                 },
                 "children": [],
-                "id": 7181,
+                "id": 7159,
                 "name": "Block",
                 "src": "1109:5:29"
               }
             ],
-            "id": 7182,
+            "id": 7160,
             "name": "FunctionDefinition",
             "src": "1089:25:29"
           },
@@ -375,7 +375,7 @@
               "isConstructor": false,
               "name": "reclaimEther",
               "payable": false,
-              "scope": 7197,
+              "scope": 7175,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -388,7 +388,7 @@
                   ]
                 },
                 "children": [],
-                "id": 7183,
+                "id": 7161,
                 "name": "ParameterList",
                 "src": "1215:2:29"
               },
@@ -399,7 +399,7 @@
                   ]
                 },
                 "children": [],
-                "id": 7186,
+                "id": 7164,
                 "name": "ParameterList",
                 "src": "1237:0:29"
               },
@@ -416,16 +416,16 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 7246,
+                      "referencedDeclaration": 7224,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
-                    "id": 7184,
+                    "id": 7162,
                     "name": "Identifier",
                     "src": "1227:9:29"
                   }
                 ],
-                "id": 7185,
+                "id": 7163,
                 "name": "ModifierInvocation",
                 "src": "1227:9:29"
               },
@@ -459,11 +459,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 7910,
+                              "referencedDeclaration": 7888,
                               "type": "function (bool) pure",
                               "value": "assert"
                             },
-                            "id": 7187,
+                            "id": 7165,
                             "name": "Identifier",
                             "src": "1243:6:29"
                           },
@@ -505,16 +505,16 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 7220,
+                                      "referencedDeclaration": 7198,
                                       "type": "address",
                                       "value": "owner"
                                     },
-                                    "id": 7188,
+                                    "id": 7166,
                                     "name": "Identifier",
                                     "src": "1250:5:29"
                                   }
                                 ],
-                                "id": 7189,
+                                "id": 7167,
                                 "name": "MemberAccess",
                                 "src": "1250:10:29"
                               },
@@ -536,51 +536,51 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 7942,
+                                      "referencedDeclaration": 7920,
                                       "type": "contract HasNoEther",
                                       "value": "this"
                                     },
-                                    "id": 7190,
+                                    "id": 7168,
                                     "name": "Identifier",
                                     "src": "1261:4:29"
                                   }
                                 ],
-                                "id": 7191,
+                                "id": 7169,
                                 "name": "MemberAccess",
                                 "src": "1261:12:29"
                               }
                             ],
-                            "id": 7192,
+                            "id": 7170,
                             "name": "FunctionCall",
                             "src": "1250:24:29"
                           }
                         ],
-                        "id": 7193,
+                        "id": 7171,
                         "name": "FunctionCall",
                         "src": "1243:32:29"
                       }
                     ],
-                    "id": 7194,
+                    "id": 7172,
                     "name": "ExpressionStatement",
                     "src": "1243:32:29"
                   }
                 ],
-                "id": 7195,
+                "id": 7173,
                 "name": "Block",
                 "src": "1237:43:29"
               }
             ],
-            "id": 7196,
+            "id": 7174,
             "name": "FunctionDefinition",
             "src": "1194:86:29"
           }
         ],
-        "id": 7197,
+        "id": 7175,
         "name": "ContractDefinition",
         "src": "486:796:29"
       }
     ],
-    "id": 7198,
+    "id": 7176,
     "name": "SourceUnit",
     "src": "0:1283:29"
   },
@@ -590,5 +590,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-14T16:08:17.296Z"
+  "updatedAt": "2017-11-15T18:35:00.625Z"
 }
