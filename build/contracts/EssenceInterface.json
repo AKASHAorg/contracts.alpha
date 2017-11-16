@@ -1,0 +1,69 @@
+{
+  "contractName": "EssenceInterface",
+  "abi": [],
+  "bytecode": "0x60606040523415600e57600080fd5b603580601b6000396000f3006060604052600080fd00a165627a7a72305820ef138070cdf11830739fceb6f1f74a238ac7354a960f0ac487c3b26e06bcee490029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820ef138070cdf11830739fceb6f1f74a238ac7354a960f0ac487c3b26e06bcee490029",
+  "sourceMap": "26:30:19:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "26:30:19:-;;;;;",
+  "source": "pragma solidity ^0.4.0;\n\n\ncontract EssenceInterface {\n\n}\n",
+  "sourcePath": "/home/kenshyx/projects/contracts.alpha/contracts/token/EssenceInterface.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/home/kenshyx/projects/contracts.alpha/contracts/token/EssenceInterface.sol",
+      "exportedSymbols": {
+        "EssenceInterface": [
+          6085
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".0"
+          ]
+        },
+        "id": 6084,
+        "name": "PragmaDirective",
+        "src": "0:23:19"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            6085
+          ],
+          "name": "EssenceInterface",
+          "nodes": [
+            null
+          ],
+          "scope": 6086
+        },
+        "id": 6085,
+        "name": "ContractDefinition",
+        "src": "26:30:19"
+      }
+    ],
+    "id": 6086,
+    "name": "SourceUnit",
+    "src": "0:57:19"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2017-11-16T14:45:11.829Z"
+}

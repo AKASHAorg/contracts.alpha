@@ -1,22 +1,21 @@
 pragma solidity ^0.4.0;
 
-
 import 'zeppelin-solidity/contracts/token/MintableToken.sol';
 import 'zeppelin-solidity/contracts/token/PausableToken.sol';
-import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
-import './Essence.sol';
 import './ResolverInterface.sol';
 
 contract AETH is MintableToken, PausableToken {
-    string public name = "AKASHA Token";
+    string public name = "TestToken";
 
-    string public symbol = "AETH";
+    string public symbol = "T_T";
 
     uint8 public decimals = 18;
 
     uint256 public lockTime = 1 days;
 
-    Essence essence;
+    address essence;
+
+    ResolverInterface resolver;
 
     enum AethState {Bonded, Cycling, Free}
 
@@ -40,17 +39,23 @@ contract AETH is MintableToken, PausableToken {
 
     modifier fromEssence()
     {
-        require(msg.sender == address(essence));
+        require(msg.sender == essence);
         _;
     }
 
-    function setEssence(Essence _essence)
+    function setEssence(address _essence)
     public
     onlyOwner
     {
         essence = _essence;
     }
 
+    function setResolver(ResolverInterface _resolver)
+    public
+    onlyOwner
+    {
+        resolver = _resolver;
+    }
 
     function setLockTime(uint256 _time)
     public
@@ -109,14 +114,16 @@ contract AETH is MintableToken, PausableToken {
     {
         uint256 currentAmount;
         for (uint8 i = 0; i < 32; i++) {
-            if (cycles[msg.sender].states[i].unlockDate < now && cycles[msg.sender].states[i].amount > 0) {
-                currentAmount = cycles[msg.sender].states[i].amount;
-                tokenRecords[msg.sender][uint8(AethState.Cycling)] = tokenRecords[msg.sender][uint8(AethState.Cycling)].sub(currentAmount);
-                balances[msg.sender] = balances[msg.sender].add(currentAmount);
-                delete cycles[msg.sender].states[i];
-                // must refactor this
-                cycles[msg.sender].lastFreed = i;
-                Transition(msg.sender, AethState.Free, currentAmount);
+            if (cycles[msg.sender].states[i].unlockDate < now ) {
+                if (cycles[msg.sender].states[i].amount > 0) {
+                    currentAmount = cycles[msg.sender].states[i].amount;
+                    tokenRecords[msg.sender][uint8(AethState.Cycling)] = tokenRecords[msg.sender][uint8(AethState.Cycling)].sub(currentAmount);
+                    balances[msg.sender] = balances[msg.sender].add(currentAmount);
+                    delete cycles[msg.sender].states[i];
+                    // must refactor this
+                    cycles[msg.sender].lastFreed = i;
+                    Transition(msg.sender, AethState.Free, currentAmount);
+                }
             }
         }
         return true;
@@ -201,11 +208,11 @@ contract AETH is MintableToken, PausableToken {
     returns (bool)
     {
         require(_aethAmount > 0 || msg.value > 0);
-//        bytes32 resolved = resolver.reverse(_to);
-//        if (resolved != bytes32(0x0)) {
-//            // explicit opt for receiving donations
-//            require(resolver.donationsEnabled(resolved));
-//        }
+        bytes32 resolved = resolver.reverse(_to);
+        if (resolved != bytes32(0x0)) {
+            // explicit opt for receiving donations
+            require(resolver.donationsEnabled(resolved));
+        }
         if (_aethAmount > 0) {
             require(transfer(_to, _aethAmount));
         }

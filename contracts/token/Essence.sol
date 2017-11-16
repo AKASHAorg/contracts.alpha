@@ -1,11 +1,9 @@
 pragma solidity ^0.4.0;
 
-
-import './AETH.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
 import 'zeppelin-solidity/contracts/math/SafeMath.sol';
-
+import './AETHinterface.sol';
 
 contract Essence is HasNoEther, HasNoTokens {
     using SafeMath for uint256;
@@ -16,7 +14,7 @@ contract Essence is HasNoEther, HasNoTokens {
 
     uint256 public minAmount = 10 ^ 21;
 
-    AETH aeth;
+    AETHinterface aeth;
 
     struct Pot {
     uint256 total;
@@ -58,7 +56,7 @@ contract Essence is HasNoEther, HasNoTokens {
 
     }
 
-    function setAeth(AETH _aeth)
+    function setAeth(AETHinterface _aeth)
     public
     onlyOwner
     returns (bool)

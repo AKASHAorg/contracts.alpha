@@ -11,42 +11,55 @@ const AETH = contract(AETHabi);
 AETH.setProvider(provider);
 Sale.setProvider(provider);
 
-const deploySale = async function () {
+const deployToken = async function () {
 
-  const rate = new web3.BigNumber(10000);
-  const cap = web3.toWei(10, 'ether');
-  const minimum = web3.toWei(1, 'ether');
+  // const rate = new web3.BigNumber(10000);
+  // const cap = web3.toWei(10, 'ether');
+  // const minimum = web3.toWei(1, 'ether');
+  //
+  // this.startTime = new Date().getTime() / 1000 + 180;
+  // this.endTime = this.startTime + 20000;
+  // this.endBlockCap = 1200000;
+  // this.crowdsale = await Sale.new(this.startTime, this.endTime, rate, '0x551df15db6f9f834c6b5795183190582452cb10c', cap, minimum, this.endBlockCap, {
+  //   from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+  //   gas: 6115909
+  // });
 
-  this.startTime = new Date().getTime() / 1000 + 180;
-  this.endTime = this.startTime + 20000;
-  this.endBlockCap = 1200000;
-  this.crowdsale = await Sale.new(this.startTime, this.endTime, rate, '0x551df15db6f9f834c6b5795183190582452cb10c', cap, minimum, this.endBlockCap, {
+  this.token = await AETH.new({
     from: '0x551df15db6f9f834c6b5795183190582452cb10c',
     gas: 6115909
   });
-  this.token = AETH.at(await this.crowdsale.token());
+  await this.token.mint('0x551df15db6f9f834c6b5795183190582452cb10c', web3.toWei(100000, 'ether'), {
+    from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+    gas: 6115909
+  });
+  await this.token.finishMinting({
+    from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+    gas: 6115909
+  });
   console.log(this.token);
 };
-// deploySale();
-const buy = async function () {
-  const transaction = await Sale.at('0x922726797D1c7A3d0b14DE015E534d58E213BA69')
-    .sendTransaction(
-      {
-        from: '0x551df15db6f9f834c6b5795183190582452cb10c',
-        gas: 200000,
-        value: web3.toWei(10, 'ether')
-      });
-  console.log(transaction);
-};
-const finishSale = async function () {
-  const transaction = await Sale.at('0x922726797D1c7A3d0b14DE015E534d58E213BA69').finalize({
-    from: '0x551df15db6f9f834c6b5795183190582452cb10c',
-    gas: 200000
-  });
+// deployToken().then((d) => console.log(d)).catch((err) => console.log(err));
 
-  console.log(transaction);
-};
-
+// const buy = async function () {
+//   const transaction = await Sale.at('0x922726797D1c7A3d0b14DE015E534d58E213BA69')
+//     .sendTransaction(
+//       {
+//         from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+//         gas: 200000,
+//         value: web3.toWei(10, 'ether')
+//       });
+//   console.log(transaction);
+// };
+// const finishSale = async function () {
+//   const transaction = await Sale.at('0x922726797D1c7A3d0b14DE015E534d58E213BA69').finalize({
+//     from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+//     gas: 200000
+//   });
+//
+//   console.log(transaction);
+// };
+//
 const finalize = async function () {
   const contracts = await init(provider);
   await contracts.AETH.setEssence(contracts.Essence.address,
@@ -69,7 +82,59 @@ const finalize = async function () {
 
 const createTags = async function () {
   const contracts = await init(provider);
-  const initialTags = ['ethereum', 'akasha', 'testing', 'ipfs', 'story', 'development', 'bugs', 'announcements', 'tutorials', 'bitcoin', 'crypto', 'trading', 'news'];
+  const initialTags = [
+    'ethereum',
+    'akasha',
+    'testing',
+    'ipfs',
+    'story',
+    'development',
+    'bugs',
+    'announcements',
+    'tutorials',
+    'bitcoin',
+    'crypto',
+    'trading',
+    'news',
+    "thriller",
+    "windows",
+    "installation",
+    "space",
+    "play",
+    "script",
+    "impressed",
+    "machinelearning",
+    "anticensorship",
+    "alpha",
+    "testing",
+    "testnet",
+    "helloworld",
+    "woow",
+    "moon",
+    "enlightenment",
+    "money",
+    "cats",
+    "picture",
+    "anime",
+    "fantasy",
+    "daitoken",
+    "digix",
+    "stablecoins",
+    "dapps",
+    "future",
+    "dude",
+    "feel",
+    "comedy",
+    "spam",
+    "jokes",
+    "prediction",
+    "price",
+    "ethtrader",
+    "letsgetstarted",
+    "decentralized",
+    "crypto",
+    "socialmedia"];
+
   for (let i = 0; i < initialTags.length; i++) {
     await contracts.Tags.adminAdd(initialTags[i], {
       from: '0x551df15db6f9f834c6b5795183190582452cb10c',
@@ -81,7 +146,7 @@ const createTags = async function () {
 
 const bondAeth = async function () {
   const contracts = await init(provider);
-  await contracts.AETH.bondAeth(web3.toWei(100, 'ether'), {
+  await contracts.AETH.bondAeth(web3.toWei(1000, 'ether'), {
     from: '0x551df15db6f9f834c6b5795183190582452cb10c',
     gas: 200000
   });
@@ -91,7 +156,7 @@ const bondAeth = async function () {
   });
   console.log('!!!DONE!!!')
 };
-// buy().then(() => finishSale()).then(() => finalize()).then(() => createTags()).then(() => bondAeth());
+
 
 const updatePeriod = async function () {
   const contracts = await init(provider);
@@ -100,7 +165,8 @@ const updatePeriod = async function () {
     gas: 200000
   });
 };
-//updatePeriod();
+finalize().then(() => createTags()).then(() => bondAeth()).then(() => updatePeriod());
+
 //
 // const updateCosts = async function (){
 //   const contracts = await init(provider);
