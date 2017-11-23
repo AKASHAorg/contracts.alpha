@@ -269,7 +269,7 @@ contract Votes is HasNoEther, HasNoTokens {
     view
     returns (bool)
     {
-        if ((records[_id].endPeriod < _timeStamp) || records[_id].karma[_voter].claimed) {
+        if ((records[_id].endPeriod > _timeStamp) || records[_id].karma[_voter].claimed) {
             return false;
         }
 

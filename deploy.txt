@@ -160,7 +160,7 @@ const bondAeth = async function () {
 
 const updatePeriod = async function () {
   const contracts = await init(provider);
-  await contracts.Entries.setVotingPeriod(21600, {
+  await contracts.Entries.setVotingPeriod(3600, {
     from: '0x551df15db6f9f834c6b5795183190582452cb10c',
     gas: 200000
   });

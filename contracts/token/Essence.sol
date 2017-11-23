@@ -38,7 +38,7 @@ contract Essence is HasNoEther, HasNoTokens {
 
     event SpendMana(address indexed spender, bytes32 indexed hash, uint256 amount, uint256 total, bytes32 scope);
 
-    event CollectEssence(address indexed receiver, uint256 amount, bytes32 action, bytes32 source);
+    event CollectEssence(address indexed receiver, uint256 amount, uint256 total, bytes32 action, bytes32 source);
 
     event ConvertEssence(address indexed spender, uint256 amount);
 
@@ -143,7 +143,7 @@ contract Essence is HasNoEther, HasNoTokens {
         uint256 obtainedEssence = _amount.div(10);
         collected[_receiver].karma = collected[_receiver].karma.add(_amount);
         collected[_receiver].essence = collected[_receiver].essence.add(obtainedEssence);
-        CollectEssence(_receiver, _amount, _action, _source);
+        CollectEssence(_receiver, _amount, collected[_receiver].essence, _action, _source);
         return true;
     }
 
