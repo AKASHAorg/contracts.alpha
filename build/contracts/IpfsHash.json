@@ -35,8 +35,8 @@
   ],
   "bytecode": "0x6060604052341561000f57600080fd5b6101328061001e6000396000f300606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063294ba8e714610046575b600080fd5b61008160048080359060200190919080356000191690602001909190803560ff1690602001909190803560ff1690602001909190505061009b565b604051808215151515815260200191505060405180910390f35b600060208260ff1611156100b257600090506100fe565b83856000018160001916905550828560010160006101000a81548160ff021916908360ff160217905550818560010160016101000a81548160ff021916908360ff160217905550600190505b9493505050505600a165627a7a7230582055a873c1b62b09ba2083a576733d7296c1f1d5e46d844db2765576fdb1d5f0290029",
   "deployedBytecode": "0x606060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063294ba8e714610046575b600080fd5b61008160048080359060200190919080356000191690602001909190803560ff1690602001909190803560ff1690602001909190505061009b565b604051808215151515815260200191505060405180910390f35b600060208260ff1611156100b257600090506100fe565b83856000018160001916905550828560010160006101000a81548160ff021916908360ff160217905550818560010160016101000a81548160ff021916908360ff160217905550600190505b9493505050505600a165627a7a7230582055a873c1b62b09ba2083a576733d7296c1f1d5e46d844db2765576fdb1d5f0290029",
-  "sourceMap": "29:918:2:-;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "29:918:2:-;;;;;;;;;;;;;;;;;;;;;;;;365:304;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;474:4;512:2;498:11;:16;;;494:59;;;537:5;530:12;;;;494:59;574:5;562:4;:9;;:17;;;;;;;599:3;589:4;:7;;;:13;;;;;;;;;;;;;;;;;;630:11;612:4;:15;;;:29;;;;;;;;;;;;;;;;;;658:4;651:11;;365:304;;;;;;;:::o",
+  "sourceMap": "29:918:7:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "29:918:7:-;;;;;;;;;;;;;;;;;;;;;;;;365:304;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;474:4;512:2;498:11;:16;;;494:59;;;537:5;530:12;;;;494:59;574:5;562:4;:9;;:17;;;;;;;599:3;589:4;:7;;;:13;;;;;;;;;;;;;;;;;;630:11;612:4;:15;;;:29;;;;;;;;;;;;;;;;;;658:4;651:11;;365:304;;;;;;;:::o",
   "source": "pragma solidity ^0.4.0;\n\n\n//\nlibrary IpfsHash {\n\n    // decode ipfs hash to hex, strip prefix\n    // ex: 1220aa7ef8aced767773e8a47753ed0ef452a35845db3f02cd85b92c75ff593ee991\n    // { codec: 12, size: 20, hash: aa7ef8aced767773e8a47753ed0ef452a35845db3f02cd85b92c75ff593ee991 }\n    struct Multihash {\n    bytes32 hash;\n    uint8 fn;\n    uint8 digestSize;\n    }\n\n    function create(Multihash storage self, bytes32 _hash, uint8 _fn, uint8 _digestSize)\n    public\n    returns (bool)\n    {\n        if (_digestSize > 32) {\n            return false;\n        }\n        self.hash = _hash;\n        self.fn = _fn;\n        self.digestSize = _digestSize;\n        return true;\n    }\n\n    function getHash(Multihash _multiHash)\n    pure\n    internal\n    returns (uint8, uint8, bytes32)\n    {\n        // on dapp just concat all these in one string, transform to Buffer and encode it\n        return (_multiHash.fn, _multiHash.digestSize, _multiHash.hash);\n    }\n}\n",
   "sourcePath": "/home/kenshyx/projects/contracts.alpha/contracts/IpfsHash.sol",
   "ast": {
@@ -44,7 +44,7 @@
       "absolutePath": "/home/kenshyx/projects/contracts.alpha/contracts/IpfsHash.sol",
       "exportedSymbols": {
         "IpfsHash": [
-          1343
+          1838
         ]
       }
     },
@@ -58,9 +58,9 @@
             ".0"
           ]
         },
-        "id": 1274,
+        "id": 1769,
         "name": "PragmaDirective",
-        "src": "0:23:2"
+        "src": "0:23:7"
       },
       {
         "attributes": {
@@ -74,17 +74,17 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            1343
+            1838
           ],
           "name": "IpfsHash",
-          "scope": 1344
+          "scope": 1839
         },
         "children": [
           {
             "attributes": {
               "canonicalName": "IpfsHash.Multihash",
               "name": "Multihash",
-              "scope": 1343,
+              "scope": 1838,
               "visibility": "public"
             },
             "children": [
@@ -92,7 +92,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "hash",
-                  "scope": 1281,
+                  "scope": 1776,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "bytes32",
@@ -105,20 +105,20 @@
                       "name": "bytes32",
                       "type": "bytes32"
                     },
-                    "id": 1275,
+                    "id": 1770,
                     "name": "ElementaryTypeName",
-                    "src": "304:7:2"
+                    "src": "304:7:7"
                   }
                 ],
-                "id": 1276,
+                "id": 1771,
                 "name": "VariableDeclaration",
-                "src": "304:12:2"
+                "src": "304:12:7"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "fn",
-                  "scope": 1281,
+                  "scope": 1776,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint8",
@@ -131,20 +131,20 @@
                       "name": "uint8",
                       "type": "uint8"
                     },
-                    "id": 1277,
+                    "id": 1772,
                     "name": "ElementaryTypeName",
-                    "src": "322:5:2"
+                    "src": "322:5:7"
                   }
                 ],
-                "id": 1278,
+                "id": 1773,
                 "name": "VariableDeclaration",
-                "src": "322:8:2"
+                "src": "322:8:7"
               },
               {
                 "attributes": {
                   "constant": false,
                   "name": "digestSize",
-                  "scope": 1281,
+                  "scope": 1776,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint8",
@@ -157,19 +157,19 @@
                       "name": "uint8",
                       "type": "uint8"
                     },
-                    "id": 1279,
+                    "id": 1774,
                     "name": "ElementaryTypeName",
-                    "src": "336:5:2"
+                    "src": "336:5:7"
                   }
                 ],
-                "id": 1280,
+                "id": 1775,
                 "name": "VariableDeclaration",
-                "src": "336:16:2"
+                "src": "336:16:7"
               }
             ],
-            "id": 1281,
+            "id": 1776,
             "name": "StructDefinition",
-            "src": "281:78:2"
+            "src": "281:78:7"
           },
           {
             "attributes": {
@@ -181,7 +181,7 @@
               ],
               "name": "create",
               "payable": false,
-              "scope": 1343,
+              "scope": 1838,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -193,7 +193,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "self",
-                      "scope": 1322,
+                      "scope": 1817,
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "type": "struct IpfsHash.Multihash storage pointer",
@@ -205,23 +205,23 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "Multihash",
-                          "referencedDeclaration": 1281,
+                          "referencedDeclaration": 1776,
                           "type": "struct IpfsHash.Multihash storage pointer"
                         },
-                        "id": 1282,
+                        "id": 1777,
                         "name": "UserDefinedTypeName",
-                        "src": "381:9:2"
+                        "src": "381:9:7"
                       }
                     ],
-                    "id": 1283,
+                    "id": 1778,
                     "name": "VariableDeclaration",
-                    "src": "381:22:2"
+                    "src": "381:22:7"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_hash",
-                      "scope": 1322,
+                      "scope": 1817,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -234,20 +234,20 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 1284,
+                        "id": 1779,
                         "name": "ElementaryTypeName",
-                        "src": "405:7:2"
+                        "src": "405:7:7"
                       }
                     ],
-                    "id": 1285,
+                    "id": 1780,
                     "name": "VariableDeclaration",
-                    "src": "405:13:2"
+                    "src": "405:13:7"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_fn",
-                      "scope": 1322,
+                      "scope": 1817,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint8",
@@ -260,20 +260,20 @@
                           "name": "uint8",
                           "type": "uint8"
                         },
-                        "id": 1286,
+                        "id": 1781,
                         "name": "ElementaryTypeName",
-                        "src": "420:5:2"
+                        "src": "420:5:7"
                       }
                     ],
-                    "id": 1287,
+                    "id": 1782,
                     "name": "VariableDeclaration",
-                    "src": "420:9:2"
+                    "src": "420:9:7"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "_digestSize",
-                      "scope": 1322,
+                      "scope": 1817,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint8",
@@ -286,19 +286,19 @@
                           "name": "uint8",
                           "type": "uint8"
                         },
-                        "id": 1288,
+                        "id": 1783,
                         "name": "ElementaryTypeName",
-                        "src": "431:5:2"
+                        "src": "431:5:7"
                       }
                     ],
-                    "id": 1289,
+                    "id": 1784,
                     "name": "VariableDeclaration",
-                    "src": "431:17:2"
+                    "src": "431:17:7"
                   }
                 ],
-                "id": 1290,
+                "id": 1785,
                 "name": "ParameterList",
-                "src": "380:69:2"
+                "src": "380:69:7"
               },
               {
                 "children": [
@@ -306,7 +306,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1322,
+                      "scope": 1817,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -319,19 +319,19 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 1291,
+                        "id": 1786,
                         "name": "ElementaryTypeName",
-                        "src": "474:4:2"
+                        "src": "474:4:7"
                       }
                     ],
-                    "id": 1292,
+                    "id": 1787,
                     "name": "VariableDeclaration",
-                    "src": "474:4:2"
+                    "src": "474:4:7"
                   }
                 ],
-                "id": 1293,
+                "id": 1788,
                 "name": "ParameterList",
-                "src": "473:6:2"
+                "src": "473:6:7"
               },
               {
                 "children": [
@@ -361,13 +361,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1289,
+                              "referencedDeclaration": 1784,
                               "type": "uint8",
                               "value": "_digestSize"
                             },
-                            "id": 1294,
+                            "id": 1789,
                             "name": "Identifier",
-                            "src": "498:11:2"
+                            "src": "498:11:7"
                           },
                           {
                             "attributes": {
@@ -382,20 +382,20 @@
                               "type": "int_const 32",
                               "value": "32"
                             },
-                            "id": 1295,
+                            "id": 1790,
                             "name": "Literal",
-                            "src": "512:2:2"
+                            "src": "512:2:7"
                           }
                         ],
-                        "id": 1296,
+                        "id": 1791,
                         "name": "BinaryOperation",
-                        "src": "498:16:2"
+                        "src": "498:16:7"
                       },
                       {
                         "children": [
                           {
                             "attributes": {
-                              "functionReturnParameters": 1293
+                              "functionReturnParameters": 1788
                             },
                             "children": [
                               {
@@ -411,24 +411,24 @@
                                   "type": "bool",
                                   "value": "false"
                                 },
-                                "id": 1297,
+                                "id": 1792,
                                 "name": "Literal",
-                                "src": "537:5:2"
+                                "src": "537:5:7"
                               }
                             ],
-                            "id": 1298,
+                            "id": 1793,
                             "name": "Return",
-                            "src": "530:12:2"
+                            "src": "530:12:7"
                           }
                         ],
-                        "id": 1299,
+                        "id": 1794,
                         "name": "Block",
-                        "src": "516:37:2"
+                        "src": "516:37:7"
                       }
                     ],
-                    "id": 1300,
+                    "id": 1795,
                     "name": "IfStatement",
-                    "src": "494:59:2"
+                    "src": "494:59:7"
                   },
                   {
                     "children": [
@@ -451,7 +451,7 @@
                               "isPure": false,
                               "lValueRequested": true,
                               "member_name": "hash",
-                              "referencedDeclaration": 1276,
+                              "referencedDeclaration": 1771,
                               "type": "bytes32"
                             },
                             "children": [
@@ -461,18 +461,18 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1283,
+                                  "referencedDeclaration": 1778,
                                   "type": "struct IpfsHash.Multihash storage pointer",
                                   "value": "self"
                                 },
-                                "id": 1301,
+                                "id": 1796,
                                 "name": "Identifier",
-                                "src": "562:4:2"
+                                "src": "562:4:7"
                               }
                             ],
-                            "id": 1303,
+                            "id": 1798,
                             "name": "MemberAccess",
-                            "src": "562:9:2"
+                            "src": "562:9:7"
                           },
                           {
                             "attributes": {
@@ -480,23 +480,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1285,
+                              "referencedDeclaration": 1780,
                               "type": "bytes32",
                               "value": "_hash"
                             },
-                            "id": 1304,
+                            "id": 1799,
                             "name": "Identifier",
-                            "src": "574:5:2"
+                            "src": "574:5:7"
                           }
                         ],
-                        "id": 1305,
+                        "id": 1800,
                         "name": "Assignment",
-                        "src": "562:17:2"
+                        "src": "562:17:7"
                       }
                     ],
-                    "id": 1306,
+                    "id": 1801,
                     "name": "ExpressionStatement",
-                    "src": "562:17:2"
+                    "src": "562:17:7"
                   },
                   {
                     "children": [
@@ -519,7 +519,7 @@
                               "isPure": false,
                               "lValueRequested": true,
                               "member_name": "fn",
-                              "referencedDeclaration": 1278,
+                              "referencedDeclaration": 1773,
                               "type": "uint8"
                             },
                             "children": [
@@ -529,18 +529,18 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1283,
+                                  "referencedDeclaration": 1778,
                                   "type": "struct IpfsHash.Multihash storage pointer",
                                   "value": "self"
                                 },
-                                "id": 1307,
+                                "id": 1802,
                                 "name": "Identifier",
-                                "src": "589:4:2"
+                                "src": "589:4:7"
                               }
                             ],
-                            "id": 1309,
+                            "id": 1804,
                             "name": "MemberAccess",
-                            "src": "589:7:2"
+                            "src": "589:7:7"
                           },
                           {
                             "attributes": {
@@ -548,23 +548,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1287,
+                              "referencedDeclaration": 1782,
                               "type": "uint8",
                               "value": "_fn"
                             },
-                            "id": 1310,
+                            "id": 1805,
                             "name": "Identifier",
-                            "src": "599:3:2"
+                            "src": "599:3:7"
                           }
                         ],
-                        "id": 1311,
+                        "id": 1806,
                         "name": "Assignment",
-                        "src": "589:13:2"
+                        "src": "589:13:7"
                       }
                     ],
-                    "id": 1312,
+                    "id": 1807,
                     "name": "ExpressionStatement",
-                    "src": "589:13:2"
+                    "src": "589:13:7"
                   },
                   {
                     "children": [
@@ -587,7 +587,7 @@
                               "isPure": false,
                               "lValueRequested": true,
                               "member_name": "digestSize",
-                              "referencedDeclaration": 1280,
+                              "referencedDeclaration": 1775,
                               "type": "uint8"
                             },
                             "children": [
@@ -597,18 +597,18 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1283,
+                                  "referencedDeclaration": 1778,
                                   "type": "struct IpfsHash.Multihash storage pointer",
                                   "value": "self"
                                 },
-                                "id": 1313,
+                                "id": 1808,
                                 "name": "Identifier",
-                                "src": "612:4:2"
+                                "src": "612:4:7"
                               }
                             ],
-                            "id": 1315,
+                            "id": 1810,
                             "name": "MemberAccess",
-                            "src": "612:15:2"
+                            "src": "612:15:7"
                           },
                           {
                             "attributes": {
@@ -616,27 +616,27 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1289,
+                              "referencedDeclaration": 1784,
                               "type": "uint8",
                               "value": "_digestSize"
                             },
-                            "id": 1316,
+                            "id": 1811,
                             "name": "Identifier",
-                            "src": "630:11:2"
+                            "src": "630:11:7"
                           }
                         ],
-                        "id": 1317,
+                        "id": 1812,
                         "name": "Assignment",
-                        "src": "612:29:2"
+                        "src": "612:29:7"
                       }
                     ],
-                    "id": 1318,
+                    "id": 1813,
                     "name": "ExpressionStatement",
-                    "src": "612:29:2"
+                    "src": "612:29:7"
                   },
                   {
                     "attributes": {
-                      "functionReturnParameters": 1293
+                      "functionReturnParameters": 1788
                     },
                     "children": [
                       {
@@ -652,24 +652,24 @@
                           "type": "bool",
                           "value": "true"
                         },
-                        "id": 1319,
+                        "id": 1814,
                         "name": "Literal",
-                        "src": "658:4:2"
+                        "src": "658:4:7"
                       }
                     ],
-                    "id": 1320,
+                    "id": 1815,
                     "name": "Return",
-                    "src": "651:11:2"
+                    "src": "651:11:7"
                   }
                 ],
-                "id": 1321,
+                "id": 1816,
                 "name": "Block",
-                "src": "484:185:2"
+                "src": "484:185:7"
               }
             ],
-            "id": 1322,
+            "id": 1817,
             "name": "FunctionDefinition",
-            "src": "365:304:2"
+            "src": "365:304:7"
           },
           {
             "attributes": {
@@ -681,7 +681,7 @@
               ],
               "name": "getHash",
               "payable": false,
-              "scope": 1343,
+              "scope": 1838,
               "stateMutability": "pure",
               "superFunction": null,
               "visibility": "internal"
@@ -693,7 +693,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_multiHash",
-                      "scope": 1342,
+                      "scope": 1837,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "struct IpfsHash.Multihash memory",
@@ -705,22 +705,22 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "Multihash",
-                          "referencedDeclaration": 1281,
+                          "referencedDeclaration": 1776,
                           "type": "struct IpfsHash.Multihash storage pointer"
                         },
-                        "id": 1323,
+                        "id": 1818,
                         "name": "UserDefinedTypeName",
-                        "src": "692:9:2"
+                        "src": "692:9:7"
                       }
                     ],
-                    "id": 1324,
+                    "id": 1819,
                     "name": "VariableDeclaration",
-                    "src": "692:20:2"
+                    "src": "692:20:7"
                   }
                 ],
-                "id": 1325,
+                "id": 1820,
                 "name": "ParameterList",
-                "src": "691:22:2"
+                "src": "691:22:7"
               },
               {
                 "children": [
@@ -728,7 +728,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1342,
+                      "scope": 1837,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint8",
@@ -741,20 +741,20 @@
                           "name": "uint8",
                           "type": "uint8"
                         },
-                        "id": 1326,
+                        "id": 1821,
                         "name": "ElementaryTypeName",
-                        "src": "749:5:2"
+                        "src": "749:5:7"
                       }
                     ],
-                    "id": 1327,
+                    "id": 1822,
                     "name": "VariableDeclaration",
-                    "src": "749:5:2"
+                    "src": "749:5:7"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1342,
+                      "scope": 1837,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint8",
@@ -767,20 +767,20 @@
                           "name": "uint8",
                           "type": "uint8"
                         },
-                        "id": 1328,
+                        "id": 1823,
                         "name": "ElementaryTypeName",
-                        "src": "756:5:2"
+                        "src": "756:5:7"
                       }
                     ],
-                    "id": 1329,
+                    "id": 1824,
                     "name": "VariableDeclaration",
-                    "src": "756:5:2"
+                    "src": "756:5:7"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 1342,
+                      "scope": 1837,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -793,25 +793,25 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 1330,
+                        "id": 1825,
                         "name": "ElementaryTypeName",
-                        "src": "763:7:2"
+                        "src": "763:7:7"
                       }
                     ],
-                    "id": 1331,
+                    "id": 1826,
                     "name": "VariableDeclaration",
-                    "src": "763:7:2"
+                    "src": "763:7:7"
                   }
                 ],
-                "id": 1332,
+                "id": 1827,
                 "name": "ParameterList",
-                "src": "748:23:2"
+                "src": "748:23:7"
               },
               {
                 "children": [
                   {
                     "attributes": {
-                      "functionReturnParameters": 1332
+                      "functionReturnParameters": 1827
                     },
                     "children": [
                       {
@@ -833,7 +833,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "fn",
-                              "referencedDeclaration": 1278,
+                              "referencedDeclaration": 1773,
                               "type": "uint8"
                             },
                             "children": [
@@ -843,18 +843,18 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1324,
+                                  "referencedDeclaration": 1819,
                                   "type": "struct IpfsHash.Multihash memory",
                                   "value": "_multiHash"
                                 },
-                                "id": 1333,
+                                "id": 1828,
                                 "name": "Identifier",
-                                "src": "884:10:2"
+                                "src": "884:10:7"
                               }
                             ],
-                            "id": 1334,
+                            "id": 1829,
                             "name": "MemberAccess",
-                            "src": "884:13:2"
+                            "src": "884:13:7"
                           },
                           {
                             "attributes": {
@@ -864,7 +864,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "digestSize",
-                              "referencedDeclaration": 1280,
+                              "referencedDeclaration": 1775,
                               "type": "uint8"
                             },
                             "children": [
@@ -874,18 +874,18 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1324,
+                                  "referencedDeclaration": 1819,
                                   "type": "struct IpfsHash.Multihash memory",
                                   "value": "_multiHash"
                                 },
-                                "id": 1335,
+                                "id": 1830,
                                 "name": "Identifier",
-                                "src": "899:10:2"
+                                "src": "899:10:7"
                               }
                             ],
-                            "id": 1336,
+                            "id": 1831,
                             "name": "MemberAccess",
-                            "src": "899:21:2"
+                            "src": "899:21:7"
                           },
                           {
                             "attributes": {
@@ -895,7 +895,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "hash",
-                              "referencedDeclaration": 1276,
+                              "referencedDeclaration": 1771,
                               "type": "bytes32"
                             },
                             "children": [
@@ -905,60 +905,54 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1324,
+                                  "referencedDeclaration": 1819,
                                   "type": "struct IpfsHash.Multihash memory",
                                   "value": "_multiHash"
                                 },
-                                "id": 1337,
+                                "id": 1832,
                                 "name": "Identifier",
-                                "src": "922:10:2"
+                                "src": "922:10:7"
                               }
                             ],
-                            "id": 1338,
+                            "id": 1833,
                             "name": "MemberAccess",
-                            "src": "922:15:2"
+                            "src": "922:15:7"
                           }
                         ],
-                        "id": 1339,
+                        "id": 1834,
                         "name": "TupleExpression",
-                        "src": "883:55:2"
+                        "src": "883:55:7"
                       }
                     ],
-                    "id": 1340,
+                    "id": 1835,
                     "name": "Return",
-                    "src": "876:62:2"
+                    "src": "876:62:7"
                   }
                 ],
-                "id": 1341,
+                "id": 1836,
                 "name": "Block",
-                "src": "776:169:2"
+                "src": "776:169:7"
               }
             ],
-            "id": 1342,
+            "id": 1837,
             "name": "FunctionDefinition",
-            "src": "675:270:2"
+            "src": "675:270:7"
           }
         ],
-        "id": 1343,
+        "id": 1838,
         "name": "ContractDefinition",
-        "src": "29:918:2"
+        "src": "29:918:7"
       }
     ],
-    "id": 1344,
+    "id": 1839,
     "name": "SourceUnit",
-    "src": "0:948:2"
+    "src": "0:948:7"
   },
   "compiler": {
     "name": "solc",
     "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
   },
-  "networks": {
-    "4": {
-      "events": {},
-      "links": {},
-      "address": "0x8e35f12cc16f9929c8efcc43daee7ac91f8e1590"
-    }
-  },
+  "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-23T16:29:21.739Z"
+  "updatedAt": "2017-11-27T09:05:51.581Z"
 }
