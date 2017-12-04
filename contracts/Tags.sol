@@ -1,5 +1,5 @@
-pragma solidity ^0.4.0;
-
+pragma solidity ^0.4.18;
+pragma experimental ABIEncoderV2;
 
 import 'zeppelin-solidity/contracts/ownership/HasNoTokens.sol';
 import 'zeppelin-solidity/contracts/ownership/HasNoEther.sol';
@@ -96,12 +96,15 @@ contract Tags is HasNoEther, HasNoTokens {
         tags[_tag].totalEntries = tags[_tag].totalEntries.add(1);
     }
 
-
-    function adminAdd(bytes32 _tag)
+    // for migration purpose only
+    function adminAdd(bytes32[32] _tags)
     public
     onlyOwner
     {
-        require(createTag(_tag));
+        for (uint8 i = 0; i < _tags.length; i++)
+        {
+            require(createTag(_tags[i]));
+        }
     }
 
     function add(bytes32 _tag)

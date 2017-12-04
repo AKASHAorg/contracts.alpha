@@ -1,5 +1,5 @@
-pragma solidity ^0.4.0;
-
+pragma solidity ^0.4.18;
+pragma experimental ABIEncoderV2;
 
 import './ProfileResolver.sol';
 import './AkashaModule.sol';
@@ -17,6 +17,15 @@ contract ProfileRegistrar is AkashaModule {
     bytes32 public rootNode;
 
     event Register(bytes32 indexed label, uint indexed version);
+    //
+//    struct RegisterBatch {
+//        address _owner;
+//        bytes32 _subNode;
+//        bool _enableDonations;
+//        bytes32 _hash;
+//        uint8 _fn;
+//        uint8 _digestSize;
+//    }
 
     function ProfileRegistrar(ENS _ens, bytes32 _rootNode) public AkashaModule("profiles", 1)
     {
@@ -58,6 +67,28 @@ contract ProfileRegistrar is AkashaModule {
     //        require(check_format(_subNode));
     //        ens.setSubnodeOwner(rootNode, _subNode, owner);
     //    }
+
+    // for migration purpose only
+//    function adminRegisterBatch(RegisterBatch[32] batch)
+//    public
+//    onlyOwner
+//    returns (bool)
+//    {
+//        for (uint8 i = 0; i < batch.length; i++)
+//        {
+//            require(check_format(batch[i]._subNode));
+//
+//            ens.setSubnodeOwner(rootNode, batch[i]._subNode, this);
+//            ens.setResolver(hash(batch[i]._subNode), resolver);
+//
+//            ens.setSubnodeOwner(rootNode, batch[i]._subNode, batch[i]._owner);
+//            resolver.registerHash(batch[i]._subNode, hash(batch[i]._subNode), batch[i]._owner, batch[i]._enableDonations,
+//            batch[i]._hash, batch[i]._fn, batch[i]._digestSize);
+//
+//            Register(batch[i]._subNode, version);
+//        }
+//        return true;
+//    }
 
     function register(bytes32 _subNode, bool _enableDonations, bytes32 _hash, uint8 _fn, uint8 _digestSize)
     public
