@@ -148,7 +148,7 @@ contract Votes is HasNoEther, HasNoTokens {
     internal
     returns (uint256 _total)
     {
-        uint256 base = uint256(VOTE_KARMA);
+        uint256 base = 10;
         uint256 factor = uint256(_weight);
         uint256 initial = base.mul(factor);
         _total = initial.mul(required_essence);

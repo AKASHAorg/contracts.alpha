@@ -103,6 +103,9 @@ contract Tags is HasNoEther, HasNoTokens {
     {
         for (uint8 i = 0; i < _tags.length; i++)
         {
+            if(_tags[i] == bytes32(0x0)) {
+                continue;
+            }
             require(createTag(_tags[i]));
         }
     }

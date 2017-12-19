@@ -12,7 +12,7 @@
       "absolutePath": "/home/kenshyx/projects/contracts.alpha/contracts/token/EssenceInterface.sol",
       "exportedSymbols": {
         "EssenceInterface": [
-          6091
+          6115
         ]
       }
     },
@@ -26,7 +26,7 @@
             ".0"
           ]
         },
-        "id": 6090,
+        "id": 6114,
         "name": "PragmaDirective",
         "src": "0:23:19"
       },
@@ -42,20 +42,20 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            6091
+            6115
           ],
           "name": "EssenceInterface",
           "nodes": [
             null
           ],
-          "scope": 6092
+          "scope": 6116
         },
-        "id": 6091,
+        "id": 6115,
         "name": "ContractDefinition",
         "src": "26:30:19"
       }
     ],
-    "id": 6092,
+    "id": 6116,
     "name": "SourceUnit",
     "src": "0:57:19"
   },
@@ -65,5 +65,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-11-27T09:05:51.592Z"
+  "updatedAt": "2017-12-19T15:13:40.170Z"
 }

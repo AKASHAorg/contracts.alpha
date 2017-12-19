@@ -19,7 +19,17 @@ contract('Tags', function ([owner, wallet]) {
   describe('register a tag', function () {
 
     it('should create a valid tag', async function () {
-      const {logs} = await tags.adminAdd('test-tag', { from: owner });
+      const tagsList = ['nsfw',
+        'gettingstarted',
+        'amazing',
+        'showerthoughts',
+        'strange',
+        'informal',
+        'economics',
+        'introducingmyself',
+        'shortstory',
+        'firstpost'];
+      const {logs} = await tags.adminAdd(tagsList, { from: owner });
       const event = logs.find(e => e.event === 'TagCreate');
       should.exist(event);
     });

@@ -5,9 +5,9 @@ import 'zeppelin-solidity/contracts/token/PausableToken.sol';
 import './ResolverInterface.sol';
 
 contract AETH is MintableToken, PausableToken {
-    string public name = "TestToken";
+    string public name = "Akasha Beta Test Token #1";
 
-    string public symbol = "T_T";
+    string public symbol = "AETH";
 
     uint8 public decimals = 18;
 

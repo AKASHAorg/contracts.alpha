@@ -140,7 +140,7 @@ contract Essence is HasNoEther, HasNoTokens {
     onlyWhitelisted
     returns (bool)
     {
-        uint256 obtainedEssence = _amount.div(10);
+        uint256 obtainedEssence = _amount; // must be adjusted
         collected[_receiver].karma = collected[_receiver].karma.add(_amount);
         collected[_receiver].essence = collected[_receiver].essence.add(obtainedEssence);
         CollectEssence(_receiver, _amount, collected[_receiver].essence, _action, _source);
