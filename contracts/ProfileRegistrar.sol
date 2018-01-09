@@ -106,6 +106,22 @@ contract ProfileRegistrar is AkashaModule {
         return true;
     }
 
+    function adminRegisterFor(bytes32 _subNode, bool _enableDonations, address _alphaUser)
+    public
+    onlyOwner
+    returns (bool)
+    {
+        require(check_format(_subNode));
+
+        ens.setSubnodeOwner(rootNode, _subNode, this);
+        ens.setResolver(hash(_subNode), resolver);
+
+        ens.setSubnodeOwner(rootNode, _subNode, _alphaUser);
+        resolver.registerHash(_subNode, hash(_subNode), _alphaUser, true, bytes32(0x0), uint8(0x0), uint8(0x0));
+        Register(_subNode, version);
+        return true;
+    }
+
     // fk squatters
     function adminSetSubNode(bytes32 _subNode, address _newOwner)
     public

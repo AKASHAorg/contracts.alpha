@@ -180,7 +180,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 7292,
+          "SourceUnit": 7371,
           "absolutePath": "zeppelin-solidity/contracts/ownership/HasNoTokens.sol",
           "file": "zeppelin-solidity/contracts/ownership/HasNoTokens.sol",
           "scope": 71,
@@ -195,7 +195,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 7267,
+          "SourceUnit": 7346,
           "absolutePath": "zeppelin-solidity/contracts/ownership/HasNoEther.sol",
           "file": "zeppelin-solidity/contracts/ownership/HasNoEther.sol",
           "scope": 71,
@@ -211,20 +211,20 @@
       {
         "attributes": {
           "contractDependencies": [
-            7231,
-            7266,
-            7291,
-            7347
+            7310,
+            7345,
+            7370,
+            7426
           ],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
             70,
-            7291,
-            7231,
-            7266,
-            7347
+            7370,
+            7310,
+            7345,
+            7426
           ],
           "name": "AkashaModule",
           "scope": 71
@@ -241,7 +241,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "HasNoEther",
-                  "referencedDeclaration": 7266,
+                  "referencedDeclaration": 7345,
                   "type": "contract HasNoEther"
                 },
                 "id": 18,
@@ -264,7 +264,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "HasNoTokens",
-                  "referencedDeclaration": 7291,
+                  "referencedDeclaration": 7370,
                   "type": "contract HasNoTokens"
                 },
                 "id": 20,
@@ -424,7 +424,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 7266,
+                      "referencedDeclaration": 7345,
                       "type": "type(contract HasNoEther)",
                       "value": "HasNoEther"
                     },
@@ -450,7 +450,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 7291,
+                      "referencedDeclaration": 7370,
                       "type": "type(contract HasNoTokens)",
                       "value": "HasNoTokens"
                     },
@@ -493,7 +493,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8025,
+                              "referencedDeclaration": 8104,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
@@ -826,7 +826,7 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 7321,
+                      "referencedDeclaration": 7400,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
@@ -869,7 +869,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 8028,
+                              "referencedDeclaration": 8107,
                               "type": "function (address)",
                               "value": "selfdestruct"
                             },
@@ -883,7 +883,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 7295,
+                              "referencedDeclaration": 7374,
                               "type": "address",
                               "value": "owner"
                             },
@@ -927,5 +927,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-12-19T15:13:40.154Z"
+  "updatedAt": "2018-01-09T14:50:25.391Z"
 }

@@ -122,6 +122,7 @@ contract AETH is MintableToken, PausableToken {
                     delete cycles[msg.sender].states[i];
                     // must refactor this
                     cycles[msg.sender].lastFreed = i;
+                    Transfer(0x0, msg.sender, currentAmount);
                     Transition(msg.sender, AethState.Free, currentAmount);
                 }
             }

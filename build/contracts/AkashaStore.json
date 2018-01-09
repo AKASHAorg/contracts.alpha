@@ -331,10 +331,10 @@
         "attributes": {
           "contractDependencies": [
             285,
-            7231,
-            7266,
-            7291,
-            7347
+            7310,
+            7345,
+            7370,
+            7426
           ],
           "contractKind": "contract",
           "documentation": null,
@@ -342,10 +342,10 @@
           "linearizedBaseContracts": [
             197,
             285,
-            7291,
-            7231,
-            7266,
-            7347
+            7370,
+            7310,
+            7345,
+            7426
           ],
           "name": "AkashaStore",
           "scope": 198
@@ -1959,5 +1959,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2017-12-19T15:13:40.154Z"
+  "updatedAt": "2018-01-09T14:50:25.391Z"
 }

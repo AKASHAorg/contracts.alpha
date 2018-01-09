@@ -3,6 +3,7 @@ const init = require('./index');
 const contract = require("truffle-contract");
 const AethSale = require("./build/contracts/AethSale.json");
 const AETHabi = require("./build/contracts/AETH.json");
+const initialTags = require('./exports-tags');
 const web3 = new Web3();
 
 const provider = new Web3.providers.HttpProvider("http://localhost:8545");
@@ -29,10 +30,15 @@ const deployToken = async function () {
     from: '0x551df15db6f9f834c6b5795183190582452cb10c',
     gas: 6115909
   });
-  await this.token.mint('0x551df15db6f9f834c6b5795183190582452cb10c', web3.toWei(100000, 'ether'), {
+  await this.token.mint('0x551df15db6f9f834c6b5795183190582452cb10c', web3.toWei(1000000, 'ether'), {
     from: '0x551df15db6f9f834c6b5795183190582452cb10c',
     gas: 6115909
   });
+  await this.token.mint('0x4cc120790781c9b61bb8d9893d439efdf02e2d30', web3.toWei(1000000, 'ether'), {
+    from: '0x551df15db6f9f834c6b5795183190582452cb10c',
+    gas: 6115909
+  });
+
   await this.token.finishMinting({
     from: '0x551df15db6f9f834c6b5795183190582452cb10c',
     gas: 6115909
@@ -82,64 +88,17 @@ const finalize = async function () {
 
 const createTags = async function () {
   const contracts = await init(provider);
-  const initialTags = [
-    'ethereum',
-    'akasha',
-    'testing',
-    'ipfs',
-    'story',
-    'development',
-    'bugs',
-    'announcements',
-    'tutorials',
-    'bitcoin',
-    'crypto',
-    'trading',
-    'news',
-    "thriller",
-    "windows",
-    "installation",
-    "space",
-    "play",
-    "script",
-    "impressed",
-    "machinelearning",
-    "anticensorship",
-    "alpha",
-    "testing",
-    "testnet",
-    "helloworld",
-    "woow",
-    "moon",
-    "enlightenment",
-    "money",
-    "cats",
-    "picture",
-    "anime",
-    "fantasy",
-    "daitoken",
-    "digix",
-    "stablecoins",
-    "dapps",
-    "future",
-    "dude",
-    "feel",
-    "comedy",
-    "spam",
-    "jokes",
-    "prediction",
-    "price",
-    "ethtrader",
-    "letsgetstarted",
-    "decentralized",
-    "crypto",
-    "socialmedia"];
+  const step = 10;
+  for (let i = 0; i < initialTags.length; ) {
+    const to = i === 0 ? step : i + step;
 
-  for (let i = 0; i < initialTags.length; i++) {
-    await contracts.Tags.adminAdd(initialTags[i], {
+    console.log('publishing', initialTags.slice(i, to));
+
+    await contracts.Tags.adminAdd(initialTags.slice(i, to), {
       from: '0x551df15db6f9f834c6b5795183190582452cb10c',
-      gas: 200000
-    })
+      gas: 4740000
+    });
+    i += step;
   }
   console.log('done');
 };
